@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour {
 	public float damageMax = 13f;
 	public float attackSpeed = 1f;
 
+	public float shitVariable;
+
 	// Use this for initialization
 	void Start () {
 	
