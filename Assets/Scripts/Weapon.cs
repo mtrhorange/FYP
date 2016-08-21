@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour {
 
 	public float testShit;
 
+	public float shitVariable;
+
 	// Use this for initialization
 	void Start () {
 	
