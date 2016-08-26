@@ -1,0 +1,16 @@
+[user]
+    name = <myname>
+    email = <mymail>
+[filter "lfs"]
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
+[core]
+    autocrlf = true
+[merge]
+    tool = meld
+[mergetool "meld"]
+    path = C:\\Program files (x86)\\Meld\\Meld.exe
+[mergetool]
+    prompt = false
