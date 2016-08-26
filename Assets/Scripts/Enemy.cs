@@ -8,16 +8,12 @@ public class Enemy : MonoBehaviour {
 
 	public float damage;
 
-
-
-
 	//Status Effects
 	bool isBurning = false;
 	bool isFrozen = false;
 	bool isSlowed = false;
 	bool isStunned = false;
 	bool isConfused = false;
-	bool isCrazy = true;
 
 	// Use this for initialization
 	void Start () {
