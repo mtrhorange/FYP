@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
 	public float health;
 	public GameObject damageText;
 
-
+    public float damage;
 
 	// Use this for initialization
 	void Start () {
