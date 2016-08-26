@@ -72,6 +72,14 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 
 	#endregion
 
+	#region MarkAdded
+
+	Player player;
+	public GameObject spellFirePillar;
+	public GameObject spellTransmutationFire;
+
+	#endregion
+
 	#region Initialization
 
 	void Start() 
@@ -79,6 +87,8 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		//set the animator component
 		animator = GetComponentInChildren<Animator>();
 		rb = GetComponent<Rigidbody>();
+
+		player = GetComponent<Player> ();
 	}
 
 	#endregion
@@ -127,6 +137,20 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 			{
 				AttackKick(2);
 			}
+
+			if (Input.GetKeyDown(KeyCode.C) && canAction && isGrounded && !isBlocking) 
+			{
+				Attack (1);
+				if (target != null) {
+					Instantiate (spellTransmutationFire, target.transform.position, Quaternion.identity);
+					Instantiate (spellFirePillar, target.transform.position, Quaternion.identity);
+
+				} else {
+					Instantiate (spellTransmutationFire, transform.position + transform.forward * 8f, Quaternion.identity);
+					Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+
+				}
+			}
 			//if strafing
 			/*if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("TargetBlock") > .1 && canAction)
 			{  
@@ -158,8 +182,10 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 						isStrafing = false;
 
 					}
-				} else
+				} else {
 					transform.GetComponent<Player> ().ResetTarget ();
+					target = null;
+				}
 			}
 		}
 		else

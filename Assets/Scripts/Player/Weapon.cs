@@ -7,17 +7,19 @@ public class Weapon : MonoBehaviour {
 
 	public float damageMin = 10f;
 	public float damageMax = 13f;
-	public float attackSpeed = 1f;
 
-	public float testShit;
-
-	public float shitVariable;
 
 	// Use this for initialization
 	void Start () {
 	
 	}
-	
+
+	public Weapon(float min, float max) {
+		damageMin = min;
+		damageMax = max;
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 	

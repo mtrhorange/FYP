@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
 	GameObject attackTrigger;
 	GameObject enemyTargetHover;
 
+	RPGCharacterControllerFREE controller;
+
 	// Use this for initialization
 	void Start () {
 		movements = new List<Vector3> ();
@@ -27,6 +29,9 @@ public class Player : MonoBehaviour {
 
 		attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		enemyTargetHover = transform.Find ("Target").gameObject;
+
+		if (GetComponent<RPGCharacterControllerFREE> ())
+			controller = GetComponent<RPGCharacterControllerFREE> ();
 	}
 	
 	// Update is called once per frame

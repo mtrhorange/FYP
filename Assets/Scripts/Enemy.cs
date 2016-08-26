@@ -8,6 +8,13 @@ public class Enemy : MonoBehaviour {
 
 
 
+	//Status Effects
+	bool isBurning = false;
+	bool isFrozen = false;
+	bool isSlowed = false;
+	bool isStunned = false;
+	bool isConfused = false;
+
 	// Use this for initialization
 	void Start () {
 		damageText = (GameObject)Resources.Load ("DamageText");

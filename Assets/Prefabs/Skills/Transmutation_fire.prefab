@@ -32,7 +32,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &166064
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &422346
 Transform:
   m_ObjectHideFlags: 1
@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4ce983373c52c4cab48260925a8c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeSpan: 10
+  lifeSpan: 2.5
 --- !u!198 &19876006
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ ParticleSystem:
   serializedVersion: 2
   lengthInSec: 4.5
   startDelay:
-    scalar: 0
+    scalar: 0.5
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -329,7 +329,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
     startSize:
-      scalar: 8
+      scalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -345,7 +345,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.625
+          value: 0.5
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -527,7 +527,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 9
-    radius: 6
+    radius: 2
     angle: 90
     length: 1.2
     boxX: 1
@@ -1854,7 +1854,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166064}
   serializedVersion: 2
-  lengthInSec: 5
+  lengthInSec: 3
   startDelay:
     scalar: 0
     maxCurve:
@@ -1901,7 +1901,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2062,7 +2062,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 0.5176471, b: 0, a: 1}
       minMaxState: 0
     startSize:
-      scalar: 20
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2275,7 +2275,7 @@ ParticleSystem:
     gravityModifier: 0
     maxNumParticles: 1
     size3D: 0
-    rotation3D: 0
+    rotation3D: 1
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -5335,7 +5335,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -5379,7 +5379,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -5423,7 +5423,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

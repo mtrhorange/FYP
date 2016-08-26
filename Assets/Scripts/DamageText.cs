@@ -14,7 +14,7 @@ public class DamageText : MonoBehaviour {
 	void Update () {
 		lifespan -= Time.deltaTime;
         scale += Time.deltaTime * 1.5f;
-        Debug.Log(scale);
+        //Debug.Log(scale);
 		transform.position += Vector3.up * Time.deltaTime * 3f;
         transform.localScale = new Vector3(scale, scale, scale);
 

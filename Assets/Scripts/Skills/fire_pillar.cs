@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class fire_pillar : MonoBehaviour {
+public class fire_pillar : Spell {
 
     // Use this for initialization
-    public float lifeSpan = 5;
+    public float lifeSpan = 2.5f;
+	public float triggerDelay;
     void Start()
     {
+		damage = 20;
 
     }
 
@@ -14,9 +16,22 @@ public class fire_pillar : MonoBehaviour {
     void Update()
     {
         lifeSpan -= Time.deltaTime;
+		triggerDelay -= Time.deltaTime;
+
+		if (triggerDelay <= 0 && GetComponent<Collider>().enabled == false)
+			GetComponent<Collider> ().enabled = true;
+
         if (lifeSpan <= 0)
         {
             Destroy(gameObject);
         }
     }
+
+	void OnTriggerEnter(Collider other) {
+		if (other.transform.GetComponent<Enemy> ()) {
+			float dmg = damage;
+			other.GetComponent<Enemy> ().ReceiveDamage (dmg);
+		}
+
+	}
 }
