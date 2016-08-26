@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour {
 	public float health;
 	public GameObject damageText;
 
+	public float damage;
+
 
 
 	//Status Effects
