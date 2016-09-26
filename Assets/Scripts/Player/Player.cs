@@ -27,11 +27,13 @@ public class Player : MonoBehaviour {
 		movements = new List<Vector3> ();
 		recording = true;
 
-		attackTrigger = transform.Find ("AttackTrigger").gameObject;
-		enemyTargetHover = transform.Find ("Target").gameObject;
-
 		if (GetComponent<RPGCharacterControllerFREE> ())
 			controller = GetComponent<RPGCharacterControllerFREE> ();
+
+		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
+		//enemyTargetHover = transform.Find ("Target").gameObject;
+
+
 	}
 	
 	// Update is called once per frame
