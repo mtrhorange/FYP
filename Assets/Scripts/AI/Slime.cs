@@ -3,48 +3,28 @@ using System.Collections;
 using Pathfinding;
 
 public class Slime : Enemy {
-    //target position
-    public Vector3 target;
-    //player reference
-    private GameObject player;
-    //seeker component
-    private Seeker seeker;
+
+    //'bigger' boolean controls whether the slime will be a bigger variant that splits into 2 normal slimes upon death
+    public bool bigger;
+    public GameObject slimePrefab;
     //character controller
     private CharacterController charCon;
-    //calculated path
-    public Path path;
-    //AI speed
-    public float speed;
-    private float originalSpeed;
-    //distance AI is to a waypoint for it to continue to the next
-    public float nextWayPointDistance = 1f;
-    //current waypoint
-    private int currentWayPoint = 0;
     //timers
-    private float idleTimer = 0, chaseTimer = 1;
-    //movement boolean
-    private bool move = true;
-
-    private Vector3 lastPos;
-
-    //States
-    public enum States
-    {
-        Idle,
-        Chase,
-        Attack,
-        Dead
-    }
-    //myState (current state this entity is in)
-    public States myState = States.Idle;
+    private float idleTimer = 0, chaseTimer = 0;
+    //movement variables
+    private bool gravityOn;
+    private Vector3 lastPos, dir = Vector3.zero;
+    //attack variables
+    private bool attacking = false;
 
 	//Start
 	void Start ()
     {
         //slime properties
-        health = 25;
-        damage = 5;
-        originalSpeed = speed;
+        health = bigger ? 50 : 25;
+        damage = bigger ? 7 : 5;
+        transform.localScale = bigger ? new Vector3(1.8f, 1.8f, 1.8f) : transform.localScale;
+        transform.position = new Vector3(transform.position.x, transform.localScale.y * 0.5f, transform.position.z);
         //get our seeker component
         seeker = GetComponent<Seeker>();
         //get character controller
@@ -65,16 +45,106 @@ public class Slime : Enemy {
         {
             Chase();
         }
+        else if (myState == States.Attack)
+        {
+            if (!attacking)
+            {
+                attacking = true;
+                StartCoroutine(Attack());
+            }
+        }
+        else if (myState == States.Dead)
+        {
+        }
+
+        //testing
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ReceiveDamage(5);
+            if (health <= 0)
+            {
+                myState = States.Dead;
+
+                //check if is a biger variant
+                if (bigger)
+                {
+                    //split into 2 normal sized slimes
+                    GameObject s1 = (GameObject)Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
+                    GameObject s2 = (GameObject)Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    //do death
+                    Destroy(this.gameObject);
+                }
+            }
+        }
 	}
 
+    private IEnumerator Attack()
+    {
+        Debug.Log("i attack u");
+        //temporary attack action to be changed
+        Vector3 scale = transform.localScale;
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        myState = States.Chase;
+        attacking = false;
+    }
+
+    //fixed update for debug rays and lines
+    private void FixedUpdate()
+    {
+        //attack trigger distance debug ray
+        Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 2f, Color.magenta);
+    }
+
     //Idle state
-    private void Idle()
+    protected override void Idle()
     {
         //idle for 3 seconds
         if (idleTimer >= 3)
         {
             //check if idle again or Chase
-            if (Random.Range(0f, 1f) >= 0.4f)
+            if (Random.Range(0f, 1f) >= 0.4f || true)
             {
                 //chase target
                 target = player.transform.position;
@@ -82,6 +152,7 @@ public class Slime : Enemy {
                 seeker.StartPath(transform.position, target, OnPathComplete);
                 currentWayPoint = 0;
                 myState = States.Chase;
+                Debug.Log("I'm Chasing");
             }
             else
             {
@@ -92,8 +163,8 @@ public class Slime : Enemy {
         idleTimer += Time.deltaTime;
     }
 
-    //Patrol
-    private void Chase()
+    //Chase
+    protected override void Chase()
     {
         if (path == null)
         {
@@ -107,36 +178,67 @@ public class Slime : Enemy {
             myState = States.Idle;
             return;
         }
-        //only move in "jumps" (every 1 sec)
-        if (move)
+
+        //if this entity on the ground
+        if (charCon.isGrounded)
         {
-            //Direction to the next waypoint
-            Vector3 dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-            dir *= speed * Time.deltaTime;
-            charCon.SimpleMove(dir);
-            chaseTimer += Time.deltaTime;
+            //check first if catched up to the player
+            //if yes proceed to attack
+            if ((player.transform.position - transform.position).magnitude <= 2f)
+            {
+                myState = States.Attack;
+            }
+            //if not, continue chasing
+            else
+            {
+                //if chaseTimer is bigger than zero, continue counting down
+                if (chaseTimer >= 0)
+                {
+                    chaseTimer -= Time.deltaTime;
+                }
+                //else if it is smaller than zero
+                else
+                {
+                    //chase target
+                    target = player.transform.position;
+                    //set a path to tgt position
+                    seeker.StartPath(transform.position, target, OnPathComplete);
+                    currentWayPoint = 0;
+                    //set the direction to move to
+                    dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
+                    dir.y = 1.5f;
+                    //simulate gravity
+                    dir.y -= 9.8f * Time.deltaTime;
+                    //factor in the speed to move at
+                    dir *= speed;
+                    //move
+                    charCon.Move(dir * Time.deltaTime);
+                    gravityOn = false;
+                }
+            }
         }
+        //if this entity is off the ground
         else
         {
-            chaseTimer -= Time.deltaTime;
+            //update the direction to move to
+            dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
+            //"jump"
+            if (transform.position.y < 2f && !gravityOn)
+            {
+                dir.y = 1.5f;
+            }
+            //when reached the height of jump, switch on gravity
+            else
+            {
+                gravityOn = true;
+                dir.y -= 9.8f * Time.deltaTime;
+            }
+            dir *= speed;
+            charCon.Move(dir * Time.deltaTime);
+            chaseTimer = 1f;
         }
-        if (chaseTimer >= 1)
-        {
-            move = false;
-            speed = 0;
 
-            //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
-        }
-        else if (chaseTimer <= 0)
-        {
-            move = true;
-            speed = originalSpeed;
-        }
-
-        //For slime, check if we moved a set distance, then update the movement timer
+        //update the waypoint on the path once the current one has been reached
         if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
         {
             currentWayPoint++;
@@ -144,14 +246,5 @@ public class Slime : Enemy {
         }
     }
 
-    private void OnPathComplete(Path p)
-    {
-        Debug.Log("Path Set, Error: " + p.error);
-        if (!p.error)
-        {
-            path = p;
-            //Reset the waypoint counter
-            currentWayPoint = 0;
-        }
-    }
+
 }

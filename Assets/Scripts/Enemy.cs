@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Pathfinding;
 
 public class Enemy : MonoBehaviour {
 
@@ -7,6 +8,32 @@ public class Enemy : MonoBehaviour {
 	public GameObject damageText;
 
 	public float damage;
+
+    //target position
+    protected Vector3 target;
+    //player reference
+    protected GameObject player;
+    //seeker component
+    protected Seeker seeker;
+    //calculated path
+    protected Path path;
+    //AI speed
+    public float speed;
+    //distance AI is to a waypoint for it to continue to the next
+    protected float nextWayPointDistance = 1f;
+    //current waypoint
+    protected int currentWayPoint = 0;
+
+    //States
+    public enum States
+    {
+        Idle,
+        Chase,
+        Attack,
+        Dead
+    }
+    //myState (current state this entity is in)
+    public States myState = States.Idle;
 
 	//Status Effects
 	bool isBurning = false;
@@ -22,26 +49,47 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
+
+
+    //Idle state
+    protected virtual void Idle()
+    {
+        Debug.Log("ENEMY SCRIPT Idle");
+    }
+    //chase
+    protected virtual void Chase()
+    {
+        Debug.Log("ENEMY SCRIPT Chase");
+    }
 
 	public void ReceiveDamage(float dmg) {
 
 		health -= dmg;
-		GameObject txt = (GameObject)Instantiate (damageText, transform.position, Quaternion.identity);
-		txt.GetComponent<TextMesh> ().text = dmg.ToString("F0");
-		txt.transform.Rotate (55, 0, 0);
-
-
+		GameObject txt = (GameObject)Instantiate(damageText, transform.position, Quaternion.identity);
+		txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
+		txt.transform.Rotate(55, 0, 0);
 	}
 
 	void OnTriggerEnter(Collider other) {
 
-		if (other.transform.parent.GetComponent<Player> ()) {
-			Player player = other.transform.parent.GetComponent<Player> ();
-			float dmg = Random.Range (player.damageMin, player.damageMax);
-			ReceiveDamage (dmg);
+		if (other.transform.parent.GetComponent<Player>()) {
+			Player player = other.transform.parent.GetComponent<Player>();
+			float dmg = Random.Range(player.damageMin, player.damageMax);
+			ReceiveDamage(dmg);
 
 		}
 	}
+
+    protected void OnPathComplete(Path p)
+    {
+        Debug.Log("Path Set, Error: " + p.error);
+        if (!p.error)
+        {
+            path = p;
+            //Reset the waypoint counter
+            currentWayPoint = 0;
+        }
+    }
 }

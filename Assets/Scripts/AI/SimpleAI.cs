@@ -64,6 +64,7 @@ public class SimpleAI : MonoBehaviour {
         if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
         {
             currentWayPoint++;
+            GameObject.Find("A*").GetComponent<AstarPath>().Scan();
             return;
         }
 
