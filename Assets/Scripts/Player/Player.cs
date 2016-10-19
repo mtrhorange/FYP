@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 	public float damageMin = 10;
 	public float damageMax = 13;
 
-
+	public Weapon currentWeapon;
 
 	GameObject attackTrigger;
 	GameObject enemyTargetHover;
@@ -56,10 +56,7 @@ public class Player : MonoBehaviour {
 
 	public void AttackTrigger(int i)
 	{
-		if (i == 1)
-			attackTrigger.SetActive (true);
-		else
-			attackTrigger.SetActive (false);
+		currentWeapon.AttackTrigger (i);
 
 	}
 
