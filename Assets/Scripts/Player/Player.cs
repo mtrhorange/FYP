@@ -4,28 +4,35 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
-	List<Vector3> movements;
+	public static Player instance;
 
-	bool recording;
-	bool reverse;
+	float maxHealth = 100f;
+	float health = 100f;
+	float maxStamina = 100f;
+	float stamina = 100f;
+	bool recoverStamina = true; //Can stamina be recovered
 
-	public int reverseSpeed = 5;
-
-	public float health = 100;
-	public float damageMin = 10;
-	public float damageMax = 13;
+	int level = 1;
+	float exp = 0;
 
 	public Weapon currentWeapon;
+
+	public HealthBar healthBar;
+	public StaminaBar staminaBar;
 
 	GameObject attackTrigger;
 	GameObject enemyTargetHover;
 
 	RPGCharacterControllerFREE controller;
 
+	void Awake() {
+
+		instance = this;
+
+	}
+
 	// Use this for initialization
 	void Start () {
-		movements = new List<Vector3> ();
-		recording = true;
 
 		if (GetComponent<RPGCharacterControllerFREE> ())
 			controller = GetComponent<RPGCharacterControllerFREE> ();
@@ -39,17 +46,6 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		/*Movement ();
-
-		if (Input.GetKey (KeyCode.Q)) {
-			reverse = true;
-			recording = false;
-			ReverseTime();
-		} else if (Input.GetKeyUp (KeyCode.Q)) {
-			reverse = false;
-			recording = true;
-		}*/
-
 
 
 	}
@@ -58,8 +54,13 @@ public class Player : MonoBehaviour {
 	{
 		currentWeapon.AttackTrigger (i);
 
+
 	}
 
+	/*
+	*	Search for nearest enemy to target
+	*
+	*/
 	public GameObject FindTarget() {
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
@@ -93,56 +94,62 @@ public class Player : MonoBehaviour {
 
 	}
 
-	void ReverseTime() {
 
 
-			
-		int i = movements.Count;
-		if (i - reverseSpeed >= 0) {
-			transform.position = movements[i-reverseSpeed];
-			movements.RemoveRange(i-reverseSpeed, reverseSpeed);
+	//Player's current health
+	public float Health {
+		get {
+			return health;
+		}
+		set {
+			if (value > maxHealth)
+				health = maxHealth;
+			else
+				health = value;
+		}
 
-		}else if (i > 0) {
-			transform.position = movements [i - 1];
-			movements.RemoveAt (i - 1);
+	}
+
+	//Player max health
+	public float MaxHealth {
+		get {
+			return maxHealth;
+		}
+
+		set {
+			maxHealth = value;
+			if (health > maxHealth)
+				health = maxHealth;
+
+		}
+
+
+	}
+
+	//Player Max Stamina
+	public float MaxStamina{ get; set; }
+
+	public int Level {
+
+		get { return level; }
+		set {
+			if (value < 0)
+				level = 1;
+			else
+				level = value;
+		}
+
+	}
+
+	public float Exp {
+
+		get { return exp; }
+		set {
+			exp = value;
+
 		}
 
 	}
 
 
-	void Movement() {
-
-		if (!reverse) {
-
-			if (Input.GetKey(KeyCode.W)) {
-				transform.position += Vector3.forward * 0.1f;
-				recording = true;
-			}
-			if (Input.GetKey (KeyCode.S)) {
-				transform.position += Vector3.back * 0.1f;
-				recording = true;
-			}
-			if (Input.GetKey (KeyCode.A)) {
-				transform.position += Vector3.left * 0.1f;
-				recording = true;
-			}
-			if (Input.GetKey (KeyCode.D)) {
-				transform.position += Vector3.right * 0.1f;
-				recording = true;
-			}
-
-			if (recording) {
-				
-				movements.Add(transform.position);
-				Debug.Log (movements.Count);
-				if (movements.Count > 50)
-					movements.RemoveAt(0);
-				recording = false;
-			}
-//			if (Input.GetKeyDown (KeyCode.Space)){
-//				recording = !recording;
-//				movements.Clear();
-//			}
-		}
-	}
 }
