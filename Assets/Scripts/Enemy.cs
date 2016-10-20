@@ -70,16 +70,12 @@ public class Enemy : MonoBehaviour {
 		GameObject txt = (GameObject)Instantiate(damageText, transform.position, Quaternion.identity);
 		txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
 		txt.transform.Rotate(55, 0, 0);
+		Debug.Log (GetComponent<Player> ().Health);
 	}
 
 	void OnTriggerEnter(Collider other) {
 
-		if (other.transform.parent.GetComponent<Player>()) {
-			Player player = other.transform.parent.GetComponent<Player>();
-			float dmg = Random.Range(player.damageMin, player.damageMax);
-			ReceiveDamage(dmg);
 
-		}
 	}
 
     protected void OnPathComplete(Path p)

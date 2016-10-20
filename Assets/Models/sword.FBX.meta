@@ -1,33 +1,15 @@
 fileFormatVersion: 2
-guid: 3bc151a337ad0cf42b887326d96b0169
-timeCreated: 1471359133
+guid: 6e71e4a2150ba2340a0f0dc09ea10348
+timeCreated: 1476767795
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Box001
-    100002: Plane001
-    100004: Sphere001
-    100006: Sphere002
-    100008: //RootNode
-    400000: Box001
-    400002: Plane001
-    400004: Sphere001
-    400006: Sphere002
-    400008: //RootNode
-    2300000: Box001
-    2300002: Plane001
-    2300004: Sphere001
-    2300006: Sphere002
-    3300000: Box001
-    3300002: Plane001
-    3300004: Sphere001
-    3300006: Sphere002
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Box001
-    4300002: Plane001
-    4300004: Sphere001
-    4300006: Sphere002
-    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -35,7 +17,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -86,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
