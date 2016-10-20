@@ -29,8 +29,7 @@ public class Slime : Enemy {
         seeker = GetComponent<Seeker>();
         //get character controller
         charCon = GetComponent<CharacterController>();
-
-        //player
+        //player reference
         player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
@@ -213,6 +212,8 @@ public class Slime : Enemy {
                     dir *= speed;
                     //move
                     charCon.Move(dir * Time.deltaTime);
+                    
+
                     gravityOn = false;
                 }
             }
@@ -238,6 +239,12 @@ public class Slime : Enemy {
             chaseTimer = 1f;
         }
 
+        //look
+        Vector3 look = dir;
+        look.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(look);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
         //update the waypoint on the path once the current one has been reached
         if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
         {
@@ -245,6 +252,5 @@ public class Slime : Enemy {
             return;
         }
     }
-
 
 }
