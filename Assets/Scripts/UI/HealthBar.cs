@@ -11,8 +11,7 @@ public class HealthBar : MonoBehaviour {
 		player = Player.instance;
 		player.healthBar = this;
 
-		SetHealth (player.Health);
-		transform.parent.GetComponent<RectTransform> ().sizeDelta = new Vector2 (player.MaxHealth + 10f, 15);
+		SetMaxHealth ();
 	}
 	
 	// Update is called once per frame
@@ -20,9 +19,15 @@ public class HealthBar : MonoBehaviour {
 		
 	}
 
-	public void SetHealth (float h) {
+	public void SetHealth () {
 
-		GetComponent<RectTransform> ().sizeDelta = new Vector2 (h, 8);
+		GetComponent<RectTransform> ().sizeDelta = new Vector2 (player.Health, 8);
 
+	}
+
+	public void SetMaxHealth() {
+
+		transform.parent.GetComponent<RectTransform> ().sizeDelta = new Vector2 (player.MaxHealth + 10f, 15);
+		SetHealth ();
 	}
 }
