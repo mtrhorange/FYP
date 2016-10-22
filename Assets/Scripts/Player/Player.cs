@@ -1,29 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
+[System.Serializable]
 public class Player : MonoBehaviour {
 
 	public static Player instance;
 
-	float maxHealth = 100f;
-	float health = 100f;
-	float maxStamina = 100f;
-	float stamina = 100f;
-	bool recoverStamina = true; //Can stamina be recovered
+	public string name = " ";
+	public int saveId = -1;
+	public float maxHealth = 100f;
+	public float health = 100f;
+	public float maxStamina = 100f;
+	public float stamina = 100f;
+	public bool recoverStamina = true; //Can stamina be recovered
 
-	int level = 1;
-	float exp = 0;
+	public int level = 1;
+	public float exp = 0;
+
 
 	public Weapon currentWeapon;
 
 	public HealthBar healthBar;
+
 	public StaminaBar staminaBar;
 
 	GameObject attackTrigger;
 	GameObject enemyTargetHover;
 
 	RPGCharacterControllerFREE controller;
+
+	public Player(string n, int sId) {
+
+		name = n;
+		saveId = sId;
+
+	}
+
 
 	void Awake() {
 
@@ -94,7 +109,18 @@ public class Player : MonoBehaviour {
 
 	}
 
+	//Player gets damage, reduces health
+	public void ReceiveDamage(float f) {
 
+		Health -= f;
+
+	}
+
+	//Player recovers health
+	public void RecoverHealth(float f) {
+
+		Health += f;
+	}
 
 	//Player's current health
 	public float Health {
@@ -106,6 +132,8 @@ public class Player : MonoBehaviour {
 				health = maxHealth;
 			else
 				health = value;
+
+			healthBar.SetHealth ();
 		}
 
 	}
@@ -120,7 +148,20 @@ public class Player : MonoBehaviour {
 			maxHealth = value;
 			if (health > maxHealth)
 				health = maxHealth;
+			healthBar.SetMaxHealth ();
+		}
 
+
+	}
+
+	//Player stamina
+	public float Stamina {
+		get { return stamina; }
+		set {
+			if (value > maxStamina)
+				stamina = maxStamina;
+			else
+				stamina = value;
 		}
 
 
@@ -129,6 +170,7 @@ public class Player : MonoBehaviour {
 	//Player Max Stamina
 	public float MaxStamina{ get; set; }
 
+	//Player current level
 	public int Level {
 
 		get { return level; }
@@ -141,12 +183,19 @@ public class Player : MonoBehaviour {
 
 	}
 
+	//Player exp & levelup
 	public float Exp {
 
 		get { return exp; }
 		set {
 			exp = value;
+			float expLimit = 50 + (50 * level);
+			if (exp >= expLimit) {
 
+				level++;
+				exp -= expLimit;
+
+			}
 		}
 
 	}
