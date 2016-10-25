@@ -4,8 +4,10 @@ using UnityEngine.UI;
 public class SaveSlot : MonoBehaviour {
 
 	public int saveId;
+	public int playerNo;
 	public string playerName = null;
 	public int playerLevel;
+
 
 	// Use this for initialization
 	void Start () {

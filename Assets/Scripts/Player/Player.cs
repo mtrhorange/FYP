@@ -133,7 +133,7 @@ public class Player : MonoBehaviour {
 			else
 				health = value;
 
-			healthBar.SetHealth ();
+			//healthBar.SetHealth ();
 		}
 
 	}
@@ -148,7 +148,7 @@ public class Player : MonoBehaviour {
 			maxHealth = value;
 			if (health > maxHealth)
 				health = maxHealth;
-			healthBar.SetMaxHealth ();
+			//healthBar.SetMaxHealth ();
 		}
 
 

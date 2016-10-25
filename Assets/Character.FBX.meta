@@ -75,6 +75,11 @@ ModelImporter:
     100134: thumb_03_r
     100136: upperarm_l
     100138: upperarm_r
+    100140: Object010
+    100142: Object011
+    100144: Object012
+    100146: Object013
+    100148: Object014
     400000: ball_l
     400002: ball_r
     400004: calf_l
@@ -145,6 +150,11 @@ ModelImporter:
     400134: thumb_03_r
     400136: upperarm_l
     400138: upperarm_r
+    400140: Object010
+    400142: Object011
+    400144: Object012
+    400146: Object013
+    400148: Object014
     2300000: Line004
     2300002: Line007
     2300004: Line013
@@ -156,6 +166,11 @@ ModelImporter:
     2300016: Object006
     2300018: Object008
     2300020: Object009
+    2300022: Object010
+    2300024: Object011
+    2300026: Object012
+    2300028: Object013
+    2300030: Object014
     3300000: Line004
     3300002: Line007
     3300004: Line013
@@ -167,6 +182,11 @@ ModelImporter:
     3300016: Object006
     3300018: Object008
     3300020: Object009
+    3300022: Object010
+    3300024: Object011
+    3300026: Object012
+    3300028: Object013
+    3300030: Object014
     4300000: Line004
     4300002: playerMesh_MeshPart0
     4300004: playerMesh_MeshPart1
@@ -181,10 +201,18 @@ ModelImporter:
     4300022: Object008
     4300024: Object009
     4300026: Line013
+    4300028: playerMesh
+    4300030: Object010
+    4300032: Object011
+    4300034: Object012
+    4300036: Object013
+    4300038: Object014
+    7400000: Take 001
     9500000: //RootNode
     13700000: low-polyMesh
     13700002: playerMesh_MeshPart0
     13700004: playerMesh_MeshPart1
+    13700006: playerMesh
   materials:
     importMaterials: 1
     materialName: 0

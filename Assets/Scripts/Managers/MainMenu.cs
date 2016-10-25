@@ -19,8 +19,6 @@ public class MainMenu : MonoBehaviour {
 
 	public void LoadCharacterInfo() {
 
-		SaveLoad.Load ();
-
 		SaveSlot[] slots = FindObjectsOfType<SaveSlot> ();
 
 
@@ -50,23 +48,9 @@ public class MainMenu : MonoBehaviour {
 
 	public void NewCharacter(SaveSlot s) {
 
-		PlayerData player = new PlayerData (playerName, s.saveId);
-
-		bool existing = false;
-		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
-
-			if (player.saveId == SaveLoad.savedCharacters [i].saveId) {
-				existing = true;
-				SaveLoad.savedCharacters.RemoveAt (i);
-
-
-			}
-
-		}
-
-
-		SaveLoad.NewCharacter (player);
-			
+		GameManager.instance.NewCharacter (s, playerName);
 
 	}
+
+
 }

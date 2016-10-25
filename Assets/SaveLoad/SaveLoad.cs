@@ -47,5 +47,16 @@ public static class SaveLoad {
 
 	}
 
+	public static void SaveCharacters() {
+
+		BinaryFormatter bf = new BinaryFormatter();
+		//Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
+		FileStream file = File.Create (Application.persistentDataPath + "/savedChar.sv"); //you can call it anything you want
+		bf.Serialize(file, SaveLoad.savedCharacters);
+		file.Close();
+
+
+	}
+
 
 }
