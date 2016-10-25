@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b4b04abaa3b167445960d6edd60fa77a
+timeCreated: 1477049659
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - poisonPool: {fileID: 1000010100102880, guid: 04cbc64a20f4b844f82e140cbaf4479e,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

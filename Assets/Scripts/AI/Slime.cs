@@ -68,8 +68,8 @@ public class Slime : Enemy {
                 if (bigger)
                 {
                     //split into 2 normal sized slimes
-                    GameObject s1 = (GameObject)Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
-                    GameObject s2 = (GameObject)Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
+                    Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
+                    Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
                     Destroy(this.gameObject);
                 }
                 else
@@ -81,6 +81,7 @@ public class Slime : Enemy {
         }
 	}
 
+    //attack, override next time when got model + animation
     private IEnumerator Attack()
     {
         Debug.Log("i attack u");
@@ -136,7 +137,7 @@ public class Slime : Enemy {
         Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 2f, Color.magenta);
     }
 
-    //Idle state
+    //Idle state (temp)
     protected override void Idle()
     {
         //idle for 3 seconds
@@ -151,11 +152,9 @@ public class Slime : Enemy {
                 seeker.StartPath(transform.position, target, OnPathComplete);
                 currentWayPoint = 0;
                 myState = States.Chase;
-                Debug.Log("I'm Chasing");
             }
             else
             {
-                Debug.Log("Idle again");
             }
             idleTimer = 0;
         }
