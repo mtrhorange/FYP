@@ -2,11 +2,12 @@
 using System.Collections;
 using Pathfinding;
 
-public class FlowerMonster : Enemy {
+public class BugMonster : Enemy
+{
     //character controller
     private CharacterController charCon;
     //timers
-    public float attackInterval = 1f,pathUpdateTimer = 0.5f;
+    public float attackInterval = 1f, pathUpdateTimer = 0.5f;
     private float attackTimer;
     //movement variables
     private Vector3 dir = Vector3.zero;
@@ -15,8 +16,8 @@ public class FlowerMonster : Enemy {
     private float interceptionTime = 0f;
     private Vector3 interceptPoint = Vector3.zero;
 
-	//Start
-	void Start ()
+    //Start
+    void Start()
     {
         //flower monster properties
         health = 30;
@@ -30,24 +31,24 @@ public class FlowerMonster : Enemy {
         player = GameObject.FindGameObjectWithTag("Player");
 
         attackTimer = attackInterval;
-	}
-	
-	//Update
-	void Update ()
+    }
+
+    //Update
+    void Update()
     {
-        if(myState == States.Idle)
+        if (myState == States.Idle)
         {
             Idle();
         }
-        else if(myState == States.Chase)
+        else if (myState == States.Chase)
         {
             Chase();
         }
-        else if(myState == States.Attack)
+        else if (myState == States.Attack)
         {
             Attack();
         }
-	}
+    }
 
     //Idle
     protected override void Idle()
@@ -82,19 +83,19 @@ public class FlowerMonster : Enemy {
         //if attackTimer is not over yet
         if (attackTimer >= 0)
         {
-            if (path.GetTotalLength() > 15f)
+            if (path.GetTotalLength() > 5f)
             {
                 dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
                 //factor in the speed to move at
                 dir *= speed;
                 //move
                 charCon.Move(dir * Time.deltaTime);
-            }
 
-            //look
-            Vector3 look = target;
-            look.y = transform.position.y;
-            transform.LookAt(look);
+                //look
+                Vector3 look = target;
+                look.y = transform.position.y;
+                transform.LookAt(look);
+            }
 
             attackTimer -= Time.deltaTime;
         }
@@ -113,7 +114,7 @@ public class FlowerMonster : Enemy {
                 //else if cannot "see" player, delay the shot till next iteration and check again
                 else
                 {
-                   
+
                     //set the direction to move to
                     //dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
                     dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
@@ -140,7 +141,8 @@ public class FlowerMonster : Enemy {
     }
 
     //update calculated path every set time
-    public void pathUpdate(){
+    public void pathUpdate()
+    {
 
         pathUpdateTimer -= Time.deltaTime;
 
@@ -164,7 +166,7 @@ public class FlowerMonster : Enemy {
         {
             calc.Normalize();
             interceptionTime = GetApproachingPoint(player.transform.position, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, calc * 10f);
-            interceptPoint = player.transform.position + player.GetComponent<Rigidbody>().velocity * interceptionTime;
+            interceptPoint = player.transform.position + player.transform.up + player.GetComponent<Rigidbody>().velocity * interceptionTime;
         }
         shoot(interceptPoint);
         //reset attack interval and state to chase
@@ -176,7 +178,12 @@ public class FlowerMonster : Enemy {
     private void shoot(Vector3 here)
     {
         Vector3 shootHere = (here - transform.GetChild(5).position).normalized;
-        //shootHere.y = 0;
+
+        //look
+        Vector3 look = here;
+        look.y = transform.position.y;
+        transform.LookAt(look);
+        
         GameObject boo = (GameObject)Instantiate(projectile, transform.GetChild(5).position, Quaternion.identity);
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
 
