@@ -102,7 +102,10 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		{
 			if(canMove && !isBlocking && !isDead)
 			{
-				MovementInput();
+				//if ((GetComponent<Player> ().playerNo == 1 && isKeyboard ()) || (GetComponent<Player> ().playerNo == 2 && !isKeyboard ()))
+					MovementInput ();
+				//else
+				//	inputVec = new Vector3 (0, 0, 0);
 			} 
 			Rolling();
 			Jumping();
@@ -121,7 +124,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 					StartCoroutine(_Revive());
 				}
 			}
-			if(Input.GetButtonDown("AttackL") && canAction && isGrounded && !isBlocking)
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AttackLPlayer2") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
 			{
 				Attack(1);
 			}
@@ -196,8 +199,14 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 
 	void MovementInput()
 	{
-		x = Input.GetAxisRaw("Horizontal");
-		z = Input.GetAxisRaw("Vertical");
+		if (GetComponent<Player> ().playerNo == 1) {
+			x = Input.GetAxisRaw ("Horizontal");
+			z = Input.GetAxisRaw ("Vertical");
+		} else {
+			x = Input.GetAxisRaw ("HorizontalPlayer2");
+			z = Input.GetAxisRaw ("VerticalPlayer2");
+
+		}
 		inputVec = new Vector3(x, 0, z);
 	}
 	
@@ -707,7 +716,20 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 	}
 
 	#endregion
-	
+
+	bool isKeyboard() {
+
+		if (Input.GetKey (KeyCode.RightArrow) ||
+		    Input.GetKey (KeyCode.LeftArrow) ||
+		    Input.GetKey (KeyCode.UpArrow) ||
+		    Input.GetKey (KeyCode.DownArrow))
+			return true;
+		else
+			return false;
+	}
+
+
+
 	#region _Coroutines
 
 	//method to keep character from moveing while attacking, etc

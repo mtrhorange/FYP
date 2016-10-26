@@ -1531,7 +1531,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010218560922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.0265417, y: 0.2648778, z: 4.8897047}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1901,7 +1901,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011896041944}
-  m_Mesh: {fileID: 4300000, guid: 6e71e4a2150ba2340a0f0dc09ea10348, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 3bc151a337ad0cf42b887326d96b0169, type: 3}
 --- !u!54 &54000013159894786
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1937,7 +1937,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010218560922}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 923395149f8b29241a986f484af6f540, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 1da174953305b5044a3a2f53d4348c5e, type: 3}
   m_Controller: {fileID: 9100000, guid: 84f9d613a6aa6934d8510a542fadac39, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
@@ -1957,6 +1957,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ae4b3513904df4f99dbb856aa23a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  saveId: 0
+  playerNo: 0
+  maxHealth: 0
+  health: 0
+  maxStamina: 0
+  stamina: 0
+  recoverStamina: 0
+  level: 0
+  exp: 0
   currentWeapon: {fileID: 114000013719483776}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
@@ -2079,7 +2089,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300002, guid: 923395149f8b29241a986f484af6f540, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 1da174953305b5044a3a2f53d4348c5e, type: 3}
   m_Bones:
   - {fileID: 4000012923665580}
   m_BlendShapeWeights: []
@@ -2121,7 +2131,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 923395149f8b29241a986f484af6f540, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 1da174953305b5044a3a2f53d4348c5e, type: 3}
   m_Bones:
   - {fileID: 4000011788847950}
   - {fileID: 4000011490640230}
