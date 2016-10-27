@@ -205,7 +205,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: -21.932001, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 6
+  m_RootOrder: 0
 --- !u!4 &4000010931707118
 Transform:
   m_ObjectHideFlags: 1
@@ -218,7 +218,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -31.115002, y: 84.732, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &4000011400202110
 Transform:
   m_ObjectHideFlags: 1
@@ -231,7 +231,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -31.115002, y: 84.732, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &4000011516654624
 Transform:
   m_ObjectHideFlags: 1
@@ -244,7 +244,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -31.129002, y: -95.268005, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &4000011841000358
 Transform:
   m_ObjectHideFlags: 1
@@ -256,13 +256,13 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 4000010214659230}
   - {fileID: 4000013623640684}
   - {fileID: 4000011516654624}
   - {fileID: 4000011844737164}
   - {fileID: 4000010931707118}
   - {fileID: 4000011400202110}
   - {fileID: 4000013699149704}
-  - {fileID: 4000010214659230}
   - {fileID: 4000011877730090}
   - {fileID: 4000013587232078}
   m_Father: {fileID: 0}
@@ -279,7 +279,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -31.129002, y: -95.268005, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &4000011877730090
 Transform:
   m_ObjectHideFlags: 1
@@ -318,7 +318,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -31.129002, y: -95.268005, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &4000013699149704
 Transform:
   m_ObjectHideFlags: 1
@@ -331,7 +331,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -31.115002, y: 84.732, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011841000358}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!23 &23000010715689762
 MeshRenderer:
   m_ObjectHideFlags: 1
