@@ -6,7 +6,7 @@ public class FlowerMonster : Enemy {
     //character controller
     private CharacterController charCon;
     //timers
-    public float attackInterval = 1f,pathUpdateTimer = 0.5f;
+    public float attackInterval = 1f,pathUpdateTimer = 0f;
     private float attackTimer;
     //movement variables
     private Vector3 dir = Vector3.zero;
@@ -14,9 +14,10 @@ public class FlowerMonster : Enemy {
     public GameObject projectile;
     private float interceptionTime = 0f;
     private Vector3 interceptPoint = Vector3.zero;
+    public float minDistance = 2.0f;
 
-	//Start
-	void Start ()
+    //Start
+    void Start ()
     {
         //flower monster properties
         health = 30;
@@ -29,7 +30,8 @@ public class FlowerMonster : Enemy {
         //player reference
         player = GameObject.FindGameObjectWithTag("Player");
 
-        attackTimer = attackInterval;
+          
+    attackTimer = 300f;
 	}
 	
 	//Update
@@ -70,6 +72,15 @@ public class FlowerMonster : Enemy {
             //No path to move to yet
             return;
         }
+
+        Vector3 look =
+        (path.vectorPath[currentWayPoint + 2 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 2] -
+         transform.position);
+        look.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(look);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
+        
         if (currentWayPoint >= path.vectorPath.Count)
         {
             Debug.Log("End Point Reached");
@@ -84,17 +95,37 @@ public class FlowerMonster : Enemy {
         {
             if (path.GetTotalLength() > 15f)
             {
-                dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+                dir = AvoidObstacle();
+                
+
+                RaycastHit hit;
+                if (Physics.SphereCast(this.transform.position, 5, transform.position, out hit, 2.5f))
+                {
+                    if (hit.transform.tag == "Enemy")
+                    {
+                        Vector3 offset = hit.transform.position - transform.position;
+                        offset.y = 0;
+                        dir -= offset.normalized;
+                        Debug.DrawLine(transform.position, -offset.normalized, Color.cyan);
+                    }
+                }
+                else
+                {
+                    dir = AvoidObstacle();
+                    dir *= speed;
+                }
+
                 //factor in the speed to move at
-                dir *= speed;
+                //dir *= speed;
                 //move
                 charCon.Move(dir * Time.deltaTime);
+
+
+                
             }
 
-            //look
-            Vector3 look = target;
-            look.y = transform.position.y;
-            transform.LookAt(look);
+            //look where
+          
 
             attackTimer -= Time.deltaTime;
         }
@@ -113,10 +144,10 @@ public class FlowerMonster : Enemy {
                 //else if cannot "see" player, delay the shot till next iteration and check again
                 else
                 {
-                   
+
                     //set the direction to move to
-                    //dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
-                    dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+                    dir = AvoidObstacle();
+                    //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
                     //factor in the speed to move at
                     dir *= speed;
                     //move
@@ -140,8 +171,8 @@ public class FlowerMonster : Enemy {
     }
 
     //update calculated path every set time
-    public void pathUpdate(){
-
+    public void pathUpdate()
+    {
         pathUpdateTimer -= Time.deltaTime;
 
         if (pathUpdateTimer <= 0)
@@ -151,7 +182,7 @@ public class FlowerMonster : Enemy {
             //set a path to tgt position
             seeker.StartPath(transform.position, target, OnPathComplete);
             currentWayPoint = 1;
-            pathUpdateTimer = 1f;
+            pathUpdateTimer = 0.5f;
         }
     }
 
@@ -230,6 +261,48 @@ public class FlowerMonster : Enemy {
             return 0.0f;
         //return nearest approaching point
         return (-Vector3.Dot(pVector, sVector) / d);
+    }
+
+    protected Vector3 AvoidObstacle()
+    {
+        Vector3 destPos = path.vectorPath[currentWayPoint];
+        RaycastHit Hit;
+        //Check if there is obstacle
+        Vector3 right45 = (transform.forward + transform.right).normalized;
+        Vector3 left45 = (transform.forward - transform.right).normalized;
+        //Shoot the rays!
+        if (Physics.Raycast((transform.position + transform.up),
+        right45, out Hit, minDistance))
+        {
+            return (transform.forward - transform.right).normalized;
+        }
+        else if (Physics.Raycast((transform.position + transform.up),
+        left45, out Hit, minDistance))
+        {
+            return (transform.forward + transform.right).normalized;
+        }
+        else if (Physics.Raycast((transform.position + transform.up),
+        transform.forward, out Hit, minDistance))
+        {
+            return (transform.forward + Hit.normal).normalized;
+        }
+        return (destPos - transform.position).normalized;
+    }
+
+    void OnDrawGizmos()
+    {
+       Vector3 frontRay = transform.position + transform.forward * minDistance;
+        Vector3 right45 = transform.position + 
+            (transform.forward + transform.right).normalized * minDistance;
+        Vector3 left45 = transform.position +
+            (transform.forward - transform.right).normalized * minDistance;
+
+        Debug.DrawLine(transform.position + transform.up, frontRay + transform.up, Color.blue);
+        Debug.DrawLine(transform.position + transform.up, left45 + transform.up, Color.blue);
+        Debug.DrawLine(transform.position + transform.up, right45 + transform.up, Color.blue);
+
+        Gizmos.color = new Color32(255,0,0,90);
+        Gizmos.DrawSphere(this.transform.position,5f);
     }
 
 }

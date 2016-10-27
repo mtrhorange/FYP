@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 
 	public string name = " ";
 	public int saveId = -1;
+	public int playerNo = 0;
 	public float maxHealth = 100f;
 	public float health = 100f;
 	public float maxStamina = 100f;

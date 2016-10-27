@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour {
 
 		player1 = playerModel.GetComponent<Player> ();
 		UpdatePlayer1 ();
+
+		if (player2Data.saveId != 0) {
+			GameObject player2Model = (GameObject)Instantiate (playerPrefab, GameObject.Find ("Player2Spawn").transform.position, Quaternion.identity);
+			player2 = player2Model.GetComponent<Player> ();
+			UpdatePlayer2 ();
+		}
 	}
 
 	public void SelectPlayer(SaveSlot s) {
@@ -55,12 +61,17 @@ public class GameManager : MonoBehaviour {
 
 		}
 
-		if (player1Data != null && GameObject.Find ("Player1Info")) {
+		if (player1Data.saveId != 0 && GameObject.Find ("Player1Info")) {
 
 			GameObject.Find ("Player1Info").transform.GetChild (0).GetComponent<Text> ().text = "Player 1\nName: " + player1Data.name + "\nLevel: " + player1Data.Level;
 
 		}
 
+		if (player2Data.saveId != 0 && GameObject.Find ("Player2Info")) {
+
+			GameObject.Find ("Player2Info").transform.GetChild (0).GetComponent<Text> ().text = "Player 2\nName: " + player2Data.name + "\nLevel: " + player2Data.Level;
+
+		}
 
 
 	}
@@ -116,7 +127,7 @@ public class GameManager : MonoBehaviour {
 		player1.Health = player1Data.Health;
 		player1.MaxStamina = player1Data.MaxStamina;
 		player1.Stamina = player1.MaxStamina;
-
+		player1.playerNo = 1;
 
 	}
 
@@ -150,6 +161,6 @@ public class GameManager : MonoBehaviour {
 		player2.MaxStamina = player2Data.MaxStamina;
 		player2.Stamina = player2.MaxStamina;
 
-
+		player2.playerNo = 2;
 	}
 }

@@ -41,7 +41,6 @@ public class Weapon : MonoBehaviour {
 			isAttacking = false;
 			enemiesHit.Clear ();
 		}
-		Debug.Log ("Check");
 
 	}
 

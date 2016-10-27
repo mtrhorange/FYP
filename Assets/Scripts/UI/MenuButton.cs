@@ -16,6 +16,7 @@ public class MenuButton : MonoBehaviour {
 	public void SavePlayer() {
 
 		GameManager.instance.UpdatePlayer1Data ();
+		GameManager.instance.UpdatePlayer2Data ();
 
 	}
 
