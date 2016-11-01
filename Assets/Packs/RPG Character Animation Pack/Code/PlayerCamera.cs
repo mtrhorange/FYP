@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCamera : MonoBehaviour
+public class MainCamera : MonoBehaviour
 {
 	public GameObject cameraTarget1, cameraTarget2;
 	public float smoothTime = 0.1f;

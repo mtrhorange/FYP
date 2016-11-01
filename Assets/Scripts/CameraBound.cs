@@ -6,10 +6,10 @@ public class CameraBound : MonoBehaviour {
 	public enum Sides {Left, Right, Up, Down};
 	public Sides side;
 
-	PlayerCamera playerCamera;
+	MainCamera playerCamera;
 	// Use this for initialization
 	void Start () {
-		playerCamera = GameObject.FindObjectOfType<PlayerCamera>();
+		playerCamera = GameObject.FindObjectOfType<MainCamera>();
 	}
 	
 	// Update is called once per frame
