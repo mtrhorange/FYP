@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 public class TentacleBoss : Enemy {
     //tentacle prefab
+    public bool spawn;
     public GameObject tentaclePref;
-    public float tentacleSpawnAreaX = 4f, tentacleSpawnAreaY = 4f;
     //list to keep track of tentacles
     private List<Tentacle> tentacles;
+    
 
 	//Start
 	void Start ()
@@ -27,6 +29,21 @@ public class TentacleBoss : Enemy {
 	//Update
 	void Update ()
     {
-        
+        if (spawn == true)
+        {
+            spawnTentacle();
+            spawn = false;
+        }   
 	}
+
+    void spawnTentacle()
+    {
+        float randomX = Random.Range(player.transform.position.x + 2f, player.transform.position.x - 2f);
+        float randomZ = Random.Range(player.transform.position.z + 2f, player.transform.position.z - 2f);
+        Vector3 spawnLocation = new Vector3(randomX, 0, randomZ);
+
+        GameObject temp = (GameObject) Instantiate(tentaclePref, spawnLocation, Quaternion.identity);
+        temp.SetActive(true);
+
+    }
 }
