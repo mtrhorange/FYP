@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	public float maxStamina = 100f;
 	public float stamina = 100f;
 	public bool recoverStamina = true; //Can stamina be recovered
+	public int livesRemaining = 5;
 
 	public int level = 1;
 	public float exp = 0;

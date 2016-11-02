@@ -96,9 +96,9 @@ GameObject:
   - 4: {fileID: 4000013060541962}
   - 95: {fileID: 95000011487972602}
   - 114: {fileID: 114000013533281422}
+  - 114: {fileID: 114000010231086964}
   - 54: {fileID: 54000013159894786}
   - 136: {fileID: 136000011559262054}
-  - 114: {fileID: 114000010231086964}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1965,6 +1965,7 @@ MonoBehaviour:
   maxStamina: 0
   stamina: 0
   recoverStamina: 0
+  livesRemaining: 0
   level: 0
   exp: 0
   currentWeapon: {fileID: 114000013719483776}

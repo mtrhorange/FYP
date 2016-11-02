@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject playerPrefab;
 
+
+
 	void Awake() {
 		DontDestroyOnLoad (transform.gameObject);
 		if (instance && instance != this.gameObject)
@@ -40,10 +42,14 @@ public class GameManager : MonoBehaviour {
 		player1 = playerModel.GetComponent<Player> ();
 		UpdatePlayer1 ();
 
+		playerModel.name = "Player1";
+
 		if (player2Data.saveId != 0) {
 			GameObject player2Model = (GameObject)Instantiate (playerPrefab, GameObject.Find ("Player2Spawn").transform.position, Quaternion.identity);
 			player2 = player2Model.GetComponent<Player> ();
 			UpdatePlayer2 ();
+
+			player2Model.name = "Player2";
 		}
 	}
 
@@ -162,5 +168,15 @@ public class GameManager : MonoBehaviour {
 		player2.Stamina = player2.MaxStamina;
 
 		player2.playerNo = 2;
+	}
+
+	public void Reset() {
+
+		player1Data = null;
+		player2Data = null;
+		player1 = null;
+		player2 = null;
+
+
 	}
 }

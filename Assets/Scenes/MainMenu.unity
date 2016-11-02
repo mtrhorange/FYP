@@ -442,7 +442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &398516456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1414,7 +1414,7 @@ MonoBehaviour:
     recoverStamina: 0
     level: 0
     exp: 0
-  playerPrefab: {fileID: 1000010218560922, guid: 67e0315e1daace241a438a2ffa1b66fd,
+  playerPrefab: {fileID: 1000010493151190, guid: 2f4d10a448ea9da438f0aa00557c4137,
     type: 2}
 --- !u!224 &701467151
 RectTransform:
@@ -5122,7 +5122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1887437842
 RectTransform:
   m_ObjectHideFlags: 0
