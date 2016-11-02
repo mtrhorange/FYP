@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 
 	public int player1Id = 0, player2Id = 0;
 
-	Player player1, player2;
+	public Player player1, player2;
 
 	public PlayerData player1Data, player2Data;
 

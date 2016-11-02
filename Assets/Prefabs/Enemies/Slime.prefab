@@ -96,8 +96,10 @@ MonoBehaviour:
   health: 0
   damageText: {fileID: 1000012065835352, guid: 0c6254276532d194aba14e32325b2f5a, type: 2}
   damage: 0
+  player: {fileID: 0}
   speed: 8
   myState: 0
+  tgtStyle: 0
   bigger: 0
   slimePrefab: {fileID: 1000014089036062}
 --- !u!114 &114000012277691824

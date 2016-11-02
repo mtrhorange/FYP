@@ -118,7 +118,7 @@ GameObject:
   - 114: {fileID: 114000013976865896}
   m_Layer: 0
   m_Name: Flower Monster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,13 +577,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damageText: {fileID: 1000012065835352, guid: 0c6254276532d194aba14e32325b2f5a, type: 2}
+  damageText: {fileID: 0, guid: 0c6254276532d194aba14e32325b2f5a, type: 2}
   damage: 0
+  player: {fileID: 0}
   speed: 3
   myState: 0
+  tgtStyle: 0
+  myType: 0
   attackInterval: 4
   pathUpdateTimer: 0.5
   projectile: {fileID: 1000011863726704, guid: 8ae324e9af0fd934faf5a3aa299aa1a2, type: 2}
+  minDistance: 2
 --- !u!114 &114000013976865896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -597,7 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothType: 0
   subdivisions: 2
-  iterations: 0
+  iterations: 1
   strength: 0.5
   uniformLength: 1
   maxSegmentLength: 1
@@ -636,7 +640,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000011617724944}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

@@ -4,8 +4,8 @@ using Pathfinding;
 
 public class BugMonster : Enemy
 {
-    //character controller
-    private CharacterController charCon;
+    //Rigidbody
+    private Rigidbody rB;
     //timers
     public float attackInterval = 1f, pathUpdateTimer = 0.5f;
     private float attackTimer;
@@ -24,13 +24,15 @@ public class BugMonster : Enemy
         damage = 3; //hit damage, apply continuous poison D.O.T at 2 ticks per second or smth
         //seeker component
         seeker = GetComponent<Seeker>();
-        //character controller
-        charCon = GetComponent<CharacterController>();
+        //rigidbody
+        rB = GetComponent<Rigidbody>();
         nextWayPointDistance = 2f;
-        //player reference
-        player = GameObject.FindGameObjectWithTag("Player");
 
         attackTimer = attackInterval;
+
+        //targetting style
+        tgtStyle = targetStyle.ClosestPlayer;
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
     }
 
     //Update
@@ -53,12 +55,7 @@ public class BugMonster : Enemy
     //Idle
     protected override void Idle()
     {
-        //chase target
-        target = player.transform.position;
-        //set a path to tgt position
-        seeker.StartPath(transform.position, target, OnPathComplete);
-        currentWayPoint = 0;
-        myState = States.Chase;
+        base.Idle();
     }
     protected override void Chase()
     {
@@ -85,16 +82,31 @@ public class BugMonster : Enemy
         {
             if (path.GetTotalLength() > 5f)
             {
-                dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-                //factor in the speed to move at
-                dir *= speed;
-                //move
-                charCon.Move(dir * Time.deltaTime);
 
-                //look
-                Vector3 look = target;
-                look.y = transform.position.y;
-                transform.LookAt(look);
+
+                //look & move
+                dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+
+                Vector3 look = dir.normalized;
+                look.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(look);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
+                rB.velocity = transform.forward * speed;
+
+
+
+
+                //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+                ////factor in the speed to move at
+                //dir *= speed;
+                ////move
+                //rB.Move(dir * Time.deltaTime);
+
+                ////look
+                //Vector3 look = target;
+                //look.y = transform.position.y;
+                //transform.LookAt(look);
             }
 
             attackTimer -= Time.deltaTime;
@@ -115,13 +127,24 @@ public class BugMonster : Enemy
                 else
                 {
 
-                    //set the direction to move to
-                    //dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
+                    //look & move
                     dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-                    //factor in the speed to move at
-                    dir *= speed;
-                    //move
-                    charCon.Move(dir * Time.deltaTime);
+
+                    Vector3 look = dir.normalized;
+                    look.y = 0;
+                    Quaternion targetRotation = Quaternion.LookRotation(look);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
+                    rB.velocity = transform.forward * speed;
+
+
+                    ////set the direction to move to
+                    ////dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
+                    //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+                    ////factor in the speed to move at
+                    //dir *= speed;
+                    ////move
+                    //rB.Move(dir * Time.deltaTime);
                 }
             }
 

@@ -15,8 +15,6 @@ public class TentacleBoss : Enemy {
         //Tentacle Boss properties
         health = 500;
         damage = 12;
-        //player reference
-        player = GameObject.FindGameObjectWithTag("Player");
 
         //tentacles
         tentacles = new List<Tentacle>();

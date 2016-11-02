@@ -4,8 +4,8 @@ using Pathfinding;
 
 public class Zombie : Enemy {
 
-    //Character Controller
-    private CharacterController charCon;
+    //Rigidbody
+    private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 0.5f, attackTimer;
     public float attackInterval = 3f;
@@ -13,6 +13,8 @@ public class Zombie : Enemy {
     private Vector3 dir;
 
     private bool attacking = false;
+
+    public float minDistance = 3.0f;
 
 	// Use this for initialization
 	void Start () 
@@ -22,13 +24,15 @@ public class Zombie : Enemy {
         damage = 1;
         //seeker component
         seeker = GetComponent<Seeker>();
-        //character controller
-        charCon = GetComponent<CharacterController>();
+        //rigidbody
+        rB = GetComponent<Rigidbody>();
         nextWayPointDistance = 2f;
-        //player reference
-        player = GameObject.FindGameObjectWithTag("Player");
 
         attackTimer = attackInterval;
+
+        //targetting style
+        tgtStyle = targetStyle.AssignedPlayer;
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -51,15 +55,7 @@ public class Zombie : Enemy {
     //Idle
     protected override void Idle()
     {
-        if (player)
-        {
-            myState = States.Chase;
-        }
-        //chase target
-        target = player.transform.position;
-        //set a path to tgt position
-        seeker.StartPath(transform.position, target, OnPathComplete);
-        currentWayPoint = 0;
+        base.Idle();
     }
 
     //Chase
@@ -82,6 +78,13 @@ public class Zombie : Enemy {
             return;
         }
 
+        //update the waypoint on the path once the current one has been reached
+        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
+        {
+            currentWayPoint++;
+            return;
+        }
+
         //check first if catched up to the player
         //if yes proceed to attack
         //attack trigger distance debug ray
@@ -94,26 +97,28 @@ public class Zombie : Enemy {
         else
         {
             //move
-            dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+            dir = AvoidObstacle();
+
+            Vector3 look = dir.normalized;
+            look.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(look);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
+
             //factor in the speed to move at
-            dir *= speed;
+            //dir *= speed;
             //move
-            charCon.Move(dir * Time.deltaTime);
+            //charCon.Move(dir * Time.deltaTime);
+
+            rB.velocity = transform.forward * speed;
 
             attackTimer -= Time.deltaTime;
 
             //look at where you walking
-            Vector3 look = (path.vectorPath[currentWayPoint + 2 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 2] - transform.position).normalized;
-            look.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(look);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
-        }
-
-        //update the waypoint on the path once the current one has been reached
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
-        {
-            currentWayPoint++;
-            return;
+            //Vector3 look = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
+            //look.y = 0;
+            //Quaternion targetRotation = Quaternion.LookRotation(look);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
         }
     }
 
@@ -159,5 +164,95 @@ public class Zombie : Enemy {
             currentWayPoint = 1;
             pathUpdateTimer = 1f;
         }
+    }
+
+    //Avoid obstacles
+    protected Vector3 AvoidObstacle()
+    {
+        Vector3 destPos = path.vectorPath[currentWayPoint];
+        RaycastHit Hit;
+        //Check if there is obstacle
+        Vector3 right45 = (transform.forward + transform.right).normalized;
+        Vector3 left45 = (transform.forward - transform.right).normalized;
+        //Shoot the rays!
+        //right ray
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f))
+        {
+            if (Hit.transform.gameObject.tag == "Enemy")
+            {
+                return (-transform.right).normalized;
+            }
+        }
+        //left ray
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f))
+        {
+            if (Hit.transform.gameObject.tag == "Enemy")
+            {
+                return (transform.right).normalized;
+            }
+        }
+        //front ray
+        else if (Physics.Raycast((transform.position),
+        transform.forward, out Hit, minDistance))
+        {
+            //if hit an enemy and is not my type
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+            else
+            {
+                //if left 45 deg and right 45 deg have thing also
+                if (Physics.Raycast((transform.position),
+                    right45, out Hit, minDistance * 2.5f) && Physics.Raycast((transform.position),
+            left45, out Hit, minDistance * 2.5f))
+                {
+                    return (transform.forward - transform.right + Hit.normal).normalized * 0;
+                }
+                //only right 45 deg
+                else if (Physics.Raycast((transform.position),
+                    right45, out Hit, minDistance * 2.5f))
+                {
+                    return (transform.forward + transform.right + Hit.normal).normalized * 0f;
+                }
+                //only left 45 deg
+                else if (Physics.Raycast((transform.position),
+                    left45, out Hit, minDistance * 2.5f))
+                {
+                    return (transform.forward - transform.right + Hit.normal).normalized * 0f;
+                }
+            }
+        }
+        //right 45 deg ray
+        else if (Physics.Raycast((transform.position),
+        right45, out Hit, minDistance))
+        {
+            return (transform.forward - transform.right).normalized;
+        }
+        //left 45 deg ray
+        else if (Physics.Raycast((transform.position),
+        left45, out Hit, minDistance))
+        {
+            return (transform.forward + transform.right).normalized;
+        }
+        return (destPos - transform.position).normalized;
+    }
+
+    void OnDrawGizmos()
+    {
+        Vector3 frontRay = transform.position + transform.forward * minDistance;
+        Vector3 right45 = transform.position +
+            (transform.forward + transform.right).normalized * minDistance;
+        Vector3 left45 = transform.position +
+            (transform.forward - transform.right).normalized * minDistance;
+
+        Debug.DrawLine(transform.position, frontRay , Color.blue);
+        Debug.DrawLine(transform.position, left45 , Color.blue);
+        Debug.DrawLine(transform.position, right45 , Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * 1.5f , Color.blue);
+        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * 1.5f , Color.blue);
+
+        //Gizmos.color = new Color32(255,0,0,40);
+        //Gizmos.DrawSphere(this.transform.position,5f);
     }
 }

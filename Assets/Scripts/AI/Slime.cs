@@ -10,7 +10,7 @@ public class Slime : Enemy {
     //character controller
     private CharacterController charCon;
     //timers
-    private float idleTimer = 0, chaseTimer = 0;
+    private float chaseTimer = 0;
     //movement variables
     private bool gravityOn;
     private Vector3 lastPos, dir = Vector3.zero;
@@ -29,8 +29,10 @@ public class Slime : Enemy {
         seeker = GetComponent<Seeker>();
         //get character controller
         charCon = GetComponent<CharacterController>();
-        //player reference
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        //targetting style
+        tgtStyle = targetStyle.WeakestPlayer;
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	//Update
@@ -57,28 +59,28 @@ public class Slime : Enemy {
         }
 
         //testing
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            ReceiveDamage(5);
-            if (health <= 0)
-            {
-                myState = States.Dead;
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    ReceiveDamage(5);
+        //    if (health <= 0)
+        //    {
+        //        myState = States.Dead;
 
-                //check if is a biger variant
-                if (bigger)
-                {
-                    //split into 2 normal sized slimes
-                    Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
-                    Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
-                    Destroy(this.gameObject);
-                }
-                else
-                {
-                    //do death
-                    Destroy(this.gameObject);
-                }
-            }
-        }
+        //        //check if is a biger variant
+        //        if (bigger)
+        //        {
+        //            //split into 2 normal sized slimes
+        //            Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
+        //            Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
+        //            Destroy(this.gameObject);
+        //        }
+        //        else
+        //        {
+        //            //do death
+        //            Destroy(this.gameObject);
+        //        }
+        //    }
+        //}
 	}
 
     //attack, override next time when got model + animation
@@ -137,28 +139,10 @@ public class Slime : Enemy {
         Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 2f, Color.magenta);
     }
 
-    //Idle state (temp)
+    //Idle state
     protected override void Idle()
     {
-        //idle for 3 seconds
-        if (idleTimer >= 3)
-        {
-            //check if idle again or Chase
-            if (Random.Range(0f, 1f) >= 0.4f || true)
-            {
-                //chase target
-                target = player.transform.position;
-                //set a path to tgt position
-                seeker.StartPath(transform.position, target, OnPathComplete);
-                currentWayPoint = 0;
-                myState = States.Chase;
-            }
-            else
-            {
-            }
-            idleTimer = 0;
-        }
-        idleTimer += Time.deltaTime;
+        base.Idle();
     }
 
     //Chase
@@ -251,5 +235,4 @@ public class Slime : Enemy {
             return;
         }
     }
-
 }
