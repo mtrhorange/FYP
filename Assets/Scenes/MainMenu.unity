@@ -1416,6 +1416,7 @@ MonoBehaviour:
     exp: 0
   playerPrefab: {fileID: 1000010493151190, guid: 2f4d10a448ea9da438f0aa00557c4137,
     type: 2}
+  twoPlayers: 0
 --- !u!224 &701467151
 RectTransform:
   m_ObjectHideFlags: 0

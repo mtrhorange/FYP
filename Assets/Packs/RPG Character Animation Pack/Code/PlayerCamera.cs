@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainCamera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
 	public GameObject cameraTarget1, cameraTarget2;
 	public float smoothTime = 0.1f;
@@ -24,7 +24,7 @@ public class MainCamera : MonoBehaviour
 	void Update()
 	{
 		if (cameraTarget2 == null)
-			thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, cameraTarget1.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), Mathf.SmoothDamp (thisTransform.position.z, cameraTarget1.transform.position.z + offsetZ, ref velocity.x, smoothTime));
+			thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, cameraTarget1.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), cameraTarget1.transform.position.z + offsetZ);
 		else {
 			//thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, Vector3.Lerp (cameraTarget1.transform.position, cameraTarget2.transform.position, 0.5f).x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), (Vector3.Lerp (cameraTarget1.transform.position, cameraTarget2.transform.position, 0.5f).z + offsetZ));
 		

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 
 	public string name = " ";
 	public int saveId = -1;
-	public int playerNo = 0;
+	public int playerNo = 1;
 	public float maxHealth = 100f;
 	public float health = 100f;
 	public float maxStamina = 100f;
@@ -21,6 +21,9 @@ public class Player : MonoBehaviour {
 
 	public int level = 1;
 	public float exp = 0;
+
+	public delegate void SkillKey();
+	public SkillKey skillC;
 
 
 	public Weapon currentWeapon;
@@ -33,6 +36,10 @@ public class Player : MonoBehaviour {
 	GameObject enemyTargetHover;
 
 	RPGCharacterControllerFREE controller;
+
+	public GameObject spellFirePillar;
+	public GameObject spellFireTransmutation;
+	public GameObject spellIceBall;
 
 	public Player(string n, int sId) {
 
@@ -54,6 +61,7 @@ public class Player : MonoBehaviour {
 		if (GetComponent<RPGCharacterControllerFREE> ())
 			controller = GetComponent<RPGCharacterControllerFREE> ();
 
+		skillC = CastFirePillar;
 		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		//enemyTargetHover = transform.Find ("Target").gameObject;
 
@@ -123,6 +131,8 @@ public class Player : MonoBehaviour {
 
 		Health += f;
 	}
+
+	#region GetSet
 
 	//Player's current health
 	public float Health {
@@ -202,5 +212,32 @@ public class Player : MonoBehaviour {
 
 	}
 
+	#endregion
 
+	public void CastFirePillar() {
+
+		Instantiate (spellFireTransmutation, transform.position + transform.forward * 8f, Quaternion.identity);
+		Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+
+	}
+
+	public void CastIceBolt() {
+
+		Instantiate (spellIceBall, transform.position + transform.up * 2f + transform.forward, transform.localRotation);
+
+	}
+
+	void OnGUI() {
+
+		if(GUI.Button(new Rect(250, 15, 100, 30), "z FirePillar"))
+		{
+			skillC = CastFirePillar;
+		}
+
+		if(GUI.Button(new Rect(250, 45, 100, 30), "z IceBolt"))
+		{
+			skillC = CastIceBolt;
+		}
+
+	}
 }

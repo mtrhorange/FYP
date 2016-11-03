@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ice_blast: {fileID: 123008, guid: 18a756ff86a91b74983dfbb42d19ba08, type: 2}
   Speed: 0.3
-  Lifespan: 1
+  Lifespan: 0.5
 --- !u!135 &13573896
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -209,7 +209,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167424}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 1.2
   startDelay:
     scalar: 0.05
@@ -247,12 +247,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 1
   scalingMode: 1
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1912,7 +1913,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157156}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 0.5
   startDelay:
     scalar: 0
@@ -1950,12 +1951,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
+  autoRandomSeed: 1
   scalingMode: 1
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -3655,7 +3657,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179250}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 0.5
   startDelay:
     scalar: 0
@@ -3693,12 +3695,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
+  autoRandomSeed: 1
   scalingMode: 1
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1

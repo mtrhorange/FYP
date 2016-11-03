@@ -1881,13 +1881,15 @@ MonoBehaviour:
   jumpSpeed: 12
   doublejumpSpeed: 12
   inAirSpeed: 8
-  rollSpeed: 8
-  rollduration: 0
+  rollSpeed: 15
+  rollduration: 0.3
+  canMove: 1
   walkSpeed: 1.35
   runSpeed: 6
   knockbackMultiplier: 1
-  spellFirePillar: {fileID: 0}
-  spellTransmutationFire: {fileID: 0}
+  spellFirePillar: {fileID: 155190, guid: 6c4ed44b1c8dfbf4fa98210c4cd3e51a, type: 2}
+  spellTransmutationFire: {fileID: 137536, guid: a725f95bac830074c9e5ea480ab853f3,
+    type: 2}
 --- !u!114 &114000011473920424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1926,6 +1928,10 @@ MonoBehaviour:
   currentWeapon: {fileID: 114000011473920424}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  spellFirePillar: {fileID: 155190, guid: 6c4ed44b1c8dfbf4fa98210c4cd3e51a, type: 2}
+  spellFireTransmutation: {fileID: 137536, guid: a725f95bac830074c9e5ea480ab853f3,
+    type: 2}
+  spellIceBall: {fileID: 133122, guid: d8e836ad96e21154e98e8ff613115019, type: 2}
 --- !u!135 &135000010284327598
 SphereCollider:
   m_ObjectHideFlags: 1

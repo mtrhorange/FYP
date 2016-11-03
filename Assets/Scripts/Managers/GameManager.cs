@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject playerPrefab;
 
+	public bool twoPlayers = false;
 
 
 	void Awake() {
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour {
 			UpdatePlayer2 ();
 
 			player2Model.name = "Player2";
+
+			twoPlayers = true;
 		}
 	}
 
@@ -177,6 +180,7 @@ public class GameManager : MonoBehaviour {
 		player1 = null;
 		player2 = null;
 
+		twoPlayers = false;
 
 	}
 }

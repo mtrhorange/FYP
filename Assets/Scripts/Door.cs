@@ -4,10 +4,14 @@ using System.Collections;
 public class Door : MonoBehaviour {
 
 	public Door nextDoor;
-	Room currentRoom;
+	public Room currentRoom;
+
+	public Transform playerSpawn;
 
 	public enum Directions {Up, Down, Left, Right};
 	public Directions direction;
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,6 +20,18 @@ public class Door : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void OnTriggerEnter(Collider other) {
+
+		if (other.GetComponent<Player> ()) {
+
+			nextDoor.currentRoom.gameObject.SetActive (true);
+
+
+
+		}
+
 	}
 
 }

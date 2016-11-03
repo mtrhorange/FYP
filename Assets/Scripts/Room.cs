@@ -5,6 +5,9 @@ public class Room : MonoBehaviour {
 
 	Room adjacentRooms;
 	Door doors;
+
+	public bool canLeft, canRight, canUp, canDown;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,8 +19,7 @@ public class Room : MonoBehaviour {
 	}
 
 	public void SpawnAdjRooms() {
-
-
+		
 
 	}
 }
