@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum enemyType
+//mob types
+public enum mobType
 {
     Slime,
+    SlimeBig,
     Goblin,
     SkeletalWarrior,
     Zombie,
@@ -15,69 +17,130 @@ public enum enemyType
     CatBat,
     Bug,
     Magma,
-    Dragon
+    Dragon,
+    DragonUndead,
+    Tentacle,
+    TentacleBoss,
+    DragonBoss,
+    SlimeKing,
+    LichBoss,
+    TreantGuard
 }
-public class AIManager : MonoBehaviour {
 
+public class AIManager : MonoBehaviour
+{
     //public instance
     public static AIManager instance;
 
     //PUBLIC
-    public List<GameObject> enemyPrefabs;
+    public List<GameObject> mobPrefabs;
+    public List<GameObject> bossPrefabs;
+    public GameObject enemySpawnPoint;
 
     //PRIVATE
     private List<GameObject> enemyList;
+    private bool player1 = true;
 
     //awake
     void Awake()
     {
-
         instance = this;
-
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         enemyList = new List<GameObject>();
-        enemyPrefabs = new List<GameObject>();
 
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        
+        
+        mobType temp = mobType.Dragon;
+        spawnMob(temp, enemySpawnPoint.transform.position);
 
-    public void spawnMob(enemyType e, Vector3 l)
+        //mobType temp = mobType.Flower;
+        //spawnMob(temp, enemySpawnPoint.transform.position);
+        //spawnMob(temp, enemySpawnPoint.transform.position);
+        //spawnMob(temp, enemySpawnPoint.transform.position);
+
+        //temp = mobType.Zombie;
+
+        //spawnMob(temp, enemySpawnPoint.transform.position);
+        //spawnMob(temp, enemySpawnPoint.transform.position);
+        //spawnMob(temp, enemySpawnPoint.transform.position);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    //spawn mob, given type of mob, and vector position
+    public void spawnMob(mobType e, Vector3 l)
     {
         switch (e)
         {
-            case enemyType.Bug:
+            case mobType.Bug:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[0], l, Quaternion.identity));
                 break;
-            case enemyType.CatBat:
+            case mobType.CatBat:
                 break;
-            case enemyType.Dragon:
+            case mobType.Dragon:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[5], l, Quaternion.identity));
                 break;
-            case enemyType.Flower:
+            case mobType.DragonUndead:
                 break;
-            case enemyType.Goblin:
+            case mobType.Flower:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[1], l, Quaternion.identity));
                 break;
-            case enemyType.Slime:
+            case mobType.Goblin:
                 break;
-            case enemyType.Magma:
+            case mobType.Slime:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[2], l, Quaternion.identity));
                 break;
-            case enemyType.MaskedOrc:
+            case mobType.SlimeBig:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[3], l, Quaternion.identity));
                 break;
-            case enemyType.Mushroom:
+            case mobType.Magma:
                 break;
-            case enemyType.Plant:
+            case mobType.MaskedOrc:
                 break;
-            case enemyType.SkeletalWarrior:
+            case mobType.Mushroom:
                 break;
-            case enemyType.Zombie:
+            case mobType.Plant:
+                break;
+            case mobType.SkeletalWarrior:
+                break;
+            case mobType.Zombie:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[4], l, Quaternion.identity));
+                break;
+        }
+        //set the mobtype
+        enemyList[enemyList.Count - 1].GetComponent<Enemy>().myType = e;
+
+        //set target
+        //enemyList[enemyList.Count - 1].GetComponent<Enemy>().player = player1 ? GameManager.instance.player1.gameObject : GameManager.instance.player2.gameObject;
+        //player1 = !player1;
+    }
+
+    //spawn boss, given type and vector position
+    public void spawnBoss(mobType e, Vector3 l)
+    {
+        switch (e)
+        {
+            case mobType.DragonBoss:
+                break;
+            case mobType.LichBoss:
+                break;
+            case mobType.SlimeKing:
+                break;
+            case mobType.TentacleBoss:
+                break;
+            case mobType.TreantGuard:
                 break;
         }
     }

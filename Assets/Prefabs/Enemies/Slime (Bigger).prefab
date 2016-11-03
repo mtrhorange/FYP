@@ -22,10 +22,11 @@ GameObject:
   - 33: {fileID: 33000011154750092}
   - 135: {fileID: 135000012037336798}
   - 23: {fileID: 23000012279445420}
+  - 114: {fileID: 114000012490498490}
   - 114: {fileID: 114000013885968368}
-  - 143: {fileID: 143000011845127418}
   - 114: {fileID: 114000010512904812}
   - 114: {fileID: 114000010260812804}
+  - 54: {fileID: 54000010156372928}
   m_Layer: 0
   m_Name: Slime (Bigger)
   m_TagString: Enemy
@@ -82,6 +83,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010598270560}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54000010156372928
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010598270560}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &114000010260812804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +145,7 @@ MonoBehaviour:
     tagsChange: -1
     tagsSet: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &114000013885968368
+--- !u!114 &114000012490498490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,16 +153,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010598270560}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25e85ef90febbb4282151fa4ce71f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  damageText: {fileID: 0}
+  damage: 0
+  player: {fileID: 0}
+  speed: 1
+  myState: 0
+  tgtStyle: 0
+  myType: 0
+  bigger: 1
+  slimePrefab: {fileID: 1000014089036062, guid: 20f72c0a2ca81f149aca4cb870b647f2,
+    type: 2}
+--- !u!114 &114000013885968368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010598270560}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb3f70a361e14eb4699b1ab394627b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
   damageText: {fileID: 1000012065835352, guid: 0c6254276532d194aba14e32325b2f5a, type: 2}
   damage: 0
+  player: {fileID: 0}
   speed: 8
   myState: 0
+  tgtStyle: 0
+  myType: 0
   bigger: 1
-  slimePrefab: {fileID: 1000014089036062, guid: a0943d2ee5f5c5e48b969616b9f59988,
+  slimePrefab: {fileID: 1000014089036062, guid: 20f72c0a2ca81f149aca4cb870b647f2,
     type: 2}
 --- !u!135 &135000012037336798
 SphereCollider:
@@ -159,21 +200,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &143000011845127418
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010598270560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
