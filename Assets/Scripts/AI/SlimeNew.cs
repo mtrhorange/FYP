@@ -2,45 +2,39 @@
 using System.Collections;
 using Pathfinding;
 
-public class Dragon : Enemy {
-    
-    //Rigidbody
+public class SlimeNew : Enemy {
+
+    //'bigger' boolean controls whether the slime will be a bigger variant that splits into 2 normal slimes upon death
+    public bool bigger;
+    public GameObject slimePrefab;
+    //rigidbody
     private Rigidbody rB;
-    //timers
-    private float pathUpdateTimer = 0.5f, attackTimer;
-    public float attackInterval = 3f;
-    //attacking variables
-    private bool attacking = false;
     //movement variables
-    public float walkSpeed; //speed on ground
-    private Vector3 dir;
-    private float minDistance = 2.0f;
-    private bool flying = false, waitAnim = false;
-    //animation component because this scrub uses old skool legacy anims
-    private Animation anim;
+    private float pathUpdateTimer = 0.5f, minDistance = 2.0f;
+    private Vector3 dir = Vector3.zero;
+    //attack variables
+    private bool attacking = false;
 
 	//Start
-	void Start () 
+	void Start ()
     {
-        //Dragon properties
-        health = 50;
-        damage = 5;
-        //seeker component
+        //slime properties
+        health = bigger ? 50 : 25;
+        damage = bigger ? 7 : 5;
+        transform.localScale = bigger ? new Vector3(1.8f, 1.8f, 1.8f) : transform.localScale;
+        transform.position = new Vector3(transform.position.x, transform.localScale.y * 0.5f, transform.position.z);
+        //get our seeker component
         seeker = GetComponent<Seeker>();
-        //rigidbody
+        //get rigidbody
         rB = GetComponent<Rigidbody>();
-        //animation
-        anim = GetComponent<Animation>();
-
-        attackTimer = attackInterval;
 
         //targetting style
-        tgtStyle = targetStyle.ClosestPlayer;
+        tgtStyle = targetStyle.WeakestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	//Update
-	void Update () 
+	void Update ()
     {
         if (myState == States.Idle)
         {
@@ -52,11 +46,42 @@ public class Dragon : Enemy {
         }
         else if (myState == States.Attack)
         {
-            Attack();
+            if (!attacking)
+            {
+                attacking = true;
+                StartCoroutine(Attack());
+            }
         }
+        else if (myState == States.Dead)
+        {
+        }
+
+        //testing
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    ReceiveDamage(5);
+        //    if (health <= 0)
+        //    {
+        //        myState = States.Dead;
+
+        //        //check if is a biger variant
+        //        if (bigger)
+        //        {
+        //            //split into 2 normal sized slimes
+        //            Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
+        //            Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
+        //            Destroy(this.gameObject);
+        //        }
+        //        else
+        //        {
+        //            //do death
+        //            Destroy(this.gameObject);
+        //        }
+        //    }
+        //}
 	}
 
-    //Idle
+    //Idle state
     protected override void Idle()
     {
         base.Idle();
@@ -67,10 +92,8 @@ public class Dragon : Enemy {
     {
         pathUpdate();
 
-        //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -89,119 +112,82 @@ public class Dragon : Enemy {
             return;
         }
 
-        //debug ray for attacking distance
-        Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 10f, Color.magenta);
+        //attack trigger distance debug ray
+        Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 2f, Color.magenta);
 
-        //check distance,
-        //fly, walk depending on distance
-        //Start flying
-        if (path.GetTotalLength() > 15f && !flying)
-        {
-            flying = true;
-            anim.Play("flyBegin");
-            anim.PlayQueued("fly");
-        }
-        //close enough, check whether can attack, if not land and walk
-        else if (path.GetTotalLength() <= 15f)
-        {
-            //attack interval is up && can see player
-            if (attackTimer <= 0)
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, (player.transform.position - transform.position).normalized, out hit, 10f))
-                {
-                    if (hit.transform.tag == "Player")
-                    {
-                        myState = States.Attack;
-                    }
-                }
-            }
-            else if (!waitAnim)
-            {
-                //if not flying, cotinue pursuit on foot
-                if (!flying)
-                {
-                    anim.Play("walk");
-                    anim["walk"].speed = 2f;
-                }
-                //if flying, land first
-                else
-                {
-                    waitAnim = true;
-                    playAnim("land", 2f, true);
-                }
-            }
-        }
-
-
-        //look & move
-        dir = AvoidObstacle();
-        Vector3 look = dir.normalized;
-        look.y = 0;
-        Quaternion targetRotation = Quaternion.LookRotation(look);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
-        rB.velocity = transform.forward * (flying ? speed : walkSpeed);
-
-        attackTimer -= Time.deltaTime;
-    }
-
-    //Attack
-    protected override void Attack()
-    {
-        //decide which attack to use depending on how close to the player
-        //within close range (3f), use bite or ground stomp
-        //within medium range (10f), use fire breath
-        if (!attacking && (transform.position - player.transform.position).magnitude <= 10f)
+        //check first if close enough to the player
+        //if yes proceed to attack
+        if ((player.transform.position - transform.position).magnitude <= 2f)
         {
             attacking = true;
-            //if flying, breathe fire from the air
-            if (flying)
-            {
-                playAnim("fly_breath", 1, true);
-            }
-            //if on the ground, breathe fire while standing
-            else
-            {
-                playAnim("stand_breath", 1, true);
-            }
+            myState = States.Attack;
+        }
+        //continue chasing
+        else
+        {
+            //look & move
+            dir = AvoidObstacle();
+            Vector3 look = dir.normalized;
+            look.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(look);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+            rB.velocity = transform.forward * speed;
         }
     }
 
-    //play animation (legacy)
-    private void playAnim(string name, float playSpeed, bool callBack)
+    //attack, override next time when got model + animation
+    private IEnumerator Attack()
     {
-        anim.Play(name);
-        anim[name].speed = playSpeed;
-        if (callBack)
-        {
-            StartCoroutine(animCallBack(playSpeed, name));
-        }
-    }
-
-    //animation callback
-    private IEnumerator animCallBack(float seconds, string name)
-    {
-        yield return new WaitForSeconds(anim[name].length / seconds);
-        switch(name)
-        {
-            case "land":
-                flying = false;
-                anim.Play("walk");
-                anim["walk"].speed = 2f;
-                break;
-            case "fly_breath":
-            case "stand_breath":
-                attackTimer = attackInterval;
-                attacking = false;
-                myState = States.Chase;
-                break;
-        }
-        waitAnim = false;
+        Debug.Log("i attack u");
+        //temporary attack action to be changed
+        Vector3 scale = transform.localScale;
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x += 0.25f;
+        scale.y += 0.25f;
+        scale.z += 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        yield return new WaitForSeconds(0.25f);
+        scale.x -= 0.25f;
+        scale.y -= 0.25f;
+        scale.z -= 0.25f;
+        transform.localScale = scale;
+        myState = States.Chase;
+        attacking = false;
     }
 
     //update calculated path every set time
     public void pathUpdate()
     {
+
         pathUpdateTimer -= Time.deltaTime;
 
         if (pathUpdateTimer <= 0)
@@ -218,7 +204,7 @@ public class Dragon : Enemy {
     //Avoid obstacles
     protected Vector3 AvoidObstacle()
     {
-        Vector3 destPos = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+        Vector3 destPos = path.vectorPath[currentWayPoint];
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
