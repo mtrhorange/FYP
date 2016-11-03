@@ -85,7 +85,7 @@ public class BugMonster : Enemy
 
 
                 //look & move
-                dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+                dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
 
                 Vector3 look = dir.normalized;
                 look.y = 0;
@@ -128,7 +128,7 @@ public class BugMonster : Enemy
                 {
 
                     //look & move
-                    dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+                    dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
 
                     Vector3 look = dir.normalized;
                     look.y = 0;

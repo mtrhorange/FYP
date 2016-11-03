@@ -3,8 +3,8 @@ using System.Collections;
 using Pathfinding;
 
 public class FlowerMonster : Enemy {
-    //character controller
-    private CharacterController charCon;
+    //rigidbody
+    private Rigidbody rB;
     //timers
     public float attackInterval = 1f,pathUpdateTimer = 0f;
     private float attackTimer;
@@ -24,8 +24,8 @@ public class FlowerMonster : Enemy {
         damage = 3; //hit damage, apply continuous poison D.O.T at 2 ticks per second or smth
         //seeker component
         seeker = GetComponent<Seeker>();
-        //character controller
-        charCon = GetComponent<CharacterController>();
+        //rigidbody
+        rB = GetComponent<Rigidbody>();
         nextWayPointDistance = 2f;
         
         attackTimer = attackInterval;
@@ -68,15 +68,6 @@ public class FlowerMonster : Enemy {
             //No path to move to yet
             return;
         }
-
-        //look where
-        Vector3 look =
-        (path.vectorPath[currentWayPoint + 2 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 2] -
-         transform.position);
-        look.y = 0;
-        Quaternion targetRotation = Quaternion.LookRotation(look);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
-
         
         if (currentWayPoint >= path.vectorPath.Count)
         {
@@ -92,33 +83,34 @@ public class FlowerMonster : Enemy {
         {
             if (path.GetTotalLength() > 15f)
             {
+
+                //look & move
                 dir = AvoidObstacle();
 
-                //RaycastHit hit;
-                //if (Physics.SphereCast(this.transform.position, 5, transform.position, out hit, 2.5f))
-                //{
-                //    Debug.Log("fsad");
-                //    if (hit.transform.tag == "Enemy")
-                //    {
-                //        Vector3 offset = hit.transform.position - transform.position;
-                //        offset.y = 0;
-                //        dir -= offset.normalized;
-                //        Debug.DrawLine(transform.position, -offset.normalized, Color.cyan);
-                //    }
-                //}
-                //else
-                //{
-               //     dir = AvoidObstacle();
-                    dir *= speed;
-                //}
+                Vector3 look = dir.normalized;
+                look.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(look);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
 
-                //factor in the speed to move at
-                //dir *= speed;
-
-                //move
-                charCon.Move(dir * Time.deltaTime);
+                rB.velocity = transform.forward * speed;
             }
-
+            else
+            {
+                //look at player if can see
+                RaycastHit hit;
+                Vector3 sight = (player.transform.position - transform.position);
+                sight.y = transform.position.y;
+                if (Physics.Raycast(transform.position, sight.normalized, out hit))
+                {
+                    if (hit.transform.gameObject.tag == "Player")
+                    {
+                        Vector3 look = (player.transform.position - transform.position).normalized;
+                        look.y = 0;
+                        Quaternion targetRotation = Quaternion.LookRotation(look);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+                    }
+                }
+            }
             attackTimer -= Time.deltaTime;
         }
         //can shoot provided there is a direct LOS to player
@@ -136,14 +128,15 @@ public class FlowerMonster : Enemy {
                 //else if cannot "see" player, delay the shot till next iteration and check again
                 else
                 {
-
-                    //set the direction to move to
+                    //look & move
                     dir = AvoidObstacle();
-                    //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-                    //factor in the speed to move at
-                    dir *= speed;
-                    //move
-                    charCon.Move(dir * Time.deltaTime);
+
+                    Vector3 look = dir.normalized;
+                    look.y = 0;
+                    Quaternion targetRotation = Quaternion.LookRotation(look);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
+                    rB.velocity = transform.forward * speed;
                 }
             }
 
@@ -258,7 +251,7 @@ public class FlowerMonster : Enemy {
     //Avoid obstacles
     protected Vector3 AvoidObstacle()
     {
-        Vector3 destPos = path.vectorPath[currentWayPoint];
+        Vector3 destPos = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;

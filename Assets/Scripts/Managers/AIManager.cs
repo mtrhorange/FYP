@@ -57,7 +57,7 @@ public class AIManager : MonoBehaviour
 
         
         
-        mobType temp = mobType.Bug;
+        mobType temp = mobType.Slime;
         spawnMob(temp, enemySpawnPoint.transform.position);
         
         //mobType temp = mobType.Flower;

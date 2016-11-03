@@ -23,9 +23,9 @@ GameObject:
   - 135: {fileID: 135000012370966950}
   - 23: {fileID: 23000013571870762}
   - 114: {fileID: 114000010032542848}
-  - 143: {fileID: 143000012863972168}
   - 114: {fileID: 114000013434933618}
   - 114: {fileID: 114000012277691824}
+  - 143: {fileID: 143000011423831334}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -100,6 +100,7 @@ MonoBehaviour:
   speed: 8
   myState: 0
   tgtStyle: 0
+  myType: 0
   bigger: 0
   slimePrefab: {fileID: 1000014089036062}
 --- !u!114 &114000012277691824
@@ -161,7 +162,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &143000012863972168
+--- !u!143 &143000011423831334
 CharacterController:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

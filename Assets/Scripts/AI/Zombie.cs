@@ -96,7 +96,7 @@ public class Zombie : Enemy {
         }
         else
         {
-            //move
+            //look & move
             dir = AvoidObstacle();
 
             Vector3 look = dir.normalized;
