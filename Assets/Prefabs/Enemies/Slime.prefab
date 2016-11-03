@@ -22,10 +22,11 @@ GameObject:
   - 33: {fileID: 33000010057620016}
   - 135: {fileID: 135000012370966950}
   - 23: {fileID: 23000013571870762}
+  - 114: {fileID: 114000012340355938}
   - 114: {fileID: 114000010032542848}
   - 114: {fileID: 114000013434933618}
   - 114: {fileID: 114000012277691824}
-  - 143: {fileID: 143000011423831334}
+  - 54: {fileID: 54000013399808338}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -82,13 +83,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014089036062}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54000013399808338
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014089036062}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &114000010032542848
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014089036062}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb3f70a361e14eb4699b1ab394627b9e, type: 3}
   m_Name: 
@@ -123,6 +139,27 @@ MonoBehaviour:
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
+--- !u!114 &114000012340355938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014089036062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25e85ef90febbb4282151fa4ce71f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  damageText: {fileID: 0}
+  damage: 0
+  player: {fileID: 0}
+  speed: 1.3
+  myState: 0
+  tgtStyle: 0
+  myType: 0
+  bigger: 0
+  slimePrefab: {fileID: 1000014089036062}
 --- !u!114 &114000013434933618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,21 +198,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &143000011423831334
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014089036062}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
