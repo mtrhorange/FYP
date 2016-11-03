@@ -34,11 +34,19 @@ public class LevelManager : MonoBehaviour {
 	public void LoadMainMenu() {
 
 		SceneManager.LoadScene ("MainMenu");
+		GameManager.instance.Reset ();
 
 	}
 
 	void SpawnPlayer(Scene a, Scene b) {
 		GameManager.instance.SpawnPlayer ();
 		SceneManager.activeSceneChanged -= SpawnPlayer;
+	}
+
+	public void ChangeRoom(Door nextDoor) {
+
+		nextDoor.currentRoom.gameObject.SetActive (true);
+
+
 	}
 }

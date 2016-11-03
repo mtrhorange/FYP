@@ -96,9 +96,9 @@ GameObject:
   - 4: {fileID: 4000013060541962}
   - 95: {fileID: 95000011487972602}
   - 114: {fileID: 114000013533281422}
+  - 114: {fileID: 114000010231086964}
   - 54: {fileID: 54000013159894786}
   - 136: {fileID: 136000011559262054}
-  - 114: {fileID: 114000010231086964}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1965,11 +1965,15 @@ MonoBehaviour:
   maxStamina: 0
   stamina: 0
   recoverStamina: 0
+  livesRemaining: 0
   level: 0
   exp: 0
   currentWeapon: {fileID: 114000013719483776}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  spellFirePillar: {fileID: 0}
+  spellFireTransmutation: {fileID: 0}
+  spellIceBall: {fileID: 0}
 --- !u!114 &114000012752233674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2000,12 +2004,14 @@ MonoBehaviour:
   doublejumpSpeed: 12
   inAirSpeed: 8
   rollSpeed: 8
-  rollduration: 0
+  rollduration: 0.5
+  canMove: 1
   walkSpeed: 1.35
   runSpeed: 6
   knockbackMultiplier: 1
-  spellFirePillar: {fileID: 0}
-  spellTransmutationFire: {fileID: 0}
+  spellFirePillar: {fileID: 155190, guid: 6c4ed44b1c8dfbf4fa98210c4cd3e51a, type: 2}
+  spellTransmutationFire: {fileID: 137536, guid: a725f95bac830074c9e5ea480ab853f3,
+    type: 2}
 --- !u!114 &114000013719483776
 MonoBehaviour:
   m_ObjectHideFlags: 1

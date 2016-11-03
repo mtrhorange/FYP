@@ -54,7 +54,8 @@ public class Weapon : MonoBehaviour {
 
 	void CheckHitEnemy() {
 
-		RaycastHit[] hits = Physics.CapsuleCastAll (capCast1.transform.position, capCast2.transform.position, capCast1.GetComponent<SphereCollider> ().radius, prevPos - transform.position, Vector3.Distance (prevPos, transform.position));
+		RaycastHit[] hits = Physics.CapsuleCastAll (capCast1.transform.position, capCast2.transform.position, 
+			capCast1.GetComponent<SphereCollider> ().radius, prevPos - transform.position, Vector3.Distance (prevPos, transform.position));
 
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hit = hits[i];

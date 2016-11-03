@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour {
 
 	public int player1Id = 0, player2Id = 0;
 
-	Player player1, player2;
+	public Player player1, player2;
 
 	public PlayerData player1Data, player2Data;
 
 	public GameObject playerPrefab;
+
+	public bool twoPlayers = false;
+
 
 	void Awake() {
 		DontDestroyOnLoad (transform.gameObject);
@@ -40,10 +43,16 @@ public class GameManager : MonoBehaviour {
 		player1 = playerModel.GetComponent<Player> ();
 		UpdatePlayer1 ();
 
+		playerModel.name = "Player1";
+
 		if (player2Data.saveId != 0) {
 			GameObject player2Model = (GameObject)Instantiate (playerPrefab, GameObject.Find ("Player2Spawn").transform.position, Quaternion.identity);
 			player2 = player2Model.GetComponent<Player> ();
 			UpdatePlayer2 ();
+
+			player2Model.name = "Player2";
+
+			twoPlayers = true;
 		}
 	}
 
@@ -162,5 +171,16 @@ public class GameManager : MonoBehaviour {
 		player2.Stamina = player2.MaxStamina;
 
 		player2.playerNo = 2;
+	}
+
+	public void Reset() {
+
+		player1Data = null;
+		player2Data = null;
+		player1 = null;
+		player2 = null;
+
+		twoPlayers = false;
+
 	}
 }
