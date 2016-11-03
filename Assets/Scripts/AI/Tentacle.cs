@@ -35,28 +35,28 @@ public class Tentacle : Enemy
     protected override void Attack()
     {
         //TODO: SMACK DOWN
-        if (transform.localScale.y <= 5f && attacking)
+        if (transform.localScale.y <= 12f && attacking)
         {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + Time.deltaTime * 4f, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + Time.deltaTime * 8f, transform.localScale.z);
 
-            if (transform.localScale.y >= 4f)
+            if (transform.localScale.y >= 12f)
             {
                 attacking = false;
             }
         }
         else
         {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - Time.deltaTime * 4, transform.localScale.z);
-            if (transform.localScale.y <= 1f)
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - Time.deltaTime * 8, transform.localScale.z);
+            if (transform.localScale.y <= 3f)
             {
-                transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, 3, transform.localScale.z);
                 myState = States.Idle;
             }
         }
 
         if (Vector3.Distance(this.transform.position, player.transform.position) > 3f)
         {
-            transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, 3, transform.localScale.z);
             myState = States.Idle;
         }
     }

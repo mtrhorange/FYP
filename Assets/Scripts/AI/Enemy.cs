@@ -11,9 +11,12 @@ public class Enemy : MonoBehaviour {
 
     //target position
     protected Vector3 target;
+    //flocking velocity
+    public Vector3 velocity;
     //player reference
     public GameObject player;
     //seeker component
+    public Vector3 nextPathPoint;
     protected Seeker seeker;
     //calculated path
     protected Path path;

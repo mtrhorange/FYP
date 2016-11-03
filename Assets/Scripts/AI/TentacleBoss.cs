@@ -10,10 +10,11 @@ public class TentacleBoss : Enemy {
     public GameObject tentaclePref;
     //list to keep track of tentacles
     private List<Tentacle> tentacles;
-    
+    private bool attacking;
 
-	//Start
-	void Start ()
+
+    //Start
+    void Start ()
     {
         //Tentacle Boss properties
         health = 500;
@@ -28,12 +29,21 @@ public class TentacleBoss : Enemy {
 	//Update
 	void Update ()
     {
-        if (spawn == true)
+        if (spawn)
         {
             spawnTentacle();
             spawn = false;
-        }   
-	}
+        }
+
+        if (myState == States.Idle)
+        {
+            Idle();
+        }
+        else if (myState == States.Attack)
+        {
+            Attack();
+        }
+    }
 
     void spawnTentacle()
     {
@@ -44,7 +54,45 @@ public class TentacleBoss : Enemy {
 
         GameObject temp = (GameObject) Instantiate(tentaclePref, spawnLocation, Quaternion.identity);
         temp.SetActive(true);
-        temp.transform.parent = transform;
 
+    }
+
+    protected override void Idle()
+    {
+        //TODO: LEPAK
+        if (Vector3.Distance(this.transform.position, player.transform.position) < 6f)
+        {
+            Vector3 sight = (player.transform.position - transform.position);
+            sight.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(sight);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+        }
+
+
+        if (Vector3.Distance(transform.position, player.transform.position) < 3f)
+        {
+            myState = States.Attack;
+            attacking = true;
+        }
+
+    }
+
+    protected override void Attack()
+    {
+        
+        if (Vector3.Distance(transform.position, player.transform.position) > 3f)
+        {
+            myState = States.Idle;
+            attacking = false;
+        }
+    }
+
+    public void OnDrawGizmos()
+    {
+        if (attacking)
+        {
+            Gizmos.color = new Color32(0, 255, 0, 90);
+            Gizmos.DrawSphere(this.transform.position, 3f);
+        }
     }
 }
