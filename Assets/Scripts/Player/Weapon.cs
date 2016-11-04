@@ -18,6 +18,9 @@ public class Weapon : MonoBehaviour {
 
 	List<Enemy> enemiesHit;
 
+	public bool adjustGrip = false;
+	Transform interactionPt;
+
 	// Use this for initialization
 	void Start () {
 		capCast1 = transform.Find ("CapCast1").gameObject;
@@ -25,6 +28,11 @@ public class Weapon : MonoBehaviour {
 		prevPos = transform.position;
 
 		enemiesHit = new List<Enemy> ();
+
+		interactionPt = transform.Find ("InteractionPt");
+//		transform.position = transform.parent.position - interactionPt.localPosition;
+//		transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles - interactionPt.localRotation.eulerAngles);
+
 	}
 
 	public Weapon(float min, float max) {
@@ -50,6 +58,12 @@ public class Weapon : MonoBehaviour {
 			CheckHitEnemy ();
 
 		prevPos = transform.position;
+
+		if (adjustGrip) {
+			transform.position = transform.parent.position - interactionPt.localPosition;
+			transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles - interactionPt.localRotation.eulerAngles);
+
+		}
 	}
 
 	void CheckHitEnemy() {
