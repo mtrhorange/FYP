@@ -107,6 +107,7 @@ GameObject:
   - 33: {fileID: 33000010228366142}
   - 23: {fileID: 23000012983660020}
   - 95: {fileID: 95000012829779844}
+  - 111: {fileID: 111000012965301612}
   m_Layer: 0
   m_Name: crystal#2
   m_TagString: Untagged
@@ -194,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011767157010}
   m_LocalRotation: {x: -0.07768869, y: -0, z: -0, w: 0.99697775}
-  m_LocalPosition: {x: 2.6515799, y: 0.29, z: -3.6}
+  m_LocalPosition: {x: 13.682775, y: 2.684644e-17, z: -6.0452805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -8.857, y: 0, z: 0}
   m_Children:
@@ -253,8 +254,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012252699512}
   m_LocalRotation: {x: -0.6500355, y: -0, z: -0, w: 0.75990385}
-  m_LocalPosition: {x: -16.867096, y: 4.7364397, z: -13.745378}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013081350458}
@@ -321,7 +322,7 @@ Animator:
   m_GameObject: {fileID: 1000012252699512}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
-  m_Controller: {fileID: 9100000, guid: c468a345bd723764d9e666e1d222837b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 59cb2c3e4bbda2348a20b9dcb41c5f4e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -329,6 +330,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111000012965301612
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012252699512}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1c921b4d0bc0ce240a34ddcbe75acd86, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114000013936105120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd73f0a6e5f961c45a0595c0b41c6bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ice_spike: {fileID: 1000011767157010}
+  Ice_spike: {fileID: 1000012252699512}
 --- !u!198 &198000010346749384
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -391,7 +406,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 375215751
+  randomSeed: 1357513082
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -3859,7 +3874,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -2024282592
+  randomSeed: 1363808313
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -5623,7 +5638,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 372249862
+  randomSeed: 18306289
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -7367,7 +7382,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1121067439
+  randomSeed: 513930728
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -9101,7 +9116,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1700402784
+  randomSeed: -132079746
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -10812,7 +10827,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 134216f9b884ad0438282a70d07a58b6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
