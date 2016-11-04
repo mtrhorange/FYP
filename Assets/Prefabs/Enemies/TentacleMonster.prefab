@@ -9,45 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000010099990288}
+  m_RootGameObject: {fileID: 1000011324548586}
   m_IsPrefabParent: 1
---- !u!1 &1000010099990288
+--- !u!1 &1000011324548586
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000011363210520}
-  - 33: {fileID: 33000010467543260}
-  - 23: {fileID: 23000011001293400}
-  - 95: {fileID: 95000013271254402}
+  - 4: {fileID: 4000010909385200}
+  - 33: {fileID: 33000011133010078}
+  - 65: {fileID: 65000010109913540}
+  - 23: {fileID: 23000014254645828}
+  - 114: {fileID: 114000012218512050}
   m_Layer: 0
-  m_Name: crystal#2
+  m_Name: TentacleMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000011363210520
+--- !u!4 &4000010909385200
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010099990288}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -14.215516, y: 2.84, z: -17.913168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1000011324548586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.869074, y: 1.28, z: -30.783361}
+  m_LocalScale: {x: 1, y: 2.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &23000011001293400
+--- !u!23 &23000014254645828
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010099990288}
+  m_GameObject: {fileID: 1000011324548586}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -55,13 +56,13 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b372dff942d20a44c92bdbbc9485060e, type: 2}
+  - {fileID: 2100000, guid: e6550b0db12bbfd47aa914ec86f96cc4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
+  m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_SelectedWireframeHidden: 0
@@ -71,27 +72,47 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33000010467543260
+--- !u!33 &33000011133010078
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010099990288}
-  m_Mesh: {fileID: 4300000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
---- !u!95 &95000013271254402
-Animator:
-  serializedVersion: 3
+  m_GameObject: {fileID: 1000011324548586}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65000010109913540
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010099990288}
+  m_GameObject: {fileID: 1000011324548586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
-  m_Controller: {fileID: 9100000, guid: c468a345bd723764d9e666e1d222837b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000012218512050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011324548586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcaee7bb65b324c4fa77bd82ceab0226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  damageText: {fileID: 0}
+  damage: 0
+  velocity: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+  nextPathPoint: {x: 0, y: 0, z: 0}
+  speed: 0
+  myState: 0
+  tgtStyle: 0
+  myType: 15
+  spawn: 0
+  SpawnX: 4
+  SpawnZ: 4
+  tentaclePref: {fileID: 0}

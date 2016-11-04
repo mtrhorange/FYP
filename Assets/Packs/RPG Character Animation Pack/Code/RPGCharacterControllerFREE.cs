@@ -141,7 +141,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				AttackKick(2);
 			}
 
-			if ((Input.GetKeyDown("SkillC") && player.playerNo == 1) && canAction && isGrounded && !isBlocking) 
+			if ((Input.GetButtonDown("SkillC") && player.playerNo == 1) && canAction && isGrounded && !isBlocking) 
 			{
 				Attack (1);
 				player.skillC ();

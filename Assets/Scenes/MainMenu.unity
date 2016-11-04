@@ -1394,6 +1394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1Id: 0
   player2Id: 0
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   player1Data:
     name: 
     saveId: 0
@@ -1414,7 +1416,7 @@ MonoBehaviour:
     recoverStamina: 0
     level: 0
     exp: 0
-  playerPrefab: {fileID: 1000010493151190, guid: 2f4d10a448ea9da438f0aa00557c4137,
+  playerPrefab: {fileID: 1000012980443002, guid: 63d5504dacc501447a95715bfe427a1d,
     type: 2}
   twoPlayers: 0
 --- !u!224 &701467151
