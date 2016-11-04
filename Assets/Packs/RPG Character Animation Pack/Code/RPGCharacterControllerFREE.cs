@@ -44,7 +44,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 	public float rollduration;
 
 	//movement variables
-	public bool canMove = true;
+	bool canMove = true;
 	public float walkSpeed = 1.35f;
 	float moveSpeed;
 	public float runSpeed = 6f;
@@ -124,7 +124,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 					StartCoroutine(_Revive());
 				}
 			}
-			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AttackLPlayer2") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
 			{
 				Attack(1);
 			}
@@ -141,10 +141,18 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				AttackKick(2);
 			}
 
-			if ((Input.GetButtonDown("SkillC") && player.playerNo == 1) && canAction && isGrounded && !isBlocking) 
+			if (Input.GetKeyDown(KeyCode.C) && canAction && isGrounded && !isBlocking) 
 			{
 				Attack (1);
-				player.skillC ();
+				if (target != null) {
+					Instantiate (spellTransmutationFire, target.transform.position, Quaternion.identity);
+					Instantiate (spellFirePillar, target.transform.position, Quaternion.identity);
+
+				} else {
+					Instantiate (spellTransmutationFire, transform.position + transform.forward * 8f, Quaternion.identity);
+					Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+
+				}
 			}
 			//if strafing
 			/*if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("TargetBlock") > .1 && canAction)
@@ -166,7 +174,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				animator.SetBool("Strafing", false);
 			}*/
 
-			/*if (Input.GetKeyDown (KeyCode.LeftShift) && canAction) {
+			if (Input.GetKeyDown (KeyCode.LeftShift) && canAction) {
 
 				isStrafing = !isStrafing;
 				animator.SetBool("Strafing", isStrafing);
@@ -181,7 +189,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 					transform.GetComponent<Player> ().ResetTarget ();
 					target = null;
 				}
-			}*/	
+			}
 		}
 		else
 		{
@@ -590,19 +598,19 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		//apply directional knockback force
 		if(hitNumber <= 1)
 		{
-			StartCoroutine(_Knockback(-transform.forward, 1, 0));
+			StartCoroutine(_Knockback(-transform.forward, 8, 4));
 		} 
 		else if(hitNumber == 2)
 		{
-			StartCoroutine(_Knockback(transform.forward, 1, 0));
+			StartCoroutine(_Knockback(transform.forward, 8, 4));
 		}
 		else if(hitNumber == 3)
 		{
-			StartCoroutine(_Knockback(transform.right, 1, 0));
+			StartCoroutine(_Knockback(transform.right, 8, 4));
 		}
 		else if(hitNumber == 4)
 		{
-			StartCoroutine(_Knockback(-transform.right, 1, 0));
+			StartCoroutine(_Knockback(-transform.right, 8, 4));
 		}
 	}
 
