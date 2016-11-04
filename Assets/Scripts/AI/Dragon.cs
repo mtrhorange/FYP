@@ -98,8 +98,7 @@ public class Dragon : Enemy {
         if (path.GetTotalLength() > 15f && !flying)
         {
             flying = true;
-            anim.Play("flyBegin");
-            anim.PlayQueued("fly");
+            playAnim("flyBegin", 1, true);
         }
         //close enough, check whether can attack, if not land and walk
         else if (path.GetTotalLength() <= 15f)
@@ -121,8 +120,7 @@ public class Dragon : Enemy {
                 //if not flying, cotinue pursuit on foot
                 if (!flying)
                 {
-                    anim.Play("walk");
-                    anim["walk"].speed = 2f;
+                    playAnim("walk", 2f, false);
                 }
                 //if flying, land first
                 else
@@ -194,6 +192,9 @@ public class Dragon : Enemy {
                 attackTimer = attackInterval;
                 attacking = false;
                 myState = States.Chase;
+                break;
+            case "flyBegin":
+                playAnim("fly", 1, false);
                 break;
         }
         waitAnim = false;
