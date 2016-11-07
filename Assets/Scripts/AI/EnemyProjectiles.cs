@@ -10,14 +10,16 @@ public class EnemyProjectiles : MonoBehaviour {
     public enum type
     {
         AcidSpit, //(flower monster, poison D.o.T)
-        WebShot
+        WebShot,
+        DragonBreath
     }
     public type projectileType;
 
     //particle systems instantiated from this projectile (if any)
     private GameObject leftBehinds;
     //life time
-    private float timeOut = 12f;
+    public bool hasLifeSpan = true;
+    public float timeOut = 12f;
 
 
 	// Use this for initialization
@@ -39,7 +41,8 @@ public class EnemyProjectiles : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
-        else
+        //if has lifespan
+        else if (hasLifeSpan)
         {
             //once life time is over
             if (timeOut <= 0)
@@ -47,6 +50,25 @@ public class EnemyProjectiles : MonoBehaviour {
                 Destroy(this.gameObject);
             }
             timeOut -= Time.deltaTime;
+        }
+        //if does not have lifespan
+        else if (!hasLifeSpan)
+        {
+            //set object inactive after particle (if any) is done
+            if (GetComponent<ParticleSystem>())
+            {
+                if (!GetComponent<ParticleSystem>().IsAlive(true))
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
+            else if (GetComponentInChildren<ParticleSystem>())
+            {
+                if (!GetComponentInChildren<ParticleSystem>().IsAlive(true))
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
         }
 	}
 
@@ -86,6 +108,10 @@ public class EnemyProjectiles : MonoBehaviour {
                 {
                     Destroy(this.gameObject);
                 }
+                break;
+            //if type is dragon breath
+            case type.DragonBreath:
+                //todo make breath "hit" player
                 break;
         }
     }

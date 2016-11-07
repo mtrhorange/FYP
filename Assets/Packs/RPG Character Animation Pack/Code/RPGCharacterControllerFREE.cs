@@ -124,7 +124,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 					StartCoroutine(_Revive());
 				}
 			}
-			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AttackLPlayer2") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
 			{
 				Attack(1);
 			}

@@ -2,30 +2,35 @@
 using System.Collections;
 using Pathfinding;
 
-public class Dragon : Enemy {
-    
+public class DragonBoss : Enemy
+{
     //Rigidbody
     private Rigidbody rB;
     //timers
-    private float pathUpdateTimer = 0.5f, attackTimer;
-    public float attackInterval = 3f;
+    private float pathUpdateTimer = 0.5f, breathTimer, stompTimer, summonTimer;
+    private float breathInterval = 10f, stompInterval = 2.5f, summonInterval = 60f;
     //attacking variables
     private bool attacking = false;
-    public GameObject breath;
+    public GameObject breath, fireBlast;
+    private enum attackType
+    {
+        GroundStomp,
+        FireBreath,
+        Summon
+    }
+    private attackType atkType;
     //movement variables
-    public float walkSpeed; //speed on ground
     private Vector3 dir;
-    private float minDistance = 2.0f;
-    private bool flying = false, waitAnim = false;
+    private float minDistance = 4.0f;
     //animation component because this scrub uses old skool legacy anims
     private Animation anim;
 
-	//Start
-	void Start () 
+    //Start
+    void Start()
     {
-        //Dragon properties
-        health = 50;
-        damage = 5;
+        //Dragon Boss properties
+        health = 500;
+        damage = 10;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -33,15 +38,17 @@ public class Dragon : Enemy {
         //animation
         anim = GetComponent<Animation>();
 
-        attackTimer = attackInterval;
+        breathTimer = breathInterval;
+        stompTimer = stompInterval;
+        summonTimer = summonInterval;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
-	}
-	
-	//Update
-	void Update () 
+    }
+
+    //Update
+    void Update()
     {
         if (myState == States.Idle)
         {
@@ -55,7 +62,11 @@ public class Dragon : Enemy {
         {
             Attack();
         }
-	}
+
+        breathTimer -= Time.deltaTime;
+        stompTimer -= Time.deltaTime;
+        summonTimer -= Time.deltaTime;
+    }
 
     //Idle
     protected override void Idle()
@@ -90,109 +101,81 @@ public class Dragon : Enemy {
             return;
         }
 
-        //debug ray for attacking (breath) distance
-        Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 3f, Color.magenta);
-
-        //check distance,
-        //fly, walk depending on distance
-        //Start flying
-        if (path.GetTotalLength() > 15f && !flying)
+        //debug ray for attacking distance
+        Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized * 15f, Color.magenta);
+        
+        //if close enough to ground stomp && cooldown (stompTimer) is over
+        if ((transform.position - player.transform.position).magnitude <= 7f && stompTimer <= 0)
         {
-            flying = true;
-            playAnim("flyBegin", 1, true);
-        }
-        //if close enough to bite
-        else if ((transform.position - player.transform.position).magnitude <= 3f && !flying)
-        {
+            atkType = attackType.GroundStomp;
             myState = States.Attack;
         }
-        //close enough, check whether can use firebreath, if not land and walk
-        else if (path.GetTotalLength() <= 15f)
+        //else if close enough to do firebreath (20f) && cooldown (breathTimer) is over
+        else if (path.GetTotalLength() <= 15f && breathTimer <= 0)
         {
-            //attack interval is up && can see player
-            if (attackTimer <= 0)
+            //do breath if there is direct LOS to player
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, (player.transform.position - transform.position).normalized, out hit, 15f))
             {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, (player.transform.position - transform.position).normalized, out hit, 10f))
+                if (hit.transform.tag == "Player")
                 {
-                    if (hit.transform.tag == "Player")
-                    {
-                        myState = States.Attack;
-                    }
-                }
-            }
-            else if (!waitAnim)
-            {
-                //if not flying, cotinue pursuit on foot
-                if (!flying)
-                {
-                    playAnim("walk", 2f, false);
-                }
-                //if flying, land first
-                else
-                {
-                    waitAnim = true;
-                    playAnim("land", 2f, true);
+                    atkType = attackType.FireBreath;
+                    myState = States.Attack;
                 }
             }
         }
+        //else if cooldown for summon (summonTimer) is over, summon 2 minions to aid in battle
+        else if (summonTimer <= 0)
+        {
+            atkType = attackType.Summon;
+            myState = States.Attack;
+        }
 
-        //look & move
+        playAnim("walk", 1, false);
+
+        //look & move towards player slowly, the slow strut is highly intimidating
         dir = AvoidObstacle();
         Vector3 look = dir + transform.forward;
         look.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(look);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
-        rB.velocity = transform.forward * (flying ? speed : walkSpeed);
-
-        Debug.DrawRay(transform.position, look, Color.yellow);
-
-        attackTimer -= Time.deltaTime;
+        rB.velocity = transform.forward * speed;
     }
 
     //Attack
     protected override void Attack()
     {
-        //decide which attack to use depending on how close to the player
         if (!attacking)
         {
-            //within close range (3f), use bite if not flying
-            if ((transform.position - player.transform.position).magnitude <= 3f)
+            attacking = true;
+            //which attack to do
+            //Ground Stomp
+            if (atkType == attackType.GroundStomp)
             {
-                attacking = true;
-                if (!flying)
-                {
-                    playAnim("bite", 1, true);
-                }
+                playAnim("groundStomp", 1, true);
+                Instantiate(fireBlast, transform.position + transform.forward * 4, transform.rotation);
             }
-            //within medium range (10f), use fire breath
-            else if ((transform.position - player.transform.position).magnitude <= 10f)
+            //Fire Breath
+            else if (atkType == attackType.FireBreath)
             {
-                attacking = true;
-                waitAnim = true;
-                //if flying, breathe fire from the air
-                if (flying)
-                {
-                    playAnim("fly_breath", 1, true);
-                    //Destroy(Instantiate(breath, mouth.transform.position, mouth.transform.rotation), 4f);
-                    breath.SetActive(true);
-                }
-                //if on the ground, breathe fire while standing
-                else
-                {
-                    playAnim("stand_breath", 1, true);
-                    //Destroy(Instantiate(breath, mouth.transform.position, mouth.transform.rotation), 4f);
-                    breath.SetActive(true);
-                }
+                playAnim("stand_breath", 0.5f, true);
+                breath.SetActive(true);
             }
+            //Summon
+            else if (atkType == attackType.Summon)
+            {
+                playAnim("idle_stretch", 1f, true);
+            }
+
         }
 
         //look at target while attacking
         Vector3 look = (player.transform.position - transform.position).normalized;
         look.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(look);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2);
     }
+
 
     //play animation (legacy)
     private void playAnim(string name, float playSpeed, bool callBack)
@@ -209,29 +192,25 @@ public class Dragon : Enemy {
     private IEnumerator animCallBack(float seconds, string name)
     {
         yield return new WaitForSeconds(anim[name].length / seconds);
-        switch(name)
+        switch (name)
         {
-            case "land":
-                flying = false;
-                anim.Play("walk");
-                anim["walk"].speed = 2f;
+            case "groundStomp":
+                attacking = false;
+                myState = States.Chase;
+                stompTimer = stompInterval;
                 break;
-            case "fly_breath":
             case "stand_breath":
-                breath.SetActive(false);
-                attackTimer = attackInterval;
                 attacking = false;
                 myState = States.Chase;
+                breathTimer = breathInterval;
                 break;
-            case "bite":
-                attacking = false;
+            case "idle_stretch":
+                AIManager.instance.spawnMob(mobType.Dragon, new Vector3(transform.position.x + 4f, 1, transform.position.z));
+                AIManager.instance.spawnMob(mobType.DragonUndead, new Vector3(transform.position.x - 4f, 1, transform.position.z));
                 myState = States.Chase;
-                break;
-            case "flyBegin":
-                playAnim("fly", 1, false);
+                summonTimer = summonInterval;
                 break;
         }
-        waitAnim = false;
     }
 
     //update calculated path every set time

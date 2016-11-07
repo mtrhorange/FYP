@@ -689,7 +689,7 @@ GameObject:
   - 136: {fileID: 136000010226861910}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1889,7 +1889,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 84f9d613a6aa6934d8510a542fadac39, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1912,7 +1912,6 @@ MonoBehaviour:
   inAirSpeed: 8
   rollSpeed: 8
   rollduration: 0
-  canMove: 1
   walkSpeed: 1.35
   runSpeed: 6
   knockbackMultiplier: 1

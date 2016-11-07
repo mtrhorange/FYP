@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class FlockingManager : MonoBehaviour
 {
     private ArrayList agentArray = new ArrayList();
-    public GameObject leader;
     [Range(0f, 1f)] public float alignmentWeight = 0.2f;
     [Range(0f, 1f)]public float cohesionWeight = 0.2f;
     [Range(0f, 1f)]public float separationWeight = 0.2f;

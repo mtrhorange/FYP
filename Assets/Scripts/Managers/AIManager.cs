@@ -57,8 +57,8 @@ public class AIManager : MonoBehaviour
 
         
         
-        mobType temp = mobType.Dragon;
-        spawnMob(temp, enemySpawnPoint.transform.position);
+        mobType temp = mobType.DragonUndead;
+        //spawnMob(temp, enemySpawnPoint.transform.position);
 
         //mobType temp = mobType.Flower;
         //spawnMob(temp, enemySpawnPoint.transform.position);
@@ -93,6 +93,7 @@ public class AIManager : MonoBehaviour
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[5], l, Quaternion.identity));
                 break;
             case mobType.DragonUndead:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[6], l, Quaternion.identity));
                 break;
             case mobType.Flower:
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[1], l, Quaternion.identity));
