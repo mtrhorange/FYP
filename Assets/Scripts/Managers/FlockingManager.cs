@@ -60,7 +60,7 @@ public class FlockingManager : MonoBehaviour
         int neighborCount = 0;
         foreach (Enemy agent in agentArray)
         {
-            if (agent != myAgent)
+            if (agent != myAgent && agent.myType == myAgent.myType)
             {
                 if (Vector3.Distance(
                     myAgent.transform.position,
@@ -75,6 +75,7 @@ public class FlockingManager : MonoBehaviour
             }
 
         }
+
         if (neighborCount == 0)
             return v;
         v.x /= neighborCount;
@@ -90,7 +91,7 @@ public class FlockingManager : MonoBehaviour
         int neighborCount = 0;
         foreach (Enemy agent in agentArray)
         {
-            if (agent != myAgent)
+            if (agent != myAgent && agent.myType == myAgent.myType)
             {
                 if (Vector3.Distance(
                 myAgent.transform.position,
@@ -123,7 +124,7 @@ public class FlockingManager : MonoBehaviour
         int neighborCount = 0;
         foreach (Enemy agent in agentArray)
         {
-            if (agent != myAgent)
+            if (agent != myAgent && agent.myType == myAgent.myType)
             {
                 if (Vector3.Distance(
                 myAgent.transform.position,
