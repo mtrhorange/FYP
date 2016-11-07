@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011324548586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.869074, y: 1.28, z: -30.783361}
+  m_LocalPosition: {x: -24.510881, y: 1.25, z: -24.51165}
   m_LocalScale: {x: 1, y: 2.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -115,4 +115,5 @@ MonoBehaviour:
   spawn: 0
   SpawnX: 4
   SpawnZ: 4
-  tentaclePref: {fileID: 0}
+  tentaclePref: {fileID: 1000011247067756, guid: bfbd9451dfc098749ac74e809e5ffce0,
+    type: 2}

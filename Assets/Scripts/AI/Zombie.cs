@@ -32,7 +32,7 @@ public class Zombie : Enemy {
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;
-        player = base.reacquireTgt(tgtStyle, this.gameObject);
+        //player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -207,6 +207,7 @@ public class Zombie : Enemy {
             //if hit an enemy and is not my type
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
+                Debug.Log("hit " + Hit);
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
             else
@@ -236,6 +237,13 @@ public class Zombie : Enemy {
         else if (Physics.Raycast((transform.position),
             right45, out Hit, minDistance))
         {
+            //if hit an enemy and is not my type
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
             if (Hit.transform.tag != "Enemy")
                 return (transform.forward - transform.right).normalized;
         }
@@ -243,6 +251,13 @@ public class Zombie : Enemy {
         else if (Physics.Raycast((transform.position),
             left45, out Hit, minDistance))
         {
+            //if hit an enemy and is not my type
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
             if (Hit.transform.tag != "Enemy")
                 return (transform.forward + transform.right).normalized;
         }

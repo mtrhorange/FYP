@@ -11,6 +11,7 @@ public class TentacleBoss : Enemy {
     //list to keep track of tentacles
     private List<Tentacle> tentacles;
     private bool attacking;
+    private float spawnTimer = 5f;
 
 
     //Start
@@ -60,7 +61,7 @@ public class TentacleBoss : Enemy {
     protected override void Idle()
     {
         //TODO: LEPAK
-        if (Vector3.Distance(this.transform.position, player.transform.position) < 6f)
+        if (Vector3.Distance(this.transform.position, player.transform.position) < 10f)
         {
             Vector3 sight = (player.transform.position - transform.position);
             sight.y = 0;
@@ -68,20 +69,38 @@ public class TentacleBoss : Enemy {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
         }
 
+        if (Vector3.Distance(transform.position, player.transform.position) < 15f)
+        {
+            spawnTimer -= Time.deltaTime;
 
-        if (Vector3.Distance(transform.position, player.transform.position) < 3f)
+            if (spawnTimer <= 0)
+            {
+                spawnTentacle();
+                spawnTimer = 8f;
+            }
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) < 5f)
         {
             myState = States.Attack;
             attacking = true;
         }
 
+        
+
+
     }
 
     protected override void Attack()
     {
-        
-        if (Vector3.Distance(transform.position, player.transform.position) > 3f)
+        Vector3 sight = (player.transform.position - transform.position);
+        sight.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(sight);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+
+        if (Vector3.Distance(transform.position, player.transform.position) > 5f)
         {
+
             myState = States.Idle;
             attacking = false;
         }
@@ -92,7 +111,7 @@ public class TentacleBoss : Enemy {
         if (attacking)
         {
             Gizmos.color = new Color32(0, 255, 0, 90);
-            Gizmos.DrawSphere(this.transform.position, 3f);
+            Gizmos.DrawSphere(this.transform.position, 5f);
         }
     }
 }

@@ -168,10 +168,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013600643592}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.742, y: 1.528, z: -10.593764}
+  m_LocalRotation: {x: -0, y: -0.9956184, z: -0, w: -0.09350997}
+  m_LocalPosition: {x: -20.7, y: 1.528, z: -2.6}
   m_LocalScale: {x: 1.3, y: 1, z: 0.5}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -190.465, z: 0}
   m_Children:
   - {fileID: 4000014037096382}
   - {fileID: 4000011663807614}
@@ -447,8 +447,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.509214, z: 1}
+  m_Center: {x: 0.00015249294, y: -0.2671386, z: 0.000022896493}
 --- !u!65 &65000010461386424
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -457,7 +457,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000011339361070}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -469,7 +469,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000011441408476}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -481,7 +481,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012556016832}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -493,7 +493,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012833371932}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -505,7 +505,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012466894480}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -543,11 +543,13 @@ MonoBehaviour:
   health: 0
   damageText: {fileID: 1000012065835352, guid: 0c6254276532d194aba14e32325b2f5a, type: 2}
   damage: 0
+  velocity: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
-  speed: 1.3
+  nextPathPoint: {x: 0, y: 0, z: 0}
+  speed: 3
   myState: 0
   tgtStyle: 0
-  myType: 0
+  myType: 4
   attackInterval: 1.5
   minDistance: 2
 --- !u!114 &114000014045648514
