@@ -873,6 +873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!114 &645795344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!114 &681802436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,9 +1411,17 @@ MonoBehaviour:
     health: 0
     maxStamina: 0
     stamina: 0
+    livesRemaining: 0
+    skillPoints: 0
     recoverStamina: 0
+    isPermaDead: 0
     level: 0
     exp: 0
+    maxHealthLevel: 0
+    minDmgLevel: 0
+    maxDmgLevel: 0
+    weaponBuffLevel: 0
+    spellBuffLevel: 0
   player2Data:
     name: 
     saveId: 0
@@ -1413,9 +1429,17 @@ MonoBehaviour:
     health: 0
     maxStamina: 0
     stamina: 0
+    livesRemaining: 0
+    skillPoints: 0
     recoverStamina: 0
+    isPermaDead: 0
     level: 0
     exp: 0
+    maxHealthLevel: 0
+    minDmgLevel: 0
+    maxDmgLevel: 0
+    weaponBuffLevel: 0
+    spellBuffLevel: 0
   playerPrefab: {fileID: 1000010824984246, guid: f1ed895ce4700644a9e1879953099baa,
     type: 2}
   twoPlayers: 0
@@ -2818,6 +2842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!1 &1194401821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +3007,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!114 &1234415763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3262,6 +3294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!114 &1271904979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3899,6 +3935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!1 &1458876525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,6 +4141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!114 &1531169496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4518,6 +4562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!1 &1737539720
 GameObject:
   m_ObjectHideFlags: 0
@@ -4713,6 +4761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!114 &1781999575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5037,6 +5089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!1 &1844520299
 GameObject:
   m_ObjectHideFlags: 0
@@ -5597,6 +5653,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
 --- !u!1 &1967566313
 GameObject:
   m_ObjectHideFlags: 0

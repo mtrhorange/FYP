@@ -2123,7 +2123,7 @@ MonoBehaviour:
   spellFireTransmutation: {fileID: 137536, guid: a725f95bac830074c9e5ea480ab853f3,
     type: 2}
   spellIceBall: {fileID: 133122, guid: d8e836ad96e21154e98e8ff613115019, type: 2}
-  skills: {fileID: 0}
+  skills: {fileID: 114000014260104298}
 --- !u!114 &114000014223036334
 MonoBehaviour:
   m_ObjectHideFlags: 1
