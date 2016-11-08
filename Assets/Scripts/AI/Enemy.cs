@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject damageText;
 
 	public float damage;
+    public float minDistance = 3.0f;
 
     //target position
     protected Vector3 target;
@@ -103,11 +104,12 @@ public class Enemy : MonoBehaviour {
 		GameObject txt = (GameObject)Instantiate(damageText, transform.position, Quaternion.identity);
 		txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
 		txt.transform.Rotate(55, 0, 0);
-		Debug.Log (GetComponent<Player>().Health);
+		Debug.Log (GetComponent<Player> ().Health);
 	}
 
 	void OnTriggerEnter(Collider other) {
-        
+
+
 	}
 
     //reacquire target
@@ -187,4 +189,6 @@ public class Enemy : MonoBehaviour {
             Debug.Log(" Error: " + p.error);
         }
     }
+
+    
 }

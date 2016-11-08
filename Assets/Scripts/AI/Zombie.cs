@@ -7,14 +7,14 @@ public class Zombie : Enemy {
     //Rigidbody
     private Rigidbody rB;
     //timers
-    private float pathUpdateTimer = 0f, attackTimer;
+    private float pathUpdateTimer, attackTimer;
     public float attackInterval = 3f;
     //movement variables
     private Vector3 dir;
 
     private bool attacking = false;
 
-    public float minDistance = 3.0f;
+   
 
 	// Use this for initialization
 	void Start () 
@@ -26,7 +26,7 @@ public class Zombie : Enemy {
         seeker = GetComponent<Seeker>();
         //rigidbody
         rB = GetComponent<Rigidbody>();
-        nextWayPointDistance = 2f;
+        nextWayPointDistance = 3f;
 
         attackTimer = attackInterval;
 
@@ -55,13 +55,19 @@ public class Zombie : Enemy {
     //Idle
     protected override void Idle()
     {
-        base.Idle();
+        //chase target
+        target = player.transform.position;
+        //set a path to tgt position
+        seeker.StartPath(transform.position, target, OnPathComplete);
+        currentWayPoint = 1;
+        myState = States.Chase;
+        
     }
 
     //Chase
     protected override void Chase()
     {
-        pathUpdate();
+        //pathUpdate();
 
         //if no path yet
         if (path == null)
@@ -176,6 +182,95 @@ public class Zombie : Enemy {
     }
 
     //Avoid obstacles
+    //protected Vector3 AvoidObstacle()
+    //{
+    //    Vector3 destPos = path.vectorPath[currentWayPoint];
+    //    RaycastHit Hit;
+    //    //Check if there is obstacle
+    //    Vector3 right45 = (transform.forward + transform.right).normalized;
+    //    Vector3 left45 = (transform.forward - transform.right).normalized;
+    //    //Shoot the rays!
+    //    //right ray
+    //    if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f))
+    //    {
+    //        //if (Hit.transform.gameObject.tag == "Enemy")
+    //        //{
+    //        //    return (-transform.right).normalized;
+    //        //}
+    //    }
+    //    //left ray
+    //    else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f))
+    //    {
+    //        //if (Hit.transform.gameObject.tag == "Enemy")
+    //        //{
+    //        //    return (transform.right).normalized;
+    //        //}
+    //    }
+    //    //front ray
+    //    else if (Physics.Raycast((transform.position),
+    //        transform.forward, out Hit, minDistance))
+    //    {
+    //        //if hit an enemy and is not my type
+    //        if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+    //        {
+    //            Debug.Log("hit " + Hit);
+    //            Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+    //        }
+    //        else
+    //        {
+    //            //    //if left 45 deg and right 45 deg have thing also
+    //            //    if (Physics.Raycast((transform.position),
+    //            //        right45, out Hit, minDistance * 2.5f) && Physics.Raycast((transform.position),
+    //            //left45, out Hit, minDistance * 2.5f))
+    //            //    {
+    //            //        return (transform.forward - transform.right + Hit.normal).normalized * 2f;
+    //            //    }
+    //            //    //only right 45 deg
+    //            //    else if (Physics.Raycast((transform.position),
+    //            //        right45, out Hit, minDistance * 2.5f))
+    //            //    {
+    //            //        return (transform.forward + transform.right + Hit.normal).normalized * 2f;
+    //            //    }
+    //            //    //only left 45 deg
+    //            //    else if (Physics.Raycast((transform.position),
+    //            //        left45, out Hit, minDistance * 2.5f))
+    //            //    {
+    //            //        return (transform.forward - transform.right + Hit.normal).normalized * 2f;
+    //            //    }
+    //        }
+    //    }
+    //    //right 45 deg ray
+    //    else if (Physics.Raycast((transform.position),
+    //        right45, out Hit, minDistance))
+    //    {
+    //        //if hit an enemy and is not my type
+    //        if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+    //        {
+    //            Debug.Log("hit " + Hit);
+    //            Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+    //        }
+
+    //        if (Hit.transform.tag != "Enemy")
+    //            return (transform.forward - transform.right).normalized;
+    //    }
+    //    //left 45 deg ray
+    //    else if (Physics.Raycast((transform.position),
+    //        left45, out Hit, minDistance))
+    //    {
+    //        //if hit an enemy and is not my type
+    //        if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+    //        {
+    //            Debug.Log("hit " + Hit);
+    //            Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+    //        }
+
+    //        if (Hit.transform.tag != "Enemy")
+    //            return (transform.forward + transform.right).normalized;
+    //    }
+
+    //    return (destPos - transform.position).normalized;
+    //}
+
     protected Vector3 AvoidObstacle()
     {
         Vector3 destPos = path.vectorPath[currentWayPoint];
@@ -183,51 +278,66 @@ public class Zombie : Enemy {
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
         Vector3 left45 = (transform.forward - transform.right).normalized;
+
         //Shoot the rays!
-        //front ray
-        if (Physics.Raycast((transform.position),
-            transform.forward, out Hit, minDistance))
-        {
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward + Hit.normal).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Debug.Log("hit " + Hit);
-                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
-            }
-        }
-        //right 45 deg ray
-        else if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-            //if hit obstacle
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward - transform.right).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
+
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 Debug.Log("hit " + Hit);
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
-        }
-        //left 45 deg ray
-        else if (Physics.Raycast((transform.position),
-            left45, out Hit, minDistance))
-        {
-            //if hit obstacle
+
             if (Hit.transform.tag != "Enemy")
-                return (transform.forward + transform.right).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Debug.Log("hit " + Hit);
-                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
-            }
+                return transform.forward - transform.right;
         }
 
-        return (destPos - transform.position).normalized;
+        if (Physics.Raycast((transform.position + transform.up),
+            left45, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward + transform.right;
+        }
+
+        if (Physics.Raycast((transform.position + transform.up),
+            transform.forward, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward + Hit.normal;
+        }
+
+        //right ray
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            Debug.Log("hit wall!!");
+            transform.position += (-transform.right).normalized * 0.05f;
+
+        }
+
+        //left ray
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            Debug.Log("hit wall!!");
+            transform.position += (transform.right).normalized * 0.05f;
+
+        }
+        return destPos - transform.position;
     }
+
 
     void OnDrawGizmos()
     {

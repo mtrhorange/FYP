@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class FlockingManager : MonoBehaviour
 {
     private ArrayList agentArray = new ArrayList();
-    [Range(0f, 1f)] public float alignmentWeight = 0.2f;
+    public GameObject leader;
+    [Range(0f, 1f)] public float alignmentWeight = 1f;
     [Range(0f, 1f)]public float cohesionWeight = 0.2f;
-    [Range(0f, 1f)]public float separationWeight = 0.2f;
+    [Range(0f, 1f)]public float separationWeight = 0.63f;
     [Range(0f, 10f)]public float range = 3f;
     public float boundary = 5000f;
     private float velocityResetTime =0.5f;
@@ -27,7 +28,7 @@ public class FlockingManager : MonoBehaviour
             Vector3 alignment = computeAlignment(agent);
             Vector3 cohesion = computeCohesion(agent);
             Vector3 separation = computeSeparation(agent);
-            Vector3 wallAvoidance = computeWallAvoidance(agent);
+            //Vector3 wallAvoidance = computeWallAvoidance(agent);
 
             velocityResetTime -= Time.deltaTime;
 
@@ -44,8 +45,8 @@ public class FlockingManager : MonoBehaviour
             //agent.velocity.x += separation.x * separationWeight;
             //agent.velocity.y += separation.y * separationWeight;
             //agent.velocity.z += separation.z * separationWeight;
-            agent.velocity.x += wallAvoidance.x * 0.1f;
-            agent.velocity.z += wallAvoidance.z * 0.1f;
+            //agent.velocity.x += wallAvoidance.x * 0.1f;
+            //agent.velocity.z += wallAvoidance.z * 0.1f;
 
             Vector3 direction = agent.nextPathPoint -  agent.transform.position ;
             direction.y = 0;
