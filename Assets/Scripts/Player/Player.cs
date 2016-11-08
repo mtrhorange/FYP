@@ -123,7 +123,6 @@ public class Player : MonoBehaviour {
 	public void ReceiveDamage(float f) {
 
 		Health -= f;
-
 	}
 
 	//Player recovers health

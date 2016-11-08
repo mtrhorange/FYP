@@ -93,20 +93,6 @@ public class BugMonster : Enemy
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
 
                 rB.velocity = transform.forward * speed;
-
-
-
-
-                //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-                ////factor in the speed to move at
-                //dir *= speed;
-                ////move
-                //rB.Move(dir * Time.deltaTime);
-
-                ////look
-                //Vector3 look = target;
-                //look.y = transform.position.y;
-                //transform.LookAt(look);
             }
 
             attackTimer -= Time.deltaTime;

@@ -110,6 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 1000010100102880, guid: 04cbc64a20f4b844f82e140cbaf4479e, type: 2}
   projectileType: 0
+  hasLifeSpan: 1
+  timeOut: 12
+  damage: 0
 --- !u!135 &135000011092066168
 SphereCollider:
   m_ObjectHideFlags: 1

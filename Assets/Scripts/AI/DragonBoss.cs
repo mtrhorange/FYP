@@ -37,10 +37,13 @@ public class DragonBoss : Enemy
         rB = GetComponent<Rigidbody>();
         //animation
         anim = GetComponent<Animation>();
-
+        //attack timers
         breathTimer = breathInterval;
         stompTimer = stompInterval;
         summonTimer = summonInterval;
+
+        breath.GetComponent<EnemyProjectiles>().damage = damage;
+        fireBlast.GetComponent<EnemyProjectiles>().damage = damage;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
@@ -131,7 +134,7 @@ public class DragonBoss : Enemy
             myState = States.Attack;
         }
 
-        playAnim("walk", 1, false);
+        playAnim("walk", 1.3f, false);
 
         //look & move towards player slowly, the slow strut is highly intimidating
         dir = AvoidObstacle();
@@ -153,7 +156,8 @@ public class DragonBoss : Enemy
             if (atkType == attackType.GroundStomp)
             {
                 playAnim("groundStomp", 1, true);
-                Instantiate(fireBlast, transform.position + transform.forward * 4, transform.rotation);
+                //create fire blast
+                Instantiate(fireBlast, transform.position + transform.forward * 7, transform.rotation);
             }
             //Fire Breath
             else if (atkType == attackType.FireBreath)
@@ -238,66 +242,48 @@ public class DragonBoss : Enemy
         Vector3 right45 = (transform.forward + transform.right).normalized;
         Vector3 left45 = (transform.forward - transform.right).normalized;
         //Shoot the rays!
-        //right ray
-        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f))
-        {
-            if (Hit.transform.gameObject.tag == "Enemy")
-            {
-                return (-transform.right).normalized;
-            }
-        }
-        //left ray
-        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f))
-        {
-            if (Hit.transform.gameObject.tag == "Enemy")
-            {
-                return (transform.right).normalized;
-            }
-        }
         //front ray
-        else if (Physics.Raycast((transform.position),
-        transform.forward, out Hit, minDistance))
+        if (Physics.Raycast((transform.position),
+            transform.forward, out Hit, minDistance))
         {
+            if (Hit.transform.tag != "Enemy")
+                return (transform.forward + Hit.normal).normalized;
             //if hit an enemy and is not my type
-            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
             {
+                Debug.Log("hit " + Hit);
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
-            }
-            else
-            {
-                //if left 45 deg and right 45 deg have thing also
-                if (Physics.Raycast((transform.position),
-                    right45, out Hit, minDistance * 2.5f) && Physics.Raycast((transform.position),
-            left45, out Hit, minDistance * 2.5f))
-                {
-                    return (transform.forward - transform.right + Hit.normal).normalized * 0;
-                }
-                //only right 45 deg
-                else if (Physics.Raycast((transform.position),
-                    right45, out Hit, minDistance * 2.5f))
-                {
-                    return (transform.forward + transform.right + Hit.normal).normalized * 0f;
-                }
-                //only left 45 deg
-                else if (Physics.Raycast((transform.position),
-                    left45, out Hit, minDistance * 2.5f))
-                {
-                    return (transform.forward - transform.right + Hit.normal).normalized * 0f;
-                }
             }
         }
         //right 45 deg ray
         else if (Physics.Raycast((transform.position),
-        right45, out Hit, minDistance))
+            right45, out Hit, minDistance))
         {
-            return (transform.forward - transform.right).normalized;
+            //if hit obstacle
+            if (Hit.transform.tag != "Enemy")
+                return (transform.forward - transform.right).normalized;
+            //if hit an enemy and is not my type
+            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
         }
         //left 45 deg ray
         else if (Physics.Raycast((transform.position),
-        left45, out Hit, minDistance))
+            left45, out Hit, minDistance))
         {
-            return (transform.forward + transform.right).normalized;
+            //if hit obstacle
+            if (Hit.transform.tag != "Enemy")
+                return (transform.forward + transform.right).normalized;
+            //if hit an enemy and is not my type
+            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
         }
+
         return (destPos - transform.position).normalized;
     }
 

@@ -11,7 +11,8 @@ public class EnemyProjectiles : MonoBehaviour {
     {
         AcidSpit, //(flower monster, poison D.o.T)
         WebShot,
-        DragonBreath
+        DragonBreath,
+        FireBlast
     }
     public type projectileType;
 
@@ -21,6 +22,9 @@ public class EnemyProjectiles : MonoBehaviour {
     public bool hasLifeSpan = true;
     public float timeOut = 12f;
 
+    //damage values
+    public float damage = 0f;
+    private bool p1Hit = false, p2Hit = false;
 
 	// Use this for initialization
 	void Start () 
@@ -60,6 +64,8 @@ public class EnemyProjectiles : MonoBehaviour {
                 if (!GetComponent<ParticleSystem>().IsAlive(true))
                 {
                     this.gameObject.SetActive(false);
+                    p1Hit = false;
+                    p2Hit = false;
                 }
             }
             else if (GetComponentInChildren<ParticleSystem>())
@@ -67,6 +73,8 @@ public class EnemyProjectiles : MonoBehaviour {
                 if (!GetComponentInChildren<ParticleSystem>().IsAlive(true))
                 {
                     this.gameObject.SetActive(false);
+                    p1Hit = false;
+                    p2Hit = false;
                 }
             }
         }
@@ -111,7 +119,21 @@ public class EnemyProjectiles : MonoBehaviour {
                 break;
             //if type is dragon breath
             case type.DragonBreath:
-                //todo make breath "hit" player
+                //damage
+                if (other.gameObject.tag == "Player")
+                {
+                    //only hit each player once
+                    if (!p1Hit && other.gameObject.GetComponent<Player>().playerNo == 1)
+                    {
+                        p1Hit = true;
+                        other.gameObject.GetComponent<Player>().ReceiveDamage(damage);
+                    }
+                    if (!p2Hit && other.gameObject.GetComponent<Player>().playerNo == 2)
+                    {
+                        p2Hit = true;
+                        other.gameObject.GetComponent<Player>().ReceiveDamage(damage);
+                    }
+                }
                 break;
         }
     }

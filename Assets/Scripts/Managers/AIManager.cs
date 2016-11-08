@@ -58,6 +58,7 @@ public class AIManager : MonoBehaviour
         
         
         mobType temp = mobType.DragonUndead;
+        //spawnBoss(temp, enemySpawnPoint.transform.position);
         //spawnMob(temp, enemySpawnPoint.transform.position);
 
         //mobType temp = mobType.Flower;
@@ -134,6 +135,7 @@ public class AIManager : MonoBehaviour
         switch (e)
         {
             case mobType.DragonBoss:
+                enemyList.Add((GameObject)Instantiate(bossPrefabs[0], l, Quaternion.identity));
                 break;
             case mobType.LichBoss:
                 break;
@@ -144,5 +146,7 @@ public class AIManager : MonoBehaviour
             case mobType.TreantGuard:
                 break;
         }
+        //set the mobtype
+        enemyList[enemyList.Count - 1].GetComponent<Enemy>().myType = e;
     }
 }
