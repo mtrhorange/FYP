@@ -14,7 +14,6 @@ public class FlowerMonster : Enemy {
     public GameObject projectile;
     private float interceptionTime = 0f;
     private Vector3 interceptPoint = Vector3.zero;
-    public float minDistance = 2.0f;
 
     //Start
     void Start ()

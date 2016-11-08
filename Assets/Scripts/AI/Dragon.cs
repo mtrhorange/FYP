@@ -15,7 +15,6 @@ public class Dragon : Enemy {
     //movement variables
     public float walkSpeed; //speed on ground
     private Vector3 dir;
-    private float minDistance = 2.0f;
     private bool flying = false, waitAnim = false;
     //animation component because this scrub uses old skool legacy anims
     private Animation anim;

@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010533878746
 GameObject:
   m_ObjectHideFlags: 1
@@ -2361,7 +2361,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013296509940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa41e11238c4e6438759325a5fc4678, type: 3}
+  m_Script: {fileID: 11500000, guid: 02b36ef00c7701f499d66f791150af7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
@@ -2374,7 +2374,7 @@ MonoBehaviour:
   myState: 0
   tgtStyle: 1
   myType: 12
-  attackInterval: 5
+  attackInterval: 6
   breath: {fileID: 1000012256452340}
   walkSpeed: 2.8
 --- !u!114 &114000013781825832
@@ -2585,7 +2585,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -437860960
+  randomSeed: -967411654
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4274,7 +4274,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 321354940
+  randomSeed: 11720921
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -5993,7 +5993,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -2140352566
+  randomSeed: 670956080
   InitialModule:
     serializedVersion: 2
     enabled: 1

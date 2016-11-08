@@ -21,7 +21,6 @@ public class DragonBoss : Enemy
     private attackType atkType;
     //movement variables
     private Vector3 dir;
-    private float minDistance = 4.0f;
     //animation component because this scrub uses old skool legacy anims
     private Animation anim;
 
@@ -41,6 +40,8 @@ public class DragonBoss : Enemy
         breathTimer = breathInterval;
         stompTimer = stompInterval;
         summonTimer = summonInterval;
+
+        minDistance = 4.0f;
 
         breath.GetComponent<EnemyProjectiles>().damage = damage;
         fireBlast.GetComponent<EnemyProjectiles>().damage = damage;

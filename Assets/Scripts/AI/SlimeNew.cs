@@ -10,7 +10,7 @@ public class SlimeNew : Enemy {
     //rigidbody
     private Rigidbody rB;
     //movement variables
-    private float pathUpdateTimer = 0.5f, minDistance = 2.0f;
+    private float pathUpdateTimer = 0.5f;
     private Vector3 dir = Vector3.zero;
     //attack variables
     private bool attacking = false;
