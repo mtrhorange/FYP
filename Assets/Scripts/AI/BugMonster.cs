@@ -26,13 +26,13 @@ public class BugMonster : Enemy
         seeker = GetComponent<Seeker>();
         //rigidbody
         rB = GetComponent<Rigidbody>();
-        nextWayPointDistance = 2f;
+        nextWayPointDistance = 3f;
 
         attackTimer = attackInterval;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
-        player = base.reacquireTgt(tgtStyle, this.gameObject);
+        //player = base.reacquireTgt(tgtStyle, this.gameObject);
     }
 
     //Update
@@ -55,11 +55,17 @@ public class BugMonster : Enemy
     //Idle
     protected override void Idle()
     {
-        base.Idle();
+        //chase target
+        target = player.transform.position;
+        //set a path to tgt position
+        seeker.StartPath(transform.position, target, OnPathComplete);
+        currentWayPoint = 1;
+        myState = States.Chase;
+
     }
     protected override void Chase()
     {
-        pathUpdate();
+        //pathUpdate();
 
         //if no path yet
         if (path == null)
@@ -68,11 +74,19 @@ public class BugMonster : Enemy
             //No path to move to yet
             return;
         }
+
         if (currentWayPoint >= path.vectorPath.Count)
         {
             Debug.Log("End Point Reached");
             //go back to idle
             myState = States.Idle;
+            return;
+        }
+
+        //update the waypoint on the path once the current one has been reached
+        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
+        {
+            currentWayPoint++;
             return;
         }
 
@@ -83,14 +97,15 @@ public class BugMonster : Enemy
             if (path.GetTotalLength() > 5f)
             {
 
+                nextPathPoint =
+                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
                 //look & move
-                dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
-
-                Vector3 look = dir.normalized;
+                dir = velocity + AvoidObstacle() ;
+                Vector3 look = dir.normalized + AvoidObstacle() ;
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
 
@@ -154,15 +169,73 @@ public class BugMonster : Enemy
         Vector3 aimBot = (interceptPoint - transform.position);
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
-
-        //update the waypoint on the path once the current one has been reached
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
-        {
-            currentWayPoint++;
-            return;
-        }
     }
+    protected Vector3 AvoidObstacle()
+    {
+        Vector3 destPos = path.vectorPath[currentWayPoint];
+        RaycastHit Hit;
+        //Check if there is obstacle
+        Vector3 right45 = (transform.forward + transform.right).normalized;
+        Vector3 left45 = (transform.forward - transform.right).normalized;
 
+        //Shoot the rays!
+        if (Physics.Raycast((transform.position + transform.up),
+            right45, out Hit, minDistance))
+        {
+
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward - transform.right;
+        }
+
+        if (Physics.Raycast((transform.position + transform.up),
+            left45, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward + transform.right;
+        }
+
+        if (Physics.Raycast((transform.position + transform.up),
+            transform.forward, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward + Hit.normal;
+        }
+
+        //right ray
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            Debug.Log("hit wall!!");
+            transform.position += (-transform.right).normalized * 0.05f;
+
+        }
+
+        //left ray
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            Debug.Log("hit wall!!");
+            transform.position += (transform.right).normalized * 0.05f;
+
+        }
+        return destPos - transform.position;
+    }
     //update calculated path every set time
     public void pathUpdate()
     {
@@ -176,7 +249,7 @@ public class BugMonster : Enemy
             //set a path to tgt position
             seeker.StartPath(transform.position, target, OnPathComplete);
             currentWayPoint = 1;
-            pathUpdateTimer = 1f;
+            pathUpdateTimer = 0.75f;
         }
     }
 

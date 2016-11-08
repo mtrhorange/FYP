@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject damageText;
 
 	public float damage;
+    public float minDistance = 3.0f;
 
     //target position
     protected Vector3 target;
@@ -188,4 +189,6 @@ public class Enemy : MonoBehaviour {
             Debug.Log(" Error: " + p.error);
         }
     }
+
+    
 }
