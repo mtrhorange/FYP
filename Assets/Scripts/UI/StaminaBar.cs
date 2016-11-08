@@ -4,10 +4,11 @@ using System.Collections;
 public class StaminaBar : MonoBehaviour {
 
 	Player player;
+	public int playerNo = 1;
 
 	// Use this for initialization
 	void Start () {
-		player = Player.instance;
+		
 		player.staminaBar = this;
 
 		SetMaxStamina ();

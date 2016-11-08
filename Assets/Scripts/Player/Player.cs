@@ -7,7 +7,6 @@ using System.IO;
 [System.Serializable]
 public class Player : MonoBehaviour {
 
-	public static Player instance;
 
 	public string name = " ";
 	public int saveId = -1;
@@ -18,6 +17,9 @@ public class Player : MonoBehaviour {
 	public float stamina = 100f;
 	public bool recoverStamina = true; //Can stamina be recovered
 	public int livesRemaining = 5;
+	public int skillPoints = 0;
+	bool isDead = false;
+	bool isPermaDead = false;
 
 	public int level = 1;
 	public float exp = 0;
@@ -27,6 +29,9 @@ public class Player : MonoBehaviour {
 
 
 	public Weapon currentWeapon;
+	public Weapon nextWeapon;
+	public GameObject rightHand;
+	public GameObject leftHand;
 
 	public HealthBar healthBar;
 
@@ -41,6 +46,8 @@ public class Player : MonoBehaviour {
 	public GameObject spellFireTransmutation;
 	public GameObject spellIceBall;
 
+	public PlayerSkills skills;
+
 	public Player(string n, int sId) {
 
 		name = n;
@@ -51,7 +58,6 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 
-		instance = this;
 
 	}
 
@@ -65,7 +71,12 @@ public class Player : MonoBehaviour {
 		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		//enemyTargetHover = transform.Find ("Target").gameObject;
 
+		if (currentWeapon != null)
+			currentWeapon.player = this;
+		if (nextWeapon != null)
+			nextWeapon.player = this;
 
+		skills = GetComponent<PlayerSkills> ();
 	}
 	
 	// Update is called once per frame
@@ -131,6 +142,27 @@ public class Player : MonoBehaviour {
 		Health += f;
 	}
 
+	public void LevelUp() {
+
+		Level++;
+		MaxHealth += 10;
+		Health = MaxHealth;
+		SkillPoints++;
+
+
+	}
+
+	public void SwapWeapon() {
+
+		Weapon temp = currentWeapon;
+		currentWeapon = nextWeapon;
+		nextWeapon = temp;
+
+		currentWeapon.gameObject.SetActive (true);
+		nextWeapon.gameObject.SetActive (false);
+
+	}
+
 	#region GetSet
 
 	//Player's current health
@@ -144,7 +176,16 @@ public class Player : MonoBehaviour {
 			else
 				health = value;
 
-			//healthBar.SetHealth ();
+			if (healthBar != null)
+			healthBar.SetHealth ();
+
+			if (health <= 0) {
+				health = 0;
+				if (!isDead) {
+					isDead = true;
+					controller.PlayerDeath ();
+				}
+			}
 		}
 
 	}
@@ -159,7 +200,8 @@ public class Player : MonoBehaviour {
 			maxHealth = value;
 			if (health > maxHealth)
 				health = maxHealth;
-			//healthBar.SetMaxHealth ();
+			if (healthBar != null)
+				healthBar.SetHealth ();
 		}
 
 
@@ -202,8 +244,7 @@ public class Player : MonoBehaviour {
 			exp = value;
 			float expLimit = 50 + (50 * level);
 			if (exp >= expLimit) {
-
-				level++;
+				LevelUp ();
 				exp -= expLimit;
 
 			}
@@ -211,12 +252,30 @@ public class Player : MonoBehaviour {
 
 	}
 
+	public int SkillPoints {
+
+		get { return skillPoints; }
+		set {
+			skillPoints = value;
+		}
+
+	}
+
+	public int Lives {
+
+		get { return livesRemaining; }
+		set { livesRemaining = value; }
+	}
+
 	#endregion
+
+	#region Spells
 
 	public void CastFirePillar() {
 
 		Instantiate (spellFireTransmutation, transform.position + transform.forward * 8f, Quaternion.identity);
-		Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+		GameObject firePillar = (GameObject)Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+		firePillar.GetComponent<fire_pillar> ().player = this;
 
 	}
 
@@ -226,16 +285,22 @@ public class Player : MonoBehaviour {
 
 	}
 
+	#endregion
+
 	void OnGUI() {
 
-		if(GUI.Button(new Rect(250, 15, 100, 30), "z FirePillar"))
+		if(GUI.Button(new Rect(250, 15, 100, 30), "c FirePillar"))
 		{
 			skillC = CastFirePillar;
 		}
 
-		if(GUI.Button(new Rect(250, 45, 100, 30), "z IceBolt"))
+		if(GUI.Button(new Rect(250, 45, 100, 30), "c IceBolt"))
 		{
 			skillC = CastIceBolt;
+		}
+
+		if (GUI.Button (new Rect (250, 75, 100, 30), "-10 Health")) {
+			ReceiveDamage (10);
 		}
 
 	}
