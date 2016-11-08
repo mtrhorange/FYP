@@ -32,7 +32,7 @@ public class BugMonster : Enemy
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
-        //player = base.reacquireTgt(tgtStyle, this.gameObject);
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
     }
 
     //Update
@@ -108,20 +108,6 @@ public class BugMonster : Enemy
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
-
-
-
-
-                //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-                ////factor in the speed to move at
-                //dir *= speed;
-                ////move
-                //rB.Move(dir * Time.deltaTime);
-
-                ////look
-                //Vector3 look = target;
-                //look.y = transform.position.y;
-                //transform.LookAt(look);
             }
 
             attackTimer -= Time.deltaTime;
@@ -142,24 +128,17 @@ public class BugMonster : Enemy
                 else
                 {
 
-                    //look & move
-                    dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
+                    nextPathPoint =
+               path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
-                    Vector3 look = dir.normalized;
+                    //look & move
+                    dir = velocity + AvoidObstacle();
+                    Vector3 look = dir.normalized + AvoidObstacle();
                     look.y = 0;
                     Quaternion targetRotation = Quaternion.LookRotation(look);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                     rB.velocity = transform.forward * speed;
-
-
-                    ////set the direction to move to
-                    ////dir = (path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1] - transform.position).normalized;
-                    //dir = (path.vectorPath[currentWayPoint] - transform.position).normalized;
-                    ////factor in the speed to move at
-                    //dir *= speed;
-                    ////move
-                    //rB.Move(dir * Time.deltaTime);
                 }
             }
 
@@ -179,7 +158,7 @@ public class BugMonster : Enemy
         Vector3 left45 = (transform.forward - transform.right).normalized;
 
         //Shoot the rays!
-        if (Physics.Raycast((transform.position + transform.up),
+        if (Physics.Raycast((transform.position),
             right45, out Hit, minDistance))
         {
 
@@ -193,7 +172,7 @@ public class BugMonster : Enemy
                 return transform.forward - transform.right;
         }
 
-        if (Physics.Raycast((transform.position + transform.up),
+        if (Physics.Raycast((transform.position),
             left45, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
@@ -206,7 +185,7 @@ public class BugMonster : Enemy
                 return transform.forward + transform.right;
         }
 
-        if (Physics.Raycast((transform.position + transform.up),
+        if (Physics.Raycast((transform.position),
             transform.forward, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
@@ -236,6 +215,25 @@ public class BugMonster : Enemy
         }
         return destPos - transform.position;
     }
+
+    void OnDrawGizmos()
+    {
+        Vector3 frontRay = transform.position + transform.forward * minDistance;
+        Vector3 right45 = transform.position +
+            (transform.forward + transform.right).normalized * minDistance;
+        Vector3 left45 = transform.position +
+            (transform.forward - transform.right).normalized * minDistance;
+
+        Debug.DrawLine(transform.position, frontRay, Color.blue);
+        Debug.DrawLine(transform.position, left45, Color.blue);
+        Debug.DrawLine(transform.position, right45, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * 1.5f, Color.blue);
+        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * 1.5f, Color.blue);
+
+        //Gizmos.color = new Color32(255,0,0,40);
+        //Gizmos.DrawSphere(this.transform.position,5f);
+    }
+
     //update calculated path every set time
     public void pathUpdate()
     {
@@ -275,11 +273,6 @@ public class BugMonster : Enemy
     {
         Vector3 shootHere = (here - transform.GetChild(5).position).normalized;
 
-        //look
-        Vector3 look = here;
-        look.y = transform.position.y;
-        transform.LookAt(look);
-        
         GameObject boo = (GameObject)Instantiate(projectile, transform.GetChild(5).position, Quaternion.identity);
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
 
