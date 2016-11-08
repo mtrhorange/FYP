@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour {
 
 	public void SpawnPlayer() {
 
-		GameObject playerModel = (GameObject)Instantiate (playerPrefab, GameObject.Find("Player1Spawn").transform.position, Quaternion.identity);
+		GameObject playerModel = 
+			(GameObject)Instantiate (playerPrefab, 
+				GameObject.Find("Player1Spawn").transform.position, Quaternion.identity);
 
 		player1 = playerModel.GetComponent<Player> ();
 		UpdatePlayer1 ();
@@ -46,7 +48,9 @@ public class GameManager : MonoBehaviour {
 		playerModel.name = "Player1";
 
 		if (player2Data.saveId != 0) {
-			GameObject player2Model = (GameObject)Instantiate (playerPrefab, GameObject.Find ("Player2Spawn").transform.position, Quaternion.identity);
+			GameObject player2Model = 
+				(GameObject)Instantiate (playerPrefab, 
+					GameObject.Find ("Player2Spawn").transform.position, Quaternion.identity);
 			player2 = player2Model.GetComponent<Player> ();
 			UpdatePlayer2 ();
 
@@ -72,13 +76,15 @@ public class GameManager : MonoBehaviour {
 
 		if (player1Data.saveId != 0 && GameObject.Find ("Player1Info")) {
 
-			GameObject.Find ("Player1Info").transform.GetChild (0).GetComponent<Text> ().text = "Player 1\nName: " + player1Data.name + "\nLevel: " + player1Data.Level;
+			GameObject.Find ("Player1Info").transform.GetChild (0).GetComponent<Text> ().text = 
+				"Player 1\nName: " + player1Data.name + "\nLevel: " + player1Data.Level;
 
 		}
 
 		if (player2Data.saveId != 0 && GameObject.Find ("Player2Info")) {
 
-			GameObject.Find ("Player2Info").transform.GetChild (0).GetComponent<Text> ().text = "Player 2\nName: " + player2Data.name + "\nLevel: " + player2Data.Level;
+			GameObject.Find ("Player2Info").transform.GetChild (0).GetComponent<Text> ().text = 
+				"Player 2\nName: " + player2Data.name + "\nLevel: " + player2Data.Level;
 
 		}
 
@@ -116,6 +122,14 @@ public class GameManager : MonoBehaviour {
 		player1Data.Health = player1.Health;
 		player1Data.MaxStamina = player1.MaxStamina;
 		player1Data.Stamina = player1.MaxStamina;
+		player1Data.Lives = player1.Lives;
+		player1Data.SkillPoints = player1.SkillPoints;
+
+		player1Data.maxHealthLevel = player1.skills.maxHealthLevel;
+		player1Data.minDmgLevel = player1.skills.minDmgLevel;
+		player1Data.maxDmgLevel = player1.skills.maxDmgLevel;
+		player1Data.weaponBuffLevel = player1.skills.weaponBuffLevel;
+		player1Data.spellBuffLevel = player1.skills.spellBuffLevel;
 
 		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
 			if (player1Data.saveId == SaveLoad.savedCharacters [i].saveId) {
@@ -137,6 +151,15 @@ public class GameManager : MonoBehaviour {
 		player1.MaxStamina = player1Data.MaxStamina;
 		player1.Stamina = player1.MaxStamina;
 		player1.playerNo = 1;
+		player1.Lives = player1Data.Lives;
+		player1.SkillPoints = player1Data.SkillPoints;
+
+		player1.skills.maxHealthLevel = player1Data.maxHealthLevel;
+		player1.skills.minDmgLevel = player1Data.minDmgLevel;
+		player1.skills.maxDmgLevel = player1Data.maxDmgLevel;
+		player1.skills.weaponBuffLevel = player1Data.weaponBuffLevel;
+		player1.skills.spellBuffLevel = player1Data.spellBuffLevel;
+
 
 	}
 
@@ -150,6 +173,14 @@ public class GameManager : MonoBehaviour {
 		player2Data.Health = player2.Health;
 		player2Data.MaxStamina = player2.MaxStamina;
 		player2Data.Stamina = player2.MaxStamina;
+		player2Data.Lives = player2.Lives;
+		player2Data.SkillPoints = player2.SkillPoints;
+
+		player2Data.maxHealthLevel = player2.skills.maxHealthLevel;
+		player2Data.minDmgLevel = player2.skills.minDmgLevel;
+		player2Data.maxDmgLevel = player2.skills.maxDmgLevel;
+		player2Data.weaponBuffLevel = player2.skills.weaponBuffLevel;
+		player2Data.spellBuffLevel = player2.skills.spellBuffLevel;
 
 		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
 			if (player2Data.saveId == SaveLoad.savedCharacters [i].saveId) {
@@ -169,6 +200,15 @@ public class GameManager : MonoBehaviour {
 		player2.Health = player2Data.Health;
 		player2.MaxStamina = player2Data.MaxStamina;
 		player2.Stamina = player2.MaxStamina;
+
+		player2.Lives = player2Data.Lives;
+		player2.SkillPoints = player2Data.SkillPoints;
+
+		player2.skills.maxHealthLevel = player2Data.maxHealthLevel;
+		player2.skills.minDmgLevel = player2Data.minDmgLevel;
+		player2.skills.maxDmgLevel = player2Data.maxDmgLevel;
+		player2.skills.weaponBuffLevel = player2Data.weaponBuffLevel;
+		player2.skills.spellBuffLevel = player2Data.spellBuffLevel;
 
 		player2.playerNo = 2;
 	}

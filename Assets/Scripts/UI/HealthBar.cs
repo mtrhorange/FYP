@@ -5,13 +5,24 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour {
 
 	Player player;
+	public int playerNo = 1;
 
 	// Use this for initialization
 	void Start () {
-		player = Player.instance;
+
+		if (playerNo == 1)
+			player = GameManager.instance.player1;
+		else {
+			if (GameManager.instance.player2 != null)
+				player = GameManager.instance.player2;
+			else {
+				transform.parent.gameObject.SetActive (false);
+				return;
+			}
+		}
 		player.healthBar = this;
 
-		SetMaxHealth ();
+		SetHealth ();
 	}
 	
 	// Update is called once per frame
@@ -21,13 +32,7 @@ public class HealthBar : MonoBehaviour {
 
 	public void SetHealth () {
 
-		GetComponent<RectTransform> ().sizeDelta = new Vector2 (player.Health, 8);
+		GetComponent<RectTransform> ().sizeDelta = new Vector2 (100f * player.Health/player.MaxHealth, 8);
 
-	}
-
-	public void SetMaxHealth() {
-
-		transform.parent.GetComponent<RectTransform> ().sizeDelta = new Vector2 (player.MaxHealth + 10f, 15);
-		SetHealth ();
 	}
 }

@@ -14,24 +14,26 @@ public class Weapon : MonoBehaviour {
 	Vector3 prevPos;
 
 	bool isAttacking = false;
+	public bool isMelee = true;
 	bool newHit = true;
 
 	List<Enemy> enemiesHit;
 
-	public bool adjustGrip = false;
 	Transform interactionPt;
 
-	// Use this for initialization
-	void Start () {
-		capCast1 = transform.Find ("CapCast1").gameObject;
-		capCast2 = transform.Find ("CapCast2").gameObject;
-		prevPos = transform.position;
+	public Player player;
 
+	PlayerSkills skills;
+
+	// Use this for initialization
+	public virtual void Start () {
+		prevPos = transform.position;
 		enemiesHit = new List<Enemy> ();
 
-		interactionPt = transform.Find ("InteractionPt");
-//		transform.position = transform.parent.position - interactionPt.localPosition;
-//		transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles - interactionPt.localRotation.eulerAngles);
+		if (isMelee) {
+			capCast1 = transform.Find ("CapCast1").gameObject;
+			capCast2 = transform.Find ("CapCast2").gameObject;
+		}
 
 	}
 
@@ -41,7 +43,7 @@ public class Weapon : MonoBehaviour {
 
 	}
 
-	public void AttackTrigger(int i) {
+	public virtual void AttackTrigger(int i) {
 
 		if (i == 1)
 			isAttacking = true;
@@ -53,20 +55,15 @@ public class Weapon : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if (isAttacking)
+	public virtual void Update () {
+		if (isAttacking && isMelee)
 			CheckHitEnemy ();
 
 		prevPos = transform.position;
 
-		if (adjustGrip) {
-			transform.position = transform.parent.position - interactionPt.localPosition;
-			transform.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles - interactionPt.localRotation.eulerAngles);
-
-		}
 	}
 
-	void CheckHitEnemy() {
+	public void CheckHitEnemy() {
 
 		RaycastHit[] hits = Physics.CapsuleCastAll (capCast1.transform.position, capCast2.transform.position, 
 			capCast1.GetComponent<SphereCollider> ().radius, prevPos - transform.position, Vector3.Distance (prevPos, transform.position));
@@ -83,16 +80,41 @@ public class Weapon : MonoBehaviour {
 				}
 
 				if (newHit == true) {
-					hit.transform.GetComponent<Enemy> ().ReceiveDamage (Random.Range (damageMin, damageMax));
+					float finalDamage = CalculateMeleeDamage ();
+
+					hit.transform.GetComponent<Enemy> ().ReceiveDamage (finalDamage);
 					enemiesHit.Add (enemy);
 				}
 
 
 				newHit = true;
 			}
-
-
 		}
+
+	}
+
+	public float CalculateMeleeDamage() {
+
+		float min = damageMin;
+		float max = damageMax;
+		float finalDamage;
+
+		int maxDmgLevel = player.skills.maxDmgLevel;
+		int minDmgLevel = player.skills.minDmgLevel;
+		int attackBuffLevel = player.skills.weaponBuffLevel;
+
+		max = (max + Mathf.Ceil((float)maxDmgLevel/2f));
+		min = (min + Mathf.Ceil ((float)minDmgLevel / 2f));
+		if (min >= max)
+			min = max - 1;
+
+		finalDamage = Random.Range (min, max);
+
+		if (attackBuffLevel > 0) {
+			finalDamage = finalDamage * (1.1f+ 0.02f * (attackBuffLevel - 1));
+		}
+
+		return finalDamage;
 
 
 	}

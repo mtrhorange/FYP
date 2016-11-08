@@ -124,7 +124,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 					StartCoroutine(_Revive());
 				}
 			}
-			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AttackLPlayer2") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
 			{
 				Attack(1);
 			}
@@ -141,18 +141,15 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				AttackKick(2);
 			}
 
-			if (Input.GetKeyDown(KeyCode.C) && canAction && isGrounded && !isBlocking) 
+			if (Input.GetButtonDown("SkillC") && canAction && isGrounded && !isBlocking) 
 			{
 				Attack (1);
-				if (target != null) {
-					Instantiate (spellTransmutationFire, target.transform.position, Quaternion.identity);
-					Instantiate (spellFirePillar, target.transform.position, Quaternion.identity);
+				player.skillC ();
+			}
 
-				} else {
-					Instantiate (spellTransmutationFire, transform.position + transform.forward * 8f, Quaternion.identity);
-					Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+			if (Input.GetButtonDown ("SwapWep") && canAction && isGrounded && !isBlocking) {
 
-				}
+				player.SwapWeapon ();
 			}
 			//if strafing
 			/*if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("TargetBlock") > .1 && canAction)
@@ -174,22 +171,22 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				animator.SetBool("Strafing", false);
 			}*/
 
-			if (Input.GetKeyDown (KeyCode.LeftShift) && canAction) {
-
-				isStrafing = !isStrafing;
-				animator.SetBool("Strafing", isStrafing);
-
-				if (isStrafing) {
-					target = transform.GetComponent<Player> ().FindTarget ();
-					if (target == null) {
-						isStrafing = false;
-
-					}
-				} else {
-					transform.GetComponent<Player> ().ResetTarget ();
-					target = null;
-				}
-			}
+//			if (Input.GetKeyDown (KeyCode.LeftShift) && canAction) {
+//
+//				isStrafing = !isStrafing;
+//				animator.SetBool("Strafing", isStrafing);
+//
+//				if (isStrafing) {
+//					target = transform.GetComponent<Player> ().FindTarget ();
+//					if (target == null) {
+//						isStrafing = false;
+//
+//					}
+//				} else {
+//					transform.GetComponent<Player> ().ResetTarget ();
+//					target = null;
+//				}
+//			}
 		}
 		else
 		{
@@ -508,11 +505,11 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 						animator.SetTrigger("Attack" + (attackNumber).ToString() + "Trigger");
 						if(leftWeapon == 12 || leftWeapon == 14 || rightWeapon == 13 || rightWeapon == 15)
 						{
-							StartCoroutine(_LockMovementAndAttack(0, .75f));
+							StartCoroutine(_LockMovementAndAttack(0, .8f));
 						} 
 						else
 						{
-							StartCoroutine(_LockMovementAndAttack(0, .6f));
+							StartCoroutine(_LockMovementAndAttack(0, .8f));
 						}
 					}
 					else
@@ -641,6 +638,12 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		yield return null;
 	}
 
+	public void PlayerDeath() {
+
+		StartCoroutine (_Death ());
+
+	}
+
 	IEnumerator _Revive()
 	{
 		animator.SetTrigger("Revive1Trigger");
@@ -717,16 +720,6 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 
 	#endregion
 
-	bool isKeyboard() {
-
-		if (Input.GetKey (KeyCode.RightArrow) ||
-		    Input.GetKey (KeyCode.LeftArrow) ||
-		    Input.GetKey (KeyCode.UpArrow) ||
-		    Input.GetKey (KeyCode.DownArrow))
-			return true;
-		else
-			return false;
-	}
 
 
 
@@ -751,7 +744,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 	
 	#endregion
 
-	#region GUI
+	/*#region GUI
 
 	void OnGUI()
 	{
@@ -854,5 +847,5 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		}
 	}
 
-	#endregion
+	#endregion*/
 }

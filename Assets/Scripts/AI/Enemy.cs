@@ -100,10 +100,13 @@ public class Enemy : MonoBehaviour {
 	public void ReceiveDamage(float dmg) {
 
 		health -= dmg;
-		GameObject txt = (GameObject)Instantiate(damageText, transform.position, Quaternion.identity);
-		txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
-		txt.transform.Rotate(55, 0, 0);
-		Debug.Log (GetComponent<Player> ().Health);
+		Camera camera = FindObjectOfType<Camera> ();
+		Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+		GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
+		txt.transform.SetParent(GameObject.Find ("Canvas").transform);
+		txt.GetComponent<UnityEngine.UI.Text> ().text = dmg.ToString ("F0");
+		//txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
+		//txt.transform.Rotate(55, 0, 0);
 	}
 
 	void OnTriggerEnter(Collider other) {

@@ -13,10 +13,23 @@ public class PlayerData {
 	public float health = 100f;
 	public float maxStamina = 100f;
 	public float stamina = 100f;
+	public int livesRemaining = 0;
+	public int skillPoints = 0;
 	public bool recoverStamina = true; //Can stamina be recovered
+	public bool isPermaDead = false;
 
 	public int level = 1;
 	public float exp = 0;
+
+	//Skills
+
+
+	//Passives
+	public int maxHealthLevel = 0;
+	public int minDmgLevel = 0;
+	public int maxDmgLevel = 0;
+	public int weaponBuffLevel = 0;
+	public int spellBuffLevel = 0;
 
 	public PlayerData(string n, int sId) {
 
@@ -108,5 +121,20 @@ public class PlayerData {
 			}
 		}
 
+	}
+
+	public int SkillPoints {
+
+		get { return skillPoints; }
+		set {
+			skillPoints = value;
+		}
+
+	}
+
+	public int Lives {
+
+		get { return livesRemaining; }
+		set { livesRemaining = value; }
 	}
 }

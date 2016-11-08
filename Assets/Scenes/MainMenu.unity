@@ -1416,7 +1416,7 @@ MonoBehaviour:
     recoverStamina: 0
     level: 0
     exp: 0
-  playerPrefab: {fileID: 1000012980443002, guid: 63d5504dacc501447a95715bfe427a1d,
+  playerPrefab: {fileID: 1000010824984246, guid: f1ed895ce4700644a9e1879953099baa,
     type: 2}
   twoPlayers: 0
 --- !u!224 &701467151
@@ -5272,7 +5272,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1802333295}
+      - m_Target: {fileID: 1291176649}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -5283,7 +5283,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1966406339}
+      - m_Target: {fileID: 746537215}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 416500169}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1643299723}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -5374,7 +5396,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ice_Ball_Script : MonoBehaviour
+public class Ice_Ball_Script : Spell
 {
 
     // Use this for initialization
@@ -32,8 +32,22 @@ public class Ice_Ball_Script : MonoBehaviour
     {
         if (other.gameObject.tag == "Wall")
         {
-            Instantiate(Ice_blast, new Vector3(this.transform.position.x, 0, transform.position.z), transform.rotation);
-            Destroy(gameObject);
+			Explode ();
         }
+
+		if (other.GetComponent<Enemy>()) {
+
+			GetDamage ();
+			other.GetComponent<Enemy> ().ReceiveDamage (damage);
+
+			Explode ();
+		}
     }
+
+	void Explode() {
+
+		Instantiate(Ice_blast, new Vector3(this.transform.position.x, 0, transform.position.z), transform.rotation);
+		Destroy(gameObject);
+
+	}
 }

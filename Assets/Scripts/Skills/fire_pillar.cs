@@ -29,8 +29,8 @@ public class fire_pillar : Spell {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.transform.GetComponent<Enemy> ()) {
-			float dmg = damage;
-			other.GetComponent<Enemy> ().ReceiveDamage (dmg);
+			GetDamage ();
+			other.GetComponent<Enemy> ().ReceiveDamage (damage);
 		}
 
 	}

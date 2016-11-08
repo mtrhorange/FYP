@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MenuButton : MonoBehaviour {
 
+	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn;
+
 	// Use this for initialization
 	void Start () {
 	
