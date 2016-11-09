@@ -11,8 +11,10 @@ public class Player : MonoBehaviour {
 	public string name = " ";
 	public int saveId = -1;
 	public int playerNo = 1;
+	public float baseMaxHealth = 100f;
 	public float maxHealth = 100f;
 	public float health = 100f;
+	public float baseMaxStamina = 100f;
 	public float maxStamina = 100f;
 	public float stamina = 100f;
 	public bool recoverStamina = true; //Can stamina be recovered
@@ -93,6 +95,8 @@ public class Player : MonoBehaviour {
 
 	}
 
+	#region MISC
+
 	/*
 	*	Search for nearest enemy to target
 	*
@@ -130,10 +134,16 @@ public class Player : MonoBehaviour {
 
 	}
 
+	#endregion
+
+
+
 	//Player gets damage, reduces health
 	public void ReceiveDamage(float f) {
 
-		Health -= f;
+		float dmg = f;
+
+		dmg = dmg * (1f - ((0.05f*skills.defenseBuffLevel)>0.5f?5:(0.05f*skills.defenseBuffLevel)));
 	}
 
 	//Player recovers health
@@ -149,6 +159,8 @@ public class Player : MonoBehaviour {
 		Health = MaxHealth;
 		SkillPoints++;
 
+		//UpdateHealth ();
+
 
 	}
 
@@ -160,6 +172,33 @@ public class Player : MonoBehaviour {
 
 		currentWeapon.gameObject.SetActive (true);
 		nextWeapon.gameObject.SetActive (false);
+
+	}
+
+	public void UpdateHealth() {
+
+		maxHealth = baseMaxHealth * (1f + 0.05f * skills.maxHealthLevel);
+		if (health > maxHealth)
+			health = maxHealth;
+		if (healthBar != null)
+			healthBar.SetHealth ();
+
+	}
+
+	public void PlayerDeath() {
+
+		health = 0;
+		if (!isDead) {
+			isDead = true;
+			controller.PlayerDeath ();
+		}
+	}
+
+	public void PlayerRevive() {
+
+		Health = MaxHealth;
+		isDead = false;
+		controller.PlayerRevive ();
 
 	}
 
@@ -176,17 +215,19 @@ public class Player : MonoBehaviour {
 			else
 				health = value;
 
-			if (healthBar != null)
-			healthBar.SetHealth ();
-
 			if (health <= 0) {
-				health = 0;
-				if (!isDead) {
-					isDead = true;
-					controller.PlayerDeath ();
-				}
+				PlayerDeath ();
 			}
+
+			if (healthBar != null)
+				healthBar.SetHealth ();
 		}
+
+	}
+
+	public float BaseMaxHealth {
+
+		get { return baseMaxHealth; }
 
 	}
 
@@ -197,14 +238,9 @@ public class Player : MonoBehaviour {
 		}
 
 		set {
-			maxHealth = value;
-			if (health > maxHealth)
-				health = maxHealth;
-			if (healthBar != null)
-				healthBar.SetHealth ();
+			baseMaxHealth = value;
+			UpdateHealth ();
 		}
-
-
 	}
 
 	//Player stamina
@@ -285,7 +321,33 @@ public class Player : MonoBehaviour {
 
 	}
 
+	public void CastIceSpike() {
+
+		StartCoroutine (_IceSpike());
+		StopCoroutine (_IceSpike ());
+	}
+
+	IEnumerator _IceSpike()
+	{
+		GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpike");
+
+		Instantiate(iceSpike, this.transform.position + transform.forward * 2 + new Vector3(0,-2,0), transform.rotation * Quaternion.Euler(0, 90, 0));
+		yield return new WaitForSeconds(0.1f);
+		Instantiate(iceSpike, this.transform.position + transform.forward * 4 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 300, 0));
+		yield return new WaitForSeconds(0.1f);
+		Instantiate(iceSpike, this.transform.position + transform.forward * 6 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 126, 0));
+		yield return new WaitForSeconds(0.1f);
+		Instantiate(iceSpike, this.transform.position + transform.forward * 8 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 0, 0));
+		yield return new WaitForSeconds(0.1f);
+		Instantiate(iceSpike, this.transform.position + transform.forward * 10 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 40, 0));
+		yield return new WaitForSeconds(0.1f);
+		Instantiate(iceSpike, this.transform.position + transform.forward * 12 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 185, 0));
+
+	}
+
 	#endregion
+
+	#region GUI
 
 	void OnGUI() {
 
@@ -294,14 +356,33 @@ public class Player : MonoBehaviour {
 			skillC = CastFirePillar;
 		}
 
-		if(GUI.Button(new Rect(250, 45, 100, 30), "c IceBolt"))
+		if(GUI.Button(new Rect(250, 45, 100, 30), "c IceSpikes"))
 		{
-			skillC = CastIceBolt;
+			skillC = CastIceSpike;
 		}
 
 		if (GUI.Button (new Rect (250, 75, 100, 30), "-10 Health")) {
 			ReceiveDamage (10);
 		}
 
+		if (isDead) {
+
+			if (playerNo == 1) {
+				if (GUI.Button (new Rect (250, 105, 100, 30), "1P Revive")) {
+					PlayerRevive ();
+				}
+
+			} else {
+
+				if (GUI.Button (new Rect (250, 135, 100, 30), "2P Revive")) {
+					PlayerRevive ();
+				}
+
+			}
+
+
+		}
 	}
+
+	#endregion
 }

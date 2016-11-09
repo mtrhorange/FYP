@@ -109,7 +109,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 			} 
 			Rolling();
 			Jumping();
-			if(Input.GetButtonDown("LightHit") && canAction && isGrounded && !isBlocking)
+			if(Input.GetButtonDown("LightHit") && canAction && isGrounded && !isBlocking && !isDead)
 			{
 				GetHit();
 			}
@@ -124,30 +124,33 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 					StartCoroutine(_Revive());
 				}
 			}
-			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking)
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) 
+				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				Attack(1);
 			}
-			if(Input.GetButtonDown("AttackR") && canAction && isGrounded && !isBlocking)
+			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (Input.GetButtonDown("BButtonCtrl1") && player.playerNo == 2))
+				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				Attack(2);
 			}
-			if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing)
+			if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
 			{
 				AttackKick(1);
 			}
-			if(Input.GetButtonDown("CastR") && canAction && isGrounded && !isBlocking && !isStrafing)
+			if(Input.GetButtonDown("CastR") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
 			{
 				AttackKick(2);
 			}
 
-			if (Input.GetButtonDown("SkillC") && canAction && isGrounded && !isBlocking) 
+			if (((Input.GetButtonDown("SkillC") && player.playerNo == 1) || (Input.GetButtonDown("XButtonCtrl1") && player.playerNo == 2))
+				&& canAction && isGrounded && !isBlocking && !isDead) 
 			{
 				Attack (1);
 				player.skillC ();
 			}
 
-			if (Input.GetButtonDown ("SwapWep") && canAction && isGrounded && !isBlocking) {
+			if (Input.GetButtonDown ("SwapWep") && canAction && isGrounded && !isBlocking && !isDead) {
 
 				player.SwapWeapon ();
 			}
@@ -649,6 +652,11 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		animator.SetTrigger("Revive1Trigger");
 		isDead = false;
 		yield return null;
+	}
+
+	public void PlayerRevive() {
+
+		StartCoroutine (_Revive ());
 	}
 
 	#endregion

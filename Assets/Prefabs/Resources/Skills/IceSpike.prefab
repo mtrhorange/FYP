@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013081350458}
   - 95: {fileID: 95000010594970364}
-  - 114: {fileID: 114000013936105120}
+  - 114: {fileID: 114000014032510150}
   m_Layer: 0
   m_Name: IceSpike
   m_TagString: Untagged
@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011767157010}
   m_LocalRotation: {x: -0.07768869, y: -0, z: -0, w: 0.99697775}
-  m_LocalPosition: {x: -1.6396496, y: 3.8163817e-17, z: -8.593727}
+  m_LocalPosition: {x: 13.682775, y: 2.684644e-17, z: -6.0452805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -8.857, y: 0, z: 0}
   m_Children:
@@ -273,7 +273,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d3160a9584170624fa161fd9798ac62d, type: 2}
+  - {fileID: 2100000, guid: b372dff942d20a44c92bdbbc9485060e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -295,7 +295,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012252699512}
-  m_Mesh: {fileID: 4300000, guid: 5019dae6a5ce9b04f809fc6277b0c69e, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
 --- !u!95 &95000010594970364
 Animator:
   serializedVersion: 3
@@ -304,8 +304,8 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011767157010}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: a06ca54f3ba59c24c8ebb53efbded56a, type: 3}
+  m_Controller: {fileID: 9100000, guid: e8ad1a4c6bec9c842b86fcfa3fa81da0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -322,7 +322,7 @@ Animator:
   m_GameObject: {fileID: 1000012252699512}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1a9dca3658b2ac649849aea7b942b7ec, type: 2}
+  m_Controller: {fileID: 9100000, guid: 59cb2c3e4bbda2348a20b9dcb41c5f4e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -338,13 +338,13 @@ Animation:
   m_GameObject: {fileID: 1000012252699512}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 63395e21bfa4a0b4a9b6623bf5660082, type: 2}
+  m_Animation: {fileID: 7400000, guid: 1c921b4d0bc0ce240a34ddcbe75acd86, type: 2}
   m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114000013936105120
+--- !u!114 &114000014032510150
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3874,7 +3874,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1470368909
+  randomSeed: 1363808313
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -10827,7 +10827,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6162742a2443584d884df1d52523267, type: 2}
+  - {fileID: 2100000, guid: 134216f9b884ad0438282a70d07a58b6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

@@ -11,10 +11,12 @@ public class PlayerSkills : MonoBehaviour {
 	public int maxDmgLevel = 0;
 	public int weaponBuffLevel = 0;
 	public int spellBuffLevel = 0;
+	public int defenseBuffLevel = 0;
 
+	Player player;
 	// Use this for initialization
 	void Start () {
-	
+		player = GetComponent<Player> ();
 	}
 	
 	// Update is called once per frame
