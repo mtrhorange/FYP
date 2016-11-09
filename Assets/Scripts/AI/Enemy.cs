@@ -114,10 +114,16 @@ public class Enemy : MonoBehaviour
         //txt.transform.Rotate(55, 0, 0);
     }
 
-    void OnTriggerEnter(Collider other)
+    //Trigger Enter
+    protected void OnTriggerEnter(Collider other)
     {
-
-
+        //if other is a player and my box collider is on (box colliders will be used for attacks)
+        if (other.gameObject.tag == "Player" && GetComponent<BoxCollider>().enabled)
+        {
+            Debug.Log("enemy.cs enter");
+            //attack player
+            other.GetComponent<Player>().ReceiveDamage(damage);
+        }
     }
 
     //reacquire target

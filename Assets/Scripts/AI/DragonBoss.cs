@@ -234,7 +234,7 @@ public class DragonBoss : Enemy
         }
     }
 
-    //Avoid obstacles
+    //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
         Vector3 destPos = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
@@ -242,50 +242,64 @@ public class DragonBoss : Enemy
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
         Vector3 left45 = (transform.forward - transform.right).normalized;
+
         //Shoot the rays!
-        //front ray
-        if (Physics.Raycast((transform.position),
-            transform.forward, out Hit, minDistance))
-        {
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward + Hit.normal).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Debug.Log("hit " + Hit);
-                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
-            }
-        }
-        //right 45 deg ray
-        else if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-            //if hit obstacle
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward - transform.right).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
+
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 Debug.Log("hit " + Hit);
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
-        }
-        //left 45 deg ray
-        else if (Physics.Raycast((transform.position),
-            left45, out Hit, minDistance))
-        {
-            //if hit obstacle
+
             if (Hit.transform.tag != "Enemy")
-                return (transform.forward + transform.right).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Debug.Log("hit " + Hit);
-                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
-            }
+                return transform.forward - transform.right;
         }
 
-        return (destPos - transform.position).normalized;
+        if (Physics.Raycast((transform.position + transform.up),
+            left45, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward + transform.right;
+        }
+
+        if (Physics.Raycast((transform.position + transform.up),
+            transform.forward, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                Debug.Log("hit " + Hit);
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.tag != "Enemy")
+                return transform.forward + Hit.normal;
+        }
+
+        //right ray
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            Debug.Log("hit wall!!");
+            transform.position += (-transform.right).normalized * 0.05f;
+
+        }
+
+        //left ray
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            Debug.Log("hit wall!!");
+            transform.position += (transform.right).normalized * 0.05f;
+
+        }
+        return destPos - transform.position;
     }
 
     void OnDrawGizmos()

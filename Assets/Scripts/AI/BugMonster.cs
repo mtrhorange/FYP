@@ -94,6 +94,7 @@ public class BugMonster : Enemy
         //if attackTimer is not over yet
         if (attackTimer >= 0)
         {
+            //5f away from player, move towards (R.I.P English)
             if (path.GetTotalLength() > 5f)
             {
 
@@ -109,6 +110,16 @@ public class BugMonster : Enemy
 
                 rB.velocity = transform.forward * speed;
             }
+            //else if close enough, stop moving but continue giving player the stink eye
+            else
+            {
+                //look
+                Vector3 look = (player.transform.position - transform.position).normalized;
+                look.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(look);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
+            }
+
 
             attackTimer -= Time.deltaTime;
         }
@@ -149,6 +160,8 @@ public class BugMonster : Enemy
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
     }
+
+    //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
         Vector3 destPos = path.vectorPath[currentWayPoint];

@@ -193,6 +193,7 @@ public class FlowerMonster : Enemy {
         Vector3 shootHere = (here - transform.GetChild(5).position).normalized;
         //shootHere.y = 0;
         GameObject boo = (GameObject)Instantiate(projectile, transform.GetChild(5).position, Quaternion.identity);
+        boo.GetComponent<EnemyProjectiles>().damage = damage;
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
 
     }

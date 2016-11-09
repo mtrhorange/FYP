@@ -21,7 +21,7 @@ public class Zombie : Enemy {
     {
         //Zombie properties
         health = 20;
-        damage = 1;
+        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -32,7 +32,7 @@ public class Zombie : Enemy {
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;
-        //player = base.reacquireTgt(tgtStyle, this.gameObject);
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -67,7 +67,7 @@ public class Zombie : Enemy {
     //Chase
     protected override void Chase()
     {
-        //pathUpdate();
+        pathUpdate();
 
         //if no path yet
         if (path == null)
@@ -76,6 +76,7 @@ public class Zombie : Enemy {
             //No path to move to yet
             return;
         }
+
         if (currentWayPoint >= path.vectorPath.Count)
         {
             Debug.Log("End Point Reached");
@@ -84,22 +85,16 @@ public class Zombie : Enemy {
             return;
         }
 
-        //update the waypoint on the path once the current one has been reached
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
-        {
-            currentWayPoint++;
-            return;
-        }
-
         //check first if catched up to the player
         //if yes proceed to attack
         //attack trigger distance debug ray
-        //Debug.DrawRay(transform.position + transform.up, nextPathPoint, Color.cyan);
+        Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 3f, Color.cyan);
         Debug.DrawRay(transform.position + transform.up, velocity, Color.magenta);
         if (attackTimer <= 0 && (player.transform.position - transform.position).magnitude <= 3f)
         {
             attacking = true;
             myState = States.Attack;
+            GetComponent<BoxCollider>().enabled = true;
         }
         else
         {
@@ -108,7 +103,6 @@ public class Zombie : Enemy {
 
             //look & move
             dir = velocity;
-
 
             Vector3 look = dir.normalized + AvoidObstacle();
             look.y = 0;
@@ -131,6 +125,14 @@ public class Zombie : Enemy {
             //Quaternion targetRotation = Quaternion.LookRotation(look);
             //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
         }
+
+
+        //update the waypoint on the path once the current one has been reached
+        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
+        {
+            currentWayPoint++;
+            return;
+        }
     }
 
     //Attack
@@ -144,6 +146,7 @@ public class Zombie : Enemy {
             if (transform.GetChild(3).localScale.y  >= 5f)
             {
                 attacking = false;
+                GetComponent<BoxCollider>().enabled = false;
             }
         }
         else
@@ -165,8 +168,6 @@ public class Zombie : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
-
-
         if (pathUpdateTimer <= 0)
         {
             //chase target
@@ -271,6 +272,7 @@ public class Zombie : Enemy {
     //    return (destPos - transform.position).normalized;
     //}
 
+    //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
         Vector3 destPos = path.vectorPath[currentWayPoint];
@@ -283,14 +285,14 @@ public class Zombie : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 Debug.Log("hit " + Hit);
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
         }
 
@@ -303,7 +305,8 @@ public class Zombie : Enemy {
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + transform.right;
         }
 
@@ -316,7 +319,8 @@ public class Zombie : Enemy {
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + Hit.normal;
         }
 

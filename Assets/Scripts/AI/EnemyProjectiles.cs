@@ -24,16 +24,15 @@ public class EnemyProjectiles : MonoBehaviour {
 
     //damage values
     public float damage = 0f;
-    private bool p1Hit = false, p2Hit = false;
 
-	// Use this for initialization
-	void Start () 
+	//Start
+	void Start()
     {
 
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+	//Update
+	void Update()
     {
         //if this projectile left something behind (e.g. poison pool, flames, ice spikes?)
         //remove particle system when done then remove this
@@ -64,8 +63,6 @@ public class EnemyProjectiles : MonoBehaviour {
                 if (!GetComponent<ParticleSystem>().IsAlive(true))
                 {
                     this.gameObject.SetActive(false);
-                    p1Hit = false;
-                    p2Hit = false;
                 }
             }
             else if (GetComponentInChildren<ParticleSystem>())
@@ -73,8 +70,6 @@ public class EnemyProjectiles : MonoBehaviour {
                 if (!GetComponentInChildren<ParticleSystem>().IsAlive(true))
                 {
                     this.gameObject.SetActive(false);
-                    p1Hit = false;
-                    p2Hit = false;
                 }
             }
         }
@@ -98,6 +93,8 @@ public class EnemyProjectiles : MonoBehaviour {
                 {
                     //pool on the ground, poisons player if stepped on
                     leftBehinds = (GameObject)Instantiate(poisonPool, transform.position, Quaternion.Euler(-90f, 0f, 0f));
+                    leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = damage;
+                    leftBehinds.GetComponent<EnemyLeftBehinds>().hitOnce = false;
                     GetComponent<ParticleSystem>().Stop();
                     GetComponent<MeshRenderer>().enabled = false;
                 }
@@ -117,22 +114,22 @@ public class EnemyProjectiles : MonoBehaviour {
                     Destroy(this.gameObject);
                 }
                 break;
-            //if type is dragon breath
+        }
+    }
+
+    //trigger stay
+    void OnTriggerStay(Collider other)
+    {
+        switch(projectileType)
+        {
+            //dragon breath
             case type.DragonBreath:
+            //fire blast
+            case type.FireBlast:
                 //damage
                 if (other.gameObject.tag == "Player")
                 {
-                    //only hit each player once
-                    if (!p1Hit && other.gameObject.GetComponent<Player>().playerNo == 1)
-                    {
-                        p1Hit = true;
-                        other.gameObject.GetComponent<Player>().ReceiveDamage(damage);
-                    }
-                    if (!p2Hit && other.gameObject.GetComponent<Player>().playerNo == 2)
-                    {
-                        p2Hit = true;
-                        other.gameObject.GetComponent<Player>().ReceiveDamage(damage);
-                    }
+                    other.gameObject.GetComponent<Player>().ReceiveDamage(damage * Time.deltaTime);
                 }
                 break;
         }
