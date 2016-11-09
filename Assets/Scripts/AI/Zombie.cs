@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Pathfinding;
 
 public class Zombie : Enemy {
@@ -7,7 +8,7 @@ public class Zombie : Enemy {
     //Rigidbody
     private Rigidbody rB;
     //timers
-    private float pathUpdateTimer, attackTimer;
+    private float pathUpdateTimer = 3f, attackTimer;
     public float attackInterval = 3f;
     //movement variables
     private Vector3 dir;
@@ -32,7 +33,7 @@ public class Zombie : Enemy {
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;
-        //player = base.reacquireTgt(tgtStyle, this.gameObject);
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -67,7 +68,7 @@ public class Zombie : Enemy {
     //Chase
     protected override void Chase()
     {
-        //pathUpdate();
+            
 
         //if no path yet
         if (path == null)
@@ -131,6 +132,8 @@ public class Zombie : Enemy {
             //Quaternion targetRotation = Quaternion.LookRotation(look);
             //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
         }
+
+        pathUpdate();
     }
 
     //Attack
@@ -173,7 +176,7 @@ public class Zombie : Enemy {
             target = player.transform.position;
             //set a path to tgt position
             seeker.StartPath(transform.position, target, OnPathComplete);
-            currentWayPoint = 1;
+            currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
 
@@ -213,7 +216,7 @@ public class Zombie : Enemy {
     //        //if hit an enemy and is not my type
     //        if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
     //        {
-    //            Debug.Log("hit " + Hit);
+    //            
     //            Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
     //        }
     //        else
@@ -246,11 +249,11 @@ public class Zombie : Enemy {
     //        //if hit an enemy and is not my type
     //        if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
     //        {
-    //            Debug.Log("hit " + Hit);
+    //            
     //            Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
     //        }
 
-    //        if (Hit.transform.tag != "Enemy")
+    //        if (Hit.transform.gameObject.layer == 8)
     //            return (transform.forward - transform.right).normalized;
     //    }
     //    //left 45 deg ray
@@ -260,11 +263,11 @@ public class Zombie : Enemy {
     //        //if hit an enemy and is not my type
     //        if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
     //        {
-    //            Debug.Log("hit " + Hit);
+    //            
     //            Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
     //        }
 
-    //        if (Hit.transform.tag != "Enemy")
+    //        if (Hit.transform.gameObject.layer == 8)
     //            return (transform.forward + transform.right).normalized;
     //    }
 
@@ -273,7 +276,8 @@ public class Zombie : Enemy {
 
     protected Vector3 AvoidObstacle()
     {
-        Vector3 destPos = path.vectorPath[currentWayPoint];
+        Vector3 destPos =
+            path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
@@ -286,12 +290,16 @@ public class Zombie : Enemy {
 
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            if (Hit.transform.gameObject.layer == 8)
+            {
+               
                 return transform.forward - transform.right;
+            }
+                
         }
 
         if (Physics.Raycast((transform.position + transform.up),
@@ -299,12 +307,15 @@ public class Zombie : Enemy {
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            if (Hit.transform.gameObject.layer == 8)
+            {
+               
                 return transform.forward + transform.right;
+            }
         }
 
         if (Physics.Raycast((transform.position + transform.up),
@@ -312,18 +323,20 @@ public class Zombie : Enemy {
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            if (Hit.transform.gameObject.layer == 8)
+            {
+               
                 return transform.forward + Hit.normal;
+            }
         }
 
         //right ray
         if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (-transform.right).normalized * 0.05f;
 
         }
@@ -331,11 +344,10 @@ public class Zombie : Enemy {
         //left ray
         else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (transform.right).normalized * 0.05f;
 
         }
-        return destPos - transform.position;
+        return Vector3.zero;
     }
 
 
@@ -347,11 +359,13 @@ public class Zombie : Enemy {
         Vector3 left45 = transform.position +
             (transform.forward - transform.right).normalized * minDistance;
 
-        Debug.DrawLine(transform.position, frontRay , Color.blue);
-        Debug.DrawLine(transform.position, left45 , Color.blue);
-        Debug.DrawLine(transform.position, right45 , Color.blue);
-        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * 1.5f , Color.blue);
-        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * 1.5f , Color.blue);
+        Debug.DrawLine(transform.position, frontRay, Color.blue);
+        Debug.DrawLine(transform.position, left45, Color.blue);
+        Debug.DrawLine(transform.position, right45, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * (minDistance - 0.5f),
+            Color.blue);
+        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * (minDistance - 0.5f),
+            Color.blue);
 
         //Gizmos.color = new Color32(255,0,0,40);
         //Gizmos.DrawSphere(this.transform.position,5f);

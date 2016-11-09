@@ -128,8 +128,8 @@ public class FlockingManager : MonoBehaviour
             if (agent != myAgent && agent.myType == myAgent.myType)
             {
                 if (Vector3.Distance(
-                myAgent.transform.position,
-                agent.transform.position) < range)
+                        myAgent.transform.position,
+                        agent.transform.position) < range)
                 {
                     v.x += agent.transform.position.x - myAgent.transform.position.x;
                     v.y += agent.transform.position.y - myAgent.transform.position.y;
@@ -149,30 +149,5 @@ public class FlockingManager : MonoBehaviour
         v.z *= -1;
         v.Normalize();
         return v;
-    }
-
-    public Vector3 computeWallAvoidance(Enemy agent)
-    {
-        Vector3 v = new Vector3();
-        if (agent.transform.position.x < -boundary)
-        {
-            v.x = 1;
-        }
-        if (agent.transform.position.x > boundary)
-        {
-            v.x = -1;
-        }
-        if (agent.transform.position.z < -boundary)
-        {
-            v.z = 1;
-        }
-        if (agent.transform.position.z > boundary)
-        {
-            v.z = -1;
-        }
-        return v;
-    }
-    public void printMe() { 
-        
     }
 }
