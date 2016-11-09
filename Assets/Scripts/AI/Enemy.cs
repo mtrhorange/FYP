@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     protected float nextWayPointDistance = 1f;
     //current waypoint
     protected int currentWayPoint = 0;
-    protected float minDistance = 2.0f;
+    public float minDistance = 2.0f;
 
     //States
     public enum States

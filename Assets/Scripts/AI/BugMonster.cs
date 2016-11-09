@@ -7,7 +7,7 @@ public class BugMonster : Enemy
     //Rigidbody
     private Rigidbody rB;
     //timers
-    public float attackInterval = 1f, pathUpdateTimer = 0.5f;
+    public float attackInterval = 1f, pathUpdateTimer = 3f;
     private float attackTimer;
     //movement variables
     private Vector3 dir = Vector3.zero;
@@ -61,11 +61,11 @@ public class BugMonster : Enemy
         seeker.StartPath(transform.position, target, OnPathComplete);
         currentWayPoint = 1;
         myState = States.Chase;
-
+        
     }
     protected override void Chase()
     {
-        //pathUpdate();
+        
 
         //if no path yet
         if (path == null)
@@ -102,8 +102,7 @@ public class BugMonster : Enemy
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
                 //look & move
-                dir = velocity + AvoidObstacle() ;
-                Vector3 look = dir.normalized + AvoidObstacle() ;
+                Vector3 look = dir.normalized + AvoidObstacle();
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
@@ -142,8 +141,6 @@ public class BugMonster : Enemy
                     nextPathPoint =
                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
-                    //look & move
-                    dir = velocity + AvoidObstacle();
                     Vector3 look = dir.normalized + AvoidObstacle();
                     look.y = 0;
                     Quaternion targetRotation = Quaternion.LookRotation(look);
@@ -159,6 +156,8 @@ public class BugMonster : Enemy
         Vector3 aimBot = (interceptPoint - transform.position);
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
+
+        pathUpdate();
     }
 
     //Avoid Obstacles
@@ -176,12 +175,11 @@ public class BugMonster : Enemy
         {
 
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Debug.Log("hit " + Hit);
+            { 
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
         }
 
@@ -190,11 +188,11 @@ public class BugMonster : Enemy
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + transform.right;
         }
 
@@ -203,16 +201,16 @@ public class BugMonster : Enemy
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + Hit.normal;
         }
 
         //right ray
-        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
             Debug.Log("hit wall!!");
             transform.position += (-transform.right).normalized * 0.05f;
@@ -220,13 +218,13 @@ public class BugMonster : Enemy
         }
 
         //left ray
-        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
             Debug.Log("hit wall!!");
             transform.position += (transform.right).normalized * 0.05f;
 
         }
-        return destPos - transform.position;
+        return Vector3.zero;
     }
 
     void OnDrawGizmos()
@@ -240,8 +238,10 @@ public class BugMonster : Enemy
         Debug.DrawLine(transform.position, frontRay, Color.blue);
         Debug.DrawLine(transform.position, left45, Color.blue);
         Debug.DrawLine(transform.position, right45, Color.blue);
-        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * 1.5f, Color.blue);
-        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * 1.5f, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right.normalized*(minDistance - 0.5f),
+            Color.blue);
+        Debug.DrawLine(transform.position, transform.position - transform.right.normalized*(minDistance - 0.5f),
+            Color.blue);
 
         //Gizmos.color = new Color32(255,0,0,40);
         //Gizmos.DrawSphere(this.transform.position,5f);
@@ -260,7 +260,7 @@ public class BugMonster : Enemy
             //set a path to tgt position
             seeker.StartPath(transform.position, target, OnPathComplete);
             currentWayPoint = 1;
-            pathUpdateTimer = 0.75f;
+            pathUpdateTimer = 1f;
         }
     }
 

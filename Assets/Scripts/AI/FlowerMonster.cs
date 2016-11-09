@@ -6,7 +6,7 @@ public class FlowerMonster : Enemy {
     //rigidbody
     private Rigidbody rB;
     //timers
-    public float attackInterval = 1f,pathUpdateTimer = 0f;
+    public float attackInterval = 1f,pathUpdateTimer = 3f;
     private float attackTimer;
     //movement variables
     private Vector3 dir = Vector3.zero;
@@ -25,7 +25,7 @@ public class FlowerMonster : Enemy {
         seeker = GetComponent<Seeker>();
         //rigidbody
         rB = GetComponent<Rigidbody>();
-        nextWayPointDistance = 2f;
+        nextWayPointDistance = 3f;
         
         attackTimer = attackInterval;
 
@@ -54,12 +54,16 @@ public class FlowerMonster : Enemy {
     //Idle
     protected override void Idle()
     {
-        base.Idle();
+        //chase target
+        target = player.transform.position;
+        //set a path to tgt position
+        seeker.StartPath(transform.position, target, OnPathComplete);
+        currentWayPoint = 1;
+        myState = States.Chase;
+        
     }
     protected override void Chase()
     {
-        pathUpdate();
-
         //if no path yet
         if (path == null)
         {
@@ -67,7 +71,7 @@ public class FlowerMonster : Enemy {
             //No path to move to yet
             return;
         }
-        
+
         if (currentWayPoint >= path.vectorPath.Count)
         {
             Debug.Log("End Point Reached");
@@ -76,6 +80,12 @@ public class FlowerMonster : Enemy {
             return;
         }
 
+        //update the waypoint on the path once the current one has been reached
+        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
+        {
+            currentWayPoint++;
+            return;
+        }
 
         //if attackTimer is not over yet
         if (attackTimer >= 0)
@@ -83,13 +93,14 @@ public class FlowerMonster : Enemy {
             if (path.GetTotalLength() > 15f)
             {
 
-                //look & move
-                dir = AvoidObstacle();
+                nextPathPoint =
+                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
-                Vector3 look = dir.normalized;
+                //look & move
+                Vector3 look = dir.normalized + AvoidObstacle();
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
             }
@@ -127,13 +138,14 @@ public class FlowerMonster : Enemy {
                 //else if cannot "see" player, delay the shot till next iteration and check again
                 else
                 {
-                    //look & move
-                    dir = AvoidObstacle();
+                    nextPathPoint =
+                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
-                    Vector3 look = dir.normalized;
+                    //look & move
+                    Vector3 look = dir.normalized + AvoidObstacle();
                     look.y = 0;
                     Quaternion targetRotation = Quaternion.LookRotation(look);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                     rB.velocity = transform.forward * speed;
                 }
@@ -146,12 +158,7 @@ public class FlowerMonster : Enemy {
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
 
-        //update the waypoint on the path once the current one has been reached
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
-        {
-            currentWayPoint++;
-            return;
-        }
+        pathUpdate();
     }
 
     //update calculated path every set time
@@ -165,8 +172,8 @@ public class FlowerMonster : Enemy {
             target = player.transform.position;
             //set a path to tgt position
             seeker.StartPath(transform.position, target, OnPathComplete);
-            currentWayPoint = 1;
-            pathUpdateTimer = 0.5f;
+            currentWayPoint = 2;
+            pathUpdateTimer = 1f;
         }
     }
 
@@ -251,70 +258,95 @@ public class FlowerMonster : Enemy {
     //Avoid obstacles
     protected Vector3 AvoidObstacle()
     {
-        Vector3 destPos = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+        Vector3 destPos =
+            path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
         Vector3 left45 = (transform.forward - transform.right).normalized;
+
         //Shoot the rays!
-        //front ray
-        if (Physics.Raycast((transform.position),
-            transform.forward, out Hit, minDistance))
-        {
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward + Hit.normal).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Debug.Log("hit " + Hit);
-                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
-            }
-        }
-        //right 45 deg ray
-        else if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-            //if hit obstacle
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward - transform.right).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
+
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
+
+            if (Hit.transform.gameObject.layer == 8)
+            {
+               
+                return transform.forward - transform.right;
+            }
+
         }
-        //left 45 deg ray
-        else if (Physics.Raycast((transform.position),
+
+        if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
         {
-            //if hit obstacle
-            if (Hit.transform.tag != "Enemy")
-                return (transform.forward + transform.right).normalized;
-            //if hit an enemy and is not my type
-            else if (Hit.transform.GetComponent<Enemy>().myType != myType)
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+                
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.gameObject.layer == 8)
+            {
+               
+                return transform.forward + transform.right;
             }
         }
 
-        return (destPos - transform.position).normalized;
+        if (Physics.Raycast((transform.position + transform.up),
+            transform.forward, out Hit, minDistance))
+        {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
+            if (Hit.transform.gameObject.layer == 8)
+            {
+               
+                return transform.forward + Hit.normal;
+            }
+        }
+
+        //right ray
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            transform.position += (-transform.right).normalized * 0.05f;
+
+        }
+
+        //left ray
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        {
+            transform.position += (transform.right).normalized * 0.05f;
+
+        }
+        return Vector3.zero;
     }
 
     void OnDrawGizmos()
     {
-       Vector3 frontRay = transform.position + transform.forward * minDistance;
-        Vector3 right45 = transform.position + 
+        Vector3 frontRay = transform.position + transform.forward * minDistance;
+        Vector3 right45 = transform.position +
             (transform.forward + transform.right).normalized * minDistance;
         Vector3 left45 = transform.position +
             (transform.forward - transform.right).normalized * minDistance;
 
-        Debug.DrawLine(transform.position + transform.up, frontRay + transform.up, Color.blue);
-        Debug.DrawLine(transform.position + transform.up, left45 + transform.up, Color.blue);
-        Debug.DrawLine(transform.position + transform.up, right45 + transform.up, Color.blue);
-        Debug.DrawLine(transform.position + transform.up, transform.position + transform.right.normalized * 1.5f + transform.up, Color.blue);
-        Debug.DrawLine(transform.position + transform.up, transform.position - transform.right.normalized * 1.5f + transform.up, Color.blue);
+        Debug.DrawLine(transform.position, frontRay, Color.blue);
+        Debug.DrawLine(transform.position, left45, Color.blue);
+        Debug.DrawLine(transform.position, right45, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * (minDistance - 0.5f),
+            Color.blue);
+        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * (minDistance - 0.5f),
+            Color.blue);
 
         //Gizmos.color = new Color32(255,0,0,40);
         //Gizmos.DrawSphere(this.transform.position,5f);
