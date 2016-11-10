@@ -144,6 +144,7 @@ public class Player : MonoBehaviour {
 		float dmg = f;
 
 		dmg = dmg * (1f - ((0.05f*skills.defenseBuffLevel)>0.5f?5:(0.05f*skills.defenseBuffLevel)));
+        Health -= f;
 	}
 
 	//Player recovers health

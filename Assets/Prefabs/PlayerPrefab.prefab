@@ -176,7 +176,7 @@ GameObject:
   - 54: {fileID: 54000013206424154}
   - 136: {fileID: 136000013012235982}
   - 114: {fileID: 114000014260104298}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2104,8 +2104,10 @@ MonoBehaviour:
   name: 
   saveId: 0
   playerNo: 1
+  baseMaxHealth: 0
   maxHealth: 0
   health: 0
+  baseMaxStamina: 0
   maxStamina: 0
   stamina: 0
   recoverStamina: 0
@@ -2155,6 +2157,7 @@ MonoBehaviour:
   maxDmgLevel: 3
   weaponBuffLevel: 0
   spellBuffLevel: 0
+  defenseBuffLevel: 0
 --- !u!135 &135000012227128480
 SphereCollider:
   m_ObjectHideFlags: 1

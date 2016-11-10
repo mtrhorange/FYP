@@ -54,6 +54,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 	float z;
 	Vector3 inputVec;
 	Vector3 newVelocity;
+    bool weaponToggle = true;
 
 	//Weapon and Shield
 	private WeaponType weapon;
@@ -109,21 +110,21 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 			} 
 			Rolling();
 			Jumping();
-			if(Input.GetButtonDown("LightHit") && canAction && isGrounded && !isBlocking && !isDead)
-			{
-				GetHit();
-			}
-			if(Input.GetButtonDown("Death") && canAction && isGrounded && !isBlocking)
-			{
-				if(!isDead)
-				{
-					StartCoroutine(_Death());
-				} 
-				else
-				{
-					StartCoroutine(_Revive());
-				}
-			}
+            //if(Input.GetButtonDown("LightHit") && canAction && isGrounded && !isBlocking && !isDead)
+            //{
+            //    GetHit();
+            //}
+            //if(Input.GetButtonDown("Death") && canAction && isGrounded && !isBlocking)
+            //{
+            //    if(!isDead)
+            //    {
+            //        StartCoroutine(_Death());
+            //    } 
+            //    else
+            //    {
+            //        StartCoroutine(_Revive());
+            //    }
+            //}
 			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) 
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
@@ -134,14 +135,14 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 			{
 				Attack(2);
 			}
-			if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
-			{
-				AttackKick(1);
-			}
-			if(Input.GetButtonDown("CastR") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
-			{
-				AttackKick(2);
-			}
+            //if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
+            //{
+            //    AttackKick(1);
+            //}
+            //if(Input.GetButtonDown("CastR") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
+            //{
+            //    AttackKick(2);
+            //}
 
 			if (((Input.GetButtonDown("SkillC") && player.playerNo == 1) || (Input.GetButtonDown("XButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead) 
@@ -150,10 +151,17 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				player.skillC ();
 			}
 
-			if (Input.GetButtonDown ("SwapWep") && canAction && isGrounded && !isBlocking && !isDead) {
+            if (((Input.GetButtonDown("SwapWep") && player.playerNo == 1) || (weaponToggle && DPadYAxis() && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
+            {
 
 				player.SwapWeapon ();
 			}
+
+            if (DPadYAxis() && weaponToggle)
+                weaponToggle = false;
+            if (DPadYAxis() == false && !weaponToggle)
+                weaponToggle = true;
+            
 			//if strafing
 			/*if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("TargetBlock") > .1 && canAction)
 			{  
@@ -209,7 +217,22 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		}
 		inputVec = new Vector3(x, 0, z);
 	}
-	
+
+    bool DPadYAxis()
+    {
+        float yAxis = Input.GetAxis("DPadYCtrl1");
+
+        if (yAxis > 0)
+        {
+            weaponToggle = false;
+            return true;
+        }
+        else
+        {
+            weaponToggle = true;
+            return false;
+        }
+    }
 	#endregion
 
 	#region Fixed/Late Updates

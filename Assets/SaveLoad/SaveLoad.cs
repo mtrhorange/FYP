@@ -29,7 +29,7 @@ public static class SaveLoad {
 			file.Close();
 		}
 
-		if(File.Exists(Application.persistentDataPath + "/savedChars.save")) {
+		if(File.Exists(Application.persistentDataPath + "/savedChar.sv")) {
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + "/savedChar.sv", FileMode.Open);
 			SaveLoad.savedCharacters = (List<PlayerData>)bf.Deserialize(file);
