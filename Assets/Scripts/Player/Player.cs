@@ -84,7 +84,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+		UpdateHealth ();
 
 	}
 
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour {
 
 	public void UpdateHealth() {
 
-		maxHealth = baseMaxHealth * (1f + 0.05f * skills.maxHealthLevel);
+		maxHealth = Mathf.Floor(baseMaxHealth * (1f + 0.05f * skills.maxHealthLevel));
 		if (health > maxHealth)
 			health = maxHealth;
 		if (healthBar != null)
@@ -323,25 +323,31 @@ public class Player : MonoBehaviour {
 
 	public void CastIceSpike() {
 
-		StartCoroutine (_IceSpike());
-		StopCoroutine (_IceSpike ());
+//		StartCoroutine (_IceSpike());
+//		StopCoroutine (_IceSpike ());
+		GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpikeSpell");
+		iceSpike = (GameObject)Instantiate (iceSpike, transform.position, transform.localRotation);
+		iceSpike.GetComponent<IceSpikeSpell> ().player = this;
 	}
 
 	IEnumerator _IceSpike()
 	{
 		GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpike");
 
-		Instantiate(iceSpike, this.transform.position + transform.forward * 2 + new Vector3(0,-2,0), transform.rotation * Quaternion.Euler(0, 90, 0));
-		yield return new WaitForSeconds(0.1f);
-		Instantiate(iceSpike, this.transform.position + transform.forward * 4 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 300, 0));
-		yield return new WaitForSeconds(0.1f);
-		Instantiate(iceSpike, this.transform.position + transform.forward * 6 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 126, 0));
-		yield return new WaitForSeconds(0.1f);
-		Instantiate(iceSpike, this.transform.position + transform.forward * 8 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 0, 0));
-		yield return new WaitForSeconds(0.1f);
-		Instantiate(iceSpike, this.transform.position + transform.forward * 10 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 40, 0));
-		yield return new WaitForSeconds(0.1f);
-		Instantiate(iceSpike, this.transform.position + transform.forward * 12 + new Vector3(0, -2, 0), transform.rotation * Quaternion.Euler(0, 185, 0));
+		Vector3 pos = transform.position;
+		Vector3 forward = transform.forward;
+
+		Instantiate(iceSpike, pos + forward * 2, transform.rotation * Quaternion.Euler(0, 90, 0));
+		yield return new WaitForSeconds(0.05f);
+		Instantiate(iceSpike, pos + forward * 3 , transform.rotation * Quaternion.Euler(0, 300, 0));
+		yield return new WaitForSeconds(0.05f);
+		Instantiate(iceSpike, pos + forward * 4 , transform.rotation * Quaternion.Euler(0, 126, 0));
+		yield return new WaitForSeconds(0.05f);
+		Instantiate(iceSpike, pos + forward * 5 , transform.rotation * Quaternion.Euler(0, 0, 0));
+		yield return new WaitForSeconds(0.05f);
+		Instantiate(iceSpike, pos + forward * 6 , transform.rotation * Quaternion.Euler(0, 40, 0));
+		yield return new WaitForSeconds(0.05f);
+		Instantiate(iceSpike, pos + forward * 7 , transform.rotation * Quaternion.Euler(0, 185, 0));
 
 	}
 
