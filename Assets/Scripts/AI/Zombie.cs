@@ -18,8 +18,9 @@ public class Zombie : Enemy {
    
 
 	// Use this for initialization
-	void Start () 
+    protected override void Start()
     {
+        base.Start();
         //Zombie properties
         health = 20;
         damage = 2;
@@ -51,6 +52,16 @@ public class Zombie : Enemy {
         {
             Attack();
         }
+        else if (myState == States.Dead)
+        {
+            Death();
+        }
+
+        //testing
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    ReceiveDamage(5);
+        //}
 	}
 
     //Idle
@@ -296,9 +307,9 @@ public class Zombie : Enemy {
             //if is obstacle
             if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
-            }
-                
         }
+                
+        
 
         if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
@@ -312,7 +323,6 @@ public class Zombie : Enemy {
             //if is obstacle
             if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + transform.right;
-            }
         }
 
         if (Physics.Raycast((transform.position + transform.up),
@@ -327,14 +337,12 @@ public class Zombie : Enemy {
             //if is obstacle
             if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + Hit.normal;
-            }
         }
 
         //right ray
         if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
             transform.position += (-transform.right).normalized * 0.05f;
-
         }
 
         //left ray

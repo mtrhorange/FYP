@@ -57,7 +57,7 @@ public class AIManager : MonoBehaviour
 
         
         
-        mobType temp = mobType.DragonUndead;
+        mobType temp = mobType.SlimeBig;
         //spawnBoss(temp, enemySpawnPoint.transform.position);
         //spawnMob(temp, enemySpawnPoint.transform.position);
 
@@ -123,6 +123,7 @@ public class AIManager : MonoBehaviour
         }
         //set the mobtype
         enemyList[enemyList.Count - 1].GetComponent<Enemy>().myType = e;
+        FlockingManager.instance.UpdateAgentArray();
 
         //set target
         //enemyList[enemyList.Count - 1].GetComponent<Enemy>().player = player1 ? GameManager.instance.player1.gameObject : GameManager.instance.player2.gameObject;
@@ -142,11 +143,20 @@ public class AIManager : MonoBehaviour
             case mobType.SlimeKing:
                 break;
             case mobType.TentacleBoss:
+                enemyList.Add((GameObject)Instantiate(bossPrefabs[1], l, Quaternion.identity));
                 break;
             case mobType.TreantGuard:
                 break;
         }
         //set the mobtype
         enemyList[enemyList.Count - 1].GetComponent<Enemy>().myType = e;
+        FlockingManager.instance.UpdateAgentArray();
+    }
+
+    //Remove enemy
+    public void RemoveMe(GameObject me)
+    {
+        enemyList.Remove(me);
+        FlockingManager.instance.UpdateAgentArray();
     }
 }

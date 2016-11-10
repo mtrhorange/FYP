@@ -20,8 +20,9 @@ public class Dragon : Enemy {
     private Animation anim;
 
 	//Start
-	void Start () 
+    protected override void Start()
     {
+        base.Start();
         //Dragon properties
         health = 50;
         damage = 5;
@@ -38,7 +39,7 @@ public class Dragon : Enemy {
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
-        player = base.reacquireTgt(tgtStyle, this.gameObject);
+        player = base.reacquireTgt(tgtStyle, this.gameObject);        
 	}
 	
 	//Update
@@ -55,6 +56,12 @@ public class Dragon : Enemy {
         else if (myState == States.Attack)
         {
             Attack();
+        }
+
+        //testing
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ReceiveDamage(5);
         }
 	}
 
@@ -137,10 +144,11 @@ public class Dragon : Enemy {
                 }
             }
         }
-
+        nextPathPoint =
+                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
         //look & move
-        dir = AvoidObstacle();
-        Vector3 look = dir + transform.forward;
+        dir = velocity.normalized + AvoidObstacle();
+        Vector3 look = dir;
         look.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(look);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
@@ -192,6 +200,30 @@ public class Dragon : Enemy {
         look.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(look);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4);
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        myState = States.Dead;
+
+        if (flying)
+        {
+            playAnim("beginToFall", 1f, false);
+            anim.PlayQueued("fallToGround");
+        }
+        else
+        {
+            playAnim("die", 1f, false);
+        }
+        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        breath.SetActive(false);
+        rB.useGravity = false;
+        rB.velocity = Vector3.zero;
+        StopAllCoroutines();
+        AIManager.instance.RemoveMe(this.gameObject);
+        Destroy(gameObject, 5f);
     }
 
     //play animation (legacy)
@@ -254,7 +286,8 @@ public class Dragon : Enemy {
     //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
-        Vector3 destPos = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+        Vector3 destPos =
+            path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
@@ -264,27 +297,30 @@ public class Dragon : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
         }
+
+
 
         if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + transform.right;
         }
 
@@ -293,30 +329,28 @@ public class Dragon : Enemy {
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + Hit.normal;
         }
 
         //right ray
         if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (-transform.right).normalized * 0.05f;
-
         }
 
         //left ray
         else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (transform.right).normalized * 0.05f;
 
         }
-        return destPos - transform.position;
+        return Vector3.zero;
     }
 
     void OnDrawGizmos()

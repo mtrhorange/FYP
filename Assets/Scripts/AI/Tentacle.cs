@@ -3,19 +3,27 @@ using System.Collections;
 
 public class Tentacle : Enemy
 {
-
+    //Variables
     public bool attacking;
-    //Tentacle type
-    protected bool offensive = true;
-    
+    public float lifeTime = 45f;
+    public TentacleBoss Boss;
 
 	//Start
-	void Start () {
-	    player = GameObject.FindGameObjectWithTag("Player");
+    protected override void Start()
+    {
+        base.Start();
+        //Tentacle properties
+        health = 30;
+        damage = 4;
+
+        //targetting style
+        tgtStyle = targetStyle.ClosestPlayer;
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	//Update
-	void Update () {
+	void Update()
+    {
 
         if (myState == States.Idle)
         {
@@ -63,7 +71,7 @@ public class Tentacle : Enemy
 
     protected override void Idle()
     {
-        //TODO: LEPAK
+        //look at player
         if (Vector3.Distance(this.transform.position, player.transform.position) < 6f)
         {
             Vector3 sight = (player.transform.position - transform.position);
@@ -79,6 +87,13 @@ public class Tentacle : Enemy
             attacking = true;
         }
 
+        //reduce lifetime only in idle
+        lifeTime -= Time.deltaTime;
+        if (lifeTime <= 0)
+        {
+            //die
+            Boss.TentacleDeath(this);
+        }
     }
 
     public void OnDrawGizmos()

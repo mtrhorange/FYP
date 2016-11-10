@@ -17,8 +17,9 @@ public class BugMonster : Enemy
     private Vector3 interceptPoint = Vector3.zero;
 
     //Start
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         //flower monster properties
         health = 30;
         damage = 3; //hit damage, apply continuous poison D.O.T at 2 ticks per second or smth
@@ -101,6 +102,8 @@ public class BugMonster : Enemy
                 nextPathPoint =
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
+                dir = velocity;
+
                 //look & move
                 Vector3 look = dir.normalized + AvoidObstacle();
                 look.y = 0;
@@ -140,6 +143,8 @@ public class BugMonster : Enemy
 
                     nextPathPoint =
                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+
+                    dir = velocity;
 
                     Vector3 look = dir.normalized + AvoidObstacle();
                     look.y = 0;

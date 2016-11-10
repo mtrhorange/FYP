@@ -109,11 +109,12 @@ MonoBehaviour:
   player: {fileID: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 0
+  minDistance: 2
   myState: 0
   tgtStyle: 0
   myType: 15
   spawn: 0
   SpawnX: 4
   SpawnZ: 4
-  tentaclePref: {fileID: 1000011247067756, guid: bfbd9451dfc098749ac74e809e5ffce0,
+  tentaclePref: {fileID: 1000011247067756, guid: 9cca7939e88f7f244a13cfb131d29355,
     type: 2}

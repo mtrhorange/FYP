@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
     bool isConfused = false;
 
     //Start
-    void Start()
+    protected virtual void Start()
     {
         damageText = (GameObject)Resources.Load("DamageText");
     }
@@ -101,6 +101,22 @@ public class Enemy : MonoBehaviour
         Debug.Log("ENEMY SCRIPT Attack");
     }
 
+    //death
+    protected virtual void Death()
+    {
+        Debug.Log("ENEMY SCRIPT DEATH");
+        myState = States.Dead;
+
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        GetComponent<Rigidbody>().velocity = -transform.up * 8f;
+
+        AIManager.instance.RemoveMe(this.gameObject);
+
+        Destroy(this.gameObject, 5f);
+    }
+
+    //receive damage
     public void ReceiveDamage(float dmg)
     {
 
@@ -112,6 +128,11 @@ public class Enemy : MonoBehaviour
         txt.GetComponent<UnityEngine.UI.Text>().text = dmg.ToString("F0");
         //txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
         //txt.transform.Rotate(55, 0, 0);
+
+        if (health <= 0)
+        {
+            Death();
+        }
     }
 
     //Trigger Enter

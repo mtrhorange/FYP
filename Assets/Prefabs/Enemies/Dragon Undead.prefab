@@ -2413,6 +2413,7 @@ MonoBehaviour:
   player: {fileID: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 4.8
+  minDistance: 2
   myState: 0
   tgtStyle: 1
   myType: 13

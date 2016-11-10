@@ -323,11 +323,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010791731356}
   - 111: {fileID: 111000013190134878}
+  - 114: {fileID: 114000010412845428}
   - 114: {fileID: 114000012136823300}
   - 114: {fileID: 114000012899924590}
   - 54: {fileID: 54000010797215970}
   - 136: {fileID: 136000010469366850}
-  - 114: {fileID: 114000010412845428}
   m_Layer: 0
   m_Name: Dragon Boss
   m_TagString: Enemy
@@ -2342,6 +2342,7 @@ MonoBehaviour:
   player: {fileID: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 2
+  minDistance: 2
   myState: 0
   tgtStyle: 1
   myType: 16

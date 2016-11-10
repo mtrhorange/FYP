@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class FlockingManager : MonoBehaviour
 {
-    private ArrayList agentArray = new ArrayList();
-    public GameObject leader;
+    public static FlockingManager instance;
+
+    private List<Enemy> agentArray = new List<Enemy>();
     [Range(0f, 1f)] public float alignmentWeight = 1f;
-    [Range(0f, 1f)]public float cohesionWeight = 0.2f;
+    [Range(0f, 1f)]public float cohesionWeight = 0f;
     [Range(0f, 1f)]public float separationWeight = 0.63f;
     [Range(0f, 10f)]public float range = 3f;
     public float boundary = 5000f;
@@ -15,9 +17,13 @@ public class FlockingManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         agentArray.AddRange(FindObjectsOfType<Enemy>());
+    }
 
+    //Awake
+    void Awake()
+    {
+        instance = this;
     }
 
     // Update is called once per frame
@@ -149,5 +155,22 @@ public class FlockingManager : MonoBehaviour
         v.z *= -1;
         v.Normalize();
         return v;
+    }
+
+    //update agent array
+    public void UpdateAgentArray()
+    {
+        agentArray.Clear();
+        agentArray.AddRange(FindObjectsOfType<Enemy>());
+
+
+        for (int i = agentArray.Count - 1; i > 0; i--)
+        {
+            //remove from agent array if dead
+            if (agentArray[i].myState == Enemy.States.Dead)
+            {
+                agentArray.RemoveAt(i);
+            }
+        }
     }
 }

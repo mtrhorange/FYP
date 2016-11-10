@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 
 public class TentacleBoss : Enemy {
     //tentacle prefab
@@ -15,8 +14,9 @@ public class TentacleBoss : Enemy {
 
 
     //Start
-    void Start ()
+    protected override void Start()
     {
+        base.Start();
         //Tentacle Boss properties
         health = 500;
         damage = 12;
@@ -25,6 +25,9 @@ public class TentacleBoss : Enemy {
         tentacles = new List<Tentacle>();
         tentacles.AddRange(GetComponentsInChildren<Tentacle>());
 
+        //targetting style
+        tgtStyle = targetStyle.ClosestPlayer;
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
 	//Update
@@ -44,8 +47,11 @@ public class TentacleBoss : Enemy {
         {
             Attack();
         }
+
+        spawnTimer -= Time.deltaTime;
     }
 
+    //Spawn tentacle
     void spawnTentacle()
     {
         //spawn a tentacle within a given area of of the player.
@@ -54,13 +60,16 @@ public class TentacleBoss : Enemy {
         Vector3 spawnLocation = new Vector3(randomX, 1.4f, randomZ);
 
         GameObject temp = (GameObject) Instantiate(tentaclePref, spawnLocation, Quaternion.identity);
-        temp.SetActive(true);
+        temp.GetComponent<Tentacle>().Boss = this;
+        tentacles.Add(temp.GetComponent<Tentacle>());
 
+        //reacquire closer target
+        player = base.reacquireTgt(tgtStyle, this.gameObject);
     }
 
     protected override void Idle()
     {
-        //TODO: LEPAK
+        //look at player
         if (Vector3.Distance(this.transform.position, player.transform.position) < 10f)
         {
             Vector3 sight = (player.transform.position - transform.position);
@@ -69,13 +78,15 @@ public class TentacleBoss : Enemy {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
         }
 
+        //spawn tentacles (maximum of 6) when spawn timer is up
         if (Vector3.Distance(transform.position, player.transform.position) < 15f)
         {
-            spawnTimer -= Time.deltaTime;
-
             if (spawnTimer <= 0)
             {
-                spawnTentacle();
+                if (tentacles.Count < 6)
+                {
+                    spawnTentacle();
+                }
                 spawnTimer = 8f;
             }
         }
@@ -85,12 +96,9 @@ public class TentacleBoss : Enemy {
             myState = States.Attack;
             attacking = true;
         }
-
-        
-
-
     }
 
+    //Attack
     protected override void Attack()
     {
         Vector3 sight = (player.transform.position - transform.position);
@@ -104,6 +112,13 @@ public class TentacleBoss : Enemy {
             myState = States.Idle;
             attacking = false;
         }
+    }
+
+    //tentacle death
+    public void TentacleDeath(Tentacle me)
+    {
+        tentacles.Remove(me);
+        Destroy(me.gameObject);
     }
 
     public void OnDrawGizmos()

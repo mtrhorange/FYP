@@ -6,7 +6,6 @@ public class SlimeNew : Enemy {
 
     //'bigger' boolean controls whether the slime will be a bigger variant that splits into 2 normal slimes upon death
     public bool bigger;
-    public GameObject slimePrefab;
     //rigidbody
     private Rigidbody rB;
     //movement variables
@@ -16,8 +15,9 @@ public class SlimeNew : Enemy {
     private bool attacking = false;
 
 	//Start
-	void Start ()
+    protected override void Start()
     {
+        base.Start();
         //slime properties
         health = bigger ? 50 : 25;
         damage = bigger ? 7 : 5;
@@ -58,28 +58,10 @@ public class SlimeNew : Enemy {
         }
 
         //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //    if (health <= 0)
-        //    {
-        //        myState = States.Dead;
-
-        //        //check if is a biger variant
-        //        if (bigger)
-        //        {
-        //            //split into 2 normal sized slimes
-        //            Instantiate(slimePrefab, new Vector3(transform.position.x + 2.5f, 1, transform.position.z), transform.rotation);
-        //            Instantiate(slimePrefab, new Vector3(transform.position.x - 2.5f, 1, transform.position.z), transform.rotation);
-        //            Destroy(this.gameObject);
-        //        }
-        //        else
-        //        {
-        //            //do death
-        //            Destroy(this.gameObject);
-        //        }
-        //    }
-        //}
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ReceiveDamage(5);
+        }
 	}
 
     //Idle state
@@ -114,7 +96,7 @@ public class SlimeNew : Enemy {
         }
 
         //attack trigger distance debug ray
-        Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 2f, Color.magenta);
+        Debug.DrawRay(transform.position + transform.up, velocity, Color.magenta);
 
         //check first if close enough to the player
         //if yes proceed to attack
@@ -125,13 +107,40 @@ public class SlimeNew : Enemy {
         //continue chasing
         else
         {
+            nextPathPoint =
+               path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+
             //look & move
-            dir = AvoidObstacle();
-            Vector3 look = dir.normalized;
+            dir = velocity;
+
+            Vector3 look = dir.normalized + AvoidObstacle();
             look.y = 0;
             Quaternion targetRotation = Quaternion.LookRotation(look);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
             rB.velocity = transform.forward * speed;
+        }
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        myState = States.Dead;
+        //check if is a biger variant
+        if (bigger)
+        {
+            //split into 2 normal sized slimes
+            AIManager.instance.spawnMob(mobType.Slime, new Vector3(transform.position.x + 2.5f, 1, transform.position.z));
+            AIManager.instance.spawnMob(mobType.Slime, new Vector3(transform.position.x - 2.5f, 1, transform.position.z));
+            AIManager.instance.RemoveMe(this.gameObject);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Rigidbody>().velocity = -transform.up * 8f;
+            AIManager.instance.RemoveMe(this.gameObject);
+            Destroy(this.gameObject, 5f);
         }
     }
 
@@ -204,69 +213,71 @@ public class SlimeNew : Enemy {
     //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
-        Vector3 destPos = path.vectorPath[currentWayPoint];
+        Vector3 destPos =
+            path.vectorPath[currentWayPoint];
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
         Vector3 left45 = (transform.forward - transform.right).normalized;
 
         //Shoot the rays!
-        if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
         }
 
-        if (Physics.Raycast((transform.position),
+
+
+        if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + transform.right;
         }
 
-        if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             transform.forward, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
-                Debug.Log("hit " + Hit);
+
                 Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
             }
 
-            if (Hit.transform.tag != "Enemy")
+            //if is obstacle
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward + Hit.normal;
         }
 
         //right ray
         if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (-transform.right).normalized * 0.05f;
-
         }
 
         //left ray
         else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (transform.right).normalized * 0.05f;
 
         }
-        return destPos - transform.position;
+        return Vector3.zero;
     }
 
     void OnDrawGizmos()
