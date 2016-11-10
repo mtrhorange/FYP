@@ -72,6 +72,7 @@ GameObject:
   - 4: {fileID: 4000013081350458}
   - 95: {fileID: 95000010594970364}
   - 114: {fileID: 114000013936105120}
+  - 65: {fileID: 65000010779426078}
   m_Layer: 0
   m_Name: IceSpike
   m_TagString: Untagged
@@ -194,10 +195,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011767157010}
-  m_LocalRotation: {x: -0.07768869, y: -0, z: -0, w: 0.99697775}
-  m_LocalPosition: {x: -1.6396496, y: 3.8163817e-17, z: -8.593727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.931484, y: 2.0814376, z: -17.031477}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: -8.857, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000014253742406}
   - {fileID: 4000014111452874}
@@ -296,6 +297,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012252699512}
   m_Mesh: {fileID: 4300000, guid: 5019dae6a5ce9b04f809fc6277b0c69e, type: 3}
+--- !u!65 &65000010779426078
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011767157010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0.2}
 --- !u!95 &95000010594970364
 Animator:
   serializedVersion: 3
@@ -406,7 +419,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1357513082
+  randomSeed: 279738714
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2130,7 +2143,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -50866717
+  randomSeed: 1536256889
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -5643,7 +5656,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 1.5
+      scalar: 0.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6005,7 +6018,7 @@ ParticleSystem:
       minMaxState: 0
     randomizeRotationDirection: 0
     gravityModifier: 0
-    maxNumParticles: 100
+    maxNumParticles: 20
     size3D: 0
     rotation3D: 0
   ShapeModule:
@@ -6033,7 +6046,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 100
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
