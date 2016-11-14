@@ -1,0 +1,48 @@
+﻿
+// =================================	
+// Kernels.
+// =================================
+
+#pragma kernel CSMain
+
+// =================================	
+// Includes.
+// =================================
+			
+#include "ParticleAffectorGPU-Common.cginc"
+
+// =================================	
+// Structs.
+// =================================
+
+// ...
+		
+// =================================	
+// Variables.
+// =================================
+
+// ...
+
+float3 axisOfRotation;
+
+// =================================	
+// Functions.
+// =================================
+
+// ...
+
+// =================================	
+// Kernel methods.
+// =================================
+
+// ...
+
+[numthreads(12, 1, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{	
+	id_x = id.x; init();
+
+	forceVec = normalize(cross(axisOfRotation, scaledDirectionToAffectorCenter));
+
+	process();
+}

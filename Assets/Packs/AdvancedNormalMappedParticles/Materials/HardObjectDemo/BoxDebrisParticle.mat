@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BoxDebrisParticle
+  m_Shader: {fileID: 4800000, guid: 3e87eec3b432bfd43bb9e23b2a73381c, type: 3}
+  m_ShaderKeywords: _ALPHA_STYLE_FADE _AMBIENT_LIGHT_OFF _CAST_SHADOWS_OFF _DISTANCE_FADE_OFF
+    _EMISSION _EMISSIVE_SIMPLE _LIGHT_COUNT_FOUR _LIGHT_QUALITY_ONE_PIXEL_MANY_VERTEX
+    _LIGHT_STYLE_FIXED _NON_SQUARE_UV_OFF _NORMAL_STYLE_PIXEL _SHADOWING_EFFECT_FIXED
+    _SOFT_PARTICLE_HARD _SPOTLIGHT_QUALITY_OFF
+  m_LightmapFlags: 1
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailAlbedoMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailMask
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailNormalMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _EmissionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 4fd023519539e614ea936a65e9b8112c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalMap
+      second:
+        m_Texture: {fileID: 2800000, guid: bc05dfd1ecd933444824ffbae5c65f53, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OcclusionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ShadowDitherTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Alpha_Style
+      second: 0
+    - first:
+        name: _Ambient_Light
+      second: 0
+    - first:
+        name: _BumpScale
+      second: 1
+    - first:
+        name: _Cast_Shadows
+      second: 0
+    - first:
+        name: _Cutoff
+      second: 0.5
+    - first:
+        name: _DetailNormalMapScale
+      second: 1
+    - first:
+        name: _DistanceFadeEnd
+      second: 1
+    - first:
+        name: _DistanceFadeRate
+      second: 1
+    - first:
+        name: _DistanceFadeStart
+      second: 1
+    - first:
+        name: _Distance_Fade
+      second: 0
+    - first:
+        name: _DstBlend
+      second: 0
+    - first:
+        name: _Emissive
+      second: 1
+    - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
+        name: _Glossiness
+      second: 0.5
+    - first:
+        name: _GlossyReflections
+      second: 1
+    - first:
+        name: _HeightClippedFadeRate
+      second: 1
+    - first:
+        name: _HeightClippedOffset
+      second: 0
+    - first:
+        name: _InvFade
+      second: 1
+    - first:
+        name: _LightWrapAround
+      second: 1
+    - first:
+        name: _Light_Count
+      second: 2
+    - first:
+        name: _Light_Quality
+      second: 1
+    - first:
+        name: _Light_Style
+      second: 0
+    - first:
+        name: _Metallic
+      second: 0
+    - first:
+        name: _Mode
+      second: 0
+    - first:
+        name: _Non_Square_Uv
+      second: 0
+    - first:
+        name: _NormalBend
+      second: 1
+    - first:
+        name: _NormalSharpness
+      second: 1
+    - first:
+        name: _Normal_Style
+      second: 1
+    - first:
+        name: _OcclusionStrength
+      second: 1
+    - first:
+        name: _Parallax
+      second: 0.02
+    - first:
+        name: _ShadowEffectMultiplyer
+      second: 1
+    - first:
+        name: _Shadowing_Effect
+      second: 0
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _Soft_Particle
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
+    - first:
+        name: _Spotlight_Quality
+      second: 0
+    - first:
+        name: _SrcBlend
+      second: 1
+    - first:
+        name: _UVSec
+      second: 0
+    - first:
+        name: _ZWrite
+      second: 1
+    - first:
+        name: _fShadowClip
+      second: 0.5
+    - first:
+        name: _fShadowMultiplyer
+      second: 0.5
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _EmissionColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _FixedAmbientColour
+      second: {r: 0, g: 0, b: 0, a: 0}
+    - first:
+        name: _ParticleColour
+      second: {r: 0.77205884, g: 0.9905679, b: 1, a: 1}
+    - first:
+        name: _UVRowsAndColumbs
+      second: {r: 1, g: 1, b: 0, a: 0}
+    - first:
+        name: _fNonSquareUVFactor
+      second: {r: 1, g: 1, b: 0, a: 0}

@@ -6,6 +6,7 @@ public class EnemyLeftBehinds : MonoBehaviour {
     public float dmg = 0;
     //if true, hits once only, if false, hits constantly as long as requirements are met
     public bool hitOnce = true;
+    public float hitTimer = 0;
 
 	//Start
 	void Start()
@@ -21,9 +22,16 @@ public class EnemyLeftBehinds : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
         //if not hitOnce and its a player
-        if (!hitOnce && other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().ReceiveDamage(dmg * Time.deltaTime);
+            hitTimer -= Time.deltaTime;
+            if (hitTimer <= 0)
+            {
+                other.gameObject.GetComponent<Player>().ReceiveDamage(dmg * Time.deltaTime);
+                hitTimer = 2.0f;
+            }
+            
+            
         }
     }
 }
