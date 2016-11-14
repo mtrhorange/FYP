@@ -28,6 +28,8 @@ public class Player : MonoBehaviour {
 
 	public delegate void SkillKey();
 	public SkillKey skillC;
+	public SkillKey skillV;
+
 
 
 	public Weapon currentWeapon;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour {
 			controller = GetComponent<RPGCharacterControllerFREE> ();
 
 		skillC = CastFirePillar;
+		skillV = CastIceSpike;
 		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		//enemyTargetHover = transform.Find ("Target").gameObject;
 
@@ -145,6 +148,7 @@ public class Player : MonoBehaviour {
 
 		dmg = dmg * (1f - ((0.05f*skills.defenseBuffLevel)>0.5f?5:(0.05f*skills.defenseBuffLevel)));
         Health -= f;
+		controller.GetHit ();
 	}
 
 	//Player recovers health
@@ -358,18 +362,46 @@ public class Player : MonoBehaviour {
 
 	void OnGUI() {
 
-		if(GUI.Button(new Rect(250, 15, 100, 30), "c FirePillar"))
-		{
-			skillC = CastFirePillar;
-		}
+		if (playerNo == 1) {
+			if (GUI.Button (new Rect (250, 15, 100, 30), "1P c switch")) {
+				if (skillC == CastIceSpike)
+					skillC = CastFirePillar;
+				else if (skillC == CastFirePillar)
+					skillC = CastIceSpike;
+			}
 
-		if(GUI.Button(new Rect(250, 45, 100, 30), "c IceSpikes"))
-		{
-			skillC = CastIceSpike;
-		}
+			if (GUI.Button (new Rect (250, 45, 100, 30), "1P v switch")) {
+				if (skillV == CastIceSpike)
+					skillV = CastFirePillar;
+				else if (skillV == CastFirePillar)
+					skillV = CastIceSpike;
+			}
+		} else {
+			if (GUI.Button (new Rect (360, 15, 100, 30), "2P c switch")) {
+				if (skillC == CastIceSpike)
+					skillC = CastFirePillar;
+				else if (skillC == CastFirePillar)
+					skillC = CastIceSpike;
+			}
 
-		if (GUI.Button (new Rect (250, 75, 100, 30), "-10 Health")) {
-			ReceiveDamage (10);
+			if (GUI.Button (new Rect (360, 45, 100, 30), "2P v switch")) {
+				if (skillV == CastIceSpike)
+					skillV = CastFirePillar;
+				else if (skillV == CastFirePillar)
+					skillV = CastIceSpike;
+			}
+
+
+		}
+		if (playerNo == 1) {
+			if (GUI.Button (new Rect (250, 75, 100, 30), "1P -10 Health")) {
+				ReceiveDamage (10);
+			}
+		} else {
+			if (GUI.Button (new Rect (360, 75, 100, 30), "2P -10 Health")) {
+				ReceiveDamage (10);
+			}
+
 		}
 
 		if (isDead) {
@@ -386,7 +418,6 @@ public class Player : MonoBehaviour {
 				}
 
 			}
-
 
 		}
 	}

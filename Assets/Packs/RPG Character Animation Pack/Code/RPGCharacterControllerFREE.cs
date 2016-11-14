@@ -151,6 +151,13 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 				player.skillC ();
 			}
 
+			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
+				&& canAction && isGrounded && !isBlocking && !isDead) 
+			{
+				Attack (1);
+				player.skillV ();
+			}
+
             if (((Input.GetButtonDown("SwapWep") && player.playerNo == 1) || (weaponToggle && DPadYAxis() && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
             {
 
@@ -612,7 +619,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		} 
 	}
 
-	void GetHit()
+	public void GetHit()
 	{
 		int hits = 5;
 		int hitNumber = Random.Range(0, hits);
@@ -621,19 +628,19 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 		//apply directional knockback force
 		if(hitNumber <= 1)
 		{
-			StartCoroutine(_Knockback(-transform.forward, 8, 4));
+			StartCoroutine(_Knockback(-transform.forward, 2, 0));
 		} 
 		else if(hitNumber == 2)
 		{
-			StartCoroutine(_Knockback(transform.forward, 8, 4));
+			StartCoroutine(_Knockback(transform.forward, 2, 0));
 		}
 		else if(hitNumber == 3)
 		{
-			StartCoroutine(_Knockback(transform.right, 8, 4));
+			StartCoroutine(_Knockback(transform.right, 2, 0));
 		}
 		else if(hitNumber == 4)
 		{
-			StartCoroutine(_Knockback(-transform.right, 8, 4));
+			StartCoroutine(_Knockback(-transform.right, 2, 0));
 		}
 	}
 

@@ -84,12 +84,7 @@ public class BugMonster : Enemy
             return;
         }
 
-        //update the waypoint on the path once the current one has been reached
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
-        {
-            currentWayPoint++;
-            return;
-        }
+        
 
 
         //if attackTimer is not over yet
@@ -161,6 +156,13 @@ public class BugMonster : Enemy
         Vector3 aimBot = (interceptPoint - transform.position);
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
+
+		//update the waypoint on the path once the current one has been reached
+		if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
+		{
+			currentWayPoint++;
+			return;
+		}
 
         pathUpdate();
     }
