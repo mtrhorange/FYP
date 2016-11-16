@@ -126,6 +126,7 @@ public class Enemy : MonoBehaviour
         GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
         txt.transform.SetParent(GameObject.Find("Canvas").transform);
         txt.GetComponent<UnityEngine.UI.Text>().text = dmg.ToString("F0");
+        txt.GetComponent<DamageText>().target = transform;
         //txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
         //txt.transform.Rotate(55, 0, 0);
 
