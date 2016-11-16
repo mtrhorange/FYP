@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -7,6 +8,7 @@ using System.IO;
 [System.Serializable]
 public class Player : MonoBehaviour {
 
+	#region Variables
 
 	public string name = " ";
 	public int saveId = -1;
@@ -29,8 +31,8 @@ public class Player : MonoBehaviour {
 	public delegate void SkillKey();
 	public SkillKey skillC;
 	public SkillKey skillV;
-
-
+	public SkillKey skillA;
+	public SkillKey skillS;
 
 	public Weapon currentWeapon;
 	public Weapon nextWeapon;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour {
 
 	GameObject attackTrigger;
 	GameObject enemyTargetHover;
+	GameObject damageText;
 
 	RPGCharacterControllerFREE controller;
 
@@ -51,6 +54,20 @@ public class Player : MonoBehaviour {
 	public GameObject spellIceBall;
 
 	public PlayerSkills skills;
+
+	//Status Effects
+	bool isBurning = false;
+	bool isStrongBurning = false;
+	float burnTime = 0f;
+	float strongBurnTime = 0f;
+	bool isSlowed = false;
+	float slowTime = 0f;
+	bool isPoisoned = false;
+	bool isStrongPoisoned = false;
+	float poisonTime = 0f;
+	float strongPoisonTime = 0f;
+
+	#endregion
 
 	public Player(string n, int sId) {
 
@@ -82,21 +99,20 @@ public class Player : MonoBehaviour {
 			nextWeapon.player = this;
 
 		skills = GetComponent<PlayerSkills> ();
+		damageText = (GameObject)Resources.Load ("DamageText");
 	}
-	
+
+	#region Update
+
 	// Update is called once per frame
 	void Update () {
 
 		UpdateHealth ();
-
+		StatusEffectsUpdate ();
 	}
 
-	public void AttackTrigger(int i)
-	{
-		currentWeapon.AttackTrigger (i);
+	#endregion
 
-
-	}
 
 	#region MISC
 
@@ -104,6 +120,8 @@ public class Player : MonoBehaviour {
 	*	Search for nearest enemy to target
 	*
 	*/
+
+
 	public GameObject FindTarget() {
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
@@ -139,15 +157,30 @@ public class Player : MonoBehaviour {
 
 	#endregion
 
+	#region Combat
 
+	public void AttackTrigger(int i)
+	{
+		currentWeapon.AttackTrigger (i);
+
+
+	}
 
 	//Player gets damage, reduces health
 	public void ReceiveDamage(float f) {
 
 		float dmg = f;
 
-		dmg = dmg * (1f - ((0.05f*skills.defenseBuffLevel)>0.5f?5:(0.05f*skills.defenseBuffLevel)));
+		dmg = dmg * (1f - ((0.05f*skills.defenseBuffLevel)>0.5f?0.5f:(0.05f*skills.defenseBuffLevel)));
         Health -= f;
+		Camera camera = FindObjectOfType<Camera>();
+		Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+		GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
+		txt.transform.SetParent(GameObject.Find("Canvas").transform);
+		txt.GetComponent<Text>().text = dmg.ToString("F0");
+		txt.GetComponent<DamageText> ().target = transform;
+		txt.GetComponent<Text> ().color = Color.red;
+
 		controller.GetHit ();
 	}
 
@@ -206,6 +239,135 @@ public class Player : MonoBehaviour {
 		controller.PlayerRevive ();
 
 	}
+
+	#endregion
+
+	#region StatusEffects
+
+	public void ApplyBurn(float t) {
+		if (!isBurning && !isStrongBurning)
+			Invoke ("BurnDamage", 1.0f);
+
+		isBurning = true;
+		burnTime = t;
+	}
+
+	public void ApplyStrongBurn(float t) {
+		if (!isBurning && !isStrongBurning)
+			Invoke ("StrongBurnDamage", 1.0f);
+
+		isStrongBurning = true;
+		strongBurnTime = t;
+	}
+
+	public void ApplySlow(float t) {
+		isSlowed = true;
+		slowTime = t;
+		controller.runSpeed = 3;
+	}
+
+	public void ApplyPoison(float t) {
+		if (!isPoisoned && !isStrongPoisoned)
+			Invoke ("PoisonDamage", 1.0f);
+
+
+		isPoisoned = true;
+		poisonTime = t;
+	}
+
+	public void ApplyStrongPoison(float t) {
+
+
+		isStrongPoisoned = true;
+		isPoisoned = false;
+		poisonTime = t;
+	}
+
+	void BurnDamage() {
+		StatusDamage (MaxHealth * 0.01f);
+		if (isStrongBurning)
+			Invoke ("StrongBurnDamage", 1.0f);
+		else if (isBurning)
+			Invoke ("BurnDamage", 1.0f);
+	}
+
+	void StrongBurnDamage() {
+		StatusDamage (MaxHealth * 0.025f);
+		if (isStrongBurning)
+			Invoke ("StrongBurnDamage", 1.0f);
+		else if (isBurning)
+			Invoke ("BurnDamage", 1.0f);
+	}
+
+	void PoisonDamage() {
+		StatusDamage (MaxHealth * 0.01f);
+		if (isStrongPoisoned)
+			Invoke ("StrongPoisonDamage", 1.0f);
+		else if (isPoisoned)
+			Invoke ("PoisonDamage", 1.0f);
+	}
+
+	void StrongPoisonDamage() {
+		StatusDamage (MaxHealth * 0.025f);
+		if (isStrongPoisoned)
+			Invoke ("StrongPoisonDamage", 1.0f);
+		else if (isPoisoned)
+			Invoke ("PoisonDamage", 1.0f);
+	}
+
+	void StatusDamage(float dmg) {
+		Health -= dmg;
+
+		Camera camera = FindObjectOfType<Camera>();
+		Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+		GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
+		txt.transform.SetParent(GameObject.Find("Canvas").transform);
+		txt.GetComponent<Text>().text = dmg.ToString("F0");
+		txt.GetComponent<DamageText> ().target = transform;
+		txt.GetComponent<Text> ().color = Color.blue;
+	}
+
+	void StatusEffectsUpdate() {
+
+		if (isStrongBurning) {
+			strongBurnTime -= Time.deltaTime;
+			if (strongBurnTime <= 0) {
+				isStrongBurning = false;
+			}
+
+		}
+		if (isBurning) {
+			burnTime -= Time.deltaTime;
+			if (burnTime <= 0) {
+				isBurning = false;
+			}
+		}
+
+		if (isSlowed) {
+			slowTime -= Time.deltaTime;
+			if (slowTime <= 0) {
+				isSlowed = false;
+				controller.runSpeed = 6;
+			}
+		}
+
+		if (isStrongPoisoned) {
+			strongPoisonTime -= Time.deltaTime;
+			if (strongPoisonTime <= 0) {
+				isStrongPoisoned = false;
+			}
+
+		}
+		if (isPoisoned) {
+			poisonTime -= Time.deltaTime;
+			if (poisonTime <= 0) {
+				isPoisoned = false;
+			}
+		}
+
+	}
+
+	#endregion
 
 	#region GetSet
 
