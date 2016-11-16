@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 
-public class MaskedOrc : Enemy {
+public class MagmaDemon : Enemy {
 
     //Rigidbody
     private Rigidbody rB;
@@ -101,9 +101,9 @@ public class MaskedOrc : Enemy {
 
         if (attackTimer <= 0)
         {
-            if ((player.transform.position - transform.position).magnitude <= 3f)
+            if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
-                anim.SetBool("RunWalk", false);
+                anim.SetBool("Move", false);
 
                 anim.SetTrigger("Attack 01");
                 rB.velocity = Vector3.zero;
@@ -112,7 +112,7 @@ public class MaskedOrc : Enemy {
             }
             else
             {
-                anim.SetBool("RunWalk", true);
+                anim.SetBool("Move", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -121,8 +121,8 @@ public class MaskedOrc : Enemy {
                 //look & move
                 dir = velocity;
 
-                Vector3 look = dir.normalized;
-    
+                Vector3 look = dir.normalized + AvoidObstacle();
+
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
@@ -134,13 +134,13 @@ public class MaskedOrc : Enemy {
         }
         else 
         {
-            if ((player.transform.position - transform.position).magnitude <= 2f)
+            if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
-                anim.SetBool("RunWalk",false);
+                anim.SetBool("Move", false);
             }
             else
             {
-                anim.SetBool("RunWalk", true);
+                anim.SetBool("Move", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -164,7 +164,7 @@ public class MaskedOrc : Enemy {
         {
             Debug.Log("End Point Reached");
             //go back to idle
-            if ((player.transform.position - transform.position).magnitude >= 3f)
+            if ((player.transform.position - transform.position).magnitude >= 1.5f)
                 myState = States.Idle;
 
             return;
