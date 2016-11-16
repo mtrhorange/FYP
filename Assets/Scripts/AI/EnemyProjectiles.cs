@@ -4,14 +4,15 @@ using System.Collections;
 public class EnemyProjectiles : MonoBehaviour {
 
     //prefabs
-    public GameObject poisonPool;
+    public GameObject poisonPool, stickyArea;
 
     //different types of projectiles
     public enum type
     {
         AcidSpit, //(flower monster, poison D.o.T)
         WebShot,
-        DragonBreath,
+        DragonBreathFire,
+        DragonBreathPoison,
         FireBlast
     }
     public type projectileType;
@@ -21,6 +22,8 @@ public class EnemyProjectiles : MonoBehaviour {
     //life time
     public bool hasLifeSpan = true;
     public float timeOut = 12f;
+
+    public Vector3 target;
 
     //damage values
     public float damage = 0f;
@@ -44,8 +47,22 @@ public class EnemyProjectiles : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
+        //if has a target to explode at
+        else if (target != Vector3.zero)
+        {
+            //explode if close enough
+            if ((target - transform.position).magnitude <= 0.5f)
+            {
+                leftBehinds = (GameObject)Instantiate(stickyArea, transform.position, Quaternion.Euler(-90f, 0f, 0f));
+                leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = 0;
+                leftBehinds.GetComponent<EnemyLeftBehinds>().typ = projectileType;
+                GetComponent<SphereCollider>().enabled = false;
+                GetComponent<ParticleSystem>().Stop();
+                GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
         //if has lifespan
-        else if (hasLifeSpan)
+        if (hasLifeSpan)
         {
             //once life time is over
             if (timeOut <= 0)
@@ -94,22 +111,16 @@ public class EnemyProjectiles : MonoBehaviour {
                     //pool on the ground, poisons player if stepped on
                     leftBehinds = (GameObject)Instantiate(poisonPool, transform.position, Quaternion.Euler(-90f, 0f, 0f));
                     leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = damage;
-                    leftBehinds.GetComponent<EnemyLeftBehinds>().hitOnce = false;
+                    leftBehinds.GetComponent<EnemyLeftBehinds>().typ = projectileType;
+                    GetComponent<SphereCollider>().enabled = false;
                     GetComponent<ParticleSystem>().Stop();
                     GetComponent<MeshRenderer>().enabled = false;
                 }
                 break;
             //if type is web shot
             case type.WebShot:
-                //if hit player, slowdown player
-                if (other.gameObject.tag == "Player")
-                {
-                    //TODO: make player slow
-                    Debug.Log("ZJI ZJI ALEDY");
-                    Destroy(this.gameObject);
-                }
                 //if hit environment, destroy
-                else if (other.gameObject.layer == 8)
+                if (other.gameObject.layer == 8)
                 {
                     Destroy(this.gameObject);
                 }
@@ -120,18 +131,23 @@ public class EnemyProjectiles : MonoBehaviour {
     //trigger stay
     void OnTriggerStay(Collider other)
     {
-        switch(projectileType)
+        if (other.gameObject.tag == "Player")
         {
-            //dragon breath
-            case type.DragonBreath:
-            //fire blast
-            case type.FireBlast:
-                //damage
-                if (other.gameObject.tag == "Player")
-                {
-                    other.gameObject.GetComponent<Player>().ReceiveDamage(damage * Time.deltaTime);
-                }
-                break;
+            switch (projectileType)
+            {
+                //dragon breath fire
+                case type.DragonBreathFire:
+                    //call player's burn function
+                    break;
+                //fire blast
+                case type.FireBlast:
+                    //call player's burn function
+                    break;
+                //dragon breath poison
+                case type.DragonBreathPoison:
+                    //call player's poison function
+                    break;
+            }
         }
     }
 }

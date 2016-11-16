@@ -40,8 +40,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010728843042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.745296, y: 1.5, z: -21.052}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -19.688, y: 0.98, z: -27.614977}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: cbd6d02d66d76014d98d10a29fe51db9, type: 2}
+  - {fileID: 2100000, guid: 264b92feab3a02e4c8091107ad1d6221, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -109,9 +109,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 0}
+  stickyArea: {fileID: 1000010944419598, guid: 0fe017b03b7f060418c201ec063de99b, type: 2}
   projectileType: 1
   hasLifeSpan: 1
   timeOut: 12
+  target: {x: 0, y: 0, z: 0}
   damage: 0
 --- !u!135 &135000010052662410
 SphereCollider:
@@ -570,7 +572,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 1
     rate:
-      scalar: 30
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:

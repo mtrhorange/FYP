@@ -150,49 +150,26 @@ public class Enemy : MonoBehaviour
     //reacquire target
     public GameObject reacquireTgt(targetStyle ts, GameObject sender)
     {
-        Player p1 = GameManager.instance.player1, p2 = GameManager.instance.player2;
-        //if only 1 is alive, target that player
-        if (p1.Health <= 0f && p2.Health > 0f)
+        //if two players
+        if (GameManager.instance.twoPlayers)
         {
-            return p2.gameObject;
-        }
-        else if (p2.Health <= 0f && p1.Health > 0f)
-        {
-            return p1.gameObject;
-        }
-        //both alive
-        else if (p2.Health > 0f && p1.Health > 0f)
-        {
-            //target closer player || assigned player (only on initial target acquisition)
-            if (ts == targetStyle.ClosestPlayer || ts == targetStyle.AssignedPlayer)
+            Player p1 = GameManager.instance.player1, p2 = GameManager.instance.player2;
+            //if only 1 is alive, target that player
+            if (p1.Health <= 0f && p2.Health > 0f)
             {
-                //check if sender(enemy) closer to player 1 or 2
-                //return closer player
-                if ((p1.gameObject.transform.position - sender.transform.position).magnitude < (p2.gameObject.transform.position - sender.transform.position).magnitude)
-                {
-                    return p1.gameObject;
-                }
-                else
-                {
-                    return p2.gameObject;
-                }
+                return p2.gameObject;
             }
-            //target weaker player
-            else if (ts == targetStyle.WeakestPlayer)
+            else if (p2.Health <= 0f && p1.Health > 0f)
             {
-                //compare player HP,
-                //return weaker player
-                if (p1.Health < p2.Health)
+                return p1.gameObject;
+            }
+            //both alive
+            else if (p2.Health > 0f && p1.Health > 0f)
+            {
+                //target closer player || assigned player (only on initial target acquisition)
+                if (ts == targetStyle.ClosestPlayer || ts == targetStyle.AssignedPlayer)
                 {
-                    return p1.gameObject;
-                }
-                else if (p2.Health < p1.Health)
-                {
-                    return p2.gameObject;
-                }
-                //if both same (Wow)
-                else
-                {
+                    //check if sender(enemy) closer to player 1 or 2
                     //return closer player
                     if ((p1.gameObject.transform.position - sender.transform.position).magnitude < (p2.gameObject.transform.position - sender.transform.position).magnitude)
                     {
@@ -203,10 +180,73 @@ public class Enemy : MonoBehaviour
                         return p2.gameObject;
                     }
                 }
+                //target weaker player if they are almost same distance from player (~4f)
+                else if (ts == targetStyle.WeakestPlayer)
+                {
+                    //check distance difference
+                    float p1Dist = (p1.gameObject.transform.position - transform.position).magnitude;
+                    float p2Dist = (p2.gameObject.transform.position - transform.position).magnitude;
+
+                    //if they close tgt, then get weaker one
+                    if (Mathf.Abs(p1Dist - p2Dist) <= 4f)
+                    {
+                        //compare player HP,
+                        //return weaker player
+                        if (p1.Health < p2.Health)
+                        {
+                            return p1.gameObject;
+                        }
+                        else if (p2.Health < p1.Health)
+                        {
+                            return p2.gameObject;
+                        }
+                        //if both same (Wow)
+                        else
+                        {
+                            //return closer player
+                            if ((p1.gameObject.transform.position - sender.transform.position).magnitude < (p2.gameObject.transform.position - sender.transform.position).magnitude)
+                            {
+                                return p1.gameObject;
+                            }
+                            else
+                            {
+                                return p2.gameObject;
+                            }
+                        }
+                    }
+                    //else just get closer one
+                    else
+                    {
+                        //return closer player
+                        if ((p1.gameObject.transform.position - sender.transform.position).magnitude < (p2.gameObject.transform.position - sender.transform.position).magnitude)
+                        {
+                            return p1.gameObject;
+                        }
+                        else
+                        {
+                            return p2.gameObject;
+                        }
+                    }
+                }
+            }
+            //both dead no need target, game shld be restarting or smth idk
+            return null;
+        }
+        //else if only 1 player
+        else
+        {
+            Player p1 = GameManager.instance.player1;
+            //check if he alive
+            if (p1.Health <= 0f)
+            {
+                return null;
+            }
+            //else just target player 1
+            else
+            {
+                return p1.gameObject;
             }
         }
-        //both dead no need target, game shld be restarting or smth idk
-        return null;
     }
 
     //path calculation complete callback

@@ -54,8 +54,6 @@ public class AIManager : MonoBehaviour
         enemyList = new List<GameObject>();
 
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-
-        
         
         mobType temp = mobType.SlimeBig;
         //spawnBoss(temp, enemySpawnPoint.transform.position);

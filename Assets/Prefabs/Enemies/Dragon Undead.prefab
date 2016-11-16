@@ -2432,7 +2432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 0}
-  projectileType: 2
+  projectileType: 3
   hasLifeSpan: 0
   timeOut: 12
   damage: 0

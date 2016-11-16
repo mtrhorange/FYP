@@ -66,8 +66,6 @@ public class BugMonster : Enemy
     }
     protected override void Chase()
     {
-        
-
         //if no path yet
         if (path == null)
         {
@@ -83,10 +81,7 @@ public class BugMonster : Enemy
             myState = States.Idle;
             return;
         }
-
         
-
-
         //if attackTimer is not over yet
         if (attackTimer >= 0)
         {
@@ -262,6 +257,8 @@ public class BugMonster : Enemy
 
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -274,13 +271,18 @@ public class BugMonster : Enemy
     //Attack
     protected override void Attack()
     {
+        //offset for the shot
+        float offset = Random.Range(3.8f, 4.8f);
+        //direction for offset
+        Vector3 towards = new Vector3(Random.Range(0f, 1f) * 2 - 1, 0, Random.Range(0f, 1f) * 2 - 1);
+
         //calculate where to shoot
-        Vector3 calc = CalculateInterception(player.transform.position, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, 10f);
+        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, 10f);
         if (calc != Vector3.zero)
         {
             calc.Normalize();
-            interceptionTime = GetApproachingPoint(player.transform.position, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, calc * 10f);
-            interceptPoint = player.transform.position + player.transform.up + player.GetComponent<Rigidbody>().velocity * interceptionTime;
+            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, calc * 10f);
+            interceptPoint = (player.transform.position + towards.normalized * offset) + player.GetComponent<Rigidbody>().velocity * interceptionTime;
         }
         shoot(interceptPoint);
         //reset attack interval and state to chase
@@ -295,7 +297,7 @@ public class BugMonster : Enemy
 
         GameObject boo = (GameObject)Instantiate(projectile, transform.GetChild(5).position, Quaternion.identity);
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
-
+        boo.GetComponent<EnemyProjectiles>().target = here;
     }
 
     //calculates an interception path along the path of another moving object

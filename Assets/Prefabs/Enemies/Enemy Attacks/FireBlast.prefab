@@ -540,9 +540,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 0}
-  projectileType: 3
+  stickyArea: {fileID: 0}
+  projectileType: 4
   hasLifeSpan: 1
   timeOut: 3.8
+  target: {x: 0, y: 0, z: 0}
   damage: 0
 --- !u!198 &198000010010419036
 ParticleSystem:

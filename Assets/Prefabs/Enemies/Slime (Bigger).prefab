@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010598270560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.453893, y: 4.926613e-16, z: -22.187492}
+  m_LocalPosition: {x: -25.087547, y: 5.5532264e-16, z: -25.00951}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -90,7 +90,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010598270560}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 600
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -175,12 +175,11 @@ MonoBehaviour:
   player: {fileID: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 1.2
+  minDistance: 2
   myState: 0
   tgtStyle: 2
   myType: 1
   bigger: 1
-  slimePrefab: {fileID: 1000014089036062, guid: 20f72c0a2ca81f149aca4cb870b647f2,
-    type: 2}
 --- !u!136 &136000010973572694
 CapsuleCollider:
   m_ObjectHideFlags: 1

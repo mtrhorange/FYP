@@ -4,9 +4,9 @@ using System.Collections;
 public class EnemyLeftBehinds : MonoBehaviour {
     //damage
     public float dmg = 0;
-    //if true, hits once only, if false, hits constantly as long as requirements are met
-    public bool hitOnce = true;
     public float hitTimer = 0;
+    public EnemyProjectiles.type typ;
+
 
 	//Start
 	void Start()
@@ -18,20 +18,28 @@ public class EnemyLeftBehinds : MonoBehaviour {
     {	
 	}
 
+    //Trigger Enter
+    void OnTriggerEnter(Collider other)
+    {
+    }
+
+
     //Trigger Stay
     void OnTriggerStay(Collider other)
     {
-        //if not hitOnce and its a player
         if (other.gameObject.tag == "Player")
         {
-            hitTimer -= Time.deltaTime;
-            if (hitTimer <= 0)
+            switch (typ)
             {
-                other.gameObject.GetComponent<Player>().ReceiveDamage(dmg * Time.deltaTime);
-                hitTimer = 2.0f;
+                //acid spit > acid pool > poison
+                case EnemyProjectiles.type.AcidSpit:
+                    //call player's poison function
+                    break;
+                //web shot > sticky area > slow
+                case EnemyProjectiles.type.WebShot:
+                    //call player's slow function
+                    break;
             }
-            
-            
         }
     }
 }

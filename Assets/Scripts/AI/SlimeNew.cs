@@ -201,6 +201,8 @@ public class SlimeNew : Enemy {
 
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
