@@ -6,8 +6,10 @@ public class Weapon : MonoBehaviour {
 
 	public enum Type { UNARMED};
 
-	public float damageMin = 10f;
-	public float damageMax = 13f;
+	public float damageMin = 3f;
+	public float damageMax = 5f;
+
+	public int level = 1;
 
 	GameObject capCast1, capCast2;
 

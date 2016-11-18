@@ -1467,7 +1467,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011128234790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.21, y: 0.34, z: 2.76}
+  m_LocalPosition: {x: 5.4977455, y: 9.795968e-18, z: -3.6411712}
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2407,9 +2407,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 0}
+  stickyArea: {fileID: 0}
   projectileType: 2
   hasLifeSpan: 0
   timeOut: 12
+  target: {x: 0, y: 0, z: 0}
   damage: 1
 --- !u!136 &136000010469366850
 CapsuleCollider:

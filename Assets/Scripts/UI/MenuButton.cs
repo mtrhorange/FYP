@@ -3,7 +3,10 @@ using System.Collections;
 
 public class MenuButton : MonoBehaviour {
 
-	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn;
+	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn, SelectBtn, CancelBtn;
+
+	public bool selected;
+
 
 	// Use this for initialization
 	void Start () {
@@ -15,24 +18,43 @@ public class MenuButton : MonoBehaviour {
 	
 	}
 
-	public void SavePlayer() {
+	void CheckInput() {
+		if (Input.GetButtonDown ("AttackL"))
+			Select ();
+		if (Input.GetButtonDown ("AttackR"))
+			Cancel ();
+	}
 
-		GameManager.instance.UpdatePlayer1Data ();
-		if (GameManager.instance.player2Data.saveId != 0)
-			GameManager.instance.UpdatePlayer2Data ();
+	public void Select() {
+
 
 	}
+
+	void Cancel() {
+
+	}
+
+	public bool MoveLeft() {
+		if (LeftBtn == null)
+			return false;
+		else {
+
+
+			return true;
+		}
+
+	}
+
+
+	#region LevelManager
 
 	public void LoadMainMenu() {
 
 		LevelManager.instance.LoadMainMenu ();
 	}
+    #endregion
 
-	public void LoadGame() {
-
-		LevelManager.instance.LoadGame ();
-
-	}
+	#region GameManager
 
 	public void SelectPlayer() {
 
@@ -43,4 +65,21 @@ public class MenuButton : MonoBehaviour {
 
 		GameManager.instance.NewCharacter (this.GetComponent<SaveSlot> (), FindObjectOfType<MainMenu> ().playerName);
 	}
+
+	#endregion
+
+	#region SaveLoad
+
+	public void LoadGame() {
+
+		LevelManager.instance.LoadGame ();
+
+	}
+
+	public void SavePlayer() {
+		GameManager.instance.UpdatePlayer1Data ();
+		if (GameManager.instance.player2Data.saveId != 0)
+			GameManager.instance.UpdatePlayer2Data ();
+	}
+	#endregion
 }
