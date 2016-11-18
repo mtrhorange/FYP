@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 
-public class CatBat : Enemy {
+public class Hornet : Enemy {
 
     //Rigidbody
     private Rigidbody rB;
@@ -25,7 +25,7 @@ public class CatBat : Enemy {
         heightOffset = transform.up ;
         anim = GetComponent<Animator>();
         base.Start();
-        //CatBat properties
+        //Zombie properties
         health = 20;
         damage = 2;
         //seeker component
@@ -35,8 +35,6 @@ public class CatBat : Enemy {
         nextWayPointDistance = 3f;
 
         attackTimer = attackInterval;
-
-        myStrength = Strength.Weak;
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;
@@ -107,7 +105,7 @@ public class CatBat : Enemy {
         {
             if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
-                anim.SetBool("Fly", false);
+                anim.SetBool("Fly Forward", false);
 
                 anim.SetTrigger("Attack");
                 rB.velocity = Vector3.zero;
@@ -116,7 +114,7 @@ public class CatBat : Enemy {
             }
             else
             {
-                anim.SetBool("Fly", true);
+                anim.SetBool("Fly Forward", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -140,11 +138,11 @@ public class CatBat : Enemy {
         {
             if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
-                anim.SetBool("Fly", false);
+                anim.SetBool("Fly Forward", false);
             }
             else
             {
-                anim.SetBool("Fly", true);
+                anim.SetBool("Fly Forward", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -216,12 +214,8 @@ public class CatBat : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
-        pathUpdateTimer -= Time.deltaTime;
-
         if (pathUpdateTimer <= 0)
         {
-            //get target
-            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -229,6 +223,9 @@ public class CatBat : Enemy {
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
+
+        nextPathPoint.y = 0;
+        pathUpdateTimer -= Time.deltaTime;
     }
     
     //Avoid Obstacles

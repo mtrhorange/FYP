@@ -7,10 +7,12 @@ public class TentacleBoss : Enemy {
     public bool spawn;
     public float SpawnX = 4f, SpawnZ = 4f;
     public GameObject tentaclePref;
+    public float attackInterval = 3f;
     //list to keep track of tentacles
     private List<Tentacle> tentacles;
     private bool attacking;
     private float spawnTimer = 5f;
+    private float attackTimer;
 
 
     //Start
@@ -112,6 +114,19 @@ public class TentacleBoss : Enemy {
             myState = States.Idle;
             attacking = false;
         }
+    }
+
+    public void triggerOn()
+    {
+
+        GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void triggerOff()
+    {
+        attackTimer = attackInterval;
+        myState = States.Chase;
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     //tentacle death
