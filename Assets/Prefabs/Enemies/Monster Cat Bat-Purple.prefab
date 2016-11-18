@@ -359,7 +359,7 @@ GameObject:
   - 114: {fileID: 114000011016297920}
   m_Layer: 0
   m_Name: Monster Cat Bat-Purple
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
-  speed: 2
+  speed: 1.5
   minDistance: 2
   myState: 0
   tgtStyle: 0

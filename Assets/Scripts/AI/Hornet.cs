@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 
-public class CatBat : Enemy {
+public class Hornet : Enemy {
 
     //Rigidbody
     private Rigidbody rB;
@@ -105,7 +105,7 @@ public class CatBat : Enemy {
         {
             if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
-                anim.SetBool("Fly", false);
+                anim.SetBool("Fly Forward", false);
 
                 anim.SetTrigger("Attack");
                 rB.velocity = Vector3.zero;
@@ -114,7 +114,7 @@ public class CatBat : Enemy {
             }
             else
             {
-                anim.SetBool("Fly", true);
+                anim.SetBool("Fly Forward", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -138,11 +138,11 @@ public class CatBat : Enemy {
         {
             if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
-                anim.SetBool("Fly", false);
+                anim.SetBool("Fly Forward", false);
             }
             else
             {
-                anim.SetBool("Fly", true);
+                anim.SetBool("Fly Forward", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[

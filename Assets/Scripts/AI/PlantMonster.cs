@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 
-public class CatBat : Enemy {
+public class PlantMonster : Enemy {
 
     //Rigidbody
     private Rigidbody rB;
@@ -11,7 +11,6 @@ public class CatBat : Enemy {
     private float pathUpdateTimer = 3f;
     public float attackInterval = 3f;
     public float attackTimer;
-    private Vector3 heightOffset;
     //movement variables
     private Vector3 dir;
     private Animator anim;
@@ -22,7 +21,6 @@ public class CatBat : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
-        heightOffset = transform.up ;
         anim = GetComponent<Animator>();
         base.Start();
         //Zombie properties
@@ -103,18 +101,18 @@ public class CatBat : Enemy {
 
         if (attackTimer <= 0)
         {
-            if ((player.transform.position - transform.position).magnitude <= 1.5f)
+            if ((player.transform.position - transform.position).magnitude <= 3f)
             {
-                anim.SetBool("Fly", false);
+                anim.SetBool("Walk", false);
 
-                anim.SetTrigger("Attack");
+                anim.SetTrigger("Attack 01");
                 rB.velocity = Vector3.zero;
                 attacking = true;
                 myState = States.Attack;
             }
             else
             {
-                anim.SetBool("Fly", true);
+                anim.SetBool("Walk", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -123,7 +121,7 @@ public class CatBat : Enemy {
                 //look & move
                 dir = velocity;
 
-                Vector3 look = dir.normalized + AvoidObstacle();
+                Vector3 look = dir.normalized;
     
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
@@ -136,13 +134,13 @@ public class CatBat : Enemy {
         }
         else 
         {
-            if ((player.transform.position - transform.position).magnitude <= 1.5f)
+            if ((player.transform.position - transform.position).magnitude <= 2f)
             {
-                anim.SetBool("Fly", false);
+                anim.SetBool("Walk", false);
             }
             else
             {
-                anim.SetBool("Fly", true);
+                anim.SetBool("Walk", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
                         path.vectorPath[
@@ -166,7 +164,7 @@ public class CatBat : Enemy {
         {
             Debug.Log("End Point Reached");
             //go back to idle
-            if ((player.transform.position - transform.position).magnitude >= 1.5f)
+            if ((player.transform.position - transform.position).magnitude >= 3f)
                 myState = States.Idle;
 
             return;
@@ -183,12 +181,6 @@ public class CatBat : Enemy {
     //Attack
     protected override void Attack()
     {
-        Vector3 look = player.transform.position - transform.position;
-
-        look.y = 0;
-        Quaternion targetRotation = Quaternion.LookRotation(look);
-        transform.rotation = targetRotation;
-
         attacking = false;
             
         pathUpdateTimer = 0f;
@@ -231,7 +223,6 @@ public class CatBat : Enemy {
     //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
-        heightOffset = transform.up * 0.5f;
         RaycastHit Hit;
         //Check if there is obstacle
         Vector3 right45 = (transform.forward + transform.right).normalized;
@@ -239,42 +230,57 @@ public class CatBat : Enemy {
 
         //Shoot the rays!
         if (Physics.Raycast((transform.position + transform.up),
-            right45 + heightOffset, out Hit, minDistance))
+            right45, out Hit, minDistance))
         {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
             //if is obstacle
-            if (Hit.transform.gameObject.layer == 8 ||
-                (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType))
+            if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
         }
                 
         
 
         if (Physics.Raycast((transform.position + transform.up),
-            left45 + heightOffset, out Hit, minDistance))
+            left45, out Hit, minDistance))
         {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
             //if is obstacle
-            if (Hit.transform.gameObject.layer == 8 ||
-                (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType))
-                return transform.forward - transform.right;
+            if (Hit.transform.gameObject.layer == 8)
+                return transform.forward + transform.right;
         }
 
         if (Physics.Raycast((transform.position + transform.up),
-            transform.forward + heightOffset, out Hit, minDistance))
+            transform.forward, out Hit, minDistance))
         {
+            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
+            {
+                
+                Physics.IgnoreCollision(GetComponent<Collider>(), Hit.transform.GetComponent<Collider>());
+            }
+
             //if is obstacle
-            if (Hit.transform.gameObject.layer == 8 ||
-                (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType))
-                return transform.forward - transform.right;
+            if (Hit.transform.gameObject.layer == 8)
+                return transform.forward + Hit.normal;
         }
 
         //right ray
-        if (Physics.Raycast((transform.position) + heightOffset, transform.right.normalized + heightOffset, out Hit, 1.5f, 1 << 8))
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
             transform.position += (-transform.right).normalized * 0.05f;
         }
 
         //left ray
-        else if (Physics.Raycast((transform.position) + heightOffset, -transform.right.normalized + heightOffset, out Hit, 1.5f, 1 << 8))
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
         {
             transform.position += (transform.right).normalized * 0.05f;
 
@@ -285,19 +291,18 @@ public class CatBat : Enemy {
 
     void OnDrawGizmos()
     {
-        heightOffset = transform.up*0.5f;
         Vector3 frontRay = transform.position + transform.forward * minDistance;
         Vector3 right45 = transform.position +
             (transform.forward + transform.right).normalized * minDistance;
         Vector3 left45 = transform.position +
             (transform.forward - transform.right).normalized * minDistance;
 
-        Debug.DrawLine(transform.position + heightOffset, frontRay + heightOffset, Color.blue);
-        Debug.DrawLine(transform.position + heightOffset, left45 + heightOffset, Color.blue);
-        Debug.DrawLine(transform.position + heightOffset, right45 + heightOffset, Color.blue);
-        Debug.DrawLine(transform.position + heightOffset, transform.position + transform.right.normalized * (minDistance - 0.5f) + heightOffset,
+        Debug.DrawLine(transform.position, frontRay, Color.blue);
+        Debug.DrawLine(transform.position, left45, Color.blue);
+        Debug.DrawLine(transform.position, right45, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * (minDistance - 0.5f),
             Color.blue);
-        Debug.DrawLine(transform.position + heightOffset, transform.position - transform.right.normalized * (minDistance - 0.5f) + heightOffset,
+        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * (minDistance - 0.5f),
             Color.blue);
 
         //Gizmos.color = new Color32(255,0,0,40);
