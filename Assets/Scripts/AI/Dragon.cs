@@ -37,6 +37,8 @@ public class Dragon : Enemy {
 
         breath.GetComponent<EnemyProjectiles>().damage = damage;
 
+        myStrength = Strength.Strong;
+
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);        
@@ -172,7 +174,6 @@ public class Dragon : Enemy {
                 if (!flying)
                 {
                     playAnim("bite", 1, true);
-                    GetComponent<BoxCollider>().enabled = true;
                 }
             }
             //within medium range (10f), use fire breath
@@ -265,6 +266,12 @@ public class Dragon : Enemy {
                 break;
         }
         waitAnim = false;
+    }
+
+    //Bite Animation Event callback
+    public void BiteEvent()
+    {
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     //update calculated path every set time

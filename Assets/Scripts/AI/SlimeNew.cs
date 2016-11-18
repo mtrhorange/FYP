@@ -28,6 +28,8 @@ public class SlimeNew : Enemy {
         //get rigidbody
         rB = GetComponent<Rigidbody>();
 
+        myStrength = Strength.Weak;
+
         //targetting style
         tgtStyle = targetStyle.WeakestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);

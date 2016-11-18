@@ -29,6 +29,18 @@ public class Enemy : MonoBehaviour
     protected int currentWayPoint = 0;
     public float minDistance = 2.0f;
 
+    //enemy strength category
+    public enum Strength
+    {
+        Weak,
+        Medium,
+        Strong
+    }
+    //myStrength (how strong this enemy is)
+    public Strength myStrength = Strength.Weak;
+    //Monster Level
+    protected int monsterLevel = 1;
+
     //States
     public enum States
     {
@@ -64,6 +76,8 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         damageText = (GameObject)Resources.Load("DamageText");
+        CalculateDamage();
+
     }
 
     //Update
@@ -136,15 +150,50 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Calculate damage to deal
+    protected float CalculateDamage()
+    {
+        Debug.Log(myStrength);
+        float baseDmg = 0, baseMul = 0, levelMul = 0;
+
+        if (myStrength == Strength.Weak)
+        {
+            Debug.Log("wk");
+            baseDmg = 3;
+            baseMul = 0.3f;
+            levelMul = 0.5f;
+        }
+        else if (myStrength == Strength.Medium)
+        {
+            Debug.Log("md");
+            baseDmg = 5;
+            baseMul = 0.5f;
+            levelMul = 0.6f;
+        }
+        else if (myStrength == Strength.Strong)
+        {
+            Debug.Log("st");
+            baseDmg = 8;
+            baseMul = 0.75f;
+            levelMul = 0.75f;
+        }
+
+        //base: 3, 5, 8
+        //baseMul: 0.3, 0.5, 0.75
+        //levelMul: 0.5, 0.6, 0.75
+        //damage = base + (LVL - 1) * baseMul + (LVL / 5) * levelMul
+
+        return baseDmg + ((monsterLevel - 1) * baseMul) + ((monsterLevel / 5) * levelMul);
+    }
+
     //Trigger Enter
     protected void OnTriggerEnter(Collider other)
     {
         //if other is a player and my box collider is on (box colliders will be used for attacks)
-        if (other.gameObject.tag == "Player" && GetComponent<BoxCollider>().enabled)
+        if (other.gameObject.tag == "Player" && GetComponent<BoxCollider>() && GetComponent<BoxCollider>().enabled)
         {
-            Debug.Log("enemy.cs enter");
             //attack player
-            other.GetComponent<Player>().ReceiveDamage(damage);
+            other.GetComponent<Player>().ReceiveDamage(CalculateDamage());
         }
     }
 

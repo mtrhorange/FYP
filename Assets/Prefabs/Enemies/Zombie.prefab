@@ -165,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013600643592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.742, y: 1.528, z: -27.4}
+  m_LocalPosition: {x: -21.9, y: 1.528, z: -18.1}
   m_LocalScale: {x: 1.3, y: 1, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: -190.465, z: 0}
   m_Children:
@@ -458,10 +458,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothType: 0
   subdivisions: 2
-  iterations: 0
+  iterations: 2
   strength: 0.4
   uniformLength: 1
-  maxSegmentLength: 1
+  maxSegmentLength: 2
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
@@ -484,6 +484,7 @@ MonoBehaviour:
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 1.5
   minDistance: 2
+  myStrength: 0
   myState: 0
   tgtStyle: 0
   myType: 4

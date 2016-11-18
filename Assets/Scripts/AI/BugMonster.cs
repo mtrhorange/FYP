@@ -31,6 +31,8 @@ public class BugMonster : Enemy
 
         attackTimer = attackInterval;
 
+        myStrength = Strength.Weak;
+
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);

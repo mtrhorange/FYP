@@ -25,7 +25,7 @@ public class CatBat : Enemy {
         heightOffset = transform.up ;
         anim = GetComponent<Animator>();
         base.Start();
-        //Zombie properties
+        //CatBat properties
         health = 20;
         damage = 2;
         //seeker component
@@ -35,6 +35,8 @@ public class CatBat : Enemy {
         nextWayPointDistance = 3f;
 
         attackTimer = attackInterval;
+
+        myStrength = Strength.Weak;
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;
@@ -208,8 +210,12 @@ public class CatBat : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
+        pathUpdateTimer -= Time.deltaTime;
+
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -217,9 +223,6 @@ public class CatBat : Enemy {
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
-
-        nextPathPoint.y = 0;
-        pathUpdateTimer -= Time.deltaTime;
     }
     
     //Avoid Obstacles

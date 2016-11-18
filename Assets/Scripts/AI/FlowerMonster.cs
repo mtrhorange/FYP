@@ -30,6 +30,8 @@ public class FlowerMonster : Enemy {
         
         attackTimer = attackInterval;
 
+        myStrength = Strength.Medium;
+
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);

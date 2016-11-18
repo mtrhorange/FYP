@@ -138,14 +138,17 @@ public class EnemyProjectiles : MonoBehaviour {
                 //dragon breath fire
                 case type.DragonBreathFire:
                     //call player's burn function
+                    other.GetComponent<Player>().ApplyStrongBurn(5f);
                     break;
                 //fire blast
                 case type.FireBlast:
                     //call player's burn function
+                    other.GetComponent<Player>().ApplyBurn(5f);
                     break;
                 //dragon breath poison
                 case type.DragonBreathPoison:
                     //call player's poison function
+                    other.GetComponent<Player>().ApplyStrongPoison(5f);
                     break;
             }
         }

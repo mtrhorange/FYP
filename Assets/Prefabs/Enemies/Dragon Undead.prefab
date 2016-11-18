@@ -2030,7 +2030,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010310114446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94.57, y: 5.12, z: 30.15}
+  m_LocalPosition: {x: 9.730339, y: 6.003517e-16, z: -27.037437}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2354,7 +2354,7 @@ Animation:
   - {fileID: 7400010, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
   - {fileID: 7400012, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
   - {fileID: 7400014, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
-  - {fileID: 7400016, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
+  - {fileID: 7400000, guid: 0bb25fb0a6c8aeb49b22005035910496, type: 2}
   - {fileID: 7400018, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
   - {fileID: 7400020, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
   - {fileID: 7400022, guid: df1c2d2a4c7aac740b1d14c56952e0ab, type: 3}
@@ -2432,9 +2432,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 0}
+  stickyArea: {fileID: 0}
   projectileType: 3
   hasLifeSpan: 0
   timeOut: 12
+  target: {x: 0, y: 0, z: 0}
   damage: 0
 --- !u!114 &114000013724887854
 MonoBehaviour:

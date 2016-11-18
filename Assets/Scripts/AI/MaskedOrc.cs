@@ -34,6 +34,8 @@ public class MaskedOrc : Enemy {
 
         attackTimer = attackInterval;
 
+        myStrength = Strength.Medium;
+
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
@@ -206,8 +208,12 @@ public class MaskedOrc : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
+        pathUpdateTimer -= Time.deltaTime;
+
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -215,9 +221,6 @@ public class MaskedOrc : Enemy {
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
-
-        nextPathPoint.y = 0;
-        pathUpdateTimer -= Time.deltaTime;
     }
     
     //Avoid Obstacles

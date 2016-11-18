@@ -8,10 +8,12 @@ public class DragonBoss : Enemy
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 0.5f, breathTimer, stompTimer, summonTimer;
-    private float breathInterval = 10f, stompInterval = 2.5f, summonInterval = 60f;
+    private float breathInterval = 10f, stompInterval = 3.5f, summonInterval = 60f;
     //attacking variables
     private bool attacking = false;
     public GameObject breath, fireBlast;
+    private GameObject fireBlastRef;
+
     private enum attackType
     {
         GroundStomp,
@@ -47,6 +49,8 @@ public class DragonBoss : Enemy
         breath.GetComponent<EnemyProjectiles>().damage = damage;
         fireBlast.GetComponent<EnemyProjectiles>().damage = damage;
 
+        myStrength = Strength.Strong;
+
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
@@ -71,12 +75,6 @@ public class DragonBoss : Enemy
         breathTimer -= Time.deltaTime;
         stompTimer -= Time.deltaTime;
         summonTimer -= Time.deltaTime;
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
     }
 
     //Idle
@@ -168,7 +166,7 @@ public class DragonBoss : Enemy
             {
                 playAnim("groundStomp", 1, true);
                 //create fire blast
-                Instantiate(fireBlast, transform.position + transform.forward * 7, transform.rotation);
+                fireBlastRef = (GameObject)Instantiate(fireBlast, transform.position + transform.forward * 7, transform.rotation);
             }
             //Fire Breath
             else if (atkType == attackType.FireBreath)
@@ -329,6 +327,12 @@ public class DragonBoss : Enemy
 
         }
         return Vector3.zero;
+    }
+
+    //Ground Stomp animation event callback
+    public void GroundStompEvent(int on)
+    {
+        fireBlastRef.GetComponent<BoxCollider>().enabled = on == 1 ? true : false;
     }
 
     void OnDrawGizmos()
