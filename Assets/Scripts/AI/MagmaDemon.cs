@@ -21,11 +21,10 @@ public class MagmaDemon : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
+        myStrength = Strength.Medium;
+
         anim = GetComponent<Animator>();
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -33,8 +32,6 @@ public class MagmaDemon : Enemy {
         nextWayPointDistance = 3f;
 
         attackTimer = attackInterval;
-
-        myStrength = Strength.Medium;
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;

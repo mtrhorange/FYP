@@ -22,10 +22,9 @@ public class Dragon : Enemy {
 	//Start
     protected override void Start()
     {
+        myStrength = Strength.Strong;
+
         base.Start();
-        //Dragon properties
-        health = 50;
-        damage = 5;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -36,8 +35,6 @@ public class Dragon : Enemy {
         attackTimer = attackInterval;
 
         breath.GetComponent<EnemyProjectiles>().damage = damage;
-
-        myStrength = Strength.Strong;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;

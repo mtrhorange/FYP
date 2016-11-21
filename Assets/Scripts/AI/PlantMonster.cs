@@ -21,11 +21,10 @@ public class PlantMonster : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
+        myStrength = Strength.Medium;
+
         anim = GetComponent<Animator>();
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody

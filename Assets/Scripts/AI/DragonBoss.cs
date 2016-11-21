@@ -29,10 +29,9 @@ public class DragonBoss : Enemy
     //Start
     protected override void Start()
     {
+        myStrength = Strength.Strong;
+
         base.Start();
-        //Dragon Boss properties
-        health = 500;
-        damage = 10;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -48,8 +47,6 @@ public class DragonBoss : Enemy
 
         breath.GetComponent<EnemyProjectiles>().damage = damage;
         fireBlast.GetComponent<EnemyProjectiles>().damage = damage;
-
-        myStrength = Strength.Strong;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;

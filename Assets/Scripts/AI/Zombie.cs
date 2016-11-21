@@ -20,19 +20,16 @@ public class Zombie : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
+        myStrength = Strength.Weak;
+
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
         rB = GetComponent<Rigidbody>();
         nextWayPointDistance = 3f;
 
-        attackTimer = attackInterval;
-
-        myStrength = Strength.Weak;
+        attackTimer = attackInterval;        
 
         //targetting style
         tgtStyle = targetStyle.AssignedPlayer;

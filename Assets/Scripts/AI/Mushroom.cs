@@ -22,12 +22,11 @@ public class Mushroom : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
+        myStrength = Strength.Weak;
+
         heightOffset = transform.up ;
         anim = GetComponent<Animator>();
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody

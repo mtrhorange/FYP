@@ -18,10 +18,9 @@ public class FlowerMonster : Enemy {
     //Start
     protected override void Start()
     {
+        myStrength = Strength.Medium;
+
         base.Start();
-        //flower monster properties
-        health = 30;
-        damage = 3; //hit damage, apply continuous poison D.O.T at 2 ticks per second or smth
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -29,8 +28,6 @@ public class FlowerMonster : Enemy {
         nextWayPointDistance = 3f;
         
         attackTimer = attackInterval;
-
-        myStrength = Strength.Medium;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;

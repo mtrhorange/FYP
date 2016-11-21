@@ -19,10 +19,8 @@ public class BugMonster : Enemy
     //Start
     protected override void Start()
     {
+        myStrength = Strength.Weak;
         base.Start();
-        //flower monster properties
-        health = 30;
-        damage = 3; //hit damage, apply continuous poison D.O.T at 2 ticks per second or smth
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -30,8 +28,6 @@ public class BugMonster : Enemy
         nextWayPointDistance = 3f;
 
         attackTimer = attackInterval;
-
-        myStrength = Strength.Weak;
 
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;

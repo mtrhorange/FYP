@@ -50,14 +50,13 @@ public class AIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         enemyList = new List<GameObject>();
 
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         
-        mobType temp = mobType.SlimeBig;
+        mobType temp = mobType.Zombie;
         //spawnBoss(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
+        spawnMob(temp, enemySpawnPoint.transform.position);
 
         //mobType temp = mobType.Flower;
         //spawnMob(temp, enemySpawnPoint.transform.position);

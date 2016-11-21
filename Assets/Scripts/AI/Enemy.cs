@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     //myStrength (how strong this enemy is)
     public Strength myStrength = Strength.Weak;
     //Monster Level
-    protected int monsterLevel = 1;
+    public int monsterLevel = 1;
 
     //States
     public enum States
@@ -76,8 +76,9 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         damageText = (GameObject)Resources.Load("DamageText");
-        CalculateDamage();
-
+        monsterLevel = CalculateLevel();
+        health = CalculateHP();
+        damage = CalculateDamage();
     }
 
     //Update
@@ -150,40 +151,86 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Calculate Level the monster should be
+    protected int CalculateLevel()
+    {
+        //if two players
+        if (GameManager.instance.twoPlayers)
+        {
+            //Return average level of 2 players
+            return (Mathf.CeilToInt((float)(GameManager.instance.player1.Level + GameManager.instance.player2.Level) / 2));
+        }
+        else
+        {
+            //else return level of the single player
+            return GameManager.instance.player1.Level;
+        }
+    }
+
     //Calculate damage to deal
     protected float CalculateDamage()
     {
-        Debug.Log(myStrength);
         float baseDmg = 0, baseMul = 0, levelMul = 0;
 
         if (myStrength == Strength.Weak)
         {
-            Debug.Log("wk");
             baseDmg = 3;
             baseMul = 0.3f;
             levelMul = 0.5f;
         }
         else if (myStrength == Strength.Medium)
         {
-            Debug.Log("md");
             baseDmg = 5;
             baseMul = 0.5f;
             levelMul = 0.6f;
         }
         else if (myStrength == Strength.Strong)
         {
-            Debug.Log("st");
             baseDmg = 8;
             baseMul = 0.75f;
             levelMul = 0.75f;
         }
 
+        //FORMURA
         //base: 3, 5, 8
         //baseMul: 0.3, 0.5, 0.75
         //levelMul: 0.5, 0.6, 0.75
         //damage = base + (LVL - 1) * baseMul + (LVL / 5) * levelMul
 
         return baseDmg + ((monsterLevel - 1) * baseMul) + ((monsterLevel / 5) * levelMul);
+    }
+
+    //Calculate HP the monster shld have
+    protected float CalculateHP()
+    {
+        float baseHP = 0, baseMul = 0, levelMul = 0;
+
+        if (myStrength == Strength.Weak)
+        {
+            baseHP = 8;
+            baseMul = 3.5f;
+            levelMul = 1f;
+        }
+        else if (myStrength == Strength.Medium)
+        {
+            baseHP = 20;
+            baseMul = 6.5f;
+            levelMul = 3f;
+        }
+        else if (myStrength == Strength.Strong)
+        {
+            baseHP = 30;
+            baseMul = 10.5f;
+            levelMul = 5f;
+        }
+
+        //FORMURA
+        //base: 8, 20, 30
+        //baseMul: 3.5, 6.5, 10.5
+        //levelMul: 1, 3, 5
+        //HP = base + (LVL - 1) * baseMul + (LVL / 5) * levelMul
+
+        return baseHP + ((monsterLevel - 1) * baseMul) + ((monsterLevel / 5) * levelMul);
     }
 
     //Trigger Enter
@@ -193,7 +240,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player" && GetComponent<BoxCollider>() && GetComponent<BoxCollider>().enabled)
         {
             //attack player
-            other.GetComponent<Player>().ReceiveDamage(CalculateDamage());
+            other.GetComponent<Player>().ReceiveDamage(damage);
         }
     }
 
