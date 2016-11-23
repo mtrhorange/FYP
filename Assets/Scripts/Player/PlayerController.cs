@@ -217,6 +217,7 @@ public class PlayerController : MonoBehaviour
 		if (secondWep != null)
 			secondWep.SetActive (false);
 		currentWeapon = firstWep;
+		player.currentWeapon = currentWeapon.GetComponent<Weapon>();
 		weapon = WeaponType.ARMED;
 		rightWeapon = 19;
 		animator.SetInteger("RightWeapon", 9);
@@ -291,7 +292,7 @@ public class PlayerController : MonoBehaviour
 					MovementInput ();
 				//else
 				//	inputVec = new Vector3 (0, 0, 0);
-			} 
+			}
 			//Rolling();
 			Jumping();
             //if(Input.GetButtonDown("LightHit") && canAction && isGrounded && !isBlocking && !isDead)
@@ -317,7 +318,7 @@ public class PlayerController : MonoBehaviour
 			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (Input.GetButtonDown("BButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
-				Attack(1);
+				Rolling ();
 			}
             //if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
             //{
@@ -338,9 +339,9 @@ public class PlayerController : MonoBehaviour
 			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead) 
 			{
-//				CastAttack(1);
-//				player.skillV ();
-				Rolling();
+				CastAttack(1);
+				player.skillV ();
+
 			}
 			if (inputCastL && canAction && isGrounded && isBlocking) {
 				StartCoroutine (_BlockBreak ());
@@ -943,11 +944,11 @@ public class PlayerController : MonoBehaviour
 						animator.SetTrigger("Attack" + (attackNumber + 1).ToString() + "Trigger");
 						if(leftWeapon == 12 || leftWeapon == 14 || rightWeapon == 13 || rightWeapon == 15)
 						{
-							StartCoroutine(_LockMovementAndAttack(0, .8f));
+							StartCoroutine(_LockMovementAndAttack(0, .7f));
 						} 
 						else
 						{
-							StartCoroutine(_LockMovementAndAttack(0, .8f));
+							StartCoroutine(_LockMovementAndAttack(0, .7f));
 						}
 					}
 					else
@@ -1211,9 +1212,11 @@ public class PlayerController : MonoBehaviour
 		}
 		isRolling = true;
 		player.canBeHit = false;
+		canAction = false;
 		yield return new WaitForSeconds(rollduration);
 		isRolling = false;
 		player.canBeHit = true;
+		canAction = true;
 	}
 
 	#endregion
@@ -1234,10 +1237,13 @@ public class PlayerController : MonoBehaviour
 		rb.angularVelocity = Vector3.zero;
 		inputVec = new Vector3(0, 0, 0);
 		animator.applyRootMotion = true;
+
+		player.currentWeapon.AttackTrigger (1);
 		yield return new WaitForSeconds(lockTime);
 		canAction = true;
 		canMove = true;
 		animator.applyRootMotion = false;
+		player.currentWeapon.AttackTrigger (0);
 	}
 
 
@@ -1706,11 +1712,13 @@ public class PlayerController : MonoBehaviour
 		{
 			firstWep.SetActive(visible);
 			currentWeapon = firstWep;
+			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
 		}
 		if(weaponNumber == 20) 
 		{
 			secondWep.SetActive(visible);
 			currentWeapon = secondWep;
+			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
 		}
 		yield return null;
 	}
