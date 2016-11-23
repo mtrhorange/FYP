@@ -261,16 +261,20 @@ ModelImporter:
       1.2 mm at 91%
 
 
+      MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: RightLowerLeg average
+      position error 0.2 mm and maximum position error 1.1 mm at 9%
+
+
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: LeftUpperArm average
-      position error 6.2 mm and maximum position error 16.0 mm at 100%
+      position error 6.3 mm and maximum position error 16.0 mm at 100%
 
 
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: LeftLowerArm average
-      position error 5.5 mm and maximum position error 17.3 mm at 100%
+      position error 5.8 mm and maximum position error 17.3 mm at 100%
 
 
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: LeftHand average
-      position error 6.0 mm and maximum position error 16.0 mm at 100%
+      position error 6.2 mm and maximum position error 16.0 mm at 100%
 
 
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: RightUpperArm average
@@ -278,15 +282,19 @@ ModelImporter:
 
 
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: RightLowerArm average
-      position error 3.6 mm and maximum position error 6.6 mm at 62%
+      position error 3.4 mm and maximum position error 5.7 mm at 62%
 
 
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: RightHand average
-      position error 4.9 mm and maximum position error 11.4 mm at 100%
+      position error 4.7 mm and maximum position error 11.4 mm at 100%
 
 
       MuscleClip ''RPG-Character@Unarmed-Jump''conversion warning: Head average position
-      error 14.9 mm and maximum position error 41.6 mm at 100%
+      error 15.4 mm and maximum position error 41.6 mm at 100%
+
+
+      MuscleClip ''RPG-Character@Unarmed-Jump'' conversion warning: RightFoot average
+      orientation error 0.1 deg and maximum orientation error 0.5 deg at 3%
 
 
 '

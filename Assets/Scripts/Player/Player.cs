@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 	public int skillPoints = 0;
 	bool isDead = false;
 	bool isPermaDead = false;
+	public bool canBeHit = true;
 
 	public int level = 1;
 	public float exp = 0;
@@ -47,11 +48,8 @@ public class Player : MonoBehaviour {
 	GameObject enemyTargetHover;
 	GameObject damageText;
 
-	RPGCharacterControllerFREE controller;
+	PlayerController controller;
 
-	public GameObject spellFirePillar;
-	public GameObject spellFireTransmutation;
-	public GameObject spellIceBall;
 
 	public PlayerSkills skills;
 
@@ -79,14 +77,8 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 
-
-	}
-
-	// Use this for initialization
-	void Start () {
-
-		if (GetComponent<RPGCharacterControllerFREE> ())
-			controller = GetComponent<RPGCharacterControllerFREE> ();
+		if (GetComponent<PlayerController> ())
+			controller = GetComponent<PlayerController> ();
 
 		skillC = CastFirePillar;
 		skillV = CastIceSpike;
@@ -100,6 +92,12 @@ public class Player : MonoBehaviour {
 
 		skills = GetComponent<PlayerSkills> ();
 		damageText = (GameObject)Resources.Load ("DamageText");
+	}
+
+	// Use this for initialization
+	void Start () {
+
+
 	}
 
 	#region Update
@@ -181,7 +179,7 @@ public class Player : MonoBehaviour {
 		txt.GetComponent<DamageText> ().target = transform;
 		txt.GetComponent<Text> ().color = Color.red;
 
-		controller.GetHit ();
+		//controller.GetHit ();
 	}
 
 	//Player recovers health
@@ -475,7 +473,8 @@ public class Player : MonoBehaviour {
 	#region Spells
 
 	public void CastFirePillar() {
-
+		GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
+		GameObject spellFirePillar = (GameObject)Resources.Load ("Skills/FirePillar");
 		Instantiate (spellFireTransmutation, transform.position + transform.forward * 8f, Quaternion.identity);
 		GameObject firePillar = (GameObject)Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
 		firePillar.GetComponent<fire_pillar> ().player = this;
@@ -484,6 +483,7 @@ public class Player : MonoBehaviour {
 
 	public void CastIceBolt() {
 
+		GameObject spellIceBall = (GameObject)Resources.Load ("Skills/Ice_Ball");
 		Instantiate (spellIceBall, transform.position + transform.up * 2f + transform.forward, transform.localRotation);
 
 	}

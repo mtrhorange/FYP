@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour {
 
-	public enum Type { UNARMED};
-
+	public enum Types { Sword, Staff};
+	public Types type;
 	public float damageMin = 3f;
 	public float damageMax = 5f;
 

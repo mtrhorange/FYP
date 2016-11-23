@@ -1,23 +1,67 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SmoothFollow : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
 	GameObject cameraTarget;
-	public float smoothTime = 0.1f;
-	Vector2 velocity;
-	public float offsetX = -15f;
-	public float offsetY = -15f;
-	private Transform thisTransform;
+	public float rotateSpeed;
+	float rotate;
+	public float offsetDistance;
+	public float offsetHeight;
+	public float smoothing;
+	Vector3 offset;
+	bool following = true;
+	Vector3 lastPosition;
 
 	void Start()
 	{
 		cameraTarget = GameObject.FindGameObjectWithTag("Player");
-		thisTransform = transform;
+		lastPosition = new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y + offsetHeight, cameraTarget.transform.position.z - offsetDistance);
+		offset = new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y + offsetHeight, cameraTarget.transform.position.z - offsetDistance);
 	}
 
 	void Update()
 	{
-		thisTransform.position = new Vector3(Mathf.SmoothDamp(thisTransform.position.x, cameraTarget.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp(thisTransform.position.y, cameraTarget.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), (cameraTarget.transform.position.z + offsetX));
+		if(Input.GetKeyDown(KeyCode.F))
+		{
+			if(following)
+			{
+				following = false;
+			} 
+			else
+			{
+				following = true;
+			}
+		} 
+		if(Input.GetKey(KeyCode.Q))
+		{
+			rotate = -1;
+		} 
+		else if(Input.GetKey(KeyCode.E))
+		{
+			rotate = 1;
+		} 
+		else
+		{
+			rotate = 0;
+		}
+		if(following)
+		{
+			offset = Quaternion.AngleAxis(rotate * rotateSpeed, Vector3.up) * offset;
+			transform.position = cameraTarget.transform.position + offset; 
+			transform.position = new Vector3(Mathf.Lerp(lastPosition.x, cameraTarget.transform.position.x + offset.x, smoothing * Time.deltaTime), 
+				Mathf.Lerp(lastPosition.y, cameraTarget.transform.position.y + offset.y, smoothing * Time.deltaTime), 
+				Mathf.Lerp(lastPosition.z, cameraTarget.transform.position.z + offset.z, smoothing * Time.deltaTime));
+		} 
+		else
+		{
+			transform.position = lastPosition; 
+		}
+		transform.LookAt(cameraTarget.transform.position);
+	}
+
+	void LateUpdate()
+	{
+		lastPosition = transform.position;
 	}
 }

@@ -172,10 +172,10 @@ GameObject:
   - 4: {fileID: 4000011286678334}
   - 95: {fileID: 95000013032913202}
   - 114: {fileID: 114000013535864744}
-  - 114: {fileID: 114000011751485796}
   - 54: {fileID: 54000013206424154}
   - 136: {fileID: 136000013012235982}
   - 114: {fileID: 114000014260104298}
+  - 114: {fileID: 114000012796404558}
   m_Layer: 11
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -560,7 +560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012749041764
 GameObject:
   m_ObjectHideFlags: 1
@@ -1696,7 +1696,7 @@ Transform:
   - {fileID: 4000013271340558}
   - {fileID: 4000013916508918}
   m_Father: {fileID: 4000014207457234}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &4000013311615584
 Transform:
   m_ObjectHideFlags: 1
@@ -1922,8 +1922,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000013292379232}
   - {fileID: 4000014293536310}
+  - {fileID: 4000013292379232}
   m_Father: {fileID: 4000013311615584}
   m_RootOrder: 5
 --- !u!4 &4000014293536310
@@ -1939,7 +1939,7 @@ Transform:
   m_Children:
   - {fileID: 4000011042733550}
   m_Father: {fileID: 4000014207457234}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!23 &23000013716255348
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2060,14 +2060,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012548631710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 610124e0c846c4b4db34083b8b5fc760, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e5a558c977229e429cca70cae8137e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMin: 8
-  damageMax: 20
+  type: 1
+  damageMin: 0
+  damageMax: 0
+  level: 0
   isMelee: 0
   player: {fileID: 0}
---- !u!114 &114000011751485796
+  type: 0
+--- !u!114 &114000012796404558
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2075,19 +2078,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010824984246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad159c285c6e6ae4caa1641e7eff37c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2242ce6c102b2b8448e4c31dae5f3915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  sceneCamera: {fileID: 0}
+  waistRotationOffset: {x: 0, y: 0, z: 0}
   gravity: -9.8
   jumpSpeed: 12
   doublejumpSpeed: 12
   inAirSpeed: 8
-  rollSpeed: 8
-  rollduration: 0
+  rollSpeed: 10
+  rollduration: 0.5
   walkSpeed: 1.35
   runSpeed: 6
   knockbackMultiplier: 1
+  isSwimming: 0
+  inWaterSpeed: 8
+  twohandaxe: {fileID: 0}
+  twohandsword: {fileID: 0}
+  twohandspear: {fileID: 0}
+  twohandbow: {fileID: 0}
+  twohandcrossbow: {fileID: 0}
+  staff: {fileID: 0}
+  swordL: {fileID: 0}
+  swordR: {fileID: 0}
+  maceL: {fileID: 0}
+  maceR: {fileID: 0}
+  daggerL: {fileID: 0}
+  daggerR: {fileID: 0}
+  itemL: {fileID: 0}
+  itemR: {fileID: 0}
+  shield: {fileID: 0}
+  pistolL: {fileID: 0}
+  pistolR: {fileID: 0}
+  rifle: {fileID: 0}
+  firstWep: {fileID: 1000012631187368}
+  secondWep: {fileID: 1000012548631710}
   spellFirePillar: {fileID: 0}
   spellTransmutationFire: {fileID: 0}
 --- !u!114 &114000013535864744
@@ -2103,29 +2130,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   saveId: 0
-  playerNo: 1
-  baseMaxHealth: 100
-  maxHealth: 100
-  health: 100
+  playerNo: 0
+  baseMaxHealth: 0
+  maxHealth: 0
+  health: 0
   baseMaxStamina: 0
   maxStamina: 0
   stamina: 0
   recoverStamina: 0
   livesRemaining: 0
   skillPoints: 0
+  canBeHit: 0
   level: 0
   exp: 0
-  currentWeapon: {fileID: 114000011649442308}
-  nextWeapon: {fileID: 114000014223036334}
-  rightHand: {fileID: 1000011720079848}
-  leftHand: {fileID: 1000013972928318}
+  currentWeapon: {fileID: 0}
+  nextWeapon: {fileID: 0}
+  rightHand: {fileID: 0}
+  leftHand: {fileID: 0}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
-  spellFirePillar: {fileID: 155190, guid: 6c4ed44b1c8dfbf4fa98210c4cd3e51a, type: 2}
-  spellFireTransmutation: {fileID: 137536, guid: a725f95bac830074c9e5ea480ab853f3,
-    type: 2}
-  spellIceBall: {fileID: 133122, guid: d8e836ad96e21154e98e8ff613115019, type: 2}
-  skills: {fileID: 114000014260104298}
+  skills: {fileID: 0}
 --- !u!114 &114000014223036334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2137,9 +2161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd281fcc3ed96144b0b5987c27ba13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMin: 8
-  damageMax: 20
-  isMelee: 1
+  type: 0
+  damageMin: 0
+  damageMax: 0
+  level: 0
+  isMelee: 0
   player: {fileID: 0}
 --- !u!114 &114000014260104298
 MonoBehaviour:
@@ -2152,9 +2178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ff7a7e806ec364ea2ae81db6f95a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthLevel: 3
-  minDmgLevel: 3
-  maxDmgLevel: 3
+  maxHealthLevel: 0
+  minDmgLevel: 0
+  maxDmgLevel: 0
   weaponBuffLevel: 0
   spellBuffLevel: 0
   defenseBuffLevel: 0

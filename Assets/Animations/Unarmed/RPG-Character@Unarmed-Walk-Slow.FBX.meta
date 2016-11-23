@@ -273,7 +273,7 @@ ModelImporter:
 
 
       MuscleClip ''RPG-Character@Unarmed-Walk-Slow''conversion warning: RightUpperArm
-      average position error 6.5 mm and maximum position error 8.0 mm at 2%
+      average position error 6.5 mm and maximum position error 8.1 mm at 2%
 
 
       MuscleClip ''RPG-Character@Unarmed-Walk-Slow''conversion warning: RightLowerArm
@@ -281,7 +281,7 @@ ModelImporter:
 
 
       MuscleClip ''RPG-Character@Unarmed-Walk-Slow''conversion warning: RightHand
-      average position error 3.4 mm and maximum position error 5.8 mm at 0%
+      average position error 3.4 mm and maximum position error 5.8 mm at 100%
 
 
       MuscleClip ''RPG-Character@Unarmed-Walk-Slow''conversion warning: Head average
@@ -311,7 +311,7 @@ ModelImporter:
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1

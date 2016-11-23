@@ -243,167 +243,43 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "MuscleClip 'RPG-Character@Unarmed-Run' conversion warning:
-      Bone length is different in avatar and animation\n\n     'B_L_Thigh' : position
-      error = 7819229696.000000 mm\n\n     'B_L_Calf' : position error = 39704342528.000000
-      mm\n\n     'B_L_Foot' : position error = 39930531840.000000 mm\n\n     'B_L_Toe0'
-      : position error = 19119486976.000000 mm\n\n     'B_R_Thigh' : position error
-      = 7819231744.000000 mm\n\n     'B_R_Calf' : position error = 39704342528.000000
-      mm\n\n     'B_R_Foot' : position error = 39930531840.000000 mm\n\n     'B_R_Toe0'
-      : position error = 19119484928.000000 mm\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine' has translation animation. It is not supported.\n\nMuscleClip
-      'RPG-Character@Unarmed-Run'conversion warning: 'Motion/B_Pelvis/B_Spine/B_Spine1'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2' has translation animation.
-      It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run' conversion warning:
-      'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2' is between humanoid transforms and
-      has rotation animation. This might lower retargeting quality.\n\nMuscleClip
-      'RPG-Character@Unarmed-Run'conversion warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0/B_L_Finger01'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0/B_L_Finger01/B_L_Finger02'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1/B_L_Finger11'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1/B_L_Finger11/B_L_Finger12'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger2'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger2/B_L_Finger21'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger2/B_L_Finger21/B_L_Finger22'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger3'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger3/B_L_Finger31'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger3/B_L_Finger31/B_L_Finger32'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger4'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger4/B_L_Finger41'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger4/B_L_Finger41/B_L_Finger42'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle' has translation
-      animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0/B_R_Finger01'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0/B_R_Finger01/B_R_Finger02'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1/B_R_Finger11'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1/B_R_Finger11/B_R_Finger12'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger2'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger2/B_R_Finger21'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger2/B_R_Finger21/B_R_Finger22'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger3'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger3/B_R_Finger31'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger3/B_R_Finger31/B_R_Finger32'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger4'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger4/B_R_Finger41'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger4/B_R_Finger41/B_R_Finger42'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_Neck' has translation
-      animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_Neck/B_Head' has translation
-      animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_L_Thigh' has translation animation. It is not supported.\n\nMuscleClip
-      'RPG-Character@Unarmed-Run'conversion warning: 'Motion/B_Pelvis/B_L_Thigh/B_L_Calf'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_L_Thigh/B_L_Calf/B_L_Foot' has translation animation.
-      It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion warning:
-      'Motion/B_Pelvis/B_L_Thigh/B_L_Calf/B_L_Foot/B_L_Toe0' has translation animation.
-      It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion warning:
-      'Motion/B_Pelvis/B_R_Thigh' has translation animation. It is not supported.\n\nMuscleClip
-      'RPG-Character@Unarmed-Run'conversion warning: 'Motion/B_Pelvis/B_R_Thigh/B_R_Calf'
-      has translation animation. It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion
-      warning: 'Motion/B_Pelvis/B_R_Thigh/B_R_Calf/B_R_Foot' has translation animation.
-      It is not supported.\n\nMuscleClip 'RPG-Character@Unarmed-Run'conversion warning:
-      'Motion/B_Pelvis/B_R_Thigh/B_R_Calf/B_R_Foot/B_R_Toe0' has translation animation.
-      It is not supported.\n\n"
+    animationImportWarnings: 'MuscleClip ''RPG-Character@Unarmed-Run''conversion warning:
+      ''Motion/B_Pelvis/B_Spine'' has translation animation. It is not supported.
+
+
+      MuscleClip ''RPG-Character@Unarmed-Run'' conversion warning: ''Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2''
+      is between humanoid transforms and has rotation animation. This might lower
+      retargeting quality.
+
+
+'
     animationRetargetingWarnings: 'MuscleClip ''RPG-Character@Unarmed-Run''conversion
-      warning: LeftLowerLeg average position error 41696681984.0 mm and maximum position
-      error 43188174848.0 mm at 67%
-
-
-      MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: LeftFoot average
-      position error 55813353472.0 mm and maximum position error 80465829888.0 mm
-      at 8%
-
-
-      MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: RightLowerLeg average
-      position error 41699217408.0 mm and maximum position error 43246567424.0 mm
-      at 17%
-
-
-      MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: RightFoot average
-      position error 51451846656.0 mm and maximum position error 78031347712.0 mm
-      at 62%
-
-
-      MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: LeftUpperArm average
-      position error 50691694592.0 mm and maximum position error 52052107264.0 mm
-      at 29%
+      warning: LeftUpperArm average position error 9.7 mm and maximum position error
+      18.5 mm at 37%
 
 
       MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: LeftLowerArm average
-      position error 41759293440.0 mm and maximum position error 44079611904.0 mm
-      at 71%
+      position error 8.0 mm and maximum position error 18.2 mm at 37%
 
 
       MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: LeftHand average
-      position error 43323817984.0 mm and maximum position error 56005844992.0 mm
-      at 21%
+      position error 8.7 mm and maximum position error 18.9 mm at 37%
 
 
       MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: RightUpperArm average
-      position error 50016473088.0 mm and maximum position error 50967924736.0 mm
-      at 83%
+      position error 8.4 mm and maximum position error 16.4 mm at 88%
 
 
       MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: RightLowerArm average
-      position error 43382448128.0 mm and maximum position error 47444488192.0 mm
-      at 17%
+      position error 7.6 mm and maximum position error 17.1 mm at 88%
 
 
       MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: RightHand average
-      position error 41159065600.0 mm and maximum position error 49784963072.0 mm
-      at 58%
+      position error 7.5 mm and maximum position error 17.6 mm at 88%
 
 
       MuscleClip ''RPG-Character@Unarmed-Run''conversion warning: Head average position
-      error 65119961088.0 mm and maximum position error 65219497984.0 mm at 29%
+      error 16.0 mm and maximum position error 26.1 mm at 100%
 
 
 '
@@ -429,7 +305,7 @@ ModelImporter:
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
