@@ -17,10 +17,12 @@ public class SlimeNew : Enemy {
 	//Start
     protected override void Start()
     {
+        myStrength = Strength.Weak;
+
         base.Start();
         //slime properties
-        health = bigger ? 50 : 25;
-        damage = bigger ? 7 : 5;
+        health = bigger ? health * 1.25f : health;
+        damage = bigger ? damage * 1.2f : damage;
         transform.localScale = bigger ? new Vector3(1.8f, 1.8f, 1.8f) : transform.localScale;
         transform.position = new Vector3(transform.position.x, transform.localScale.y * 0.5f, transform.position.z);
         //get our seeker component
@@ -55,12 +57,6 @@ public class SlimeNew : Enemy {
         }
         else if (myState == States.Dead)
         {
-        }
-
-        //testing
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            ReceiveDamage(5);
         }
 	}
 

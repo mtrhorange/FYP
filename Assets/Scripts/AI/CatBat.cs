@@ -22,12 +22,11 @@ public class CatBat : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
+        myStrength = Strength.Weak;
+
         heightOffset = transform.up ;
         anim = GetComponent<Animator>();
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -183,6 +182,12 @@ public class CatBat : Enemy {
     //Attack
     protected override void Attack()
     {
+        Vector3 look = player.transform.position - transform.position;
+
+        look.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(look);
+        transform.rotation = targetRotation;
+
         attacking = false;
             
         pathUpdateTimer = 0f;
@@ -208,8 +213,12 @@ public class CatBat : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
+        pathUpdateTimer -= Time.deltaTime;
+
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -217,9 +226,6 @@ public class CatBat : Enemy {
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
-
-        nextPathPoint.y = 0;
-        pathUpdateTimer -= Time.deltaTime;
     }
     
     //Avoid Obstacles
@@ -235,14 +241,9 @@ public class CatBat : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             right45 + heightOffset, out Hit, minDistance))
         {
-            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-
-                Physics.IgnoreCollision(GetComponent<CapsuleCollider>(), Hit.transform.GetComponent<CapsuleCollider>());
-            }
-
             //if is obstacle
-            if (Hit.transform.gameObject.layer == 8)
+            if (Hit.transform.gameObject.layer == 8 ||
+                (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType))
                 return transform.forward - transform.right;
         }
                 
@@ -251,29 +252,19 @@ public class CatBat : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             left45 + heightOffset, out Hit, minDistance))
         {
-            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-
-                Physics.IgnoreCollision(GetComponent<CapsuleCollider>(), Hit.transform.GetComponent<CapsuleCollider>());
-            }
-
             //if is obstacle
-            if (Hit.transform.gameObject.layer == 8)
-                return transform.forward + transform.right;
+            if (Hit.transform.gameObject.layer == 8 ||
+                (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType))
+                return transform.forward - transform.right;
         }
 
         if (Physics.Raycast((transform.position + transform.up),
             transform.forward + heightOffset, out Hit, minDistance))
         {
-            Debug.Log("Hit someone" + Hit.transform.name);
-            if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
-            {
-                Physics.IgnoreCollision(GetComponent<CapsuleCollider>(), Hit.transform.GetComponent<CapsuleCollider>());
-            }
-
             //if is obstacle
-            if (Hit.transform.gameObject.layer == 8)
-                return transform.forward + Hit.normal;
+            if (Hit.transform.gameObject.layer == 8 ||
+                (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType))
+                return transform.forward - transform.right;
         }
 
         //right ray

@@ -10,18 +10,21 @@ public class FlowerMonster : Enemy {
     private float attackTimer;
     //movement variables
     private Vector3 dir = Vector3.zero;
+    private Animator anim;
     //acid spit variables
-    public GameObject projectile;
+    public GameObject projectile, mouth;
     private float interceptionTime = 0f;
     private Vector3 interceptPoint = Vector3.zero;
+    private bool attacking = false;
 
     //Start
     protected override void Start()
     {
+        myStrength = Strength.Medium;
+
+        anim = GetComponent<Animator>();
+
         base.Start();
-        //flower monster properties
-        health = 30;
-        damage = 3; //hit damage, apply continuous poison D.O.T at 2 ticks per second or smth
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -86,11 +89,12 @@ public class FlowerMonster : Enemy {
         {
             if (path.GetTotalLength() > 15f)
             {
-
                 nextPathPoint =
                  path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
                 dir = velocity;
+
+                anim.SetBool("Walk", true);
 
                 //look & move
                 Vector3 look = dir.normalized + AvoidObstacle();
@@ -105,8 +109,8 @@ public class FlowerMonster : Enemy {
                 //look at player if can see
                 RaycastHit hit;
                 Vector3 sight = (player.transform.position - transform.position);
-                sight.y = transform.position.y;
-                if (Physics.Raycast(transform.position, sight.normalized, out hit))
+                Debug.DrawRay(transform.position + transform.up, sight.normalized * 15f, Color.green);
+                if (Physics.Raycast(transform.position + transform.up, sight.normalized, out hit))
                 {
                     if (hit.transform.gameObject.tag == "Player")
                     {
@@ -116,6 +120,7 @@ public class FlowerMonster : Enemy {
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
                     }
                 }
+                anim.SetBool("Walk", false);
             }
             attackTimer -= Time.deltaTime;
         }
@@ -124,8 +129,7 @@ public class FlowerMonster : Enemy {
         {
             RaycastHit hit;
             Vector3 sight = (player.transform.position - transform.position);
-            sight.y = transform.position.y;
-            if (Physics.Raycast(transform.position, sight.normalized, out hit))
+            if (Physics.Raycast(transform.position + transform.up, sight.normalized, out hit))
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
@@ -187,34 +191,55 @@ public class FlowerMonster : Enemy {
     //Attack
     protected override void Attack()
     {
+        if (!attacking)
+        {
+            attacking = true;
+            anim.SetBool("Walk", false);
+            anim.SetTrigger("Attack");
+            rB.velocity = Vector3.zero;
+        }
+    }
+
+    //shoot acid
+    private void shoot(Vector3 here)
+    {
+        //Quaternion targetRotation = Quaternion.LookRotation(here);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 8f);
+
+        Vector3 shootHere = (here - mouth.transform.position).normalized;
+        //shootHere.y = 0;
+        GameObject boo = (GameObject)Instantiate(projectile, mouth.transform.position, Quaternion.identity);
+        boo.GetComponent<EnemyProjectiles>().damage = damage;
+        boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
+    }
+
+    //attack event 1
+    public void AttackEvent1()
+    {
         //offset for the shot
         float offset = Random.Range(3f, 5.8f);
         //direction for offset
         Vector3 towards = new Vector3(Random.Range(0f, 1f) * 2 - 1, 0, Random.Range(0f, 1f) * 2 - 1);
 
         //calculate where to shoot
-        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, 10f);
+        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, mouth.transform.position, 10f);
         if (calc != Vector3.zero)
         {
             calc.Normalize();
-            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, transform.GetChild(5).position, calc * 10f);
+            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, mouth.transform.position, calc * 10f);
             interceptPoint = (player.transform.position + towards.normalized * offset) + player.GetComponent<Rigidbody>().velocity * interceptionTime;
         }
+
         shoot(interceptPoint);
+    }
+
+    //attack event 2
+    public void AttackEvent2()
+    {
         //reset attack interval and state to chase
         attackTimer = attackInterval;
         myState = States.Chase;
-    }
-
-    //shoot acid
-    private void shoot(Vector3 here)
-    {
-        Vector3 shootHere = (here - transform.GetChild(5).position).normalized;
-        //shootHere.y = 0;
-        GameObject boo = (GameObject)Instantiate(projectile, transform.GetChild(5).position, Quaternion.identity);
-        boo.GetComponent<EnemyProjectiles>().damage = damage;
-        boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
-
+        attacking = false;
     }
 
     //calculates an interception path along the path of another moving object

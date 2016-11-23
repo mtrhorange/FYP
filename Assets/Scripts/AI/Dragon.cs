@@ -22,10 +22,9 @@ public class Dragon : Enemy {
 	//Start
     protected override void Start()
     {
+        myStrength = Strength.Strong;
+
         base.Start();
-        //Dragon properties
-        health = 50;
-        damage = 5;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -58,10 +57,9 @@ public class Dragon : Enemy {
             Attack();
         }
 
-        //testing
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            ReceiveDamage(5);
+            playAnim("idle_stretch", 8f, true);
         }
 	}
 
@@ -172,7 +170,6 @@ public class Dragon : Enemy {
                 if (!flying)
                 {
                     playAnim("bite", 1, true);
-                    GetComponent<BoxCollider>().enabled = true;
                 }
             }
             //within medium range (10f), use fire breath
@@ -265,6 +262,12 @@ public class Dragon : Enemy {
                 break;
         }
         waitAnim = false;
+    }
+
+    //Bite Animation Event callback
+    public void BiteEvent()
+    {
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     //update calculated path every set time

@@ -21,11 +21,10 @@ public class MaskedOrc : Enemy {
 	// Use this for initialization
     protected override void Start()
     {
+        myStrength = Strength.Medium;
+
         anim = GetComponent<Animator>();
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -206,8 +205,12 @@ public class MaskedOrc : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
+        pathUpdateTimer -= Time.deltaTime;
+
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -215,9 +218,6 @@ public class MaskedOrc : Enemy {
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
-
-        nextPathPoint.y = 0;
-        pathUpdateTimer -= Time.deltaTime;
     }
     
     //Avoid Obstacles

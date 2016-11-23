@@ -34,10 +34,12 @@ public class EnemyLeftBehinds : MonoBehaviour {
                 //acid spit > acid pool > poison
                 case EnemyProjectiles.type.AcidSpit:
                     //call player's poison function
+                    other.GetComponent<Player>().ApplyPoison(5f);
                     break;
                 //web shot > sticky area > slow
                 case EnemyProjectiles.type.WebShot:
                     //call player's slow function
+                    other.GetComponent<Player>().ApplySlow(5f);
                     break;
             }
         }
