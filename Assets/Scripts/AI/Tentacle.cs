@@ -7,15 +7,18 @@ public class Tentacle : Enemy
     public bool attacking;
     public float lifeTime = 45f;
     public TentacleBoss Boss;
+    public float attackInterval;
+    private float attackTimer;
+    private Animator anim;
 
-	//Start
+    //Start
     protected override void Start()
     {
         base.Start();
         //Tentacle properties
         health = 30;
         damage = 4;
-
+        anim = GetComponent<Animator>();
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
@@ -29,10 +32,6 @@ public class Tentacle : Enemy
         {
             Idle();
         }
-        else if (myState == States.Chase)
-        {
-            Chase();
-        }
         else if (myState == States.Attack)
         {
             Attack();
@@ -42,31 +41,27 @@ public class Tentacle : Enemy
 
     protected override void Attack()
     {
-        //TODO: SMACK DOWN
-        if (transform.localScale.y <= 12f && attacking)
-        {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + Time.deltaTime * 8f, transform.localScale.z);
+        anim.SetTrigger("Slap Attack");
+        Vector3 sight = (player.transform.position - transform.position);
+        sight.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(sight);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+        myState = States.Idle;
 
-            if (transform.localScale.y >= 12f)
-            {
-                attacking = false;
-            }
-        }
-        else
-        {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - Time.deltaTime * 8, transform.localScale.z);
-            if (transform.localScale.y <= 3f)
-            {
-                transform.localScale = new Vector3(transform.localScale.x, 3, transform.localScale.z);
-                myState = States.Idle;
-            }
-        }
+    }
 
-        if (Vector3.Distance(this.transform.position, player.transform.position) > 3f)
-        {
-            transform.localScale = new Vector3(transform.localScale.x, 3, transform.localScale.z);
-            myState = States.Idle;
-        }
+    public void triggerOn()
+    {
+
+        GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void triggerOff()
+    {
+        attackTimer = attackInterval;
+        myState = States.Idle;
+        GetComponent<BoxCollider>().enabled = false;
+        attackTimer = attackInterval;
     }
 
     protected override void Idle()
@@ -80,25 +75,12 @@ public class Tentacle : Enemy
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
         }
 
+        attackTimer -= Time.deltaTime;
 
-        if (Vector3.Distance(this.transform.position, player.transform.position) < 3f)
+        if (Vector3.Distance(transform.position, player.transform.position) < 4f && attackTimer < 0)
         {
             myState = States.Attack;
-            attacking = true;
+            attackTimer = attackInterval;
         }
-
-        //reduce lifetime only in idle
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0)
-        {
-            //die
-            Boss.TentacleDeath(this);
-        }
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = new Color32(255, 0, 0, 90);
-        Gizmos.DrawSphere(this.transform.position,3f);
     }
 }

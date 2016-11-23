@@ -8,17 +8,19 @@ public class TentacleBoss : Enemy {
     public float SpawnX = 4f, SpawnZ = 4f;
     public GameObject tentaclePref;
     public float attackInterval = 3f;
+    public GameObject mouth;
     //list to keep track of tentacles
     private List<Tentacle> tentacles;
-    private bool attacking;
     private float spawnTimer = 5f;
-    private float attackTimer;
+    public float attackTimer;
+    private Animator anim;
 
 
     //Start
     protected override void Start()
     {
         base.Start();
+        anim = GetComponent<Animator>();
         //Tentacle Boss properties
         health = 500;
         damage = 12;
@@ -87,33 +89,37 @@ public class TentacleBoss : Enemy {
             {
                 if (tentacles.Count < 6)
                 {
-                    spawnTentacle();
+                    //spawnTentacle();
                 }
                 spawnTimer = 8f;
             }
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) < 5f)
+        attackTimer -= Time.deltaTime;
+
+        if (Vector3.Distance(transform.position, player.transform.position) < 4f && attackTimer < 0)
         {
             myState = States.Attack;
-            attacking = true;
+            attackTimer = attackInterval;
         }
     }
 
     //Attack
     protected override void Attack()
     {
+        anim.SetTrigger("Bite Attack");   
         Vector3 sight = (player.transform.position - transform.position);
         sight.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(sight);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+        
+        
+    }
 
-        if (Vector3.Distance(transform.position, player.transform.position) > 5f)
-        {
+    private void projectileAttack()
+    {
+        //TODO: PROJECTILE ATTACK
 
-            myState = States.Idle;
-            attacking = false;
-        }
     }
 
     public void triggerOn()
@@ -125,7 +131,7 @@ public class TentacleBoss : Enemy {
     public void triggerOff()
     {
         attackTimer = attackInterval;
-        myState = States.Chase;
+        myState = States.Idle;
         GetComponent<BoxCollider>().enabled = false;
     }
 
@@ -138,10 +144,6 @@ public class TentacleBoss : Enemy {
 
     public void OnDrawGizmos()
     {
-        if (attacking)
-        {
-            Gizmos.color = new Color32(0, 255, 0, 90);
-            Gizmos.DrawSphere(this.transform.position, 5f);
-        }
+
     }
 }
