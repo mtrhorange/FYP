@@ -153,26 +153,22 @@ public class Enemy : MonoBehaviour
     //Calculate damage to deal
     protected float CalculateDamage()
     {
-        Debug.Log(myStrength);
         float baseDmg = 0, baseMul = 0, levelMul = 0;
 
         if (myStrength == Strength.Weak)
         {
-            Debug.Log("wk");
             baseDmg = 3;
             baseMul = 0.3f;
             levelMul = 0.5f;
         }
         else if (myStrength == Strength.Medium)
         {
-            Debug.Log("md");
             baseDmg = 5;
             baseMul = 0.5f;
             levelMul = 0.6f;
         }
         else if (myStrength == Strength.Strong)
         {
-            Debug.Log("st");
             baseDmg = 8;
             baseMul = 0.75f;
             levelMul = 0.75f;
