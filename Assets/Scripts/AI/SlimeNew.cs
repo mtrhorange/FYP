@@ -58,12 +58,6 @@ public class SlimeNew : Enemy {
         else if (myState == States.Dead)
         {
         }
-
-        //testing
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            ReceiveDamage(5);
-        }
 	}
 
     //Idle state

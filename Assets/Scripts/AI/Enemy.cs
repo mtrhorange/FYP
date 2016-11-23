@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         Idle,
         Chase,
         Attack,
+        Flinch,
         Dead
     }
     //myState (current state this entity is in)
@@ -134,7 +135,6 @@ public class Enemy : MonoBehaviour
     //receive damage
     public void ReceiveDamage(float dmg)
     {
-
         health -= dmg;
         Camera camera = FindObjectOfType<Camera>();
         Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
@@ -149,6 +149,24 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
+        else
+        {
+            //Flinch
+            Flinch();
+        }
+    }
+
+    //Flinch
+    protected virtual void Flinch()
+    {
+        myState = States.Flinch;
+    }
+
+    //Flinch End Animation Event callback
+    public virtual void FlinchEnd()
+    {
+        myState = States.Chase;
+        Debug.Log("enemy.cs flinch end");
     }
 
     //Calculate Level the monster should be

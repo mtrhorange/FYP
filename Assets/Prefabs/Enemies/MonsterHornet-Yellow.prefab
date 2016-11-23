@@ -464,7 +464,7 @@ GameObject:
   - 114: {fileID: 114000012659514018}
   m_Layer: 0
   m_Name: MonsterHornet-Yellow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1734,6 +1734,8 @@ MonoBehaviour:
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 3
   minDistance: 2
+  myStrength: 0
+  monsterLevel: 1
   myState: 0
   tgtStyle: 0
   myType: 0

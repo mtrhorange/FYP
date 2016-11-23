@@ -57,10 +57,9 @@ public class Dragon : Enemy {
             Attack();
         }
 
-        //testing
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            ReceiveDamage(5);
+            playAnim("idle_stretch", 8f, true);
         }
 	}
 
