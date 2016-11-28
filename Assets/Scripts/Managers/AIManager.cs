@@ -34,7 +34,7 @@ public class AIManager : MonoBehaviour
 
     //PUBLIC
     public List<GameObject> mobPrefabs;
-    public List<GameObject> bossPrefabs;
+    private List<GameObject> bossPrefabs;
     public GameObject enemySpawnPoint;
 
     //PRIVATE
@@ -50,13 +50,35 @@ public class AIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        mobPrefabs = new List<GameObject>();
+        bossPrefabs = new List<GameObject>();
+
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/BugMonster"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Cat Bat"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon Undead"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/FlowerMonster"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Hornet"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Magma Demon"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Masked Orc"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Mushroom Monster"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Plant Monster"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Slime(Animated)"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Slime(AnimatedBigger)"));
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Zombie"));
+
+
+        bossPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon Boss"));
+        bossPrefabs.Add((GameObject)Resources.Load("Enemies/Tentacle Monster-Yellow"));
+
+
         enemyList = new List<GameObject>();
 
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        
-        mobType temp = mobType.Zombie;
+
+        mobType temp = mobType.Bug;
         //spawnBoss(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
+        spawnMob(temp, enemySpawnPoint.transform.position);
 
         //mobType temp = mobType.Flower;
         //spawnMob(temp, enemySpawnPoint.transform.position);
@@ -86,25 +108,27 @@ public class AIManager : MonoBehaviour
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[0], l, Quaternion.identity));
                 break;
             case mobType.CatBat:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[1], l, Quaternion.identity));
                 break;
             case mobType.Dragon:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[5], l, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[2], l, Quaternion.identity));
                 break;
             case mobType.DragonUndead:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[6], l, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[3], l, Quaternion.identity));
                 break;
             case mobType.Flower:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[1], l, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[4], l, Quaternion.identity));
                 break;
             case mobType.Goblin:
                 break;
             case mobType.Slime:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[2], l, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[10], l, Quaternion.identity));
                 break;
             case mobType.SlimeBig:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[3], l, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[11], l, Quaternion.identity));
                 break;
             case mobType.Magma:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[6], l, Quaternion.identity));
                 break;
             case mobType.MaskedOrc:
                 break;
@@ -115,7 +139,7 @@ public class AIManager : MonoBehaviour
             case mobType.SkeletalWarrior:
                 break;
             case mobType.Zombie:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[4], l, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[12], l, Quaternion.identity));
                 break;
         }
         //set the mobtype

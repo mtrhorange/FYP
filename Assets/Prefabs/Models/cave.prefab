@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000011236941670}
   - 33: {fileID: 33000012068058524}
   - 23: {fileID: 23000010304557866}
-  - 95: {fileID: 95000010929003972}
   m_Layer: 0
   m_Name: cave
   m_TagString: Untagged
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010584073156}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 16.036, y: 7.86, z: -9.5575}
+  m_LocalPosition: {x: 37.87, y: 3.1, z: -29.47}
   m_LocalScale: {x: 1.7710866, y: 1.771087, z: 1.771087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -77,21 +76,4 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010584073156}
-  m_Mesh: {fileID: 4300000, guid: 1f5a49e6c7bac494da25bfe7b996c384, type: 3}
---- !u!95 &95000010929003972
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010584073156}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1f5a49e6c7bac494da25bfe7b996c384, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Mesh: {fileID: 4300000, guid: 57380836b9fe0484b9e6ec9b39cf1fb5, type: 3}

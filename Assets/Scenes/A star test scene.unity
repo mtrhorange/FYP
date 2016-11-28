@@ -426,17 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6432c9e319f1740805ba48184651a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobPrefabs:
-  - {fileID: 1000011506917522, guid: a63fc622ddeb4e94fbaf35cd2de33f44, type: 2}
-  - {fileID: 1000011503703302, guid: 67a530338f2afc345b0324e219ce7485, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1000013600643592, guid: 7ef6f5c56cf0eb5478ebf44b578ad987, type: 2}
-  - {fileID: 1000013296509940, guid: 47b22bd8031890d4eb1ad816f386f518, type: 2}
-  - {fileID: 1000010310114446, guid: 9163faf20a653e44fb6bcc10a11b5ffd, type: 2}
-  bossPrefabs:
-  - {fileID: 1000011128234790, guid: 2700a6babdc9c394c80ee2c14873b202, type: 2}
-  - {fileID: 0}
+  mobPrefabs: []
   enemySpawnPoint: {fileID: 338488197}
 --- !u!4 &312318805
 Transform:

@@ -1437,7 +1437,6 @@ GameObject:
   - 4: {fileID: 4000012470483842}
   - 33: {fileID: 33000010484232410}
   - 23: {fileID: 23000011276394096}
-  - 114: {fileID: 114000011567845236}
   m_Layer: 0
   m_Name: castleRoom3
   m_TagString: Untagged
@@ -5075,21 +5074,6 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000011567845236
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013643395210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b42fec4a1e071c45be807259e37a4ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minIntensity: 0.25
-  maxIntensity: 0.4
-  minRange: 25
-  maxRange: 40
 --- !u!198 &198000010154539782
 ParticleSystem:
   m_ObjectHideFlags: 1
