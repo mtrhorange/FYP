@@ -8,7 +8,7 @@ public class DragonBoss : Enemy
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 0.5f, breathTimer, stompTimer, summonTimer;
-    private float breathInterval = 10f, stompInterval = 3.5f, summonInterval = 60f;
+    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 60f;
     //attacking variables
     private bool attacking = false;
     public GameObject breath, fireBlast;
@@ -29,7 +29,7 @@ public class DragonBoss : Enemy
     //Start
     protected override void Start()
     {
-        myStrength = Strength.Strong;
+        myStrength = Strength.Boss;
 
         base.Start();
         //seeker component
@@ -67,6 +67,11 @@ public class DragonBoss : Enemy
         else if (myState == States.Attack)
         {
             Attack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ReceiveDamage(1);
         }
 
         breathTimer -= Time.deltaTime;
@@ -151,6 +156,19 @@ public class DragonBoss : Enemy
         rB.velocity = transform.forward * speed;
     }
 
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        breath.SetActive(false);
+        StopAllCoroutines();
+        attacking = false;
+        //play flinch animaton
+        playAnim("idle_stretch", 5f, true);
+    }
+
     //Attack
     protected override void Attack()
     {
@@ -164,17 +182,20 @@ public class DragonBoss : Enemy
                 playAnim("groundStomp", 1, true);
                 //create fire blast
                 fireBlastRef = (GameObject)Instantiate(fireBlast, transform.position + transform.forward * 7, transform.rotation);
+                stompTimer = stompInterval;
             }
             //Fire Breath
             else if (atkType == attackType.FireBreath)
             {
                 playAnim("stand_breath", 0.5f, true);
                 breath.SetActive(true);
+                breathTimer = breathInterval;
             }
             //Summon
             else if (atkType == attackType.Summon)
             {
-                playAnim("idle_stretch", 1f, true);
+                playAnim("summon 1", 1f, true);
+                summonTimer = summonInterval;
             }
 
         }
@@ -222,18 +243,20 @@ public class DragonBoss : Enemy
             case "groundStomp":
                 attacking = false;
                 myState = States.Chase;
-                stompTimer = stompInterval;
                 break;
             case "stand_breath":
                 attacking = false;
                 myState = States.Chase;
-                breathTimer = breathInterval;
                 break;
-            case "idle_stretch":
+            case "summon 1":
                 AIManager.instance.spawnMob(mobType.Dragon, new Vector3(transform.position.x + 4f, 1, transform.position.z));
                 AIManager.instance.spawnMob(mobType.DragonUndead, new Vector3(transform.position.x - 4f, 1, transform.position.z));
                 myState = States.Chase;
-                summonTimer = summonInterval;
+                break;
+            case "idle_stretch":
+                pathUpdateTimer = 0;
+                pathUpdate();
+                myState = States.Chase;
                 break;
         }
     }
@@ -326,7 +349,7 @@ public class DragonBoss : Enemy
         return Vector3.zero;
     }
 
-    //Ground Stomp animation event callback
+    //Ground Stomp animation event
     public void GroundStompEvent(int on)
     {
         fireBlastRef.GetComponent<BoxCollider>().enabled = on == 1 ? true : false;

@@ -9,7 +9,7 @@ public class EnemyProjectiles : MonoBehaviour {
     //different types of projectiles
     public enum type
     {
-        AcidSpit, //(flower monster, poison D.o.T)
+        AcidSpit,
         WebShot,
         DragonBreathFire,
         DragonBreathPoison,

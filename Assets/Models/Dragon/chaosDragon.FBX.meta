@@ -169,6 +169,7 @@ ModelImporter:
     7400030: fallToGround
     7400032: die
     7400034: ALLANIMS
+    7400036: summon
     11100000: //RootNode
     13700000: chaos_dragon
   materials:
@@ -693,6 +694,180 @@ ModelImporter:
       curves: []
       events: []
       transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: summon
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 1150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Box040
+        weight: 1
+      - path: Box040/Box042
+        weight: 1
+      - path: Box040/Box044
+        weight: 1
+      - path: Box046
+        weight: 1
+      - path: Box046/Box048
+        weight: 1
+      - path: Box046/Box050
+        weight: 1
+      - path: Box055
+        weight: 1
+      - path: Box055/Box056
+        weight: 1
+      - path: Box064
+        weight: 1
+      - path: Box064/Box062
+        weight: 1
+      - path: chaos_dragon
+        weight: 1
+      - path: Dummy007
+        weight: 1
+      - path: Dummy007/Box001
+        weight: 1
+      - path: Dummy007/Box001/Box002
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box004
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box004/Box005
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box004/Box005/Box007
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box004/Box005/Box007/Box006
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box004/Box005/Box007/Box006/Box008
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box004/Box005/Box007/Box006/Box008/Box009
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box013
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box013/Box014
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box015
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box015/Box021
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box016
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box016/Box020
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box017
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box012/Box017/Box019
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box011/Box066
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box031
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box031/Box030
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box032
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box032/Box035
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box033
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box033/Box034
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box036
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box029/Box036/Box037
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box028/Box067
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box038
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box038/Box039
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box038/Box039/Dummy001
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box051
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box051/Box045
+        weight: 1
+      - path: Dummy007/Box001/Box002/Box051/Box045/Dummy005
+        weight: 1
+      - path: Dummy007/Box001/Box003
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box022
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box022/Box023
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box022/Box023/Box024
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box022/Box023/Box024/Box025
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box022/Box023/Box024/Box025/Box026
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box022/Box023/Box024/Box025/Box026/Box027
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box052
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box052/Box053
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box052/Box053/Box054
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box052/Box053/Box054/Dummy003
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box060
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box060/Box059
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box060/Box059/Box063
+        weight: 1
+      - path: Dummy007/Box001/Box003/Box060/Box059/Box063/Dummy004
+        weight: 1
+      - path: Dummy007/Box001/Dummy002
+        weight: 1
+      - path: Dummy007/Box001/Dummy006
+        weight: 1
+      - path: Dummy007/IK Chain003
+        weight: 1
+      - path: Dummy007/IK Chain004
+        weight: 1
+      - path: Dummy007/IK Chain005
+        weight: 1
+      - path: Dummy007/IK Chain006
+        weight: 1
+      - path: Dummy007/IK Chain007
+        weight: 1
+      - path: Dummy007/IK Chain008
+        weight: 1
+      - path: Dummy007/IK Chain009
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0

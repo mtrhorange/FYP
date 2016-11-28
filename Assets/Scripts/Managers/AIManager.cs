@@ -56,7 +56,7 @@ public class AIManager : MonoBehaviour
         
         mobType temp = mobType.Zombie;
         //spawnBoss(temp, enemySpawnPoint.transform.position);
-        spawnMob(temp, enemySpawnPoint.transform.position);
+        //spawnMob(temp, enemySpawnPoint.transform.position);
 
         //mobType temp = mobType.Flower;
         //spawnMob(temp, enemySpawnPoint.transform.position);

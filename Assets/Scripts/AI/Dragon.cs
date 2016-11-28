@@ -56,11 +56,6 @@ public class Dragon : Enemy {
         {
             Attack();
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            playAnim("idle_stretch", 8f, true);
-        }
 	}
 
     //Idle
@@ -155,6 +150,27 @@ public class Dragon : Enemy {
         Debug.DrawRay(transform.position, look, Color.yellow);
 
         attackTimer -= Time.deltaTime;
+    }
+
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+        breath.SetActive(false);
+        StopAllCoroutines();
+        attacking = false;
+        //play flinch animaton
+        if (flying)
+        {
+            playAnim("fly_attack", 2f, true);
+        }
+        else
+        {
+            playAnim("idle_stretch", 8f, true);
+        }
     }
 
     //Attack
@@ -259,6 +275,12 @@ public class Dragon : Enemy {
                 break;
             case "flyBegin":
                 playAnim("fly", 1, false);
+                break;
+            case "fly_attack":
+            case "idle_stretch":
+                pathUpdateTimer = 0;
+                pathUpdate();
+                myState = States.Chase;
                 break;
         }
         waitAnim = false;

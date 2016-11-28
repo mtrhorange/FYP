@@ -34,7 +34,8 @@ public class Enemy : MonoBehaviour
     {
         Weak,
         Medium,
-        Strong
+        Strong,
+        Boss
     }
     //myStrength (how strong this enemy is)
     public Strength myStrength = Strength.Weak;
@@ -152,7 +153,8 @@ public class Enemy : MonoBehaviour
         else
         {
             //Flinch
-            Flinch();
+            if (myState != States.Flinch)
+                Flinch();
         }
     }
 
@@ -208,6 +210,12 @@ public class Enemy : MonoBehaviour
             baseMul = 0.75f;
             levelMul = 0.75f;
         }
+        else if (myStrength == Strength.Boss)
+        {
+            baseDmg = 11;
+            baseMul = 0.75f;
+            levelMul = 0.75f;
+        }
 
         //FORMURA
         //base: 3, 5, 8
@@ -238,6 +246,12 @@ public class Enemy : MonoBehaviour
         else if (myStrength == Strength.Strong)
         {
             baseHP = 30;
+            baseMul = 10.5f;
+            levelMul = 5f;
+        }
+        else if (myStrength == Strength.Boss)
+        {
+            baseHP = 100;
             baseMul = 10.5f;
             levelMul = 5f;
         }
