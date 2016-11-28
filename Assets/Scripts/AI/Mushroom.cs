@@ -59,18 +59,11 @@ public class Mushroom : Enemy {
         {
             Death();
         }
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
 	}
 
     //Idle
     protected override void Idle()
     {
-        
         //chase target
         target = player.transform.position;
         //set a path to tgt position
@@ -177,6 +170,27 @@ public class Mushroom : Enemy {
             currentWayPoint++;
             return;
         }
+    }
+
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+        attacking = false;
+        //play flinch animaton
+        anim.SetBool("Hop", false);
+        anim.SetTrigger("Take Damage");
+    }
+
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        pathUpdateTimer = 0;
+        pathUpdate();
+        myState = States.Chase;
     }
 
     //Attack

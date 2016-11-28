@@ -179,6 +179,27 @@ public class Hornet : Enemy {
         }
     }
 
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+        attacking = false;
+        //play flinch animaton
+        anim.SetBool("Fly Forward", false);
+        anim.SetTrigger("Take Damage");
+    }
+
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        pathUpdateTimer = 0;
+        pathUpdate();
+        myState = States.Chase;
+    }
+
     //Attack
     protected override void Attack()
     {

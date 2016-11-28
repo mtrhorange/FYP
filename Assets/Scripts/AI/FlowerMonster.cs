@@ -170,6 +170,26 @@ public class FlowerMonster : Enemy {
         pathUpdate();
     }
 
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        attacking = false;
+        //play flinch animaton
+        anim.SetBool("Walk", false);
+        anim.SetTrigger("Take Damage");
+    }
+
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        pathUpdateTimer = 0;
+        pathUpdate();
+        myState = States.Chase;
+    }
+
     //update calculated path every set time
     public void pathUpdate()
     {

@@ -173,6 +173,7 @@ public class BugMonster : Enemy
         base.Flinch();
         //stop moving
         rB.velocity = Vector3.zero;
+        attacking = false;
         //play flinch animaton
         anim.SetBool("Walk", false);
         anim.SetTrigger("Take Damage");

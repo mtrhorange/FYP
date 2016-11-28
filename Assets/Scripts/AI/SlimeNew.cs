@@ -11,13 +11,18 @@ public class SlimeNew : Enemy {
     //movement variables
     private float pathUpdateTimer = 0.5f;
     private Vector3 dir = Vector3.zero;
+    private Animator anim;
     //attack variables
+    public float attackInterval = 0.5f;
+    private float attackTimer;
     private bool attacking = false;
 
 	//Start
     protected override void Start()
     {
         myStrength = Strength.Weak;
+
+        anim = GetComponent<Animator>();
 
         base.Start();
         //slime properties
@@ -29,6 +34,8 @@ public class SlimeNew : Enemy {
         seeker = GetComponent<Seeker>();
         //get rigidbody
         rB = GetComponent<Rigidbody>();
+
+        attackTimer = attackInterval;
 
         //targetting style
         tgtStyle = targetStyle.WeakestPlayer;
@@ -48,12 +55,7 @@ public class SlimeNew : Enemy {
         }
         else if (myState == States.Attack)
         {
-            if (!attacking)
-            {
-                attacking = true;
-                Debug.Log("update");
-                StartCoroutine(Attack());
-            }
+            Attack();
         }
         else if (myState == States.Dead)
         {
@@ -94,10 +96,13 @@ public class SlimeNew : Enemy {
         //attack trigger distance debug ray
         Debug.DrawRay(transform.position + transform.up, velocity, Color.magenta);
 
-        //check first if close enough to the player
-        //if yes proceed to attack
-        if ((player.transform.position - transform.position).magnitude <= 2f)
+        //if can attack aledy
+        if (/*attackTimer <= 0 && */(player.transform.position - transform.position).magnitude <= 1.8f)
         {
+            //if close enough to the player
+            //proceed to attack
+            anim.SetBool("Move", false);
+            anim.SetTrigger("Attack");
             myState = States.Attack;
         }
         //continue chasing
@@ -105,6 +110,8 @@ public class SlimeNew : Enemy {
         {
             nextPathPoint =
                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+
+            anim.SetBool("Move", true);
 
             //look & move
             dir = velocity;
@@ -115,6 +122,28 @@ public class SlimeNew : Enemy {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
             rB.velocity = transform.forward * speed;
         }
+       // attackTimer -= Time.deltaTime;
+    }
+
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+        attacking = false;
+        //play flinch animaton
+        anim.SetBool("Move", false);
+        anim.SetTrigger("Take Damage");
+    }
+
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        pathUpdateTimer = 0;
+        pathUpdate();
+        myState = States.Chase;
     }
 
     //Death override
@@ -140,52 +169,30 @@ public class SlimeNew : Enemy {
         }
     }
 
-    //attack, override next time when got model + animation
-    private IEnumerator Attack()
+    //Attack
+    protected override void Attack()
     {
-        //temporary attack action to be changed
-        Vector3 scale = transform.localScale;
-        scale.x += 0.25f;
-        scale.y += 0.25f;
-        scale.z += 0.25f;
-        transform.localScale = scale;
-        yield return new WaitForSeconds(0.25f);
-        scale.x += 0.25f;
-        scale.y += 0.25f;
-        scale.z += 0.25f;
-        transform.localScale = scale;
-        yield return new WaitForSeconds(0.25f);
-        scale.x += 0.25f;
-        scale.y += 0.25f;
-        scale.z += 0.25f;
-        transform.localScale = scale;
-        yield return new WaitForSeconds(0.25f);
-        scale.x += 0.25f;
-        scale.y += 0.25f;
-        scale.z += 0.25f;
-        transform.localScale = scale;
+        if (!attacking)
+        {
+            attacking = true;
+            anim.SetBool("Move", false);
+            anim.SetTrigger("Attack");
+            rB.velocity = Vector3.zero;
+        }
+    }
+
+    //attack event 1
+    public void AttackEvent1()
+    {
         GetComponent<BoxCollider>().enabled = true;
-        yield return new WaitForSeconds(0.25f);
-        scale.x -= 0.25f;
-        scale.y -= 0.25f;
-        scale.z -= 0.25f;
-        transform.localScale = scale;
-        yield return new WaitForSeconds(0.25f);
-        scale.x -= 0.25f;
-        scale.y -= 0.25f;
-        scale.z -= 0.25f;
-        transform.localScale = scale;
+    }
+
+    //attack event 2
+    public void AttackEvent2()
+    {
+        //reset attack interval and state to chase
         GetComponent<BoxCollider>().enabled = false;
-        yield return new WaitForSeconds(0.25f);
-        scale.x -= 0.25f;
-        scale.y -= 0.25f;
-        scale.z -= 0.25f;
-        transform.localScale = scale;
-        yield return new WaitForSeconds(0.25f);
-        scale.x -= 0.25f;
-        scale.y -= 0.25f;
-        scale.z -= 0.25f;
-        transform.localScale = scale;
+        attackTimer = attackInterval;
         myState = States.Chase;
         attacking = false;
     }
