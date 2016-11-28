@@ -1,36 +1,93 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MenuButton : MonoBehaviour {
 
-	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn, SelectBtn, CancelBtn;
+	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn, SubmitBtn, CancelBtn;
+
+	public enum ButtonTypes {MainMenu, Tab, Panel, Skill}
+	public ButtonTypes btnType;
+
 
 	public bool selected;
 
+	public GameObject selectedImg;
+
+	public virtual void Awake() {
+
+
+
+	}
 
 	// Use this for initialization
-	void Start () {
-	
+	public virtual void Start () {
+		if (btnType != ButtonTypes.MainMenu) {
+			
+
+			if (!selected)
+				Deselect ();
+			else
+				Select ();
+
+		}
+
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	public virtual void Update () {
+		
 	}
 
-	void CheckInput() {
-		if (Input.GetButtonDown ("AttackL"))
-			Select ();
-		if (Input.GetButtonDown ("AttackR"))
-			Cancel ();
+
+
+	public virtual void Select() {
+		selected = true;
+
+		GameMenuManager.instance.selectedBtn = this;
 	}
 
-	public void Select() {
+	public virtual void Deselect() {
+		selected = false;
 
 
 	}
 
-	void Cancel() {
+	public virtual void Submit() {
+
+
+	}
+
+	public virtual void Cancel() {
+
+	}
+
+	public void Inactive() {
+		Color color = GetComponent<Image> ().color;
+		GetComponent<Image> ().color = new Color (color.r, color.g, color.b, 0.5f);
+
+	}
+
+	public void Active() {
+		Color color = GetComponent<Image> ().color;
+		GetComponent<Image> ().color = new Color (color.r, color.g, color.b, 1f);
+
+	}
+
+	public void SelectionActive() {
+		Color color = selectedImg.GetComponent<Image> ().color;
+		selectedImg.GetComponent<Image> ().color = new Color (color.r, color.g, color.b, 1f);
+		if (selectedImg.GetComponent<Animator> ())
+			selectedImg.GetComponent<Animator> ().enabled = true;
+
+	}
+
+	public void SelectionInactive() {
+		Color color = selectedImg.GetComponent<Image> ().color;
+		selectedImg.GetComponent<Image> ().color = new Color (color.r, color.g, color.b, 0.5f);
+		if (selectedImg.GetComponent<Animator> ())
+			selectedImg.GetComponent<Animator> ().enabled = false;
 
 	}
 
@@ -38,13 +95,44 @@ public class MenuButton : MonoBehaviour {
 		if (LeftBtn == null)
 			return false;
 		else {
-
-
+			LeftBtn.Select ();
+			Deselect ();
 			return true;
 		}
-
 	}
 
+	public bool MoveRight() {
+
+		if (RightBtn == null)
+			return false;
+		else {
+			RightBtn.Select ();
+			Deselect ();
+			return true;
+		}
+	}
+
+	public bool MoveDown() {
+
+		if (DownBtn == null)
+			return false;
+		else {
+			DownBtn.Select ();
+			Deselect ();
+			return true;
+		}
+	}
+
+	public bool MoveUp() {
+
+		if (UpBtn == null)
+			return false;
+		else {
+			UpBtn.Select ();
+			Deselect ();
+			return true;
+		}
+	}
 
 	#region LevelManager
 

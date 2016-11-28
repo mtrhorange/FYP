@@ -355,30 +355,7 @@ public class PlayerController : MonoBehaviour
 				else 
 					StartCoroutine(_SwitchWeapon(20));
 			}
-			if(inputCastR && canAction && isGrounded && !isBlocking && !isStrafing)
-			{
-				AttackKick(2);
-			}
-			if(inputCastR && canAction && isGrounded && isBlocking)
-			{
-				StartCoroutine(_BlockBreak());
-			}
-			if(inputSwitchUpDown < -.1 && canAction && !isBlocking && isGrounded)
-			{  
-				SwitchWeaponTwoHand(0);
-			}
-			else if(inputSwitchUpDown > .1 && canAction && !isBlocking && isGrounded)
-			{  
-				SwitchWeaponTwoHand(1);
-			}
-			if(inputSwitchLeftRight < -.1 && canAction && !isBlocking && isGrounded)
-			{  
-				SwitchWeaponLeftRight(0);
-			}
-			else if(inputSwitchLeftRight > .1 && canAction && !isBlocking && isGrounded)
-			{  
-				SwitchWeaponLeftRight(1);
-			}
+
 			//if strafing while rifle, aim
 			if((inputStrafe || inputTargetBlock > .1 && canAction) && weapon == WeaponType.RIFLE)
 			{  
@@ -949,6 +926,7 @@ public class PlayerController : MonoBehaviour
 						else
 						{
 							StartCoroutine(_LockMovementAndAttack(0, .7f));
+							StartCoroutine(_AttackTrigger(0.1f, 0.6f));
 						}
 					}
 					else
@@ -1068,30 +1046,30 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void GetHit()
+	public void GetHit()
 	{
 		if(weapon != WeaponType.RIFLE)
 		{
 			int hits = 5;
 			int hitNumber = Random.Range(0, hits);
 			animator.SetTrigger("GetHit" + (hitNumber + 1).ToString()+ "Trigger");
-			StartCoroutine(_LockMovementAndAttack(.1f, .4f));
+			StartCoroutine(_LockMovementAndAttack(.1f, .2f));
 			//apply directional knockback force
 			if(hitNumber <= 1)
 			{
-				StartCoroutine(_Knockback(-transform.forward, 8, 4));
+				StartCoroutine(_Knockback(-transform.forward, 1, 0));
 			} 
 			else if(hitNumber == 2)
 			{
-				StartCoroutine(_Knockback(transform.forward, 8, 4));
+				StartCoroutine(_Knockback(transform.forward, 1, 0));
 			}
 			else if(hitNumber == 3)
 			{
-				StartCoroutine(_Knockback(transform.right, 8, 4));
+				StartCoroutine(_Knockback(transform.right, 1, 0));
 			}
 			else if(hitNumber == 4)
 			{
-				StartCoroutine(_Knockback(-transform.right, 8, 4));
+				StartCoroutine(_Knockback(-transform.right, 1, 0));
 			}
 		}
 		else
@@ -1238,14 +1216,21 @@ public class PlayerController : MonoBehaviour
 		inputVec = new Vector3(0, 0, 0);
 		animator.applyRootMotion = true;
 
-		player.currentWeapon.AttackTrigger (1);
+
 		yield return new WaitForSeconds(lockTime);
 		canAction = true;
 		canMove = true;
 		animator.applyRootMotion = false;
-		player.currentWeapon.AttackTrigger (0);
+
 	}
 
+	IEnumerator _AttackTrigger(float delayTime, float triggerTime)
+	{
+		yield return new WaitForSeconds(delayTime);
+		player.currentWeapon.AttackTrigger (1);
+		yield return new WaitForSeconds(triggerTime);
+		player.currentWeapon.AttackTrigger (0);
+	}
 
 	//for controller weapon switching
 	void SwitchWeaponTwoHand(int upDown)

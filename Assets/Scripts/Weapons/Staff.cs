@@ -7,7 +7,7 @@ public class Staff : Weapon {
 
 	public enum StaffType {Ice, Fire}
 
-	public StaffType type;
+	public StaffType staffType;
 
 	public delegate void SpellBolt ();
 	public SpellBolt spellBolt;
@@ -19,7 +19,7 @@ public class Staff : Weapon {
 
 		spellIceBall = (GameObject)Resources.Load ("Skills/Ice_Ball");
 
-		if (type == StaffType.Ice)
+		if (staffType == StaffType.Ice)
 			spellBolt = CastIceBall;
 	}
 	
@@ -43,6 +43,6 @@ public class Staff : Weapon {
 
 		GameObject ice = (GameObject)Instantiate (spellIceBall, player.transform.position + player.transform.up * 2f + player.transform.forward, player.transform.localRotation);
 		ice.GetComponent<Ice_Ball_Script> ().player = player;
-
 	}
+
 }

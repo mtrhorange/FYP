@@ -85,10 +85,14 @@ public class Player : MonoBehaviour {
 		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		//enemyTargetHover = transform.Find ("Target").gameObject;
 
-		if (currentWeapon != null)
+		if (controller.firstWep != null) {
+			currentWeapon = controller.firstWep.GetComponent<Weapon>();
 			currentWeapon.player = this;
-		if (nextWeapon != null)
+		}
+		if (controller.secondWep != null) {
+			nextWeapon = controller.secondWep.GetComponent<Weapon>();
 			nextWeapon.player = this;
+		}
 
 		skills = GetComponent<PlayerSkills> ();
 		damageText = (GameObject)Resources.Load ("DamageText");
@@ -179,7 +183,7 @@ public class Player : MonoBehaviour {
 		txt.GetComponent<DamageText> ().target = transform;
 		txt.GetComponent<Text> ().color = Color.red;
 
-		//controller.GetHit ();
+		controller.GetHit ();
 	}
 
 	//Player recovers health

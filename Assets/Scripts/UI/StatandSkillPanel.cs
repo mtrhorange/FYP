@@ -266,8 +266,6 @@ public class StatandSkillPanel : MonoBehaviour {
 		Image2.SetActive(false);
 		Image3.SetActive(false);
 
-
-
     }
 	public void SkillsTab() {
 
@@ -412,7 +410,6 @@ public class StatandSkillPanel : MonoBehaviour {
 		AS4CB.normalColor = Color.white;
 		Askill4Btn.colors = AS4CB;
 		ActiveSkillText.text = "This is Active skill 2";
-
 	}
 
 
