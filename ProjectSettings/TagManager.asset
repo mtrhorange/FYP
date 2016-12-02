@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Collide
   - RoomBound
+  - UICamera
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
