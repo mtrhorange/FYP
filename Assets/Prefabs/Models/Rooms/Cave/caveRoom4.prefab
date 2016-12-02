@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013821674972}
   - 65: {fileID: 65000011022279428}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012895005706}
   - 65: {fileID: 65000012625674144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (61)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,6 @@ GameObject:
   - 4: {fileID: 4000013636097512}
   - 33: {fileID: 33000011184563598}
   - 23: {fileID: 23000010814186910}
-  - 95: {fileID: 95000013133685920}
   m_Layer: 0
   m_Name: crystal#3 (1)
   m_TagString: Untagged
@@ -135,7 +134,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013266998384}
   - 65: {fileID: 65000011313261880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +150,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012217418210}
   - 65: {fileID: 65000010305130002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +166,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010159600114}
   - 65: {fileID: 65000013237572390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (52)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +182,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011196953906}
   - 65: {fileID: 65000010743642748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +198,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012236342636}
   - 65: {fileID: 65000013782138106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +230,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011518717650}
   - 65: {fileID: 65000013333280424}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +280,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014281818658}
   - 65: {fileID: 65000011137709390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +297,6 @@ GameObject:
   - 4: {fileID: 4000012112154154}
   - 33: {fileID: 33000010667813636}
   - 23: {fileID: 23000010517021062}
-  - 95: {fileID: 95000012395336508}
   m_Layer: 0
   m_Name: crystal#3 (2)
   m_TagString: Untagged
@@ -315,7 +313,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010084229064}
   - 65: {fileID: 65000010334928044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +344,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014093799040}
   - 65: {fileID: 65000013303689420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +375,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012248019788}
   - 65: {fileID: 65000013044375776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +391,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013425299732}
   - 65: {fileID: 65000010248178018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +407,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013727403494}
   - 65: {fileID: 65000011503195330}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +474,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011326446386}
   - 65: {fileID: 65000010025317600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (59)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +522,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010857103186}
   - 65: {fileID: 65000011394216116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +538,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012186469548}
   - 65: {fileID: 65000011313496898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +585,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013370021752}
   - 65: {fileID: 65000014072611448}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +601,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010147458346}
   - 65: {fileID: 65000010534355006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +617,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013512630412}
   - 65: {fileID: 65000011296650100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +649,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010148155244}
   - 65: {fileID: 65000010135789822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +665,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014270094224}
   - 65: {fileID: 65000013682287166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +681,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013784450184}
   - 65: {fileID: 65000011999931246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +730,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011245653790}
   - 65: {fileID: 65000013180493328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +764,6 @@ GameObject:
   - 4: {fileID: 4000013992821156}
   - 33: {fileID: 33000012522825472}
   - 23: {fileID: 23000010612346890}
-  - 95: {fileID: 95000013944429878}
   m_Layer: 0
   m_Name: crystal#2 (2)
   m_TagString: Untagged
@@ -800,7 +797,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011129709292}
   - 65: {fileID: 65000010282224782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +831,6 @@ GameObject:
   - 4: {fileID: 4000012748342948}
   - 33: {fileID: 33000013881593188}
   - 23: {fileID: 23000011287902988}
-  - 95: {fileID: 95000012322592616}
   m_Layer: 0
   m_Name: crystal#2 (5)
   m_TagString: Untagged
@@ -881,7 +877,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011920685710}
   - 65: {fileID: 65000010266775828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +893,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011597776572}
   - 65: {fileID: 65000012271170880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +909,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012736347888}
   - 65: {fileID: 65000011322269538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +941,6 @@ GameObject:
   - 4: {fileID: 4000013092204884}
   - 33: {fileID: 33000012208551544}
   - 23: {fileID: 23000011616675484}
-  - 95: {fileID: 95000013593697202}
   m_Layer: 0
   m_Name: crystal#2 (4)
   m_TagString: Untagged
@@ -996,7 +991,6 @@ GameObject:
   - 4: {fileID: 4000010205636480}
   - 33: {fileID: 33000013348928234}
   - 23: {fileID: 23000012006508036}
-  - 95: {fileID: 95000014221396018}
   m_Layer: 0
   m_Name: crystal#2 (1)
   m_TagString: Untagged
@@ -1013,7 +1007,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010519045150}
   - 65: {fileID: 65000010119968574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1045,7 +1039,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012611489366}
   - 65: {fileID: 65000011862825686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (54)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1095,7 +1089,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010503708922}
   - 65: {fileID: 65000010851171582}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,7 +1120,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012489907978}
   - 65: {fileID: 65000013230064970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1154,7 @@ GameObject:
   - 23: {fileID: 23000010363515926}
   - 114: {fileID: 114000010501684086}
   m_Layer: 0
-  m_Name: CaveRoom4
+  m_Name: caveRoom4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,7 +1169,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011404018930}
   - 65: {fileID: 65000012466950132}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1191,7 +1185,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013377044618}
   - 65: {fileID: 65000010441721370}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1207,7 +1201,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011308435976}
   - 65: {fileID: 65000013533980928}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1223,7 +1217,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010314040944}
   - 65: {fileID: 65000013455872088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,7 +1233,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013624192250}
   - 65: {fileID: 65000012209593854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1266,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010893257648}
   - 65: {fileID: 65000010890279008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1282,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011570655666}
   - 65: {fileID: 65000014030626222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1366,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011284882320}
   - 65: {fileID: 65000013460443980}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1389,7 +1383,6 @@ GameObject:
   - 4: {fileID: 4000011669386322}
   - 33: {fileID: 33000013951363808}
   - 23: {fileID: 23000010295635160}
-  - 95: {fileID: 95000012508116646}
   m_Layer: 0
   m_Name: crystal#3
   m_TagString: Untagged
@@ -1406,7 +1399,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013692206584}
   - 65: {fileID: 65000012967485780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1423,7 +1416,6 @@ GameObject:
   - 4: {fileID: 4000012348253112}
   - 33: {fileID: 33000010665433430}
   - 23: {fileID: 23000012815967050}
-  - 95: {fileID: 95000013553005790}
   m_Layer: 0
   m_Name: crystal#3
   m_TagString: Untagged
@@ -1440,7 +1432,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012357072428}
   - 65: {fileID: 65000012411270442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1488,7 +1480,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012837800118}
   - 65: {fileID: 65000010218959856}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,7 +1496,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013698091118}
   - 65: {fileID: 65000011448693804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1520,7 +1512,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012393187238}
   - 65: {fileID: 65000011344702384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1536,7 +1528,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010493883948}
   - 65: {fileID: 65000012359154632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1553,7 +1545,6 @@ GameObject:
   - 4: {fileID: 4000011797143574}
   - 33: {fileID: 33000014147871780}
   - 23: {fileID: 23000012488681024}
-  - 95: {fileID: 95000010514322768}
   m_Layer: 0
   m_Name: crystal#2
   m_TagString: Untagged
@@ -1570,7 +1561,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010463184320}
   - 65: {fileID: 65000011602504494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1632,7 +1623,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011080425528}
   - 65: {fileID: 65000012310706494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1648,7 +1639,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012971929206}
   - 65: {fileID: 65000013413986130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1679,7 +1670,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011480852554}
   - 65: {fileID: 65000013769598150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (55)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1695,7 +1686,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013221859520}
   - 65: {fileID: 65000010995209410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (60)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1711,7 +1702,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012173281910}
   - 65: {fileID: 65000011016488022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1727,7 +1718,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012165010938}
   - 65: {fileID: 65000010356882640}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1743,7 +1734,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011094579070}
   - 65: {fileID: 65000013014224954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1759,7 +1750,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010811078984}
   - 65: {fileID: 65000012481878938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1775,7 +1766,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013057053642}
   - 65: {fileID: 65000012279369674}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1791,7 +1782,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013405616124}
   - 65: {fileID: 65000010096587524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (53)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1808,7 +1799,6 @@ GameObject:
   - 4: {fileID: 4000011562920818}
   - 33: {fileID: 33000013248559276}
   - 23: {fileID: 23000010594184920}
-  - 95: {fileID: 95000012170366484}
   m_Layer: 0
   m_Name: crystal#2 (3)
   m_TagString: Untagged
@@ -1840,7 +1830,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012399195808}
   - 65: {fileID: 65000012168675330}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1857,7 +1847,6 @@ GameObject:
   - 4: {fileID: 4000011335649254}
   - 33: {fileID: 33000010343147494}
   - 23: {fileID: 23000012255513540}
-  - 95: {fileID: 95000012797919678}
   m_Layer: 0
   m_Name: crystal#2
   m_TagString: Untagged
@@ -1906,7 +1895,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011946613456}
   - 65: {fileID: 65000010275529452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1922,7 +1911,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011931741814}
   - 65: {fileID: 65000011117377578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1953,7 +1942,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011462626644}
   - 65: {fileID: 65000013351103140}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1969,7 +1958,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014009117218}
   - 65: {fileID: 65000011854397112}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,7 +1974,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012716185442}
   - 65: {fileID: 65000014253052568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3528,7 +3517,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012339122830}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -139.15219, y: 623.5565, z: -101.39521}
+  m_LocalPosition: {x: 174.59917, y: 181.45856, z: 25.800129}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -5303,193 +5292,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7146801, y: 0.66868657, z: 2.3606021}
   m_Center: {x: -0.4955227, y: 0.11070179, z: 0.68040913}
---- !u!95 &95000010514322768
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013269687748}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012170366484
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013911326544}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012322592616
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011794106450}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012395336508
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010416316462}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012508116646
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012896270806}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012797919678
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014028249104}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000013133685920
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010083833900}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000013553005790
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013007847464}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000013593697202
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012104546850}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000013944429878
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011373849844}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000014221396018
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012188130886}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108000010071424554
 Light:
   m_ObjectHideFlags: 1
@@ -5885,7 +5687,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011029151830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b42fec4a1e071c45be807259e37a4ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ee5fd8f6985644e87569ee1a162feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minIntensity: 0.2

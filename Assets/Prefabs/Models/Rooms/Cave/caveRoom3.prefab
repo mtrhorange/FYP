@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012596021094}
   - 65: {fileID: 65000011357005522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012048692062}
   - 65: {fileID: 65000010398019118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013178109184}
   - 65: {fileID: 65000011894374238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010926378788}
   - 65: {fileID: 65000013256743056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011617914752}
   - 65: {fileID: 65000013272731654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - 33: {fileID: 33000012605885706}
   - 23: {fileID: 23000013632603040}
   - 65: {fileID: 65000010529887028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011332529156}
   - 65: {fileID: 65000011038143670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012522408256}
   - 65: {fileID: 65000012308148396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,6 @@ GameObject:
   - 4: {fileID: 4000011586344360}
   - 33: {fileID: 33000010733064272}
   - 23: {fileID: 23000013014196388}
-  - 95: {fileID: 95000012505269120}
   m_Layer: 0
   m_Name: crystal#2 (1)
   m_TagString: Untagged
@@ -312,7 +311,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014055267260}
   - 65: {fileID: 65000013389206956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +342,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013413872594}
   - 65: {fileID: 65000010663137974}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +374,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013861621236}
   - 65: {fileID: 65000012234645028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +390,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011431819976}
   - 65: {fileID: 65000013285371414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +456,6 @@ GameObject:
   - 4: {fileID: 4000013406251656}
   - 33: {fileID: 33000010316913528}
   - 23: {fileID: 23000011502756470}
-  - 95: {fileID: 95000010412360922}
   m_Layer: 0
   m_Name: crystal#2
   m_TagString: Untagged
@@ -474,7 +472,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010406998672}
   - 65: {fileID: 65000013083110250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +488,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012959535590}
   - 65: {fileID: 65000011668520456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +539,7 @@ GameObject:
   - 23: {fileID: 23000011784067636}
   - 114: {fileID: 114000013048561010}
   m_Layer: 0
-  m_Name: CaveRoom3
+  m_Name: caveRoom3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,7 +569,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010171533198}
   - 65: {fileID: 65000014282194662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +601,6 @@ GameObject:
   - 4: {fileID: 4000013900751512}
   - 33: {fileID: 33000013659949276}
   - 23: {fileID: 23000010248915610}
-  - 95: {fileID: 95000011618027710}
   m_Layer: 0
   m_Name: crystal#3
   m_TagString: Untagged
@@ -622,7 +619,7 @@ GameObject:
   - 33: {fileID: 33000012125737228}
   - 23: {fileID: 23000012472816670}
   - 65: {fileID: 65000010915100518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pillar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +700,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010440705690}
   - 65: {fileID: 65000014045004578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +717,6 @@ GameObject:
   - 4: {fileID: 4000013857780112}
   - 33: {fileID: 33000011152354156}
   - 23: {fileID: 23000010245291034}
-  - 95: {fileID: 95000013016111768}
   m_Layer: 0
   m_Name: crystal#2 (2)
   m_TagString: Untagged
@@ -772,7 +768,6 @@ GameObject:
   - 4: {fileID: 4000013287594120}
   - 33: {fileID: 33000011757182680}
   - 23: {fileID: 23000011076881992}
-  - 95: {fileID: 95000013362391524}
   m_Layer: 0
   m_Name: crystal#2 (3)
   m_TagString: Untagged
@@ -1388,7 +1383,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012966385172}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -51.5, y: 0, z: 0}
+  m_LocalPosition: {x: 178.80579, y: 181.78183, z: 22.544342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2217,91 +2212,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.9999999, z: 3.646293}
   m_Center: {x: 0, y: -0.00000010948273, z: 1.3231579}
---- !u!95 &95000010412360922
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012401742204}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000011618027710
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013267648462}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012505269120
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011317219504}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000013016111768
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013589597766}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000013362391524
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014130151210}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bdcbc3140e824a0488cff9b51e78ebee, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108000011187831270
 Light:
   m_ObjectHideFlags: 1
@@ -2527,7 +2437,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011574264604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b42fec4a1e071c45be807259e37a4ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ee5fd8f6985644e87569ee1a162feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minIntensity: 0.2

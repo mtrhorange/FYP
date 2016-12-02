@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000014242165160}
   - 33: {fileID: 33000011218160202}
   - 23: {fileID: 23000010976977764}
-  - 95: {fileID: 95000011681108376}
   m_Layer: 0
   m_Name: crystal#3
   m_TagString: Untagged
@@ -78,20 +77,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010510412580}
   m_Mesh: {fileID: 4300000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
---- !u!95 &95000011681108376
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010510412580}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2ceb00d6ea9e9b24fa3229d5536ab736, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
