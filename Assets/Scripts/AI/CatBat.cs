@@ -59,12 +59,6 @@ public class CatBat : Enemy {
         {
             Death();
         }
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
 	}
 
     //Idle
@@ -83,7 +77,6 @@ public class CatBat : Enemy {
     //Chase
     protected override void Chase()
     {
-       
         pathUpdate();
 
         //if no path yet
@@ -102,9 +95,15 @@ public class CatBat : Enemy {
 
         if (attackTimer <= 0)
         {
-            if ((player.transform.position - transform.position).magnitude <= 1.5f)
+            if ((player.transform.position - transform.position).magnitude <= 6f)
             {
                 anim.SetBool("Fly", false);
+
+                Vector3 look = player.transform.position - transform.position;
+                look.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(look);
+                transform.rotation = targetRotation;
+
 
                 anim.SetTrigger("Attack");
                 rB.velocity = Vector3.zero;
@@ -203,32 +202,26 @@ public class CatBat : Enemy {
     //Attack
     protected override void Attack()
     {
-        Vector3 look = player.transform.position - transform.position;
-
-        look.y = 0;
-        Quaternion targetRotation = Quaternion.LookRotation(look);
-        transform.rotation = targetRotation;
-
         attacking = false;
-            
         pathUpdateTimer = 0f;
-        
-        rB.velocity = Vector3.zero;
-
     }
 
     public void triggerOn()
     {
-
-        rB.velocity = Vector3.zero;
+        rB.velocity = transform.forward * speed * 6f;
         GetComponent<BoxCollider>().enabled = true;
     }
 
     public void triggerOff()
     {
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+    }
+
+    public void attackActuallyEnd()
+    {
         attackTimer = attackInterval;
         myState = States.Chase;
-        GetComponent<BoxCollider>().enabled = false;
     }
 
     //update calculated path every set time

@@ -13,6 +13,9 @@ public class DragonBoss : Enemy
     private bool attacking = false;
     public GameObject breath, fireBlast;
     private GameObject fireBlastRef;
+    //flinch variables
+    private float damagedAmount, flinchThreshold;
+    private float flinchTimer = 5f;
 
     private enum attackType
     {
@@ -32,6 +35,10 @@ public class DragonBoss : Enemy
         myStrength = Strength.Boss;
 
         base.Start();
+
+        //set flinch threshold to 10% of max Hp?
+        flinchThreshold = 0.1f * health;
+
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
@@ -56,6 +63,7 @@ public class DragonBoss : Enemy
     //Update
     void Update()
     {
+        //states
         if (myState == States.Idle)
         {
             Idle();
@@ -74,6 +82,14 @@ public class DragonBoss : Enemy
             ReceiveDamage(1);
         }
 
+        //flinch time window
+        if (flinchTimer <= 0)
+        {
+            flinchTimer = 5f;
+            damagedAmount = 0f;
+        }
+
+        flinchTimer -= Time.deltaTime;
         breathTimer -= Time.deltaTime;
         stompTimer -= Time.deltaTime;
         summonTimer -= Time.deltaTime;
@@ -156,17 +172,28 @@ public class DragonBoss : Enemy
         rB.velocity = transform.forward * speed;
     }
 
+    //receive damage override
+    public override void ReceiveDamage(float dmg)
+    {
+        damagedAmount += dmg;
+        base.ReceiveDamage(dmg);
+    }
+
     //Flinch override
     protected override void Flinch()
     {
-        base.Flinch();
-        //stop moving
-        rB.velocity = Vector3.zero;
-        breath.SetActive(false);
-        StopAllCoroutines();
-        attacking = false;
-        //play flinch animaton
-        playAnim("idle_stretch", 5f, true);
+        //check if should flinch
+        if (damagedAmount >= flinchThreshold)
+        {
+            base.Flinch();
+            //stop moving
+            rB.velocity = Vector3.zero;
+            breath.SetActive(false);
+            StopAllCoroutines();
+            attacking = false;
+            //play flinch animaton
+            playAnim("idle_stretch", 3f, true);
+        }
     }
 
     //Attack
@@ -256,6 +283,8 @@ public class DragonBoss : Enemy
             case "idle_stretch":
                 pathUpdateTimer = 0;
                 pathUpdate();
+                flinchTimer = 5f;
+                damagedAmount = 0f;
                 myState = States.Chase;
                 break;
         }

@@ -318,7 +318,16 @@ public class BugMonster : Enemy
     public void AttackEvent1()
     {
         //offset for the shot
-        float offset = Random.Range(3.8f, 4.8f);
+        float offset;
+        if (player.GetComponent<Rigidbody>().velocity != Vector3.zero)
+        {
+            offset = Random.Range(3.8f, 4.8f);
+        }
+        else
+        {
+            offset = 0f;
+        }
+
         //direction for offset
         Vector3 towards = new Vector3(Random.Range(0f, 1f) * 2 - 1, 0, Random.Range(0f, 1f) * 2 - 1);
 

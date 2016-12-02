@@ -12,16 +12,17 @@ public class Zombie : Enemy {
     public float attackInterval = 3f;
     //movement variables
     private Vector3 dir;
+    private Animator anim;
 
     private bool attacking = false;
 
-   
 
 	// Use this for initialization
     protected override void Start()
     {
         myStrength = Strength.Weak;
 
+        anim = GetComponent<Animator>();
         base.Start();
         //seeker component
         seeker = GetComponent<Seeker>();
@@ -97,14 +98,14 @@ public class Zombie : Enemy {
         Debug.DrawRay(transform.position + transform.up, velocity, Color.magenta);
         if (attackTimer <= 0 && (player.transform.position - transform.position).magnitude <= 3f)
         {
-            attacking = true;
             myState = States.Attack;
-            GetComponent<BoxCollider>().enabled = true;
         }
         else
         {
             nextPathPoint =
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+
+            anim.SetBool("Move", true);
 
             //look & move
             dir = velocity;
@@ -128,34 +129,60 @@ public class Zombie : Enemy {
         }
     }
 
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        //stop moving
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+        attacking = false;
+        //play flinch animaton
+        anim.SetBool("Move", false);
+        anim.SetTrigger("Take Damage");
+    }
+
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        pathUpdateTimer = 0;
+        pathUpdate();
+        myState = States.Chase;
+    }
+
     //Attack
     protected override void Attack()
     {
-        if (transform.GetChild(3).localScale.y  <= 5f && attacking)
+        if (!attacking)
         {
-            transform.GetChild(3).localScale = new Vector3(transform.GetChild(3).localScale.x, transform.GetChild(3).localScale.y + Time.deltaTime * 4f, transform.GetChild(3).localScale.z);
-            transform.GetChild(4).localScale = new Vector3(transform.GetChild(4).localScale.x, transform.GetChild(4).localScale.y + Time.deltaTime * 4f, transform.GetChild(4).localScale.z);
-
-            if (transform.GetChild(3).localScale.y  >= 5f)
-            {
-                attacking = false;
-                GetComponent<BoxCollider>().enabled = false;
-            }
+            attacking = true;
+            anim.SetBool("Move", false);
+            anim.SetTrigger("Attack");
+            rB.velocity = Vector3.zero;
         }
-        else
-        {
-            transform.GetChild(3).localScale = new Vector3(transform.GetChild(3).localScale.x, transform.GetChild(3).localScale.y - Time.deltaTime * 4, transform.GetChild(3).localScale.z);
-            transform.GetChild(4).localScale = new Vector3(transform.GetChild(4).localScale.x, transform.GetChild(4).localScale.y - Time.deltaTime * 4, transform.GetChild(4).localScale.z);
-            if (transform.GetChild(3).localScale.y <= 2f)
-            {
-                transform.GetChild(3).localScale = new Vector3(transform.GetChild(3).localScale.x, 2, transform.GetChild(3).localScale.z);
-                transform.GetChild(4).localScale = new Vector3(transform.GetChild(4).localScale.x, 2, transform.GetChild(4).localScale.z);
+    }
 
-                attackTimer = attackInterval;
-                pathUpdateTimer = 0f;
-                myState = States.Chase;
-            }
-        }
+    //attack event 1
+    public void AttackEvent1()
+    {
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = true;
+    }
+
+    //attack event 2
+    public void AttackEvent2()
+    {
+        rB.velocity = Vector3.zero;
+        GetComponent<BoxCollider>().enabled = false;
+    }
+
+    //attack actually ended
+    public void attackActuallyEnd()
+    {
+        //reset attack interval and state to chase
+        attackTimer = attackInterval;
+        myState = States.Chase;
+        attacking = false;
     }
 
     //update calculated path every set time

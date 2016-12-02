@@ -2,9 +2,17 @@
 using System.Collections;
 using Pathfinding;
 
+//enemy strength category
+public enum Strength
+{
+    Weak,
+    Medium,
+    Strong,
+    Boss
+}
+
 public class Enemy : MonoBehaviour
 {
-
     public float health;
     public GameObject damageText;
 
@@ -29,14 +37,6 @@ public class Enemy : MonoBehaviour
     protected int currentWayPoint = 0;
     public float minDistance = 2.0f;
 
-    //enemy strength category
-    public enum Strength
-    {
-        Weak,
-        Medium,
-        Strong,
-        Boss
-    }
     //myStrength (how strong this enemy is)
     public Strength myStrength = Strength.Weak;
     //Monster Level
@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
     }
 
     //receive damage
-    public void ReceiveDamage(float dmg)
+    public virtual void ReceiveDamage(float dmg)
     {
         health -= dmg;
         Camera camera = FindObjectOfType<Camera>();
@@ -212,9 +212,9 @@ public class Enemy : MonoBehaviour
         }
         else if (myStrength == Strength.Boss)
         {
-            baseDmg = 11;
-            baseMul = 0.75f;
-            levelMul = 0.75f;
+            baseDmg = 12;
+            baseMul = 0.8f;
+            levelMul = 0.8f;
         }
 
         //FORMURA
@@ -252,8 +252,8 @@ public class Enemy : MonoBehaviour
         else if (myStrength == Strength.Boss)
         {
             baseHP = 100;
-            baseMul = 10.5f;
-            levelMul = 5f;
+            baseMul = 12f;
+            levelMul = 6f;
         }
 
         //FORMURA

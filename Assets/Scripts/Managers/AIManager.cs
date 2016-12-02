@@ -15,6 +15,7 @@ public enum mobType
     Flower,
     Mushroom,
     CatBat,
+    Hornet,
     Bug,
     Magma,
     Dragon,
@@ -33,73 +34,90 @@ public class AIManager : MonoBehaviour
     public static AIManager instance;
 
     //PUBLIC
-    public List<GameObject> mobPrefabs;
+    public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys;
     private List<GameObject> bossPrefabs;
-    public GameObject enemySpawnPoint;
+    public GameObject enemySpawnPoint; // temporary
 
     //PRIVATE
-    private List<GameObject> enemyList;
-    private bool player1 = true;
+    private List<GameObject> enemyList, roomSpawnPoints;
+    private int roomEnemyPoints; //total enemy points in current room
+    private const int WEAK = 1, MEDIUM = 2, STRONG = 4; //enemy points each strength category is worth
+    private List<int> mobPrefStrengths, spawnTheseStrengths;
+    private bool spawning = false;
 
-    //awake
+
+    //Awake
     void Awake()
     {
         instance = this;
     }
 
-    // Use this for initialization
+    //Start
     void Start()
     {
         mobPrefabs = new List<GameObject>();
+        weakGuys = new List<GameObject>();
+        medGuys = new List<GameObject>();
+        strongGuys = new List<GameObject>();
         bossPrefabs = new List<GameObject>();
+        mobPrefStrengths = new List<int>();
+        spawnTheseStrengths = new List<int>();
 
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/BugMonster"));
+        mobPrefStrengths.Add(WEAK);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Cat Bat"));
+        mobPrefStrengths.Add(WEAK);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon"));
+        mobPrefStrengths.Add(STRONG);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon Undead"));
+        mobPrefStrengths.Add(STRONG);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/FlowerMonster"));
+        mobPrefStrengths.Add(MEDIUM);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Hornet"));
+        mobPrefStrengths.Add(WEAK);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Magma Demon"));
+        mobPrefStrengths.Add(MEDIUM);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Masked Orc"));
+        mobPrefStrengths.Add(MEDIUM);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Mushroom Monster"));
+        mobPrefStrengths.Add(WEAK);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Plant Monster"));
+        mobPrefStrengths.Add(MEDIUM);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Slime(Animated)"));
+        mobPrefStrengths.Add(WEAK);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/Slime(AnimatedBigger)"));
-        mobPrefabs.Add((GameObject)Resources.Load("Enemies/Zombie"));
+        mobPrefStrengths.Add(MEDIUM);
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/ZombieClothes"));
+        mobPrefStrengths.Add(WEAK);
 
+        mobLists();
 
         bossPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon Boss"));
         bossPrefabs.Add((GameObject)Resources.Load("Enemies/Tentacle Monster-Yellow"));
 
-
         enemyList = new List<GameObject>();
-
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
+        roomSpawnPoints = new List<GameObject>();
+
+
+        //testing
         mobType temp = mobType.Bug;
         //spawnBoss(temp, enemySpawnPoint.transform.position);
-        spawnMob(temp, enemySpawnPoint.transform.position);
-
-        //mobType temp = mobType.Flower;
         //spawnMob(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
-
-        //temp = mobType.Zombie;
-
-        //spawnMob(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
-
     }
 
-    // Update is called once per frame
+    //Update
     void Update()
     {
-
+        //spawn if spawning lul
+        if (spawning)
+        {
+            fillUpRoom();
+        }
     }
 
-    //spawn mob, given type of mob, and vector position
+    //spawn specific mob, given type of mob, and vector position
     public void spawnMob(mobType e, Vector3 l)
     {
         switch (e)
@@ -145,13 +163,9 @@ public class AIManager : MonoBehaviour
         //set the mobtype
         enemyList[enemyList.Count - 1].GetComponent<Enemy>().myType = e;
         FlockingManager.instance.UpdateAgentArray();
-
-        //set target
-        //enemyList[enemyList.Count - 1].GetComponent<Enemy>().player = player1 ? GameManager.instance.player1.gameObject : GameManager.instance.player2.gameObject;
-        //player1 = !player1;
     }
 
-    //spawn boss, given type and vector position
+    //spawn specific boss, given type and vector position
     public void spawnBoss(mobType e, Vector3 l)
     {
         switch (e)
@@ -172,6 +186,99 @@ public class AIManager : MonoBehaviour
         //set the mobtype
         enemyList[enemyList.Count - 1].GetComponent<Enemy>().myType = e;
         FlockingManager.instance.UpdateAgentArray();
+    }
+
+    //New Room, reset values. Called by the room when it spawns
+    public void NewRoom()
+    {
+        //clear the enemy list
+        enemyList.Clear();
+        enemyList.TrimExcess();
+
+        //get the room points
+
+
+
+        //set the spawning to true
+        spawning = true;
+    }
+
+    //fill up room
+    public void fillUpRoom()
+    {   
+        //first check if its boss room
+        if (1 == 2 /*check if boss room)*/)
+        {
+            //spawn boss
+
+            //once spawned set spawning to false
+            spawning = false;
+        }
+        else
+        {
+            spawnTheseStrengths.Clear();
+            spawnTheseStrengths.TrimExcess();
+            //check which strngth categories we can spawn from
+            if (roomEnemyPoints >= WEAK)
+            {
+                spawnTheseStrengths.Add(WEAK);
+                if (roomEnemyPoints >= MEDIUM)
+                {
+                    spawnTheseStrengths.Add(MEDIUM);
+                    if (roomEnemyPoints >= STRONG)
+                    {
+                        spawnTheseStrengths.Add(STRONG);
+                    }
+                }
+
+                //SPAWN, improvements: check spawn points and spread dem out and not overlap if possible
+                spawnRandomMob(spawnTheseStrengths[Random.Range(0, spawnTheseStrengths.Count)], roomSpawnPoints[Random.Range(0, roomSpawnPoints.Count)].transform.position);
+            }
+        }
+    }
+
+    //spawn random mob with given strength
+    public void spawnRandomMob(int str, Vector3 loc)
+    {
+        switch (str)
+        {
+            case WEAK:
+                enemyList.Add((GameObject)Instantiate(weakGuys[Random.Range(0, weakGuys.Count)], loc, Quaternion.identity));
+                break;
+            case MEDIUM:
+                enemyList.Add((GameObject)Instantiate(medGuys[Random.Range(0, medGuys.Count)], loc, Quaternion.identity));
+                break;
+            case STRONG:
+                enemyList.Add((GameObject)Instantiate(strongGuys[Random.Range(0, strongGuys.Count)], loc, Quaternion.identity));
+                break;
+        }
+
+        //deduct the points from roomEnemyPoints
+        roomEnemyPoints -= str;
+        if (roomEnemyPoints <= 0) { spawning = false; }
+    }
+
+    //setup mob lists based on strength
+    public void mobLists()
+    {
+        for (int i = 0; i < mobPrefabs.Count; i++)
+        {
+            //weak
+            if (mobPrefStrengths[i] == WEAK)
+            {
+                weakGuys.Add(mobPrefabs[i]);
+            }
+            //medium
+            if (mobPrefStrengths[i] == MEDIUM)
+            {
+                medGuys.Add(mobPrefabs[i]);
+            }
+            //strong
+            if (mobPrefStrengths[i] == STRONG)
+            {
+                strongGuys.Add(mobPrefabs[i]);
+            }
+        }
     }
 
     //Remove enemy

@@ -20,14 +20,12 @@ public class SlimeNew : Enemy {
 	//Start
     protected override void Start()
     {
-        myStrength = Strength.Weak;
+        myStrength = bigger ? Strength.Medium : Strength.Weak;
 
         anim = GetComponent<Animator>();
 
         base.Start();
         //slime properties
-        health = bigger ? health * 1.25f : health;
-        damage = bigger ? damage * 1.2f : damage;
         transform.localScale = bigger ? new Vector3(1.8f, 1.8f, 1.8f) : transform.localScale;
         transform.position = new Vector3(transform.position.x, transform.localScale.y * 0.5f, transform.position.z);
         //get our seeker component

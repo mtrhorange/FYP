@@ -16,7 +16,6 @@ public class PlantMonster : Enemy {
     private Animator anim;
     private bool attacking = false;
 
-   
 
 	// Use this for initialization
     protected override void Start()
