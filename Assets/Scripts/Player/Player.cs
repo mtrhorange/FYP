@@ -101,6 +101,27 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		PlayerCamera cam = FindObjectOfType<PlayerCamera> ();
+
+		if (playerNo == 1)
+			cam.cameraTarget1 = this.gameObject;
+		else
+			cam.cameraTarget2 = this.gameObject;
+
+		HealthBar[] hpbars = FindObjectsOfType<HealthBar> ();
+
+		foreach (HealthBar bar in hpbars) {
+
+			if (bar.playerNo == playerNo)
+				bar.SetPlayer (this);
+			if (GameManager.instance.twoPlayers == false && bar.playerNo == 2) {
+				bar.gameObject.SetActive (false);
+
+			}
+
+		}
+
+		canBeHit = true;
 
 	}
 
@@ -111,6 +132,9 @@ public class Player : MonoBehaviour {
 
 		UpdateHealth ();
 		StatusEffectsUpdate ();
+
+		if (recoverStamina && Stamina < MaxStamina)
+			RecoverStamina (Time.deltaTime * 2f);
 	}
 
 	#endregion
@@ -170,26 +194,39 @@ public class Player : MonoBehaviour {
 
 	//Player gets damage, reduces health
 	public void ReceiveDamage(float f) {
+		if (canBeHit) {
+			float dmg = f;
 
-		float dmg = f;
+			dmg = dmg * (1f - ((0.05f * skills.defenseBuffLevel) > 0.5f ? 0.5f : (0.05f * skills.defenseBuffLevel)));
 
-		dmg = dmg * (1f - ((0.05f*skills.defenseBuffLevel)>0.5f?0.5f:(0.05f*skills.defenseBuffLevel)));
-        Health -= f;
-		Camera camera = FindObjectOfType<Camera>();
-		Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-		GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
-		txt.transform.SetParent(GameObject.Find("Canvas").transform);
-		txt.GetComponent<Text>().text = dmg.ToString("F0");
-		txt.GetComponent<DamageText> ().target = transform;
-		txt.GetComponent<Text> ().color = Color.red;
+			Camera camera = FindObjectOfType<Camera> ();
+			Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+			GameObject txt = (GameObject)Instantiate (damageText, screenPos, Quaternion.identity);
+			txt.transform.SetParent (GameObject.Find ("Canvas").transform);
+			txt.GetComponent<Text> ().text = dmg.ToString ("F0");
+			txt.GetComponent<DamageText> ().target = transform;
+			txt.GetComponent<Text> ().color = Color.red;
+			Health -= f;
+			if (Health > 0)
+				controller.GetHit ();
+		}
+	}
 
-		controller.GetHit ();
+	public void ReceiveExp(float f) {
+
+		Exp += f;
+
 	}
 
 	//Player recovers health
 	public void RecoverHealth(float f) {
 
 		Health += f;
+	}
+
+	public void RecoverStamina(float f) {
+
+		Stamina += f;
 	}
 
 	public void LevelUp() {
@@ -226,10 +263,11 @@ public class Player : MonoBehaviour {
 	}
 
 	public void PlayerDeath() {
-
+		
 		health = 0;
 		if (!isDead) {
 			isDead = true;
+			canBeHit = false;
 			controller.PlayerDeath ();
 		}
 	}
@@ -238,6 +276,7 @@ public class Player : MonoBehaviour {
 
 		Health = MaxHealth;
 		isDead = false;
+		canBeHit = true;
 		controller.PlayerRevive ();
 
 	}

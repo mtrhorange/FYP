@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Room : MonoBehaviour {
 
-	Room adjacentRooms;
-	Door doors;
+
+	public Door exit;
 
 	public bool canLeft, canRight, canUp, canDown;
 
+	public Transform spawnPoint1, spawnPoint2;
 	// Use this for initialization
 	void Start () {
 		

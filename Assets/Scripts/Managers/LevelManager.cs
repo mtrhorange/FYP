@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour {
 	public void LoadGame() {
 		
 		SceneManager.LoadScene(1); //Load game scene
-		SceneManager.activeSceneChanged += SpawnPlayer; //Methods to call after scene changes
+		//SceneManager.activeSceneChanged += SpawnPlayer; //Methods to call after scene changes
 
 	}
 
@@ -39,6 +39,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void SpawnPlayer(Scene a, Scene b) {
+		Floor.instance.NewRoom ();
+		Floor.instance.SpawnNextRoom ();
 		GameManager.instance.SpawnPlayer ();
 		SceneManager.activeSceneChanged -= SpawnPlayer;
 	}

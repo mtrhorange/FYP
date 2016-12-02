@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
-	public Door nextDoor;
 	public Room currentRoom;
 
 	public Transform playerSpawn;
@@ -11,6 +10,7 @@ public class Door : MonoBehaviour {
 	public enum Directions {Up, Down, Left, Right};
 	public Directions direction;
 
+	public bool canExit = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +24,9 @@ public class Door : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		if (other.GetComponent<Player> ()) {
+		if (other.GetComponent<Player> () && canExit) {
 
-			nextDoor.currentRoom.gameObject.SetActive (true);
+			Floor.instance.NextRoom ();
 
 
 
