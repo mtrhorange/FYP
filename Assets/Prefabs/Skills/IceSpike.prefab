@@ -70,7 +70,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013081350458}
-  - 95: {fileID: 95000010594970364}
   - 114: {fileID: 114000013936105120}
   m_Layer: 0
   m_Name: IceSpike
@@ -107,7 +106,6 @@ GameObject:
   - 33: {fileID: 33000010228366142}
   - 23: {fileID: 23000012983660020}
   - 95: {fileID: 95000012829779844}
-  - 111: {fileID: 111000012965301612}
   m_Layer: 0
   m_Name: crystal#2
   m_TagString: Untagged
@@ -296,23 +294,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012252699512}
   m_Mesh: {fileID: 4300000, guid: 5019dae6a5ce9b04f809fc6277b0c69e, type: 3}
---- !u!95 &95000010594970364
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011767157010}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95000012829779844
 Animator:
   serializedVersion: 3
@@ -321,7 +302,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012252699512}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 440acf57356cc284c92e95f99b899d35, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 57016763daa656149af424785181e498, type: 3}
   m_Controller: {fileID: 9100000, guid: 1a9dca3658b2ac649849aea7b942b7ec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -330,20 +311,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &111000012965301612
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012252699512}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 63395e21bfa4a0b4a9b6623bf5660082, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114000013936105120
 MonoBehaviour:
   m_ObjectHideFlags: 1
