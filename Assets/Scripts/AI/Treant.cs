@@ -10,6 +10,7 @@ public class Treant : Enemy {
     //timers
     private float pathUpdateTimer = 3f;
     public float attackInterval = 3f;
+
     public float attackTimer;
     public GameObject shockwave;
     private Vector3 heightOffset;
@@ -105,7 +106,7 @@ public class Treant : Enemy {
 
         if (attackTimer <= 0)
         {
-            if ((player.transform.position - transform.position).magnitude <= 3.5f)
+            if ((player.transform.position - transform.position).magnitude < 2.5f)
             {
                 myState = States.Attack;
                 anim.SetBool("Walk", false);
@@ -113,6 +114,18 @@ public class Treant : Enemy {
                 rB.velocity = Vector3.zero;
                 attacking = true;
                 
+            }
+            else if ((player.transform.position - transform.position).magnitude > 2.5f &&
+                     (player.transform.position - transform.position).magnitude < 10f)
+            {
+                anim.SetBool("Walk", false);
+                rB.velocity = Vector3.zero;
+                attacking = true;
+                if (attacking)
+                {
+                    jumpAttack();
+                    attacking = false;
+                }
             }
             else
             {
@@ -126,19 +139,19 @@ public class Treant : Enemy {
                 dir = velocity;
 
                 Vector3 look = dir.normalized + AvoidObstacle();
-    
+
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
-                
+
             }
-           
+
         }
         else 
         {
-            if ((player.transform.position - transform.position).magnitude <= 3.5f)
+            if ((player.transform.position - transform.position).magnitude <= 2.5f)
             {
                 anim.SetBool("Walk", false);
             }
@@ -168,7 +181,7 @@ public class Treant : Enemy {
         {
             Debug.Log("End Point Reached");
             //go back to idle
-            if ((player.transform.position - transform.position).magnitude >= 3.5f)
+            if ((player.transform.position - transform.position).magnitude >= 2.5f)
                 myState = States.Idle;
 
             return;
@@ -192,44 +205,39 @@ public class Treant : Enemy {
         transform.rotation = targetRotation;
 
         pathUpdateTimer = 0f;
-        
+
         rB.velocity = Vector3.zero;
 
-        int whichAttack = Random.Range(0, 2);
-
-        if (whichAttack == 0)
-        {
-            if (attacking)
-            {
-                anim.SetTrigger("Attack");
-                attacking = false;
-            }
-
-        }
-        else 
-        {
-            if (attacking)
-            {
-                jumpAttack();
-                attacking = false;
-            }
-        }
+        anim.SetTrigger("Attack");
+        attacking = false;
         attackTimer = attackInterval;
         myState = States.Chase;
-    }
+    
+
+
+}
 
     void summonShit()
     {
         //TODO: SPAWN SHIT
         Debug.Log("Summon shit");
+
+        AIManager.instance.spawnMob(mobType.Flower, new Vector3(transform.position.x + 4f, 1, transform.position.z));
+        AIManager.instance.spawnMob(mobType.Plant, new Vector3(transform.position.x - 4f, 1, transform.position.z));
+
         attackTimer = attackInterval;
         myState = States.Chase;
+
     }
 
     void jumpAttack()
     {
         Debug.Log("jumpman");
         anim.SetTrigger("Jump Attack");
+    }
+
+    void stopJump()
+    {
         attackTimer = attackInterval;
         myState = States.Chase;
     }
