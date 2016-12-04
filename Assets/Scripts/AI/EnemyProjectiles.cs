@@ -13,7 +13,8 @@ public class EnemyProjectiles : MonoBehaviour {
         WebShot,
         DragonBreathFire,
         DragonBreathPoison,
-        FireBlast
+        FireBlast,
+        NormalShot
     }
     public type projectileType;
 
@@ -53,12 +54,16 @@ public class EnemyProjectiles : MonoBehaviour {
             //explode if close enough
             if ((target - transform.position).magnitude <= 0.5f)
             {
-                leftBehinds = (GameObject)Instantiate(stickyArea, transform.position, Quaternion.Euler(-90f, 0f, 0f));
-                leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = 0;
-                leftBehinds.GetComponent<EnemyLeftBehinds>().typ = projectileType;
-                GetComponent<SphereCollider>().enabled = false;
-                GetComponent<ParticleSystem>().Stop();
-                GetComponent<MeshRenderer>().enabled = false;
+                if (leftBehinds)
+                {
+                    leftBehinds =
+                        (GameObject) Instantiate(stickyArea, transform.position, Quaternion.Euler(-90f, 0f, 0f));
+                    leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = 0;
+                    leftBehinds.GetComponent<EnemyLeftBehinds>().typ = projectileType;
+                    GetComponent<SphereCollider>().enabled = false;
+                    GetComponent<ParticleSystem>().Stop();
+                    GetComponent<MeshRenderer>().enabled = false;
+                }
             }
         }
         //if has lifespan
@@ -120,6 +125,18 @@ public class EnemyProjectiles : MonoBehaviour {
             //if type is web shot
             case type.WebShot:
                 //if hit environment, destroy
+                if (other.gameObject.layer == 8)
+                {
+                    Destroy(this.gameObject);
+                }
+                break;
+            case type.NormalShot:
+                if (other.gameObject.tag == "Player")
+                {
+                    other.GetComponent<Player>().ReceiveDamage(10);
+                    Destroy(gameObject);
+                }
+
                 if (other.gameObject.layer == 8)
                 {
                     Destroy(this.gameObject);
