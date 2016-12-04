@@ -1319,7 +1319,6 @@ public class PlayerController : MonoBehaviour
 	//weaponNumber 20 = secondWep
 	public IEnumerator _SwitchWeapon(int weaponNumber)
 	{	
-		Debug.Log ("Check1");
 		//character is unarmed
 		if(weapon == WeaponType.UNARMED)
 		{
@@ -1347,7 +1346,7 @@ public class PlayerController : MonoBehaviour
 			
 			Debug.Log ("Check2");
 			//character is switching to 2 hand weapon or unarmed, put put away all weapons
-			if(weaponNumber < 7 || weaponNumber > 17)
+			if(weaponNumber < 7 || weaponNumber == 18)
 			{
 				//check left hand for weapon
 				if(leftWeapon != 0)
@@ -1403,12 +1402,13 @@ public class PlayerController : MonoBehaviour
 			//switching right weapon, put away right weapon if equipped
 			else if((weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 || weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20))
 			{
-				if(rightWeapon > 0)
-				{
-					StartCoroutine(_SheathWeapon(rightWeapon, weaponNumber));
-					yield return new WaitForSeconds(1.05f);
-				}
-				StartCoroutine(_UnSheathWeapon(weaponNumber));
+//				if(rightWeapon > 0)
+//				{
+//					StartCoroutine(_SheathWeapon(rightWeapon, weaponNumber));
+//					yield return new WaitForSeconds(1.05f);
+//				}
+//				StartCoroutine(_UnSheathWeapon(weaponNumber));
+				StartCoroutine(_ChangeWeapon(rightWeapon, weaponNumber));
 			}
 		}
 		yield return null;
@@ -1617,6 +1617,47 @@ public class PlayerController : MonoBehaviour
 		}
 		yield return null;
 	}
+
+	public IEnumerator _ChangeWeapon(int currWeapon, int weaponNumber) {
+
+		animator.SetInteger("LeftRight", 2);
+		animator.SetTrigger("WeaponSheathTrigger");
+		yield return new WaitForSeconds(.1f);
+		rightWeapon = 0;
+		animator.SetInteger("RightWeapon", 0);
+		StartCoroutine(_WeaponVisibility(currWeapon, .3f, false));
+		StartCoroutine(_LockMovementAndAttack(0, 0.6f));
+//		animator.SetInteger("Weapon", -1);
+		yield return new WaitForEndOfFrame();
+		yield return new WaitForEndOfFrame();
+		yield return new WaitForEndOfFrame();
+		animator.SetInteger("LeftRight", 2);
+		if (weaponNumber == 19) {
+			if (firstWep.GetComponent<Weapon>().type == Weapon.Types.Staff)
+				animator.SetInteger("RightWeapon", 11);
+			else
+				animator.SetInteger("RightWeapon", 9);
+		}
+		else {
+			if (secondWep.GetComponent<Weapon>().type == Weapon.Types.Staff)
+				animator.SetInteger("RightWeapon", 11);
+			else
+				animator.SetInteger("RightWeapon", 9);
+		}
+
+		rightWeapon = weaponNumber;
+		StartCoroutine(_WeaponVisibility(weaponNumber, .4f, true));
+		weaponNumber = 7;
+
+		animator.SetInteger("Weapon", weaponNumber);
+		animator.SetBool("Armed", true);
+		weapon = WeaponType.ARMED;
+//
+//		yield return new WaitForSeconds(.1f);
+//		animator.SetInteger("LeftRight", 3);
+		yield return null;
+	}
+
 
 	public IEnumerator _WeaponVisibility(int weaponNumber, float delayTime, bool visible)
 	{

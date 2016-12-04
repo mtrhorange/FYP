@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
 
 		GameObject playerModel = 
 			(GameObject)Instantiate (playerPrefab, 
-				GameObject.Find("Player1Spawn").transform.position, Quaternion.identity);
+				Floor.instance.currentRoom.GetComponent<Room>().spawnPoint1.position, Quaternion.identity);
 
 		player1 = playerModel.GetComponent<Player> ();
 		UpdatePlayer1 ();
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
 		if (player2Data.saveId != 0) {
 			GameObject player2Model = 
 				(GameObject)Instantiate (playerPrefab, 
-					GameObject.Find ("Player2Spawn").transform.position, Quaternion.identity);
+					Floor.instance.currentRoom.GetComponent<Room>().spawnPoint2.position, Quaternion.identity);
 			player2 = player2Model.GetComponent<Player> ();
 			UpdatePlayer2 ();
 
@@ -110,6 +110,13 @@ public class GameManager : MonoBehaviour {
 		SaveLoad.NewCharacter (player);
 
 
+	}
+
+	public void SavePlayers() {
+		if (GameManager.instance.player1Data.saveId != 0)
+			GameManager.instance.UpdatePlayer1Data ();
+		if (GameManager.instance.player2Data.saveId != 0)
+			GameManager.instance.UpdatePlayer2Data ();
 	}
 
 	public void UpdatePlayer1Data() {
