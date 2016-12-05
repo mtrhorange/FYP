@@ -47,7 +47,6 @@ public class LevelManager : MonoBehaviour {
 
 	public void ChangeRoom(Door nextDoor) {
 
-		nextDoor.currentRoom.gameObject.SetActive (true);
 
 
 	}
