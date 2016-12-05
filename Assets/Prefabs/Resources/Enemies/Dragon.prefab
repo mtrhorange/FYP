@@ -2378,7 +2378,7 @@ MonoBehaviour:
   monsterLevel: 1
   myState: 0
   tgtStyle: 1
-  myType: 12
+  myType: 13
   attackInterval: 6
   breath: {fileID: 1000012256452340}
   walkSpeed: 2.8

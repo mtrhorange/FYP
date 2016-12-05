@@ -604,7 +604,7 @@ MonoBehaviour:
   monsterLevel: 1
   myState: 0
   tgtStyle: 0
-  myType: 11
+  myType: 12
   attackInterval: 3
   attackTimer: 0
 --- !u!114 &114000013882853610

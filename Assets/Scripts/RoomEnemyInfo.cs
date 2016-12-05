@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RoomEnemyInfo : MonoBehaviour {
     
@@ -10,8 +11,16 @@ public class RoomEnemyInfo : MonoBehaviour {
 
     void Start()
     {
-        GameObject[] spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        Debug.Log(spawns.Length);
+        List<GameObject> spawns = new List<GameObject>();
+        GameObject[] spons = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        foreach(GameObject gg in spons)
+        {
+            if (!AIManager.instance.roomSpawnPoints.Contains(gg))
+            {
+                spawns.Add(gg);
+            }
+        }
+
         AIManager.instance.NewRoom(RoomEnemStr, IsBossRoom, spawns);
     }
 

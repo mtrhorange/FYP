@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 //mob types
 public enum mobType
@@ -33,12 +34,11 @@ public class AIManager : MonoBehaviour
     //public instance
     public static AIManager instance;
 
-    public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys;
+    public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
     private List<GameObject> bossPrefabs;
-    public GameObject enemySpawnPoint; // temporary
     private int roomEnemyPoints; //total enemy points in current room
     public List<GameObject> enemyList;
-    public GameObject[] roomSpawnPoints;
+    public List<GameObject> roomSpawnPoints;
     private const int WEAK = 1, MEDIUM = 2, STRONG = 4; //enemy points each strength category is worth
     private List<int> mobPrefStrengths, spawnTheseStrengths;
     private bool spawning = false, isBossRoom = false;
@@ -60,6 +60,7 @@ public class AIManager : MonoBehaviour
         bossPrefabs = new List<GameObject>();
         mobPrefStrengths = new List<int>();
         spawnTheseStrengths = new List<int>();
+        roomSpawnPoints = new List<GameObject>();
 
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/BugMonster"));
         mobPrefStrengths.Add(WEAK);
@@ -93,16 +94,15 @@ public class AIManager : MonoBehaviour
         bossPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon Boss"));
         bossPrefabs.Add((GameObject)Resources.Load("Enemies/Tentacle Monster-Yellow"));
 
+        bossGuys = new List<GameObject>(bossPrefabs);
+
+        Debug.Log(bossGuys.Count);
+
         enemyList = new List<GameObject>();
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
-        //roomSpawnPoints = new List<GameObject>();
-
-
         //testing
-        mobType temp = mobType.Bug;
-        //spawnBoss(temp, enemySpawnPoint.transform.position);
-        //spawnMob(temp, enemySpawnPoint.transform.position);
+        //mobType temp = mobType.Bug;
     }
 
     //Update
@@ -113,7 +113,6 @@ public class AIManager : MonoBehaviour
         {
             fillUpRoom();
         }
-
     }
 
     //spawn specific mob, given type of mob, and vector position
@@ -188,13 +187,14 @@ public class AIManager : MonoBehaviour
     }
 
     //New Room, reset values. Called by the room when it spawns
-    public void NewRoom(int pts, bool bos, GameObject[] spns)
+    public void NewRoom(int pts, bool bos, List<GameObject> spns)
     {
         //clear the enemy list
         enemyList.Clear();
         enemyList.TrimExcess();
-        //clear the spawn points list
-        roomSpawnPoints = new GameObject[0];
+        //clear room spawn points list
+        roomSpawnPoints.Clear();
+        roomSpawnPoints.TrimExcess();
 
         //get the room points
         roomEnemyPoints = pts;
@@ -203,20 +203,21 @@ public class AIManager : MonoBehaviour
         //get the spawn points
         roomSpawnPoints = spns;
 
+        //recalculate A*
+        GetComponent<AstarPath>().Scan();
+
         //set the spawning to true
         spawning = true;
     }
 
     //fill up room
     public void fillUpRoom()
-    {   
+    {
         //first check if its boss room
         if (isBossRoom /*check if boss room)*/)
         {
             //spawn boss
-            spawnBoss(mobType.DragonBoss, roomSpawnPoints[0].transform.position);
-            //once spawned set spawning to false
-            spawning = false;
+            spawnNextBoss(roomSpawnPoints[0].transform.position);
         }
         else
         {
@@ -236,7 +237,7 @@ public class AIManager : MonoBehaviour
                 }
 
                 //SPAWN, improvements: check spawn points and spread dem out and not overlap if possible
-                spawnRandomMob(spawnTheseStrengths[Random.Range(0, spawnTheseStrengths.Count)], roomSpawnPoints[Random.Range(0, roomSpawnPoints.Length)].transform.position);
+                spawnRandomMob(spawnTheseStrengths[UnityEngine.Random.Range(0, spawnTheseStrengths.Count)], roomSpawnPoints[UnityEngine.Random.Range(0, roomSpawnPoints.Count)].transform.position);
             }
         }
     }
@@ -247,13 +248,13 @@ public class AIManager : MonoBehaviour
         switch (str)
         {
             case WEAK:
-                enemyList.Add((GameObject)Instantiate(weakGuys[Random.Range(0, weakGuys.Count)], loc, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(weakGuys[UnityEngine.Random.Range(0, weakGuys.Count)], loc, Quaternion.identity));
                 break;
             case MEDIUM:
-                enemyList.Add((GameObject)Instantiate(medGuys[Random.Range(0, medGuys.Count)], loc, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(medGuys[UnityEngine.Random.Range(0, medGuys.Count)], loc, Quaternion.identity));
                 break;
             case STRONG:
-                enemyList.Add((GameObject)Instantiate(strongGuys[Random.Range(0, strongGuys.Count)], loc, Quaternion.identity));
+                enemyList.Add((GameObject)Instantiate(strongGuys[UnityEngine.Random.Range(0, strongGuys.Count)], loc, Quaternion.identity));
                 break;
         }
 
@@ -263,6 +264,19 @@ public class AIManager : MonoBehaviour
         //deduct the points from roomEnemyPoints
         roomEnemyPoints -= str;
         if (roomEnemyPoints <= 0) { spawning = false; }
+    }
+
+    //spawn next boss in rotation
+    public void spawnNextBoss(Vector3 l)
+    {
+        enemyList.Add((GameObject)Instantiate(bossGuys[0], l, Quaternion.identity));
+        FlockingManager.instance.UpdateAgentArray();
+
+        //shift boss prefabs
+        bossGuys = Shift(bossGuys);
+
+        //once spawned set spawning to false
+        spawning = false;
     }
 
     //setup mob lists based on strength
@@ -295,6 +309,7 @@ public class AIManager : MonoBehaviour
         FlockingManager.instance.UpdateAgentArray();
     }
 
+    //shift array
     private GameObject[] Shift(GameObject[] myArray)
     {
         GameObject[] temp = new GameObject[myArray.Length];
@@ -304,6 +319,20 @@ public class AIManager : MonoBehaviour
                 temp[i] = myArray[i + 1];
             else
                 temp[i] = myArray[0];
+        }
+        return temp;
+    }
+
+    //shift list
+    private List<GameObject> Shift(List<GameObject> myArray)
+    {
+        List<GameObject> temp = new List<GameObject>();
+        for (int i = 0; i < myArray.Count; i++)
+        {
+            if (i < myArray.Count - 1)
+                temp.Add(myArray[i + 1]);
+            else
+                temp.Add(myArray[0]);
         }
         return temp;
     }

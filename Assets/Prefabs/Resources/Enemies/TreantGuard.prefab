@@ -1595,7 +1595,7 @@ MonoBehaviour:
   monsterLevel: 1
   myState: 0
   tgtStyle: 0
-  myType: 19
+  myType: 20
   attackInterval: 3
   attackTimer: 0
   shockwave: {fileID: 1000014089897682, guid: 19e8c378d27b78c419fa8b9802d24286, type: 2}

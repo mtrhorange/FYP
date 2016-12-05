@@ -877,9 +877,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!114 &645795344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,9 +1191,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!114 &681802436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2852,9 +2856,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!1 &1194401821
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,9 +3026,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!114 &1234415763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3310,9 +3318,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!114 &1271904979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3954,9 +3964,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!1 &1458876525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,9 +4175,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!114 &1531169496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4587,9 +4601,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!1 &1737539720
 GameObject:
   m_ObjectHideFlags: 0
@@ -4789,9 +4805,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!114 &1781999575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5120,9 +5138,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!1 &1844520299
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,9 +5707,11 @@ MonoBehaviour:
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 0}
   RightBtn: {fileID: 0}
-  SelectBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
+  btnType: 0
   selected: 0
+  selectedImg: {fileID: 0}
 --- !u!1 &1967566313
 GameObject:
   m_ObjectHideFlags: 0

@@ -2348,12 +2348,9 @@ MonoBehaviour:
   monsterLevel: 1
   myState: 0
   tgtStyle: 1
-  myType: 16
+  myType: 17
   breath: {fileID: 1000011513553516}
   fireBlast: {fileID: 1000012123638748, guid: 1ffe47d77e2d1a940bcfed606f19b4d9, type: 2}
-  damagedAmount: 0
-  flinchThreshold: 0
-  flinchTimer: 5
 --- !u!114 &114000012136823300
 MonoBehaviour:
   m_ObjectHideFlags: 1

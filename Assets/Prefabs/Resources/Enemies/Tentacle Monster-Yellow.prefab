@@ -1158,7 +1158,7 @@ MonoBehaviour:
   monsterLevel: 1
   myState: 0
   tgtStyle: 0
-  myType: 0
+  myType: 16
   spawn: 0
   SpawnX: 4
   SpawnZ: 4

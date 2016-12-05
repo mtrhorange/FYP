@@ -1438,7 +1438,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014245530652}
-  m_LocalRotation: {x: 0.77975833, y: 0.31765968, z: -0.16100968, w: 0.5149226}
+  m_LocalRotation: {x: 0.7797582, y: 0.31765965, z: -0.16100967, w: 0.51492256}
   m_LocalPosition: {x: -4.82, y: 2.34, z: 8.28}
   m_LocalScale: {x: 2.757481, y: 2.6005106, z: 2.7768555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3676,7 +3676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5757f8500cb3104fa45ff6d03791f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomEnemStr: 24
+  RoomEnemStr: 14
   IsBossRoom: 0
 --- !u!114 &114000012887437844
 MonoBehaviour:

@@ -3108,7 +3108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5757f8500cb3104fa45ff6d03791f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomEnemStr: 24
+  RoomEnemStr: 12
   IsBossRoom: 0
 --- !u!114 &114000013499730892
 MonoBehaviour:

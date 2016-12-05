@@ -79,7 +79,7 @@ public class DragonBoss : Enemy
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            ReceiveDamage(1);
+            ReceiveDamage(100);
         }
 
         //flinch time window
