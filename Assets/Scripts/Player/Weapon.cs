@@ -6,8 +6,8 @@ public class Weapon : MonoBehaviour {
 
 	public enum Types { Sword, Staff};
 	public Types type;
-	public float damageMin = 3f;
-	public float damageMax = 5f;
+	public float damageMin;
+	public float damageMax;
 
 	public int level = 1;
 
@@ -36,6 +36,10 @@ public class Weapon : MonoBehaviour {
 			capCast1 = transform.Find ("CapCast1").gameObject;
 			capCast2 = transform.Find ("CapCast2").gameObject;
 		}
+
+
+		UpdateDamage ();
+
 
 	}
 
@@ -106,7 +110,7 @@ public class Weapon : MonoBehaviour {
 		int attackBuffLevel = player.skills.weaponBuffLevel;
 
 		max = (max + Mathf.Ceil((float)maxDmgLevel/2f));
-		min = (min + Mathf.Ceil ((float)minDmgLevel / 2f));
+		min = (min + Mathf.Ceil ((float)minDmgLevel/2f));
 		if (min >= max)
 			min = max - 1;
 
@@ -118,6 +122,15 @@ public class Weapon : MonoBehaviour {
 
 		return finalDamage;
 
+
+	}
+
+	public void UpdateDamage() {
+
+		level = player.Level;
+
+		damageMin = 3f + 1f * (level - 1);
+		damageMax = 5f + 2f * (level - 1);
 
 	}
 }
