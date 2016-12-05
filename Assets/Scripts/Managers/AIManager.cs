@@ -33,17 +33,15 @@ public class AIManager : MonoBehaviour
     //public instance
     public static AIManager instance;
 
-    //PUBLIC
     public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys;
     private List<GameObject> bossPrefabs;
     public GameObject enemySpawnPoint; // temporary
-
-    //PRIVATE
-    private List<GameObject> enemyList, roomSpawnPoints;
     private int roomEnemyPoints; //total enemy points in current room
+    public List<GameObject> enemyList;
+    public GameObject[] roomSpawnPoints;
     private const int WEAK = 1, MEDIUM = 2, STRONG = 4; //enemy points each strength category is worth
     private List<int> mobPrefStrengths, spawnTheseStrengths;
-    private bool spawning = false;
+    private bool spawning = false, isBossRoom = false;
 
 
     //Awake
@@ -98,7 +96,7 @@ public class AIManager : MonoBehaviour
         enemyList = new List<GameObject>();
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
-        roomSpawnPoints = new List<GameObject>();
+        //roomSpawnPoints = new List<GameObject>();
 
 
         //testing
@@ -115,6 +113,7 @@ public class AIManager : MonoBehaviour
         {
             fillUpRoom();
         }
+
     }
 
     //spawn specific mob, given type of mob, and vector position
@@ -189,15 +188,20 @@ public class AIManager : MonoBehaviour
     }
 
     //New Room, reset values. Called by the room when it spawns
-    public void NewRoom()
+    public void NewRoom(int pts, bool bos, GameObject[] spns)
     {
         //clear the enemy list
         enemyList.Clear();
         enemyList.TrimExcess();
+        //clear the spawn points list
+        roomSpawnPoints = new GameObject[0];
 
         //get the room points
-
-
+        roomEnemyPoints = pts;
+        //get the is boss boolean
+        isBossRoom = bos;
+        //get the spawn points
+        roomSpawnPoints = spns;
 
         //set the spawning to true
         spawning = true;
@@ -207,10 +211,10 @@ public class AIManager : MonoBehaviour
     public void fillUpRoom()
     {   
         //first check if its boss room
-        if (1 == 2 /*check if boss room)*/)
+        if (isBossRoom /*check if boss room)*/)
         {
             //spawn boss
-
+            spawnBoss(mobType.DragonBoss, roomSpawnPoints[0].transform.position);
             //once spawned set spawning to false
             spawning = false;
         }
@@ -232,7 +236,7 @@ public class AIManager : MonoBehaviour
                 }
 
                 //SPAWN, improvements: check spawn points and spread dem out and not overlap if possible
-                spawnRandomMob(spawnTheseStrengths[Random.Range(0, spawnTheseStrengths.Count)], roomSpawnPoints[Random.Range(0, roomSpawnPoints.Count)].transform.position);
+                spawnRandomMob(spawnTheseStrengths[Random.Range(0, spawnTheseStrengths.Count)], roomSpawnPoints[Random.Range(0, roomSpawnPoints.Length)].transform.position);
             }
         }
     }
@@ -252,6 +256,9 @@ public class AIManager : MonoBehaviour
                 enemyList.Add((GameObject)Instantiate(strongGuys[Random.Range(0, strongGuys.Count)], loc, Quaternion.identity));
                 break;
         }
+
+        //shift spawnpoints
+        roomSpawnPoints = Shift(roomSpawnPoints);
 
         //deduct the points from roomEnemyPoints
         roomEnemyPoints -= str;
@@ -286,5 +293,18 @@ public class AIManager : MonoBehaviour
     {
         enemyList.Remove(me);
         FlockingManager.instance.UpdateAgentArray();
+    }
+
+    private GameObject[] Shift(GameObject[] myArray)
+    {
+        GameObject[] temp = new GameObject[myArray.Length];
+        for (int i = 0; i < myArray.Length; i++)
+        {
+            if (i < myArray.Length - 1)
+                temp[i] = myArray[i + 1];
+            else
+                temp[i] = myArray[0];
+        }
+        return temp;
     }
 }

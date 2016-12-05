@@ -431,6 +431,8 @@ MonoBehaviour:
   medGuys: []
   strongGuys: []
   enemySpawnPoint: {fileID: 338488197}
+  enemyList: []
+  roomSpawnPoints: []
 --- !u!4 &312318805
 Transform:
   m_ObjectHideFlags: 0
