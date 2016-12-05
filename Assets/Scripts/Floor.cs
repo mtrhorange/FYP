@@ -26,9 +26,9 @@ public class Floor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		caveRooms = new List<GameObject> ();
-		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom2(1)"));
-		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom3(1)"));
-		//caveRooms.Add((GameObject)Resources.Load("Models/Rooms/Cave/caveRoom4"));
+		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom2"));
+		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom3"));
+		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom4"));
 
 		blackOverlay = GameObject.Find ("Canvas").transform.Find ("BlackOverlay").gameObject;
 		NewRoom ();
