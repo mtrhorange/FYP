@@ -1739,12 +1739,14 @@ public class PlayerController : MonoBehaviour
 			firstWep.SetActive(visible);
 			currentWeapon = firstWep;
 			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
+			player.nextWeapon = secondWep.GetComponent<Weapon> ();
 		}
 		if(weaponNumber == 20) 
 		{
 			secondWep.SetActive(visible);
 			currentWeapon = secondWep;
 			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
+			player.nextWeapon = firstWep.GetComponent<Weapon> ();
 		}
 		yield return null;
 	}

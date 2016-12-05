@@ -101,6 +101,7 @@ public class Floor : MonoBehaviour {
 			Destroy (currentRoom);
 
 		GameObject room = (GameObject)Instantiate (nextRoom, Vector3.zero, nextRoom.transform.rotation);
+
 		room.name = nextRoom.name;
 		currentRoom = room;
 		NewRoom ();

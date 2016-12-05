@@ -235,7 +235,8 @@ public class Player : MonoBehaviour {
 		MaxHealth += 10;
 		Health = MaxHealth;
 		SkillPoints++;
-
+		currentWeapon.UpdateDamage ();
+		nextWeapon.UpdateDamage ();
 		//UpdateHealth ();
 
 
