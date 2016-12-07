@@ -77,11 +77,6 @@ public class DragonBoss : Enemy
             Attack();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            ReceiveDamage(100);
-        }
-
         //flinch time window
         if (flinchTimer <= 0)
         {

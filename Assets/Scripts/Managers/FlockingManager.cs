@@ -158,11 +158,14 @@ public class FlockingManager : MonoBehaviour
     }
 
     //update agent array
-    public void UpdateAgentArray()
+    public void UpdateAgentArray(List<GameObject> listOfEnemies)
     {
         agentArray.Clear();
-        agentArray.AddRange(FindObjectsOfType<Enemy>());
 
+        foreach (GameObject g in listOfEnemies)
+        {
+            agentArray.Add(g.GetComponent<Enemy>());
+        }
 
         for (int i = agentArray.Count - 1; i > 0; i--)
         {
