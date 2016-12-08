@@ -2030,7 +2030,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010310114446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.730339, y: 6.003517e-16, z: -27.037437}
+  m_LocalPosition: {x: -21.108177, y: 3.4175754e-16, z: -15.391392}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2414,6 +2414,8 @@ MonoBehaviour:
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 4.8
   minDistance: 2
+  myStrength: 0
+  monsterLevel: 1
   myState: 0
   tgtStyle: 1
   myType: 13

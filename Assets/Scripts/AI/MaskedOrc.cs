@@ -120,7 +120,7 @@ public class MaskedOrc : Enemy {
                 //look & move
                 dir = velocity;
 
-                Vector3 look = dir.normalized;
+                Vector3 look = dir.normalized  + AvoidObstacle();
     
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
@@ -253,6 +253,7 @@ public class MaskedOrc : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
+            Debug.Log(Hit.transform.name);
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 
@@ -269,6 +270,7 @@ public class MaskedOrc : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
         {
+            Debug.Log(Hit.transform.name);
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 
@@ -283,6 +285,7 @@ public class MaskedOrc : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             transform.forward, out Hit, minDistance))
         {
+            Debug.Log(Hit.transform.name);
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 
@@ -295,13 +298,13 @@ public class MaskedOrc : Enemy {
         }
 
         //right ray
-        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, 2f, 1 << 8))
         {
             transform.position += (-transform.right).normalized * 0.05f;
         }
 
         //left ray
-        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 1.5f, 1 << 8))
+        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, 2f, 1 << 8))
         {
             transform.position += (transform.right).normalized * 0.05f;
 
@@ -312,18 +315,18 @@ public class MaskedOrc : Enemy {
 
     void OnDrawGizmos()
     {
-        Vector3 frontRay = transform.position + transform.forward * minDistance;
+        Vector3 frontRay = transform.position + transform.forward* minDistance + transform.up;
         Vector3 right45 = transform.position +
-            (transform.forward + transform.right).normalized * minDistance;
+            (transform.forward + transform.right).normalized * minDistance + transform.up;
         Vector3 left45 = transform.position +
-            (transform.forward - transform.right).normalized * minDistance;
+            (transform.forward - transform.right).normalized  * minDistance + transform.up;
 
-        Debug.DrawLine(transform.position, frontRay, Color.blue);
-        Debug.DrawLine(transform.position, left45, Color.blue);
-        Debug.DrawLine(transform.position, right45, Color.blue);
-        Debug.DrawLine(transform.position, transform.position + transform.right.normalized * (minDistance - 0.5f),
+        Debug.DrawLine(transform.position + transform.up, frontRay, Color.blue);
+        Debug.DrawLine(transform.position + transform.up, left45, Color.blue);
+        Debug.DrawLine(transform.position + transform.up, right45, Color.blue);
+        Debug.DrawLine(transform.position + transform.up, transform.position + transform.right.normalized * (minDistance - 0.5f) + transform.up,
             Color.blue);
-        Debug.DrawLine(transform.position, transform.position - transform.right.normalized * (minDistance - 0.5f),
+        Debug.DrawLine(transform.position + transform.up , transform.position - transform.right.normalized * (minDistance - 0.5f) + transform.up,
             Color.blue);
 
         //Gizmos.color = new Color32(255,0,0,40);
