@@ -1328,7 +1328,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824984246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19291496, y: -7.58568e-18, z: -2.8583715}
+  m_LocalPosition: {x: 7.1989403, y: 3.196753, z: 10.820337}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1675,7 +1675,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013000908922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.089, y: 0.142, z: 0.2}
+  m_LocalPosition: {x: 0.008, y: 0.092, z: 0.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1859,7 +1859,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010095293310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3892, y: 0.282, z: 0.7254}
+  m_LocalPosition: {x: -0.422, y: 0.305, z: 0.802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2069,7 +2069,7 @@ MonoBehaviour:
   level: 0
   isMelee: 0
   player: {fileID: 0}
-  type: 0
+  staffType: 0
 --- !u!114 &114000012796404558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2165,7 +2165,7 @@ MonoBehaviour:
   damageMin: 0
   damageMax: 0
   level: 0
-  isMelee: 0
+  isMelee: 1
   player: {fileID: 0}
 --- !u!114 &114000014260104298
 MonoBehaviour:
