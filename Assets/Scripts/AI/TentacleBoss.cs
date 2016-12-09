@@ -23,11 +23,11 @@ public class TentacleBoss : Enemy {
     //Start
     protected override void Start()
     {
+        myStrength = Strength.Boss;
+
         base.Start();
+
         anim = GetComponent<Animator>();
-        //Tentacle Boss properties
-        health = 500;
-        damage = 12;
 
         //tentacles
         tentacles = new List<Tentacle>();

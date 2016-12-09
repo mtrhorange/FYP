@@ -251,9 +251,9 @@ public class Enemy : MonoBehaviour
         }
         else if (myStrength == Strength.Boss)
         {
-            baseHP = 100;
-            baseMul = 12f;
-            levelMul = 6f;
+            baseHP = 250;
+            baseMul = 20f;
+            levelMul = 8f;
         }
 
         //FORMURA

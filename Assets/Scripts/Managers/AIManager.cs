@@ -34,7 +34,7 @@ public class AIManager : MonoBehaviour
     //public instance
     public static AIManager instance;
 
-    public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
+    private List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
     private List<GameObject> bossPrefabs;
     private int roomEnemyPoints; //total enemy points in current room
     public List<GameObject> enemyList;
@@ -123,6 +123,7 @@ public class AIManager : MonoBehaviour
             {
                 enemyList[i].GetComponent<Enemy>().ReceiveDamage(999);
             }
+            spawning = false;
             roomEnemyPoints = enemPts;
         }
         //spawn monster
@@ -169,6 +170,7 @@ public class AIManager : MonoBehaviour
             case mobType.Mushroom:
                 break;
             case mobType.Plant:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[9], l, Quaternion.identity));
                 break;
             case mobType.SkeletalWarrior:
                 break;

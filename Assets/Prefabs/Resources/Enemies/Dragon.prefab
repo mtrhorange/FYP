@@ -2374,7 +2374,7 @@ MonoBehaviour:
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 4.8
   minDistance: 2
-  myStrength: 0
+  myStrength: 2
   monsterLevel: 1
   myState: 0
   tgtStyle: 1

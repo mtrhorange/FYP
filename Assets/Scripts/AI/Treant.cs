@@ -10,6 +10,7 @@ public class Treant : Enemy {
     //timers
     private float pathUpdateTimer = 3f;
     public float attackInterval = 3f;
+    private float summonInterval = 50f, summonTimer;
 
     public float attackTimer;
     public GameObject shockwave;
@@ -18,29 +19,35 @@ public class Treant : Enemy {
     private Vector3 dir;
     private Animator anim;
     private bool attacking = false;
-
-
-   
+    //flinch variables
+    public float damagedAmount, flinchThreshold;
+    public float flinchTimer = 5f;
 
 	// Use this for initialization
     protected override void Start()
     {
-        heightOffset = transform.up ;
+        myStrength = Strength.Boss;
+
+        heightOffset = transform.up;
         anim = GetComponent<Animator>();
+
         base.Start();
-        //Zombie properties
-        health = 20;
-        damage = 2;
+
+        //set flinch threshold to 15% of max Hp?
+        flinchThreshold = 0.15f * health;
+
         //seeker component
         seeker = GetComponent<Seeker>();
         //rigidbody
         rB = GetComponent<Rigidbody>();
         nextWayPointDistance = 3f;
 
+        //attack timers
         attackTimer = attackInterval;
+        summonTimer = summonInterval;
 
         //targetting style
-        tgtStyle = targetStyle.AssignedPlayer;
+        tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
 	}
 	
@@ -64,30 +71,30 @@ public class Treant : Enemy {
             Death();
         }
 
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
+        //flinch time window
+        if (flinchTimer <= 0)
+        {
+            flinchTimer = 5f;
+            damagedAmount = 0f;
+        }
+        flinchTimer -= Time.deltaTime;
+        summonTimer -= Time.deltaTime;
 	}
 
     //Idle
     protected override void Idle()
     {
-        
         //chase target
         target = player.transform.position;
         //set a path to tgt position
         seeker.StartPath(transform.position, target, OnPathComplete);
         currentWayPoint = 1;
         myState = States.Chase;
-        
     }
 
     //Chase
     protected override void Chase()
     {
-       
         pathUpdate();
 
         //if no path yet
@@ -97,16 +104,28 @@ public class Treant : Enemy {
             //No path to move to yet
             return;
         }
-        //check first if catched up to the player
-        //if yes proceed to attack
+
         //attack trigger distance debug ray
         Debug.DrawRay(transform.position + transform.up, (player.transform.position - transform.position).normalized * 3f, Color.cyan);
         Debug.DrawRay(transform.position + transform.up, velocity, Color.magenta);
         attackTimer -= Time.deltaTime;
 
-        if (attackTimer <= 0)
+        //if cooldown for summon (summonTimer) is over, summon 2 minions to aid in battle
+        if (summonTimer <= 0)
         {
-            if ((player.transform.position - transform.position).magnitude < 2.5f)
+            if (!attacking)
+            {
+                anim.SetBool("Walk", false);
+                rB.velocity = Vector3.zero;
+                anim.SetTrigger("Spell Cast");
+                attacking = true;
+            }
+        }
+        //if attack timer is up
+        else if (attackTimer <= 0)
+        {
+            //close enough to club smash
+            if ((player.transform.position - transform.position).magnitude <= 2.5f)
             {
                 myState = States.Attack;
                 anim.SetBool("Walk", false);
@@ -115,6 +134,7 @@ public class Treant : Enemy {
                 attacking = true;
                 
             }
+            //else if close enough to jump attack
             else if ((player.transform.position - transform.position).magnitude > 2.5f &&
                      (player.transform.position - transform.position).magnitude < 10f)
             {
@@ -127,6 +147,7 @@ public class Treant : Enemy {
                     attacking = false;
                 }
             }
+            //else is walk
             else
             {
                 anim.SetBool("Walk", true);
@@ -147,8 +168,8 @@ public class Treant : Enemy {
                 rB.velocity = transform.forward * speed;
 
             }
-
         }
+        //else is walk
         else 
         {
             if ((player.transform.position - transform.position).magnitude <= 2.5f)
@@ -172,10 +193,8 @@ public class Treant : Enemy {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
-                
             }
         }
-
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
@@ -195,6 +214,13 @@ public class Treant : Enemy {
         }
     }
 
+    //receive damage override
+    public override void ReceiveDamage(float dmg)
+    {
+        damagedAmount += dmg;
+        base.ReceiveDamage(dmg);
+    }
+
     //Attack
     protected override void Attack()
     {
@@ -212,22 +238,45 @@ public class Treant : Enemy {
         attacking = false;
         attackTimer = attackInterval;
         myState = States.Chase;
-    
+    }
 
+    //Flinch override
+    protected override void Flinch()
+    {
+        //check if should flinch
+        if (damagedAmount >= flinchThreshold)
+        {
+            base.Flinch();
+            //stop moving
+            rB.velocity = Vector3.zero;
+            attacking = false;
+            //play flinch animaton
+            anim.SetBool("Walk", false);
+            anim.SetTrigger("Take Damage");
+        }
+    }
 
-}
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        pathUpdateTimer = 0;
+        pathUpdate();
+        flinchTimer = 5f;
+        damagedAmount = 0f;
+        myState = States.Chase;
+    }
 
+    //summon minion (anim event callback)
     void summonShit()
     {
-        //TODO: SPAWN SHIT
-        Debug.Log("Summon shit");
-
+        //summon 2 nature themed monsters to aid in battle
         AIManager.instance.spawnMob(mobType.Flower, new Vector3(transform.position.x + 4f, 1, transform.position.z));
         AIManager.instance.spawnMob(mobType.Plant, new Vector3(transform.position.x - 4f, 1, transform.position.z));
 
         attackTimer = attackInterval;
+        summonTimer = summonInterval;
+        attacking = false;
         myState = States.Chase;
-
     }
 
     void jumpAttack()
@@ -247,9 +296,9 @@ public class Treant : Enemy {
         attackTimer = attackInterval;
         Instantiate(shockwave, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
     }
+
     public void triggerOn()
     {
-
         rB.velocity = Vector3.zero;
         GetComponent<BoxCollider>().enabled = true;
     }
@@ -260,6 +309,8 @@ public class Treant : Enemy {
         myState = States.Chase;
         GetComponent<BoxCollider>().enabled = false;
     }
+
+
 
     //update calculated path every set time
     public void pathUpdate()

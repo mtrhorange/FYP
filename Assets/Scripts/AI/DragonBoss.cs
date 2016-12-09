@@ -8,7 +8,7 @@ public class DragonBoss : Enemy
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 0.5f, breathTimer, stompTimer, summonTimer;
-    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 60f;
+    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 40f;
     //attacking variables
     private bool attacking = false;
     public GameObject breath, fireBlast;
@@ -36,8 +36,8 @@ public class DragonBoss : Enemy
 
         base.Start();
 
-        //set flinch threshold to 10% of max Hp?
-        flinchThreshold = 0.1f * health;
+        //set flinch threshold to 15% of max Hp?
+        flinchThreshold = 0.15f * health;
 
         //seeker component
         seeker = GetComponent<Seeker>();

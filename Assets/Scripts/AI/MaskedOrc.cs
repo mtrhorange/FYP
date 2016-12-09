@@ -253,7 +253,6 @@ public class MaskedOrc : Enemy {
         if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
-            Debug.Log(Hit.transform.name);
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
                 
