@@ -187,6 +187,7 @@ public class MagmaDemon : Enemy {
         //play flinch animaton
         anim.SetBool("Move", false);
         anim.SetTrigger("Take Damage");
+        SFXManager.instance.playSFX(sounds.giant);
     }
 
     //Flinch End Animation Event callback override

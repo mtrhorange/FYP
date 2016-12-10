@@ -317,6 +317,7 @@ public class BugMonster : Enemy
     //attack event 1
     public void AttackEvent1()
     {
+        SFXManager.instance.playSFX(sounds.bite);
         //offset for the shot
         float offset;
         if (player.GetComponent<Rigidbody>().velocity != Vector3.zero)
