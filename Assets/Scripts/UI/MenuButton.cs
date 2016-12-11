@@ -154,6 +154,11 @@ public class MenuButton : MonoBehaviour {
 		GameManager.instance.NewCharacter (this.GetComponent<SaveSlot> (), FindObjectOfType<MainMenu> ().playerName);
 	}
 
+	public void QuitGame() {
+
+		Application.Quit ();
+
+	}
 	#endregion
 
 	#region SaveLoad

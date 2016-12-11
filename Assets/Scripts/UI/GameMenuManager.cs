@@ -7,6 +7,10 @@ public class GameMenuManager : MonoBehaviour {
 
 	public MenuButton selectedBtn;
 
+	public GameObject player1Menu;
+
+	bool menuOpen = false;
+
 	void Awake() {
 
 		instance = this;
@@ -19,7 +23,15 @@ public class GameMenuManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		CheckInput ();
+		if (menuOpen)
+			CheckInput ();
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+
+			player1Menu.SetActive (!player1Menu.activeSelf);
+			menuOpen = !menuOpen;
+
+		}
 	}
 
 	public void CheckInput() {
