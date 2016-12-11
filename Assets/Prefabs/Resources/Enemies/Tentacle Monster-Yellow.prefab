@@ -1154,10 +1154,10 @@ MonoBehaviour:
   nextPathPoint: {x: 0, y: 0, z: 0}
   speed: 0
   minDistance: 2
-  myStrength: 0
+  myStrength: 3
   monsterLevel: 1
   myState: 0
-  tgtStyle: 0
+  tgtStyle: 1
   myType: 16
   spawn: 0
   SpawnX: 4

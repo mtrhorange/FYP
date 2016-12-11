@@ -42,10 +42,11 @@ public class SFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            playSFX(sounds.bite);
-        }
+        //testing
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    playSFX(sounds.bite);
+        //}
     }
 
     public void playSFX(sounds s)
