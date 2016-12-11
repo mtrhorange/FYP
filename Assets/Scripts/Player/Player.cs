@@ -190,6 +190,7 @@ public class Player : MonoBehaviour {
 		currentWeapon.AttackTrigger (i);
 
 
+
 	}
 
 	//Player gets damage, reduces health

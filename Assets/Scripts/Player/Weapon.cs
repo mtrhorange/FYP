@@ -51,8 +51,10 @@ public class Weapon : MonoBehaviour {
 
 	public virtual void AttackTrigger(int i) {
 
-		if (i == 1)
+		if (i == 1) {
 			isAttacking = true;
+			SFXManager.instance.playSFX (sounds.swing);
+		}
 		else {
 			isAttacking = false;
 			enemiesHit.Clear ();

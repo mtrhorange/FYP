@@ -29,7 +29,7 @@ public class SFXManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(this);
+		DontDestroyOnLoad(transform.gameObject);
     }
 
     // Use this for initialization

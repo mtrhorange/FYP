@@ -52,6 +52,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Illum
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
@@ -88,6 +94,9 @@ Material:
     - first:
         name: _DstBlend
       second: 0
+    - first:
+        name: _Emission
+      second: 1
     - first:
         name: _GlossMapScale
       second: 1
@@ -133,7 +142,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.33333334, g: 0.31764707, b: 0.31764707, a: 1}
+      second: {r: 0.6764706, g: 0.6764706, b: 0.6764706, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
