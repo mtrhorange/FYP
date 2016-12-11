@@ -16,6 +16,7 @@ public class SlimeNew : Enemy {
     public float attackInterval = 0.5f;
     private float attackTimer;
     private bool attacking = false;
+    private float jumpTimer = 0.3f;
 
 	//Start
     protected override void Start()
@@ -58,7 +59,14 @@ public class SlimeNew : Enemy {
         else if (myState == States.Dead)
         {
         }
-	}
+        jumpTimer -= Time.deltaTime;
+
+        if (jumpTimer <= 0)
+        {
+            SFXManager.instance.playSFX(sounds.slime);
+            jumpTimer = 1f;
+        }
+    }
 
     //Idle state
     protected override void Idle()

@@ -188,6 +188,7 @@ public class MaskedOrc : Enemy {
         //play flinch animaton
         anim.SetBool("RunWalk", false);
         anim.SetTrigger("Take Damage");
+        SFXManager.instance.playSFX(sounds.ogre);
     }
 
     //Flinch End Animation Event callback override

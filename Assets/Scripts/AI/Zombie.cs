@@ -165,6 +165,7 @@ public class Zombie : Enemy {
     //attack event 1
     public void AttackEvent1()
     {
+        SFXManager.instance.playSFX(sounds.zombie);
         rB.velocity = Vector3.zero;
         GetComponent<BoxCollider>().enabled = true;
     }
