@@ -14,7 +14,8 @@ public class EnemyProjectiles : MonoBehaviour {
         DragonBreathFire,
         DragonBreathPoison,
         FireBlast,
-        NormalShot
+        NormalShot,
+        fireArrow
     }
     public type projectileType;
 
@@ -32,7 +33,6 @@ public class EnemyProjectiles : MonoBehaviour {
 	//Start
 	void Start()
     {
-
 	}
 
 	//Update
@@ -131,6 +131,18 @@ public class EnemyProjectiles : MonoBehaviour {
                 }
                 break;
             case type.NormalShot:
+                if (other.gameObject.tag == "Player")
+                {
+                    other.GetComponent<Player>().ReceiveDamage(10);
+                    Destroy(gameObject);
+                }
+
+                if (other.gameObject.layer == 8)
+                {
+                    Destroy(this.gameObject);
+                }
+                break;
+            case type.fireArrow:
                 if (other.gameObject.tag == "Player")
                 {
                     other.GetComponent<Player>().ReceiveDamage(10);
