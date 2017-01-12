@@ -90,7 +90,7 @@ public class Weapon : MonoBehaviour {
 				if (newHit == true) {
 					float finalDamage = CalculateMeleeDamage ();
 
-					hit.transform.GetComponent<Enemy> ().ReceiveDamage (finalDamage);
+					hit.transform.GetComponent<Enemy> ().ReceiveDamage (finalDamage, player);
 					enemiesHit.Add (enemy);
 				}
 

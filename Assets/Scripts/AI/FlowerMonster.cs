@@ -271,6 +271,13 @@ public class FlowerMonster : Enemy {
         attacking = false;
     }
 
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        base.Death();
+    }
+
     //calculates an interception path along the path of another moving object
     public Vector3 CalculateInterception(Vector3 tgtPos, Vector3 tgtSpeed, Vector3 interceptorPos, float interceptorSpeed)
     {

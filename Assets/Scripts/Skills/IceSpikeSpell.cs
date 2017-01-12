@@ -21,8 +21,7 @@ public class IceSpikeSpell : Spell {
 
 		enemiesHit.Add (enemy);
 		GetDamage ();
-		enemy.ReceiveDamage (damage);
-
+		enemy.ReceiveDamage (damage, player);
 	}
 
 	public void CastIceSpike() {

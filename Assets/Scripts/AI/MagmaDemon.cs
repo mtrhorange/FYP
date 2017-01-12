@@ -16,8 +16,6 @@ public class MagmaDemon : Enemy {
     private Animator anim;
     private bool attacking = false;
 
-   
-
 	// Use this for initialization
     protected override void Start()
     {
@@ -53,22 +51,11 @@ public class MagmaDemon : Enemy {
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-            Death();
-        }
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
 	}
 
     //Idle
     protected override void Idle()
-    {
-        
+    {   
         //chase target
         target = player.transform.position;
         //set a path to tgt position
@@ -196,6 +183,14 @@ public class MagmaDemon : Enemy {
         pathUpdateTimer = 0;
         pathUpdate();
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //Attack

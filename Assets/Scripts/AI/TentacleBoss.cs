@@ -12,13 +12,16 @@ public class TentacleBoss : Enemy {
     public GameObject mouth;
     public GameObject projectile;
     //list to keep track of tentacles
-    private List<Tentacle> tentacles;
+    public List<Tentacle> tentacles;
     private float spawnTimer = 5f;
     public float attackTimer;
     private Animator anim;
     private bool attacking;
     private float interceptionTime = 0f;
     private Vector3 interceptPoint = Vector3.zero;
+    //flinch variables
+    public float damagedAmount, flinchThreshold;
+    public float flinchTimer = 5f;
 
     //Start
     protected override void Start()
@@ -28,6 +31,9 @@ public class TentacleBoss : Enemy {
         base.Start();
 
         anim = GetComponent<Animator>();
+
+        //set flinch threshold to 15% of max Hp?
+        flinchThreshold = 0.15f * health;
 
         //tentacles
         tentacles = new List<Tentacle>();
@@ -55,8 +61,15 @@ public class TentacleBoss : Enemy {
         {
             Attack();
         }
-
         spawnTimer -= Time.deltaTime;
+
+        //flinch time window
+        if (flinchTimer <= 0)
+        {
+            flinchTimer = 5f;
+            damagedAmount = 0f;
+        }
+        flinchTimer -= Time.deltaTime;
     }
 
     protected override void Idle()
@@ -101,6 +114,7 @@ public class TentacleBoss : Enemy {
         Vector3 spawnLocation = new Vector3(randomX, 1.4f, randomZ);
 
         GameObject temp = (GameObject)Instantiate(tentaclePref, spawnLocation, Quaternion.identity);
+        temp.GetComponent<Tentacle>().Boss = this;
         tentacles.Add(temp.GetComponent<Tentacle>());
 
         //reacquire closer target
@@ -110,7 +124,6 @@ public class TentacleBoss : Enemy {
     //Attack
     protected override void Attack()
     {
-
         int r = Random.Range(0, 2);
 
         if (Vector3.Distance(transform.position, player.transform.position) < 4f )
@@ -131,30 +144,54 @@ public class TentacleBoss : Enemy {
             myState = States.Idle;
             return;
         }
-
-
         myState = States.Idle;
-        
-
-
     }
 
+    //Flinch override
     protected override void Flinch()
     {
-        base.Flinch();
-        attacking = false;
-        //play flinch animaton
-        anim.SetBool("Move", false);
-        anim.SetTrigger("Take Damage");
-        SFXManager.instance.playSFX(sounds.giant);
+        //check if should flinch
+        if (damagedAmount >= flinchThreshold)
+        {
+            base.Flinch();
+            //stop moving
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            attacking = false;
+            //play flinch animaton
+            anim.SetTrigger("Take Damage");
+            SFXManager.instance.playSFX(sounds.giant);
+        }
     }
 
     //Flinch End Animation Event callback override
     public override void FlinchEnd()
     {
+        flinchTimer = 5f;
+        damagedAmount = 0f;
+        GetComponent<BoxCollider>().enabled = false;
         myState = States.Idle;
     }
 
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        //Tentacle Boss has to kill his children (tentacles) first
+        spawnTimer = 420;
+        for (int i = tentacles.Count - 1; i >= 0; i--)
+        {
+            tentacles[i].ReceiveDamage(tentacles[i].health + 1, null);
+        }
+        base.Death();
+    }
+
+    //receive damage override
+    public override void ReceiveDamage(float dmg, Player attacker)
+    {
+        damagedAmount += dmg;
+        base.ReceiveDamage(dmg, attacker);
+    }
 
     private void projectileAttack()
     {
@@ -280,7 +317,7 @@ public class TentacleBoss : Enemy {
     public void TentacleDeath(Tentacle me)
     {
         tentacles.Remove(me);
-        Destroy(me.gameObject);
+        Destroy(me.gameObject, 2.5f);
     }
 
 

@@ -1020,7 +1020,7 @@ MonoBehaviour:
   monsterLevel: 1
   myState: 0
   tgtStyle: 0
-  myType: 7
+  myType: 8
   attackInterval: 4
   pathUpdateTimer: 0.5
   projectile: {fileID: 1000011863726704, guid: 8ae324e9af0fd934faf5a3aa299aa1a2, type: 2}

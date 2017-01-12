@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyLeftBehinds : MonoBehaviour {
     //damage
     public float dmg = 0;
-    public float hitTimer = 0;
     public EnemyProjectiles.type typ;
 
 
@@ -21,6 +20,15 @@ public class EnemyLeftBehinds : MonoBehaviour {
     //Trigger Enter
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Player")
+        {
+            switch (typ)
+            {
+                case EnemyProjectiles.type.SkullMissile:
+                    other.GetComponent<Player>().ReceiveDamage(dmg);
+                    break;
+            }
+        }
     }
 
 

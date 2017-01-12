@@ -52,10 +52,6 @@ public class PlantMonster : Enemy {
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-            Death();
-        }
 	}
 
     //Idle
@@ -189,6 +185,14 @@ public class PlantMonster : Enemy {
         pathUpdateTimer = 0;
         pathUpdate();
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //Attack

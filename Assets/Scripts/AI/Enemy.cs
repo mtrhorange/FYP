@@ -17,13 +17,14 @@ public class Enemy : MonoBehaviour
     public GameObject damageText;
 
     public float damage;
-
+    public float expValue;
     //target position
     protected Vector3 target;
     //flocking velocity
     public Vector3 velocity;
-    //player reference
+    //player references
     public GameObject player;
+    public Player murderer;
     //seeker component
     public Vector3 nextPathPoint;
     protected Seeker seeker;
@@ -81,6 +82,7 @@ public class Enemy : MonoBehaviour
         monsterLevel = CalculateLevel();
         health = CalculateHP();
         damage = CalculateDamage();
+        expValue = CalculateExpReward();
     }
 
     //Update
@@ -88,7 +90,6 @@ public class Enemy : MonoBehaviour
     {
 
     }
-
 
     //Idle state
     protected virtual void Idle()
@@ -121,20 +122,42 @@ public class Enemy : MonoBehaviour
     //death
     protected virtual void Death()
     {
-        Debug.Log("ENEMY SCRIPT DEATH");
         myState = States.Dead;
-
         GetComponent<CapsuleCollider>().enabled = false;
-
-        GetComponent<Rigidbody>().velocity = -transform.up * 8f;
-
+        //reward exp
+        if (murderer != null)
+            RewardEXP();
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         AIManager.instance.RemoveMe(this.gameObject);
-
         Destroy(this.gameObject, 5f);
     }
 
+    //Reward EXP points
+    protected void RewardEXP()
+    {
+        //if 2 player, split 60% to player who killed and 40% to the other
+        if (GameManager.instance.twoPlayers)
+        {
+            murderer.ReceiveExp(expValue * 0.6f);
+            if (GameManager.instance.player1 == murderer)
+            {
+                GameManager.instance.player2.ReceiveExp(expValue * 0.4f);
+            }
+            else if (GameManager.instance.player2 == murderer)
+            {
+                GameManager.instance.player1.ReceiveExp(expValue * 0.4f);
+            }
+        }
+        //else, award to the single player
+        else
+        {
+            murderer.ReceiveExp(expValue);
+        }
+    }
+
     //receive damage
-    public virtual void ReceiveDamage(float dmg)
+    public virtual void ReceiveDamage(float dmg, Player attacker)
     {
         health -= dmg;
         Camera camera = FindObjectOfType<Camera>();
@@ -148,6 +171,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            murderer = attacker;
             Death();
         }
         else
@@ -263,6 +287,38 @@ public class Enemy : MonoBehaviour
         //HP = base + (LVL - 1) * baseMul + (LVL / 5) * levelMul
 
         return baseHP + ((monsterLevel - 1) * baseMul) + ((monsterLevel / 5) * levelMul);
+    }
+
+    //Calculate EXP to reward
+    protected float CalculateExpReward()
+    {
+        float baseExp = 0;
+        if (myStrength == Strength.Weak)
+        {
+            baseExp = 3;
+        }
+        else if (myStrength == Strength.Medium)
+        {
+            baseExp = 5f;
+        }
+        else if (myStrength == Strength.Strong)
+        {
+            baseExp = 7;
+        }
+        else if (myStrength == Strength.Boss)
+        {
+            baseExp = 30;
+        }
+
+        //scale for 1 or 2 players
+        if (GameManager.instance.twoPlayers)
+        {
+            return (baseExp + (baseExp * monsterLevel));
+        }
+        else
+        {
+            return ((baseExp * 0.5f) + ((baseExp * 0.5f) * monsterLevel));
+        }
     }
 
     //Trigger Enter

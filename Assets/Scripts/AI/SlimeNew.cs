@@ -56,12 +56,10 @@ public class SlimeNew : Enemy {
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-        }
+
         jumpTimer -= Time.deltaTime;
 
-        if (jumpTimer <= 0)
+        if (jumpTimer <= 0 && myState != States.Dead)
         {
             SFXManager.instance.playSFX(sounds.slime);
             jumpTimer = 1f;
@@ -162,16 +160,15 @@ public class SlimeNew : Enemy {
             //split into 2 normal sized slimes
             AIManager.instance.spawnMob(mobType.Slime, new Vector3(transform.position.x + 2.5f, 1, transform.position.z));
             AIManager.instance.spawnMob(mobType.Slime, new Vector3(transform.position.x - 2.5f, 1, transform.position.z));
-            AIManager.instance.RemoveMe(this.gameObject);
-            Destroy(this.gameObject);
+            anim.SetTrigger("Die");
+            GetComponent<BoxCollider>().enabled = false;
+            base.Death();
         }
         else
         {
-            GetComponent<CapsuleCollider>().enabled = false;
+            anim.SetTrigger("Die");
             GetComponent<BoxCollider>().enabled = false;
-            GetComponent<Rigidbody>().velocity = -transform.up * 8f;
-            AIManager.instance.RemoveMe(this.gameObject);
-            Destroy(this.gameObject, 5f);
+            base.Death();
         }
     }
 

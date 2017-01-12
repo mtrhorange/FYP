@@ -14,7 +14,8 @@ public class EnemyProjectiles : MonoBehaviour {
         DragonBreathFire,
         DragonBreathPoison,
         FireBlast,
-        NormalShot
+        NormalShot,
+        SkullMissile
     }
     public type projectileType;
 

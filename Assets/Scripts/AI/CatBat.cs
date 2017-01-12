@@ -16,7 +16,6 @@ public class CatBat : Enemy {
     private Vector3 dir;
     private Animator anim;
     private bool attacking = false;
-
    
 
 	// Use this for initialization
@@ -54,10 +53,6 @@ public class CatBat : Enemy {
         else if (myState == States.Attack)
         {
             Attack();
-        }
-        else if (myState == States.Dead)
-        {
-            Death();
         }
 	}
 
@@ -197,6 +192,14 @@ public class CatBat : Enemy {
         pathUpdateTimer = 0;
         pathUpdate();
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //Attack

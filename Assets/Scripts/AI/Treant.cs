@@ -66,10 +66,6 @@ public class Treant : Enemy {
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-            Death();
-        }
 
         //flinch time window
         if (flinchTimer <= 0)
@@ -215,10 +211,10 @@ public class Treant : Enemy {
     }
 
     //receive damage override
-    public override void ReceiveDamage(float dmg)
+    public override void ReceiveDamage(float dmg, Player attacker)
     {
         damagedAmount += dmg;
-        base.ReceiveDamage(dmg);
+        base.ReceiveDamage(dmg, attacker);
     }
 
     //Attack
@@ -264,6 +260,14 @@ public class Treant : Enemy {
         flinchTimer = 5f;
         damagedAmount = 0f;
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //summon minion (anim event callback)
@@ -317,6 +321,8 @@ public class Treant : Enemy {
     {
         if (pathUpdateTimer <= 0)
         {
+            //get target
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position

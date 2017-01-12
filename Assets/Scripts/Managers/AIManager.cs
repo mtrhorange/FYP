@@ -10,6 +10,7 @@ public enum mobType
     SlimeBig,
     Goblin,
     SkeletalWarrior,
+    SkeletalArcher,
     Zombie,
     MaskedOrc,
     Plant,
@@ -24,7 +25,6 @@ public enum mobType
     Tentacle,
     TentacleBoss,
     DragonBoss,
-    SlimeKing,
     LichBoss,
     TreantGuard
 }
@@ -95,10 +95,10 @@ public class AIManager : MonoBehaviour
 
         bossPrefabs.Add((GameObject)Resources.Load("Enemies/Dragon Boss"));
         bossPrefabs.Add((GameObject)Resources.Load("Enemies/Tentacle Monster-Yellow"));
+        bossPrefabs.Add((GameObject)Resources.Load("Enemies/TreantGuard"));
+        bossPrefabs.Add((GameObject)Resources.Load("Enemies/LichBoss"));
 
         bossGuys = new List<GameObject>(bossPrefabs);
-
-        Debug.Log(bossGuys.Count);
 
         enemyList = new List<GameObject>();
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
@@ -121,7 +121,7 @@ public class AIManager : MonoBehaviour
         {
             for (int i = enemyList.Count - 1; i >= 0; i--)
             {
-                enemyList[i].GetComponent<Enemy>().ReceiveDamage(999);
+                enemyList[i].GetComponent<Enemy>().ReceiveDamage(999, null);
             }
             spawning = false;
             roomEnemyPoints = enemPts;
@@ -192,13 +192,13 @@ public class AIManager : MonoBehaviour
                 enemyList.Add((GameObject)Instantiate(bossPrefabs[0], l, Quaternion.identity));
                 break;
             case mobType.LichBoss:
-                break;
-            case mobType.SlimeKing:
+                enemyList.Add((GameObject)Instantiate(bossPrefabs[3], l, Quaternion.identity));
                 break;
             case mobType.TentacleBoss:
                 enemyList.Add((GameObject)Instantiate(bossPrefabs[1], l, Quaternion.identity));
                 break;
             case mobType.TreantGuard:
+                enemyList.Add((GameObject)Instantiate(bossPrefabs[2], l, Quaternion.identity));
                 break;
         }
         //set the mobtype

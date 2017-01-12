@@ -218,8 +218,6 @@ public class Dragon : Enemy {
     //Death override
     protected override void Death()
     {
-        myState = States.Dead;
-
         if (flying)
         {
             playAnim("beginToFall", 1f, false);
@@ -229,14 +227,11 @@ public class Dragon : Enemy {
         {
             playAnim("die", 1f, false);
         }
-        GetComponent<CapsuleCollider>().enabled = false;
+
         GetComponent<BoxCollider>().enabled = false;
         breath.SetActive(false);
-        rB.useGravity = false;
-        rB.velocity = Vector3.zero;
         StopAllCoroutines();
-        AIManager.instance.RemoveMe(this.gameObject);
-        Destroy(gameObject, 5f);
+        base.Death();
     }
 
     //play animation (legacy)

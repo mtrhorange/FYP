@@ -38,7 +38,7 @@ public class Ice_Ball_Script : Spell
 		if (other.GetComponent<Enemy>()) {
 
 			GetDamage ();
-			other.GetComponent<Enemy> ().ReceiveDamage (damage);
+			other.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 
 			Explode ();
 		}

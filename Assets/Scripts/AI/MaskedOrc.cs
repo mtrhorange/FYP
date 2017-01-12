@@ -53,16 +53,6 @@ public class MaskedOrc : Enemy {
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-            Death();
-        }
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
 	}
 
     //Idle
@@ -197,6 +187,14 @@ public class MaskedOrc : Enemy {
         pathUpdateTimer = 0;
         pathUpdate();
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //Attack

@@ -168,10 +168,10 @@ public class DragonBoss : Enemy
     }
 
     //receive damage override
-    public override void ReceiveDamage(float dmg)
+    public override void ReceiveDamage(float dmg, Player attacker)
     {
         damagedAmount += dmg;
-        base.ReceiveDamage(dmg);
+        base.ReceiveDamage(dmg, attacker);
     }
 
     //Flinch override
@@ -232,17 +232,10 @@ public class DragonBoss : Enemy
     //Death override
     protected override void Death()
     {
-        myState = States.Dead;
-
         playAnim("die", 1f, false);
-
-        GetComponent<CapsuleCollider>().enabled = false;
         breath.SetActive(false);
-        rB.useGravity = false;
-        rB.velocity = Vector3.zero;
         StopAllCoroutines();
-        AIManager.instance.RemoveMe(this.gameObject);
-        Destroy(gameObject, 5f);
+        base.Death();
     }
 
     //play animation (legacy)

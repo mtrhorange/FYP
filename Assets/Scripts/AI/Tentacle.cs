@@ -14,10 +14,10 @@ public class Tentacle : Enemy
     //Start
     protected override void Start()
     {
+        myStrength = Strength.Weak;
+        
         base.Start();
-        //Tentacle properties
-        health = 30;
-        damage = 4;
+
         anim = GetComponent<Animator>();
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
@@ -39,6 +39,7 @@ public class Tentacle : Enemy
 
     }
 
+    //Attack override
     protected override void Attack()
     {
         anim.SetTrigger("Slap Attack");
@@ -50,12 +51,36 @@ public class Tentacle : Enemy
 
     }
 
-    public void triggerOn()
+    //Death override
+    protected override void Death()
     {
-
-        GetComponent<BoxCollider>().enabled = true;
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        Boss.TentacleDeath(this);
+        base.Death();
     }
 
+    //Flinch override
+    protected override void Flinch()
+    {
+        base.Flinch();
+        GetComponent<BoxCollider>().enabled = false;
+        //play flinch animaton
+        anim.SetTrigger("Take Damage");
+    }
+
+    //Flinch End Animation Event callback override
+    public override void FlinchEnd()
+    {
+        myState = States.Idle;
+    }
+
+    //attacking trigger on
+    public void triggerOn()
+    {
+        GetComponent<BoxCollider>().enabled = true;
+    }
+    //attacking trigger off
     public void triggerOff()
     {
         attackTimer = attackInterval;
@@ -64,6 +89,7 @@ public class Tentacle : Enemy
         attackTimer = attackInterval;
     }
 
+    //Idle override
     protected override void Idle()
     {
         //look at player
