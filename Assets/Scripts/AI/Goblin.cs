@@ -5,18 +5,16 @@ using Pathfinding;
 
 public class Goblin : Enemy
 {
-
     //Rigidbody
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 3f;
-    public float attackInterval = 3f;
+    public float attackInterval = 2f;
     public float attackTimer;
     //movement variables
     private Vector3 dir;
     private Animator anim;
     private bool attacking = false;
-
 
 
     // Use this for initialization
@@ -35,7 +33,7 @@ public class Goblin : Enemy
         attackTimer = attackInterval;
 
         //targetting style
-        tgtStyle = targetStyle.AssignedPlayer;
+        tgtStyle = targetStyle.WeakestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
     }
 
@@ -54,35 +52,22 @@ public class Goblin : Enemy
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-            Death();
-        }
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
     }
 
     //Idle
     protected override void Idle()
     {
-
         //chase target
         target = player.transform.position;
         //set a path to tgt position
         seeker.StartPath(transform.position, target, OnPathComplete);
         currentWayPoint = 1;
         myState = States.Chase;
-
     }
 
     //Chase
     protected override void Chase()
     {
-
         pathUpdate();
 
         //if no path yet
@@ -198,6 +183,14 @@ public class Goblin : Enemy
         pathUpdateTimer = 0;
         pathUpdate();
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //Attack

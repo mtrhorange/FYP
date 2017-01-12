@@ -10,14 +10,12 @@ public class SkeletonMelee : Enemy
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 3f;
-    public float attackInterval = 3f;
+    public float attackInterval = 2f;
     public float attackTimer;
     //movement variables
     private Vector3 dir;
     private Animator anim;
     private bool attacking = false;
-
-
 
     // Use this for initialization
     protected override void Start()
@@ -35,7 +33,7 @@ public class SkeletonMelee : Enemy
         attackTimer = attackInterval;
 
         //targetting style
-        tgtStyle = targetStyle.AssignedPlayer;
+        tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
     }
 
@@ -54,16 +52,6 @@ public class SkeletonMelee : Enemy
         {
             Attack();
         }
-        else if (myState == States.Dead)
-        {
-            Death();
-        }
-
-        //testing
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    ReceiveDamage(5);
-        //}
     }
 
     //Idle
@@ -188,7 +176,7 @@ public class SkeletonMelee : Enemy
         attacking = false;
         //play flinch animaton
         anim.SetBool("move", false);
-        anim.SetTrigger("take damage");
+        anim.SetTrigger("Take Damage");
         SFXManager.instance.playSFX(sounds.ogre);
     }
 
@@ -198,6 +186,14 @@ public class SkeletonMelee : Enemy
         pathUpdateTimer = 0;
         pathUpdate();
         myState = States.Chase;
+    }
+
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        GetComponent<BoxCollider>().enabled = false;
+        base.Death();
     }
 
     //Attack

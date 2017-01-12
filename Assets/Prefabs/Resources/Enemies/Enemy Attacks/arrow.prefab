@@ -245,9 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b04abaa3b167445960d6edd60fa77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonPool: {fileID: 1000010100102880, guid: 04cbc64a20f4b844f82e140cbaf4479e, type: 2}
+  poisonPool: {fileID: 0}
   stickyArea: {fileID: 0}
-  projectileType: 6
+  projectileType: 7
   hasLifeSpan: 1
   timeOut: 12
   target: {x: 0, y: 0, z: 0}

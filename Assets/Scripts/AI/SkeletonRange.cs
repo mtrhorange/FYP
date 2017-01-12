@@ -13,7 +13,7 @@ public class SkeletonRange : Enemy
     private Vector3 dir = Vector3.zero;
     private Animator anim;
     //acid spit variables
-    public GameObject projectile, mouth;
+    public GameObject projectile, hand;
     private float interceptionTime = 0f;
     private Vector3 interceptPoint = Vector3.zero;
     private bool attacking = false;
@@ -187,6 +187,13 @@ public class SkeletonRange : Enemy
         myState = States.Chase;
     }
 
+    //Death override
+    protected override void Death()
+    {
+        anim.SetTrigger("Die");
+        base.Death();
+    }
+
     //Avoid Obstacles
     protected Vector3 AvoidObstacle()
     {
@@ -307,11 +314,11 @@ public class SkeletonRange : Enemy
     //shoot acid
     private void shoot(Vector3 here)
     {
-        Vector3 shootHere = (here - mouth.transform.position).normalized;
+        Vector3 shootHere = (here - hand.transform.position).normalized;
         shootHere.y = 0;
       
         Quaternion targetRotation = Quaternion.LookRotation(shootHere);
-        GameObject boo = (GameObject)Instantiate(projectile, mouth.transform.position, targetRotation);
+        GameObject boo = (GameObject)Instantiate(projectile, hand.transform.position, targetRotation);
         boo.transform.up = shootHere;
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
         boo.GetComponent<EnemyProjectiles>().target = here;
@@ -335,11 +342,11 @@ public class SkeletonRange : Enemy
         Vector3 towards = new Vector3(Random.Range(0f, 1f) * 2 - 1, 0, Random.Range(0f, 1f) * 2 - 1);
 
         //calculate where to shoot
-        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, mouth.transform.position, 10f);
+        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, hand.transform.position, 10f);
         if (calc != Vector3.zero)
         {
             calc.Normalize();
-            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, mouth.transform.position, calc * 10f);
+            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, hand.transform.position, calc * 10f);
             interceptPoint = (player.transform.position + towards.normalized * offset) + player.GetComponent<Rigidbody>().velocity * interceptionTime;
         }
         shoot(interceptPoint);

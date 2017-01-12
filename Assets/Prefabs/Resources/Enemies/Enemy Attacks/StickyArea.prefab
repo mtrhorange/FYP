@@ -98,8 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
-  hitTimer: 0
-  typ: 0
+  typ: 1
 --- !u!198 &198000011194102314
 ParticleSystem:
   m_ObjectHideFlags: 1
