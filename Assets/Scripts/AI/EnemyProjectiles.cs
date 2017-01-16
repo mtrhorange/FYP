@@ -115,12 +115,12 @@ public class EnemyProjectiles : MonoBehaviour {
                 else if (other.gameObject.layer == 9)
                 {
                     //pool on the ground, poisons player if stepped on
-                    leftBehinds = (GameObject)Instantiate(poisonPool, transform.position, Quaternion.Euler(-90f, 0f, 0f));
+                    leftBehinds = (GameObject)Instantiate(poisonPool, transform.position, Quaternion.Euler(90f, 0f, 0f));
                     leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = damage;
                     leftBehinds.GetComponent<EnemyLeftBehinds>().typ = projectileType;
                     GetComponent<SphereCollider>().enabled = false;
-                    GetComponent<ParticleSystem>().Stop();
-                    GetComponent<MeshRenderer>().enabled = false;
+                    transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+                    transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
                 }
                 break;
             //if type is web shot

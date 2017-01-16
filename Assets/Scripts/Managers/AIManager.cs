@@ -90,6 +90,12 @@ public class AIManager : MonoBehaviour
         mobPrefStrengths.Add(MEDIUM);
         mobPrefabs.Add((GameObject)Resources.Load("Enemies/ZombieClothes"));
         mobPrefStrengths.Add(WEAK);
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/GoblinWithClothes"));
+        mobPrefStrengths.Add(MEDIUM);
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/SkeletonArrow"));
+        mobPrefStrengths.Add(WEAK);
+        mobPrefabs.Add((GameObject)Resources.Load("Enemies/SkeletonMelee"));
+        mobPrefStrengths.Add(MEDIUM);
 
         mobLists();
 
@@ -154,7 +160,20 @@ public class AIManager : MonoBehaviour
             case mobType.Flower:
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[4], l, Quaternion.identity));
                 break;
-            case mobType.Goblin:
+            case mobType.Hornet:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[5], l, Quaternion.identity));
+                break;
+            case mobType.Magma:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[6], l, Quaternion.identity));
+                break;
+            case mobType.MaskedOrc:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[7], l, Quaternion.identity));
+                break;
+            case mobType.Mushroom:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[8], l, Quaternion.identity));
+                break;
+            case mobType.Plant:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[9], l, Quaternion.identity));
                 break;
             case mobType.Slime:
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[10], l, Quaternion.identity));
@@ -162,20 +181,17 @@ public class AIManager : MonoBehaviour
             case mobType.SlimeBig:
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[11], l, Quaternion.identity));
                 break;
-            case mobType.Magma:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[6], l, Quaternion.identity));
-                break;
-            case mobType.MaskedOrc:
-                break;
-            case mobType.Mushroom:
-                break;
-            case mobType.Plant:
-                enemyList.Add((GameObject)Instantiate(mobPrefabs[9], l, Quaternion.identity));
-                break;
-            case mobType.SkeletalWarrior:
-                break;
             case mobType.Zombie:
                 enemyList.Add((GameObject)Instantiate(mobPrefabs[12], l, Quaternion.identity));
+                break;
+            case mobType.Goblin:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[13], l, Quaternion.identity));
+                break;
+            case mobType.SkeletalArcher:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[14], l, Quaternion.identity));
+                break;
+            case mobType.SkeletalWarrior:
+                enemyList.Add((GameObject)Instantiate(mobPrefabs[15], l, Quaternion.identity));
                 break;
         }
         //set the mobtype

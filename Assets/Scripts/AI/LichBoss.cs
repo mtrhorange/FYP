@@ -350,11 +350,15 @@ public class LichBoss : Enemy
     //summon minions (anim event callback)
     private void Summon()
     {
-        //summon 2 undead themed monsters to aid in battle
+        //choose 2 out of the 3 undead themed monsters
+        mobType Alpha = (mobType)Random.Range(3, 6);
+        mobType Beta = (mobType)Random.Range(3, 6);
+
+        //summon them to aid in battle
         GameObject temp = (GameObject)Instantiate(summonEffect, new Vector3(transform.position.x + 4f, transform.position.y, transform.position.z), Quaternion.Euler(90,0,0));
-        temp.GetComponent<EnemySummon>().typeToSpawn = mobType.Zombie;
+        temp.GetComponent<EnemySummon>().typeToSpawn = Alpha;
         GameObject temp2 = (GameObject)Instantiate(summonEffect, new Vector3(transform.position.x - 4f, transform.position.y, transform.position.z), Quaternion.Euler(90, 0, 0));
-        temp2.GetComponent<EnemySummon>().typeToSpawn = mobType.Zombie;
+        temp2.GetComponent<EnemySummon>().typeToSpawn = Beta;
 
         attackTimer = attackInterval;
         summonTimer = summonInterval;
