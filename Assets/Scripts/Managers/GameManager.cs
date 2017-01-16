@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour {
 		UpdatePlayer1 ();
 
 		playerModel.name = "Player1";
+		playerModel.transform.Find ("p1").gameObject.SetActive (true);
 
 		if (player2Data.saveId != 0) {
 			GameObject player2Model = 

@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
 	float moveSpeed;
 	public float runSpeed = 6f;
 	float rotationSpeed = 40f;
+
+	//skill variables
+	bool isCasting = false;
+	float castTime = 0f;
+	bool isCastingC = false;
+	bool isCastingV = false;
+	GameObject castBar;
   
 	float x;
 	float z;
@@ -224,6 +231,8 @@ public class PlayerController : MonoBehaviour
 		animator.SetBool("Armed", true);
 		animator.SetInteger("Weapon", 7);
 
+		castBar = (GameObject)Resources.Load("ChargeBar");
+
 	}
 
 	#endregion
@@ -329,20 +338,44 @@ public class PlayerController : MonoBehaviour
             //    AttackKick(2);
             //}
 
-			if (((Input.GetButtonDown("SkillC") && player.playerNo == 1) || (Input.GetButtonDown("XButtonCtrl1") && player.playerNo == 2))
-				&& canAction && isGrounded && !isBlocking && !isDead) 
-			{
+			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("XButtonCtrl1") && player.playerNo == 2))
+			    && canAction && isGrounded && !isBlocking && !isDead && !isCasting) {
+				isCasting = true;
+				isStrafing = true;
+				isAiming = false;
+				animator.SetBool ("Strafing", true);
+
+				isCastingC = true;
+
+				Camera camera = FindObjectOfType<Camera>();
+				Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+				GameObject bar = (GameObject)Instantiate(castBar, screenPos, Quaternion.identity);
+				bar.transform.SetParent(GameObject.Find("Canvas").transform);
+
+			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
+
 				CastAttack(1);
 				player.skillC ();
+
 			}
 
 			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
-				&& canAction && isGrounded && !isBlocking && !isDead) 
+				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
+				isCasting = true;
+				isStrafing = true;
+				isAiming = false;
+				animator.SetBool ("Strafing", true);
+
+				isCastingV = true;
+
+			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
+
 				CastAttack(1);
 				player.skillV ();
 
 			}
+
 			if (inputCastL && canAction && isGrounded && isBlocking) {
 				StartCoroutine (_BlockBreak ());
 			}
@@ -409,6 +442,12 @@ public class PlayerController : MonoBehaviour
 			else
 			{
 				Debug.Log("ERROR: There is no animator for character.");
+			}
+
+			if (isCasting) {
+
+
+
 			}
 	}
 
@@ -588,7 +627,8 @@ public class PlayerController : MonoBehaviour
 		{
 			//make character point at target
 			Quaternion targetRotation;
-			Vector3 targetPos = target.transform.position;
+			//Vector3 targetPos = target.transform.position;
+			Vector3 targetPos = transform.position + transform.forward;
       	targetRotation = Quaternion.LookRotation(targetPos - new Vector3(transform.position.x,0,transform.position.z));
 			transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,targetRotation.eulerAngles.y,(rotationSpeed * Time.deltaTime) * rotationSpeed);
 		}
@@ -1020,6 +1060,8 @@ public class PlayerController : MonoBehaviour
 					StartCoroutine(_LockMovementAndAttack(0, 1f));
 				}
 			}
+
+			StartCoroutine(_LockCasting(0, .8f));
 		} 
 	}
 
@@ -1221,6 +1263,21 @@ public class PlayerController : MonoBehaviour
 		canAction = true;
 		canMove = true;
 		animator.applyRootMotion = false;
+
+	}
+
+	public IEnumerator _LockCasting(float delayTime, float lockTime) {
+
+		yield return new WaitForSeconds(delayTime);
+		yield return new WaitForSeconds(lockTime);
+
+		isCasting = false;
+		isStrafing = false;
+		isAiming = false;
+		animator.SetBool ("Strafing", false);
+
+		isCastingC = false;
+		isCastingV = false;
 
 	}
 
