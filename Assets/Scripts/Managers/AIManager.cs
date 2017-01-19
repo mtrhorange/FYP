@@ -33,10 +33,9 @@ public class AIManager : MonoBehaviour
 {
     //public instance
     public static AIManager instance;
-
     private List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
     private List<GameObject> bossPrefabs;
-    private int roomEnemyPoints; //total enemy points in current room
+    public int roomEnemyPoints; //total enemy points in current room
     public List<GameObject> enemyList;
     public List<GameObject> roomSpawnPoints;
     private const int WEAK = 1, MEDIUM = 2, STRONG = 4; //enemy points each strength category is worth
@@ -106,6 +105,8 @@ public class AIManager : MonoBehaviour
 
         bossGuys = new List<GameObject>(bossPrefabs);
 
+        Shuffle(bossGuys);
+
         enemyList = new List<GameObject>();
         enemyList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
@@ -130,11 +131,16 @@ public class AIManager : MonoBehaviour
                 enemyList[i].GetComponent<Enemy>().ReceiveDamage(999, null);
             }
             spawning = false;
-            roomEnemyPoints = enemPts;
+            roomEnemyPoints = 0;
         }
         //spawn monster
         else if (Input.GetKeyDown(KeyCode.P))
         {
+            if (roomEnemyPoints <= 0 && enemyList.Count <= 0)
+            {
+                roomEnemyPoints = enemPts;
+            }
+
             fillUpRoom();
         }
 
@@ -352,6 +358,20 @@ public class AIManager : MonoBehaviour
     {
         enemyList.Remove(me);
         FlockingManager.instance.UpdateAgentArray(enemyList);
+        //when no more enemies left, door is activated
+        if (enemyList.Count < 1 && roomEnemyPoints < 1)
+        {
+            //get floor manager > current room > door > enable exit
+            foreach (GameObject g in Floor.instance.currentRoom.GetComponent<Room>().doors)
+            {
+                g.GetComponent<Door>().canExit = true;
+                if (g.GetComponent<Door>().mesh == true)
+                {
+                    g.GetComponent<MeshRenderer>().enabled = false;
+                    g.GetComponent<BoxCollider>().enabled = false;
+                }
+            }
+        }
     }
 
     //shift list
@@ -366,6 +386,18 @@ public class AIManager : MonoBehaviour
                 temp.Add(myArray[0]);
         }
         return temp;
+    }
+
+    //shuffle
+    private void Shuffle(List<GameObject> list)
+    {
+	    for (int i = list.Count - 1; i > 0; i--)
+	    {
+            int n = UnityEngine.Random.Range(0, i + 1);
+		    GameObject temp = list[i];
+		    list[i] = list[n];
+		    list[n] = temp;
+	    }
     }
 
     //update A* graph

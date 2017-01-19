@@ -28,7 +28,8 @@ public class fire_pillar : Spell {
     }
 
 	void OnTriggerEnter(Collider other) {
-		if (other.transform.GetComponent<Enemy> ()) {
+        if (other.transform.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
+        {
 			GetDamage ();
 			other.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 		}

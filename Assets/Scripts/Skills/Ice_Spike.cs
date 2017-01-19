@@ -27,7 +27,8 @@ public class Ice_Spike : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		if (other.GetComponent<Enemy> ()) {
+        if (other.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
+        {
 			bool hit = true;
 			foreach (Enemy enemy in transform.parent.GetComponent<IceSpikeSpell>().enemiesHit) {
 				if (other.GetComponent<Enemy> () == enemy) {

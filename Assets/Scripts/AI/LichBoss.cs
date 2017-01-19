@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
@@ -13,7 +14,8 @@ public class LichBoss : Enemy
     public float shootInterval = 8f, shootTimer;
     private float summonInterval = 45f, summonTimer;
 
-    public GameObject summonEffect, SkullMissile;
+    public GameObject summonEffect, SkullMissile, HPBarPrefab;
+    private GameObject HpBar;
 
     //movement variables
     private Vector3 dir;
@@ -51,6 +53,11 @@ public class LichBoss : Enemy
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
+
+        //setup canvas HP
+        HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+        HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
     }
 
     // Update is called once per frame
@@ -215,6 +222,7 @@ public class LichBoss : Enemy
     {
         damagedAmount += dmg;
         base.ReceiveDamage(dmg, attacker);
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
     }
 
     //Attack
@@ -236,6 +244,7 @@ public class LichBoss : Enemy
     {
         anim.SetTrigger("Die");
         GetComponent<BoxCollider>().enabled = false;
+        Destroy(HpBar, 1f);
         base.Death();
     }
 

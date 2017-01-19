@@ -13,7 +13,7 @@ public enum Strength
 
 public class Enemy : MonoBehaviour
 {
-    public float health;
+    public float health, maxHealth;
     public GameObject damageText;
 
     public float damage;
@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour
         damageText = (GameObject)Resources.Load("DamageText");
         monsterLevel = CalculateLevel();
         health = CalculateHP();
+        maxHealth = health;
         damage = CalculateDamage();
         expValue = CalculateExpReward();
     }
@@ -160,6 +161,7 @@ public class Enemy : MonoBehaviour
     public virtual void ReceiveDamage(float dmg, Player attacker)
     {
         health -= dmg;
+        if (health < 0) { health = 0; }
         Camera camera = FindObjectOfType<Camera>();
         Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
         GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);

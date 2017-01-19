@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6432c9e319f1740805ba48184651a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomEnemyPoints: 0
   enemyList: []
   roomSpawnPoints: []
 --- !u!4 &72541961
@@ -430,8 +431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54611196a2b1ac74ba07263353df753a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorLevel: 1
+  roomsToBoss: 6
   currentRoom: {fileID: 0}
   nextRoom: {fileID: 0}
+  currentTheme: 0
 --- !u!4 &519619492
 Transform:
   m_ObjectHideFlags: 0

@@ -8,10 +8,11 @@ public class DragonBoss : Enemy
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 0.5f, breathTimer, stompTimer, summonTimer;
-    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 40f;
+    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 45f;
     //attacking variables
     private bool attacking = false;
-    public GameObject breath, fireBlast;
+    public GameObject breath, fireBlast, summonEffect, HPBarPrefab;
+    private GameObject HpBar;
     private GameObject fireBlastRef;
     //flinch variables
     private float damagedAmount, flinchThreshold;
@@ -58,6 +59,11 @@ public class DragonBoss : Enemy
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
+
+        //setup canvas HP
+        HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+        HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
     }
 
     //Update
@@ -172,6 +178,7 @@ public class DragonBoss : Enemy
     {
         damagedAmount += dmg;
         base.ReceiveDamage(dmg, attacker);
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
     }
 
     //Flinch override
@@ -235,6 +242,7 @@ public class DragonBoss : Enemy
         playAnim("die", 1f, false);
         breath.SetActive(false);
         StopAllCoroutines();
+        Destroy(HpBar, 1f);
         base.Death();
     }
 
@@ -264,8 +272,12 @@ public class DragonBoss : Enemy
                 myState = States.Chase;
                 break;
             case "summon 1":
-                AIManager.instance.spawnMob(mobType.Dragon, new Vector3(transform.position.x + 4f, 1, transform.position.z));
-                AIManager.instance.spawnMob(mobType.DragonUndead, new Vector3(transform.position.x - 4f, 1, transform.position.z));
+                //summon 2 dragons
+                GameObject temp = (GameObject)Instantiate(summonEffect, new Vector3(transform.position.x + 4f, transform.position.y, transform.position.z), Quaternion.Euler(-90, 0, 0));
+                temp.GetComponent<EnemySummon>().typeToSpawn = mobType.Dragon;
+                GameObject temp2 = (GameObject)Instantiate(summonEffect, new Vector3(transform.position.x - 4f, transform.position.y, transform.position.z), Quaternion.Euler(-90, 0, 0));
+                temp2.GetComponent<EnemySummon>().typeToSpawn = mobType.DragonUndead;
+                attacking = false;
                 myState = States.Chase;
                 break;
             case "idle_stretch":
@@ -320,7 +332,6 @@ public class DragonBoss : Enemy
             if (Hit.transform.gameObject.layer == 8)
                 return transform.forward - transform.right;
         }
-
 
 
         if (Physics.Raycast((transform.position + transform.up),

@@ -10,10 +10,11 @@ public class Treant : Enemy {
     //timers
     private float pathUpdateTimer = 3f;
     public float attackInterval = 3f;
-    private float summonInterval = 50f, summonTimer;
+    private float summonInterval = 45f, summonTimer;
 
     public float attackTimer;
-    public GameObject shockwave;
+    public GameObject shockwave, summonEffect, HPBarPrefab;
+    private GameObject HpBar;
     private Vector3 heightOffset;
     //movement variables
     private Vector3 dir;
@@ -49,6 +50,11 @@ public class Treant : Enemy {
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
+
+        //setup canvas HP
+        HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+        HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
 	}
 	
 	// Update is called once per frame
@@ -215,6 +221,7 @@ public class Treant : Enemy {
     {
         damagedAmount += dmg;
         base.ReceiveDamage(dmg, attacker);
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
     }
 
     //Attack
@@ -267,6 +274,7 @@ public class Treant : Enemy {
     {
         anim.SetTrigger("Die");
         GetComponent<BoxCollider>().enabled = false;
+        Destroy(HpBar, 1f);
         base.Death();
     }
 
@@ -274,8 +282,10 @@ public class Treant : Enemy {
     void summonShit()
     {
         //summon 2 nature themed monsters to aid in battle
-        AIManager.instance.spawnMob(mobType.Flower, new Vector3(transform.position.x + 4f, 1, transform.position.z));
-        AIManager.instance.spawnMob(mobType.Plant, new Vector3(transform.position.x - 4f, 1, transform.position.z));
+        GameObject temp = (GameObject)Instantiate(summonEffect, new Vector3(transform.position.x + 4f, transform.position.y, transform.position.z), Quaternion.Euler(-90, 0, 0));
+        temp.GetComponent<EnemySummon>().typeToSpawn = mobType.Flower;
+        GameObject temp2 = (GameObject)Instantiate(summonEffect, new Vector3(transform.position.x - 4f, transform.position.y, transform.position.z), Quaternion.Euler(-90, 0, 0));
+        temp2.GetComponent<EnemySummon>().typeToSpawn = mobType.Plant;
 
         attackTimer = attackInterval;
         summonTimer = summonInterval;
