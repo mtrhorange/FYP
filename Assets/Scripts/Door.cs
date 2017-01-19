@@ -22,7 +22,6 @@ public class Door : MonoBehaviour {
 			Floor.instance.NextRoom ();
 
 
-
 		}
 
 	}

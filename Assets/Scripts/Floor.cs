@@ -7,11 +7,17 @@ public class Floor : MonoBehaviour {
 
 	public static Floor instance;
 
-	int floorLevel = 1;
-	int roomsToBoss = 6;
+	public int floorLevel = 1;
+	public int roomsToBoss = 6;
 	public GameObject currentRoom, nextRoom;
+    //room prefab lists
+	private List<GameObject> caveRooms, castleRooms, LavaRooms;
+    private List<List<GameObject>> roomTypes;
+    //Room Theme
+    public enum Themes { Cave, Castle, Lava }
+    //the theme currently in use
+    public Themes currentTheme;
 
-	List<GameObject> caveRooms;
 
 	bool changingRooms = false;
 	bool fadeOut = true;
@@ -20,36 +26,48 @@ public class Floor : MonoBehaviour {
 
 	void Awake() {
 		instance = this;
-
 	}
 
 	// Use this for initialization
-	void Start () {
-		caveRooms = new List<GameObject> ();
+	void Start() {
+		caveRooms = new List<GameObject>();
 		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom2"));
 		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom3"));
 		caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom4"));
+        caveRooms.Add((GameObject)Resources.Load("Rooms/Cave/caveRoom5"));
 
-		blackOverlay = GameObject.Find ("Canvas").transform.Find ("BlackOverlay").gameObject;
-		NewRoom ();
-		SpawnNextRoom ();
-		GameManager.instance.SpawnPlayer ();
+        castleRooms = new List<GameObject>();
+        castleRooms.Add((GameObject)Resources.Load("Rooms/Castle/castleRoom1"));
+        castleRooms.Add((GameObject)Resources.Load("Rooms/Castle/castleRoom2"));
+        castleRooms.Add((GameObject)Resources.Load("Rooms/Castle/castleRoom3"));
+        castleRooms.Add((GameObject)Resources.Load("Rooms/Castle/castleRoom4"));
+
+        currentTheme = (Themes)Random.Range(0, 2);//chhange to 3 once Lava rooms have been included
+
+        roomTypes = new List<List<GameObject>>();
+        roomTypes.Add(caveRooms);
+        roomTypes.Add(castleRooms);
+
+		blackOverlay = GameObject.Find("Canvas").transform.Find("BlackOverlay").gameObject;
+		NewRoom();
+		SpawnNextRoom();
+		GameManager.instance.SpawnPlayer();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 
 		if (changingRooms) {
 			if (fadeOut) {
 				fadeTime += Time.deltaTime;
 
 				//Camera Black overlay fade in
-				blackOverlay.GetComponent<Image> ().color = new Color (0, 0, 0, fadeTime);
+				blackOverlay.GetComponent<Image>().color = new Color(0, 0, 0, fadeTime);
 
 				if (fadeTime > 1) {
-					SpawnNextRoom ();
-					MovePlayers ();
-					GameManager.instance.SavePlayers ();
+					SpawnNextRoom();
+					MovePlayers();
+					GameManager.instance.SavePlayers();
 					fadeOut = false;
 					fadeTime = 1;
 				}
@@ -57,14 +75,13 @@ public class Floor : MonoBehaviour {
 				fadeTime -= Time.deltaTime;
 
 				//Camera black overlay fade out
-				blackOverlay.GetComponent<Image> ().color = new Color (0, 0, 0, fadeTime);
+				blackOverlay.GetComponent<Image>().color = new Color(0, 0, 0, fadeTime);
 
 				if (fadeTime < 0) {
 					fadeOut = true;
 					fadeTime = 0;
 					changingRooms = false;
 				}
-
 
 			}
 
@@ -75,16 +92,48 @@ public class Floor : MonoBehaviour {
 	public void NewRoom() {
 
 		GameObject room;
-		if (currentRoom != null) {
-			
-			do {
-				int rand = Random.Range (0, caveRooms.Count);
-				nextRoom = caveRooms [rand];
-			} while (nextRoom.name == currentRoom.name);
+		if (currentRoom != null) 
+        {
+            //check if current room is boss, if yes, cycle the theme for the new rooms
+            if (currentRoom.name.ToUpper().Contains("BOSS"))
+            {
+                Themes TT;
+                do
+                {
+                    TT = (Themes)Random.Range(0, 2);//chhange to 3 once Lava rooms have been included
+                }
+                while(TT == currentTheme);
+                currentTheme = TT;
+            }
+
+            //if currently 1 room before boss room
+			if (roomsToBoss == 1)
+            {
+                switch (currentTheme)
+                {
+                    case Themes.Cave:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Cave/caveBossRoom");
+                        break;
+                    case Themes.Castle:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Castle/castleBossRoom");
+                        break;
+                    case Themes.Lava:
+                        break;
+                }
+            }
+            //if not is normal rooms
+            else
+            {
+                do
+                {
+                    int rand = Random.Range(0, roomTypes[(int)currentTheme].Count);
+                    nextRoom = roomTypes[(int)currentTheme][rand];
+                } while (nextRoom.name == currentRoom.name);
+            }
 
 		} else {
-			int rand = Random.Range (0, caveRooms.Count);
-			nextRoom = caveRooms [rand];
+			int rand = Random.Range (0, roomTypes[(int)currentTheme].Count);
+            nextRoom = roomTypes[(int)currentTheme][rand];
 		}
 
 	}
@@ -92,36 +141,49 @@ public class Floor : MonoBehaviour {
 	public void NextRoom() {
 		
 		changingRooms = true;
-
-
 	}
 
 	public void SpawnNextRoom() {
 		if (currentRoom != null)
-			Destroy (currentRoom);
+        {
+            //check if current room (before setting) is boss, if yes, update floor values
+            if (currentRoom.name.ToUpper().Contains("BOSS"))
+            {
+                NextFloor();
+            }
+
+            Destroy(currentRoom);
+        }
 
 		GameObject room = (GameObject)Instantiate (nextRoom, Vector3.zero, nextRoom.transform.rotation);
-
 		room.name = nextRoom.name;
 		currentRoom = room;
-		NewRoom ();
 
-
+        //decrement rooms to boss counter
+        roomsToBoss--;
+        Debug.Log("Rooms to boss: " + roomsToBoss);
+		NewRoom();
 
 	}
+
+    //Next Floor
+    public void NextFloor()
+    {
+        //increment the floor counter
+        floorLevel++;
+        //reset the number of rooms before boss room (6~8)
+        roomsToBoss = Random.Range((int)6, (int)9);
+    }
 
 	public void MovePlayers() {
 
-		GameManager.instance.player1.transform.position = currentRoom.GetComponent<Room> ().spawnPoint1.position;
-		GameManager.instance.player1.transform.rotation = currentRoom.GetComponent<Room> ().spawnPoint1.rotation;
+		GameManager.instance.player1.transform.position = currentRoom.GetComponent<Room>().spawnPoint1.position;
+		GameManager.instance.player1.transform.rotation = currentRoom.GetComponent<Room>().spawnPoint1.rotation;
 		if (GameManager.instance.twoPlayers) {
-			GameManager.instance.player2.transform.position = currentRoom.GetComponent<Room> ().spawnPoint2.position;
-			GameManager.instance.player2.transform.rotation = currentRoom.GetComponent<Room> ().spawnPoint2.rotation;
+			GameManager.instance.player2.transform.position = currentRoom.GetComponent<Room>().spawnPoint2.position;
+			GameManager.instance.player2.transform.rotation = currentRoom.GetComponent<Room>().spawnPoint2.rotation;
 		}
 
 	}
-
-
-
 
 }

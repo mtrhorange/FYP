@@ -188,9 +188,6 @@ public class Player : MonoBehaviour {
 	public void AttackTrigger(int i)
 	{
 		currentWeapon.AttackTrigger (i);
-
-
-
 	}
 
 	//Player gets damage, reduces health

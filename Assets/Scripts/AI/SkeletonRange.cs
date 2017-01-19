@@ -331,7 +331,7 @@ public class SkeletonRange : Enemy
         float offset;
         if (player.GetComponent<Rigidbody>().velocity != Vector3.zero)
         {
-            offset = Random.Range(3.8f, 4.8f);
+            offset = 0f;
         }
         else
         {

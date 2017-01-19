@@ -35,7 +35,8 @@ public class Ice_Ball_Script : Spell
 			Explode ();
         }
 
-		if (other.GetComponent<Enemy>()) {
+        if (other.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
+        {
 
 			GetDamage ();
 			other.GetComponent<Enemy> ().ReceiveDamage (damage, player);

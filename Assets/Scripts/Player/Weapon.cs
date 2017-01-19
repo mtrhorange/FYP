@@ -79,7 +79,8 @@ public class Weapon : MonoBehaviour {
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hit = hits[i];
 
-			if (hit.transform.GetComponent<Enemy> ()) {
+            if (hit.transform.GetComponent<Enemy>() && hit.collider.GetType() == typeof(CapsuleCollider))
+            {
 				Enemy enemy = hit.transform.GetComponent<Enemy> ();
 				foreach (Enemy e in enemiesHit) {
 

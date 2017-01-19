@@ -10,7 +10,8 @@ public class TentacleBoss : Enemy {
     public GameObject tentaclePref;
     public float attackInterval = 3f;
     public GameObject mouth;
-    public GameObject projectile;
+    public GameObject projectile, HPBarPrefab;
+    private GameObject HpBar;
     //list to keep track of tentacles
     public List<Tentacle> tentacles;
     private float spawnTimer = 5f;
@@ -42,6 +43,11 @@ public class TentacleBoss : Enemy {
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
+
+        //setup canvas HP
+        HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
+        HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
 	}
 	
 	//Update
@@ -183,6 +189,7 @@ public class TentacleBoss : Enemy {
         {
             tentacles[i].ReceiveDamage(tentacles[i].health + 1, null);
         }
+        Destroy(HpBar, 1f);
         base.Death();
     }
 
@@ -191,6 +198,7 @@ public class TentacleBoss : Enemy {
     {
         damagedAmount += dmg;
         base.ReceiveDamage(dmg, attacker);
+        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
     }
 
     private void projectileAttack()
