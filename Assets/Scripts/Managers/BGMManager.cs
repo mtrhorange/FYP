@@ -11,9 +11,15 @@ public class BGMManager : MonoBehaviour
     public AudioClip boss;
     void Awake()
     {
-      
+        if (GameObject.Find("BGMManager") != gameObject)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
             instance = this;
             DontDestroyOnLoad(this);
+        }
     }
 	// Use this for initialization
     void Start()

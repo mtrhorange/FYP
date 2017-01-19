@@ -88,7 +88,7 @@ public class SkeletonRange : Enemy
         if (attackTimer >= 0)
         {
             //5f away from player, move towards (R.I.P English)
-            if (path.GetTotalLength() > 10f)
+            if (path.GetTotalLength() > 15f)
             {
 
                 nextPathPoint =
@@ -115,6 +115,8 @@ public class SkeletonRange : Enemy
                 look.y = 0;
                 Quaternion targetRotation = Quaternion.LookRotation(look);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
+                rB.velocity = Vector3.zero;
+                
             }
 
 
@@ -123,10 +125,15 @@ public class SkeletonRange : Enemy
         //can shoot provided there is a direct LOS to player
         else
         {
+            Vector3 look = (player.transform.position - transform.position).normalized;
+            look.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(look);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
+
             RaycastHit hit;
             Vector3 sight = (player.transform.position - transform.position);
             sight.y = transform.position.y;
-            if (Physics.Raycast(transform.position, sight.normalized, out hit))
+            if (Physics.Raycast(transform.position, sight.normalized * 5f, out hit))
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
@@ -141,12 +148,13 @@ public class SkeletonRange : Enemy
 
                     dir = velocity;
 
-                    Vector3 look = dir.normalized + AvoidObstacle();
+                    look = dir.normalized + AvoidObstacle();
                     look.y = 0;
-                    Quaternion targetRotation = Quaternion.LookRotation(look);
+                    targetRotation = Quaternion.LookRotation(look);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                     rB.velocity = transform.forward * speed;
+                    anim.SetBool("move", true);
                 }
             }
 
@@ -302,6 +310,13 @@ public class SkeletonRange : Enemy
     //Attack
     protected override void Attack()
     {
+
+        Vector3 look = (player.transform.position - transform.position).normalized;
+        look.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(look);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
+
+
         if (!attacking)
         {
             attacking = true;
@@ -309,6 +324,7 @@ public class SkeletonRange : Enemy
             anim.SetTrigger("attack");
             rB.velocity = Vector3.zero;
         }
+        
     }
 
     //shoot acid
@@ -342,14 +358,24 @@ public class SkeletonRange : Enemy
         Vector3 towards = new Vector3(Random.Range(0f, 1f) * 2 - 1, 0, Random.Range(0f, 1f) * 2 - 1);
 
         //calculate where to shoot
-        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, hand.transform.position, 10f);
+        Vector3 calc = CalculateInterception(player.transform.position + towards.normalized*offset,
+            player.GetComponent<Rigidbody>().velocity, hand.transform.position, 10f);
         if (calc != Vector3.zero)
         {
             calc.Normalize();
-            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized * offset, player.GetComponent<Rigidbody>().velocity, hand.transform.position, calc * 10f);
-            interceptPoint = (player.transform.position + towards.normalized * offset) + player.GetComponent<Rigidbody>().velocity * interceptionTime;
+            interceptionTime = GetApproachingPoint(player.transform.position + towards.normalized*offset,
+                player.GetComponent<Rigidbody>().velocity, hand.transform.position, calc*10f);
+            interceptPoint = (player.transform.position + towards.normalized*offset) +
+                             player.GetComponent<Rigidbody>().velocity*interceptionTime;
         }
-        shoot(interceptPoint);
+        shoot(player.transform.position);
+
+        Vector3 look = (player.transform.position - transform.position).normalized;
+        look.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(look);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
+        rB.velocity = Vector3.zero;
+
     }
 
     //attack event 2
