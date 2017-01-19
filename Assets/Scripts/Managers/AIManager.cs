@@ -365,6 +365,11 @@ public class AIManager : MonoBehaviour
             foreach (GameObject g in Floor.instance.currentRoom.GetComponent<Room>().doors)
             {
                 g.GetComponent<Door>().canExit = true;
+                if (g.GetComponent<Door>().mesh == true)
+                {
+                    g.GetComponent<MeshRenderer>().enabled = false;
+                    g.GetComponent<BoxCollider>().enabled = false;
+                }
             }
         }
     }

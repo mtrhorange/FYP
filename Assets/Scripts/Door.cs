@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
-	public bool canExit = false;
+	public bool canExit = false, mesh = false;
 
 	// Use this for initialization
 	void Start () {

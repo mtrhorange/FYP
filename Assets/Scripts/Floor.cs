@@ -11,10 +11,10 @@ public class Floor : MonoBehaviour {
 	public int roomsToBoss = 6;
 	public GameObject currentRoom, nextRoom;
     //room prefab lists
-	private List<GameObject> caveRooms, castleRooms, LavaRooms;
+	private List<GameObject> caveRooms, castleRooms, hellRooms;
     private List<List<GameObject>> roomTypes;
     //Room Theme
-    public enum Themes { Cave, Castle, Lava }
+    public enum Themes { Cave, Castle, Hell }
     //the theme currently in use
     public Themes currentTheme;
 
@@ -42,11 +42,18 @@ public class Floor : MonoBehaviour {
         castleRooms.Add((GameObject)Resources.Load("Rooms/Castle/castleRoom3"));
         castleRooms.Add((GameObject)Resources.Load("Rooms/Castle/castleRoom4"));
 
-        currentTheme = (Themes)Random.Range(0, 2);//chhange to 3 once Lava rooms have been included
+        hellRooms = new List<GameObject>();
+        hellRooms.Add((GameObject)Resources.Load("Rooms/Hell/hellRoom1"));
+        hellRooms.Add((GameObject)Resources.Load("Rooms/Hell/hellRoom2"));
+        hellRooms.Add((GameObject)Resources.Load("Rooms/Hell/hellRoom3"));
+        hellRooms.Add((GameObject)Resources.Load("Rooms/Hell/hellRoom4"));
+
+        currentTheme = (Themes)Random.Range(0, 3);
 
         roomTypes = new List<List<GameObject>>();
         roomTypes.Add(caveRooms);
         roomTypes.Add(castleRooms);
+        roomTypes.Add(hellRooms);
 
 		blackOverlay = GameObject.Find("Canvas").transform.Find("BlackOverlay").gameObject;
 		NewRoom();
@@ -100,7 +107,7 @@ public class Floor : MonoBehaviour {
                 Themes TT;
                 do
                 {
-                    TT = (Themes)Random.Range(0, 2);//chhange to 3 once Lava rooms have been included
+                    TT = (Themes)Random.Range(0, 3);
                 }
                 while(TT == currentTheme);
                 currentTheme = TT;
@@ -117,7 +124,8 @@ public class Floor : MonoBehaviour {
                     case Themes.Castle:
                         nextRoom = (GameObject)Resources.Load("Rooms/Castle/castleBossRoom");
                         break;
-                    case Themes.Lava:
+                    case Themes.Hell:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Hell/hellBossRoom");
                         break;
                 }
             }

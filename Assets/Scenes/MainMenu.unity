@@ -4604,48 +4604,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 108000012962189748, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000012471074096, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000014058897112, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000013516705936, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010262439850, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000010322172442, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000011706012122, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 108000012121855408, guid: 2d4c3a4b82bce2544b834957efe49f95,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.15
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000014279612674, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1230878875
@@ -8267,7 +8226,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010942669360}
   - 33: {fileID: 33000011507577056}
   - 23: {fileID: 23000011947364358}
+  - 64: {fileID: 64000012291117788}
   m_Layer: 0
   m_Name: wheelbarrow
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012651554026}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 157.18, y: -703.75, z: 694.3007}
+  m_LocalPosition: {x: -3.3093262, y: -14.452637, z: -12.655701}
   m_LocalScale: {x: 1.0873607, y: 1.0873618, z: 0.82068396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -76,4 +77,16 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012651554026}
+  m_Mesh: {fileID: 4300000, guid: 23ca523a24e128044895e65faa71f2b2, type: 3}
+--- !u!64 &64000012291117788
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012651554026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 23ca523a24e128044895e65faa71f2b2, type: 3}
