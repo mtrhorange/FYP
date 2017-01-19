@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
+using UnityEngine.UI;
 
 
 	
@@ -70,8 +71,12 @@ public class PlayerController : MonoBehaviour
 	//skill variables
 	bool isCasting = false;
 	float castTime = 0f;
+	float castTimeMax = 40f;
+	float spellCastTime = 0f;
 	bool isCastingC = false;
 	bool isCastingV = false;
+	bool canCast = false;
+	GameObject castBarPrefab;
 	GameObject castBar;
   
 	float x;
@@ -231,7 +236,7 @@ public class PlayerController : MonoBehaviour
 		animator.SetBool("Armed", true);
 		animator.SetInteger("Weapon", 7);
 
-		castBar = (GameObject)Resources.Load("ChargeBar");
+		castBarPrefab = (GameObject)Resources.Load("ChargeBar");
 
 	}
 
@@ -323,11 +328,13 @@ public class PlayerController : MonoBehaviour
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				Attack(2);
+				GetComponent<Player> ().Stamina -= 6f;
 			}
 			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (Input.GetButtonDown("BButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				Rolling ();
+				GetComponent<Player> ().Stamina -= 10f;
 			}
             //if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
             //{
@@ -344,19 +351,25 @@ public class PlayerController : MonoBehaviour
 				isStrafing = true;
 				isAiming = false;
 				animator.SetBool ("Strafing", true);
+				canAction = false;
 
 				isCastingC = true;
+				spellCastTime = player.skillCTime();
+
 
 				Camera camera = FindObjectOfType<Camera>();
 				Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-				GameObject bar = (GameObject)Instantiate(castBar, screenPos, Quaternion.identity);
+				GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
 				bar.transform.SetParent(GameObject.Find("Canvas").transform);
 
+				castBar = bar;
 			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
-
-				CastAttack(1);
-				player.skillC ();
-
+				if (canCast) {
+					CastAttack (1);
+					player.skillC ();
+				} else {
+					StartCoroutine(_LockCasting(0, 0f));
+				}
 			}
 
 			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
@@ -368,18 +381,31 @@ public class PlayerController : MonoBehaviour
 				animator.SetBool ("Strafing", true);
 
 				isCastingV = true;
+				spellCastTime = player.skillVTime();
+
+				Camera camera = FindObjectOfType<Camera>();
+				Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+				GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
+				bar.transform.SetParent(GameObject.Find("Canvas").transform);
+
+				castBar = bar;
 
 			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
 
-				CastAttack(1);
-				player.skillV ();
+				if (canCast) {
+					CastAttack (1);
+					player.skillV ();
+				} else {
+					StartCoroutine(_LockCasting(0, 0f));
+				}
 
 			}
 
 			if (inputCastL && canAction && isGrounded && isBlocking) {
 				StartCoroutine (_BlockBreak ());
 			}
-            if (((Input.GetButtonDown("SwapWep") && player.playerNo == 1) || (weaponToggle && DPadYAxis() && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
+            if (((Input.GetButtonDown("SwapWep") && player.playerNo == 1) ||
+				(weaponToggle && DPadYAxis() && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
             {
 
 				//player.SwapWeapon ();
@@ -438,16 +464,32 @@ public class PlayerController : MonoBehaviour
 //					target = null;
 //				}
 //			}
+
+			if (isCasting) {
+
+				Camera camera = FindObjectOfType<Camera>();
+				Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+				castBar.transform.position = screenPos + new Vector3 (-20, 35, 0);
+
+				if (castTime < castTimeMax) {
+					castTime += Time.deltaTime * castTimeMax/spellCastTime;
+					castBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (castTime, castBar.GetComponent<RectTransform> ().rect.height);
+				}
+				else if (castTime > castTimeMax) {
+					castTime = castTimeMax;
+					castBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (castTime, castBar.GetComponent<RectTransform> ().rect.height);
+					canCast = true;
+					castBar.GetComponent<Image> ().color = Color.green;
+				}
+
+
+
+
+			}
 			}
 			else
 			{
 				Debug.Log("ERROR: There is no animator for character.");
-			}
-
-			if (isCasting) {
-
-
-
 			}
 	}
 
@@ -1132,7 +1174,8 @@ public class PlayerController : MonoBehaviour
 	{
 		while(isKnockback)
 		{
-			rb.AddForce(knockDirection * ((knockBackAmount + Random.Range(-variableAmount, variableAmount)) * (knockbackMultiplier * 10)), ForceMode.Impulse);
+			rb.AddForce(knockDirection * ((knockBackAmount + Random.Range(-variableAmount, variableAmount))
+				* (knockbackMultiplier * 10)), ForceMode.Impulse);
 			yield return null;
 		}
 	}
@@ -1279,6 +1322,12 @@ public class PlayerController : MonoBehaviour
 		isCastingC = false;
 		isCastingV = false;
 
+		Destroy (castBar);
+		castTime = 0;
+		//castTimeMax = 0;
+		canCast = false;
+		canAction = true;
+
 	}
 
 	IEnumerator _AttackTrigger(float delayTime, float triggerTime)
@@ -1382,7 +1431,9 @@ public class PlayerController : MonoBehaviour
 			StartCoroutine(_UnSheathWeapon(weaponNumber));
 		}
 		//character has 2 handed weapon
-		else if(weapon == WeaponType.STAFF || weapon == WeaponType.TWOHANDAXE || weapon == WeaponType.TWOHANDBOW || weapon == WeaponType.TWOHANDCROSSBOW || weapon == WeaponType.TWOHANDSPEAR || weapon == WeaponType.TWOHANDSWORD || weapon == WeaponType.RIFLE)
+		else if(weapon == WeaponType.STAFF || weapon == WeaponType.TWOHANDAXE || weapon == WeaponType.TWOHANDBOW || 
+			weapon == WeaponType.TWOHANDCROSSBOW || weapon == WeaponType.TWOHANDSPEAR ||
+			weapon == WeaponType.TWOHANDSWORD || weapon == WeaponType.RIFLE)
 		{
 			StartCoroutine(_SheathWeapon(leftWeapon, weaponNumber));
 			yield return new WaitForSeconds(1.1f);
@@ -1457,7 +1508,8 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine(_UnSheathWeapon(weaponNumber));
 			}
 			//switching right weapon, put away right weapon if equipped
-			else if((weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 || weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20))
+			else if((weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 ||
+				weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20))
 			{
 //				if(rightWeapon > 0)
 //				{
@@ -1510,12 +1562,14 @@ public class PlayerController : MonoBehaviour
 			animator.SetInteger("LeftWeapon", 0);
 			animator.SetBool("Shield", false);
 		}
-		else if((weaponNumber == 8 || weaponNumber == 10 || weaponNumber == 12 || weaponNumber == 14 || weaponNumber == 16))
+		else if((weaponNumber == 8 || weaponNumber == 10 || weaponNumber == 12 ||
+			weaponNumber == 14 || weaponNumber == 16))
 		{
 			leftWeapon = 0;
 			animator.SetInteger("LeftWeapon", 0);
 		}
-		else if((weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 || weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20))
+		else if((weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 ||
+			weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20))
 		{
 			rightWeapon = 0;
 			animator.SetInteger("RightWeapon", 0);
@@ -1599,7 +1653,8 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine(_WeaponVisibility(weaponNumber, .6f, true));
 				animator.SetBool("Shield", true);
 			}
-			else if(weaponNumber == 8 || weaponNumber == 10 || weaponNumber == 12 || weaponNumber == 14 || weaponNumber == 16)
+			else if(weaponNumber == 8 || weaponNumber == 10 || 
+				weaponNumber == 12 || weaponNumber == 14 || weaponNumber == 16)
 			{
 				animator.SetInteger("LeftRight", 1);
 				animator.SetInteger("LeftWeapon", weaponNumber);
@@ -1607,7 +1662,8 @@ public class PlayerController : MonoBehaviour
 				leftWeapon = weaponNumber;
 				weaponNumber = 7;
 			}
-			else if(weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 || weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20)
+			else if(weaponNumber == 9 || weaponNumber == 11 || weaponNumber == 13 ||
+				weaponNumber == 15 || weaponNumber == 17 || weaponNumber == 19 || weaponNumber == 20)
 			{
 				animator.SetInteger("LeftRight", 2);
 				if (weaponNumber < 19)
@@ -1656,7 +1712,8 @@ public class PlayerController : MonoBehaviour
 			weapon = WeaponType.ARMED;
 		}
 		//For dual blocking
-		if(rightWeapon == 9 || rightWeapon == 11 || rightWeapon == 13 || rightWeapon == 15 || rightWeapon == 17 || weaponNumber == 19 || weaponNumber == 20)
+		if(rightWeapon == 9 || rightWeapon == 11 || rightWeapon == 13 || rightWeapon == 15 ||
+			rightWeapon == 17 || weaponNumber == 19 || weaponNumber == 20)
 		{
 			if(leftWeapon == 8 || leftWeapon == 10 || leftWeapon == 12 || leftWeapon == 14 || leftWeapon == 16)
 			{
@@ -1666,7 +1723,8 @@ public class PlayerController : MonoBehaviour
 		}
 		if(leftWeapon == 8 || leftWeapon == 10 || leftWeapon == 12 || leftWeapon == 14 || leftWeapon == 16)
 		{
-			if(rightWeapon == 9 || rightWeapon == 11 || rightWeapon == 13 || rightWeapon == 15 || rightWeapon == 17 || weaponNumber == 19 || weaponNumber == 20)
+			if(rightWeapon == 9 || rightWeapon == 11 || rightWeapon == 13 || rightWeapon == 15 ||
+				rightWeapon == 17 || weaponNumber == 19 || weaponNumber == 20)
 			{
 				yield return new WaitForSeconds(.1f);
 				animator.SetInteger("LeftRight", 3);

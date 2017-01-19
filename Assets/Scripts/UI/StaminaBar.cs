@@ -3,20 +3,26 @@ using System.Collections;
 
 public class StaminaBar : MonoBehaviour {
 
-	Player player;
+	public Player player;
 	public int playerNo = 1;
 
 	// Use this for initialization
 	void Start () {
 		
-		player.staminaBar = this;
 
-		SetMaxStamina ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void SetPlayer(Player p) {
+
+		player = p;
+		player.staminaBar = this;
+		//SetStamina ();
+
 	}
 
 	public void SetStamina() {

@@ -10,8 +10,10 @@ public class PlayerData {
 	public string name = " ";
 	public int saveId = -1;
 	public float maxHealth = 100f;
+	public float baseMaxHealth = 100f;
 	public float health = 100f;
 	public float maxStamina = 100f;
+	public float baseMaxStamina = 100f;
 	public float stamina = 100f;
 	public int livesRemaining = 0;
 	public int skillPoints = 0;
@@ -91,7 +93,14 @@ public class PlayerData {
 	}
 
 	//Player Max Stamina
-	public float MaxStamina{ get; set; }
+	public float MaxStamina { 
+		get { return maxStamina; }
+		set { 
+			maxStamina = value; 
+			if (stamina > maxStamina)
+				stamina = maxStamina;
+		}
+	}
 
 	//Player current level
 	public int Level {

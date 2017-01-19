@@ -34,6 +34,11 @@ public class Player : MonoBehaviour {
 	public SkillKey skillV;
 	public SkillKey skillA;
 	public SkillKey skillS;
+	public SkillKey skillD;
+
+	public delegate float SkillCastTime();
+	public SkillCastTime skillCTime;
+	public SkillCastTime skillVTime;
 
 	public Weapon currentWeapon;
 	public Weapon nextWeapon;
@@ -41,8 +46,8 @@ public class Player : MonoBehaviour {
 	public GameObject leftHand;
 
 	public HealthBar healthBar;
-
 	public StaminaBar staminaBar;
+
 
 	GameObject attackTrigger;
 	GameObject enemyTargetHover;
@@ -80,8 +85,10 @@ public class Player : MonoBehaviour {
 		if (GetComponent<PlayerController> ())
 			controller = GetComponent<PlayerController> ();
 
-		skillC = CastFirePillar;
+		skillC = CastChainLightning;
 		skillV = CastIceSpike;
+		skillCTime = GetChainLightningTime;
+		skillVTime = GetIceSpikeTime;
 		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		//enemyTargetHover = transform.Find ("Target").gameObject;
 
@@ -114,11 +121,18 @@ public class Player : MonoBehaviour {
 
 			if (bar.playerNo == playerNo)
 				bar.SetPlayer (this);
-			if (GameManager.instance.twoPlayers == false && bar.playerNo == 2) {
-				bar.gameObject.SetActive (false);
+			if (GameManager.instance.twoPlayers == false && bar.playerNo == 2) 
+				bar.transform.parent.gameObject.SetActive (false);
+		}
 
-			}
+		StaminaBar[] stambars = FindObjectsOfType<StaminaBar> ();
 
+		foreach (StaminaBar bar in stambars) {
+
+			if (bar.playerNo == playerNo)
+				bar.SetPlayer (this);
+			if (GameManager.instance.twoPlayers == false && bar.playerNo == 2) 
+				bar.transform.parent.gameObject.SetActive (false);
 		}
 
 		canBeHit = true;
@@ -131,10 +145,17 @@ public class Player : MonoBehaviour {
 	void Update () {
 
 		UpdateHealth ();
+
 		StatusEffectsUpdate ();
 
-		if (recoverStamina && Stamina < MaxStamina)
+		if (recoverStamina && Stamina < MaxStamina) {
 			RecoverStamina (Time.deltaTime * 2f);
+			Debug.Log ("Staminaaaaaaaaaaaaaa");
+		}
+
+		UpdateStamina ();
+
+		CheatCodes ();
 	}
 
 	#endregion
@@ -213,6 +234,11 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	public void ReceiveHeal(float f) {
+
+		Health += f;
+	}
+
 	public void ReceiveExp(float f) {
 
 		Exp += f;
@@ -261,6 +287,18 @@ public class Player : MonoBehaviour {
 			health = maxHealth;
 		if (healthBar != null)
 			healthBar.SetHealth ();
+
+	}
+
+	public void UpdateStamina() {
+
+//		if (stamina < maxStamina)
+//			stamina += 3f;
+//		else if (stamina > maxStamina)
+//			stamina = maxStamina;
+
+		if (staminaBar != null)
+			staminaBar.SetStamina ();
 
 	}
 
@@ -457,17 +495,25 @@ public class Player : MonoBehaviour {
 	public float Stamina {
 		get { return stamina; }
 		set {
-			if (value > maxStamina)
+			stamina = value;
+			if (stamina > maxStamina)
 				stamina = maxStamina;
-			else
-				stamina = value;
+			else if (stamina < 0)
+				stamina = 0;
 		}
 
 
 	}
 
 	//Player Max Stamina
-	public float MaxStamina{ get; set; }
+	public float MaxStamina { 
+		get { return maxStamina; }
+		set { 
+			maxStamina = value; 
+			if (stamina > maxStamina)
+				stamina = maxStamina;
+		}
+	}
 
 	//Player current level
 	public int Level {
@@ -526,6 +572,54 @@ public class Player : MonoBehaviour {
 
 	}
 
+	public float GetFirePillarTime() {
+		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
+		float time = 4f;
+		return time;
+	}
+
+	public void CastChainLightning() {
+
+
+
+
+		Enemy[]	enemiesA = FindObjectsOfType<Enemy> ();
+		List<Enemy> enemies = new List<Enemy> ();
+		foreach (Enemy e in enemiesA) {
+
+			if (Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) < 45 ||
+			   Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) > 315) {
+				enemies.Add (e);
+			}
+		}
+
+		Transform closest = null;
+
+		foreach (Enemy e in enemies) {
+
+			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
+			    Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position)))
+				closest = e.transform;
+
+		}
+
+		if (closest != null) {
+			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
+			GameObject lightning = (GameObject)Instantiate (spellLightning, transform.position, Quaternion.identity);
+
+			lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 4f;
+			lightning.GetComponent<ChainLightning> ().EndObject = closest;
+		}
+			
+	}
+
+	public float GetChainLightningTime() {
+
+		float time = 1f;
+		return time;
+
+	}
+
 	public void CastIceBolt() {
 
 		GameObject spellIceBall = (GameObject)Resources.Load ("Skills/Ice_Ball");
@@ -540,6 +634,12 @@ public class Player : MonoBehaviour {
 		GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpikeSpell");
 		iceSpike = (GameObject)Instantiate (iceSpike, transform.position, transform.localRotation);
 		iceSpike.GetComponent<IceSpikeSpell> ().player = this;
+	}
+
+	public float GetIceSpikeTime() {
+		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
+		float time = 2f;
+		return time;
 	}
 
 	IEnumerator _IceSpike()
@@ -565,69 +665,138 @@ public class Player : MonoBehaviour {
 
 	#endregion
 
-	#region GUI
+	#region Swapping
 
-	void OnGUI() {
+	public void SwapSkillC(Skills s) {
 
-		if (playerNo == 1) {
-			if (GUI.Button (new Rect (250, 15, 100, 30), "1P c switch")) {
-				if (skillC == CastIceSpike)
-					skillC = CastFirePillar;
-				else if (skillC == CastFirePillar)
-					skillC = CastIceSpike;
-			}
-
-			if (GUI.Button (new Rect (250, 45, 100, 30), "1P v switch")) {
-				if (skillV == CastIceSpike)
-					skillV = CastFirePillar;
-				else if (skillV == CastFirePillar)
-					skillV = CastIceSpike;
-			}
-		} else {
-			if (GUI.Button (new Rect (360, 15, 100, 30), "2P c switch")) {
-				if (skillC == CastIceSpike)
-					skillC = CastFirePillar;
-				else if (skillC == CastFirePillar)
-					skillC = CastIceSpike;
-			}
-
-			if (GUI.Button (new Rect (360, 45, 100, 30), "2P v switch")) {
-				if (skillV == CastIceSpike)
-					skillV = CastFirePillar;
-				else if (skillV == CastFirePillar)
-					skillV = CastIceSpike;
-			}
-
-
-		}
-		if (playerNo == 1) {
-			if (GUI.Button (new Rect (250, 75, 100, 30), "1P -10 Health")) {
-				ReceiveDamage (10);
-			}
-		} else {
-			if (GUI.Button (new Rect (360, 75, 100, 30), "2P -10 Health")) {
-				ReceiveDamage (10);
-			}
-
+		if (s == Skills.FirePillar) {
+			skillC = CastFirePillar;
+			skillCTime = GetFirePillarTime;
+		} else if (s == Skills.IceSpike) {
+			skillC = CastIceSpike;
+			skillCTime = GetIceSpikeTime;
 		}
 
-		if (isDead) {
+	}
 
-			if (playerNo == 1) {
-				if (GUI.Button (new Rect (250, 105, 100, 30), "1P Revive")) {
-					PlayerRevive ();
-				}
+	public void SwapSkillV(Skills s) {
 
-			} else {
+		if (s == Skills.FirePillar) {
+			skillV = CastFirePillar;
+			skillVTime = GetFirePillarTime;
+		} else if (s == Skills.IceSpike) {
+			skillV = CastIceSpike;
+			skillVTime = GetIceSpikeTime;
+		}
 
-				if (GUI.Button (new Rect (250, 135, 100, 30), "2P Revive")) {
-					PlayerRevive ();
+	}
+
+	#endregion
+
+	#region Cheats
+
+	public void CheatCodes() {
+		if (playerNo == 1) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			
+				if (skillC == CastIceSpike) {
+					SwapSkillC (Skills.FirePillar);
+				} else if (skillC == CastFirePillar) {
+					SwapSkillC (Skills.IceSpike);
 				}
 
 			}
 
+			if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			
+				if (skillV == CastIceSpike) {
+					SwapSkillV (Skills.FirePillar);
+				} else if (skillV == CastFirePillar) {
+					SwapSkillV (Skills.IceSpike);
+				}
+
+			}
+
+			if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				ReceiveDamage (10f);
+			}
+
+			if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				ReceiveHeal (10f);
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Equals)) {
+			if (isDead)
+				PlayerRevive ();
 		}
 	}
+
+	#endregion
+
+	#region GUI
+
+//	void OnGUI() {
+//
+//		if (playerNo == 1) {
+//			if (GUI.Button (new Rect (250, 15, 100, 30), "1P c switch")) {
+//				if (skillC == CastIceSpike) {
+//					SwapSkillC (Skills.FirePillar);
+//				} else if (skillC == CastFirePillar) {
+//					SwapSkillC (Skills.IceSpike);
+//				}
+//			}
+//
+//			if (GUI.Button (new Rect (250, 45, 100, 30), "1P v switch")) {
+//				if (skillV == CastIceSpike)
+//					skillV = CastFirePillar;
+//				else if (skillV == CastFirePillar)
+//					skillV = CastIceSpike;
+//			}
+//		} else {
+//			if (GUI.Button (new Rect (360, 15, 100, 30), "2P c switch")) {
+//				if (skillC == CastIceSpike)
+//					skillC = CastFirePillar;
+//				else if (skillC == CastFirePillar)
+//					skillC = CastIceSpike;
+//			}
+//
+//			if (GUI.Button (new Rect (360, 45, 100, 30), "2P v switch")) {
+//				if (skillV == CastIceSpike)
+//					skillV = CastFirePillar;
+//				else if (skillV == CastFirePillar)
+//					skillV = CastIceSpike;
+//			}
+//
+//
+//		}
+//		if (playerNo == 1) {
+//			if (GUI.Button (new Rect (250, 75, 100, 30), "1P -10 Health")) {
+//				ReceiveDamage (10);
+//			}
+//		} else {
+//			if (GUI.Button (new Rect (360, 75, 100, 30), "2P -10 Health")) {
+//				ReceiveDamage (10);
+//			}
+//		}
+//
+//		if (isDead) {
+//
+//			if (playerNo == 1) {
+//				if (GUI.Button (new Rect (250, 105, 100, 30), "1P Revive")) {
+//					PlayerRevive ();
+//				}
+//
+//			} else {
+//
+//				if (GUI.Button (new Rect (250, 135, 100, 30), "2P Revive")) {
+//					PlayerRevive ();
+//				}
+//
+//			}
+//
+//		}
+//	}
 
 	#endregion
 }

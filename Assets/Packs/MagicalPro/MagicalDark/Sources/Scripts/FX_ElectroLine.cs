@@ -22,8 +22,8 @@ namespace MagicalFX
 		public bool Normal;
 		public bool ParentFXstart = true;
 		public bool ParentFXend = true;
-		public GameObject FXStart, FXEnd;
-		private GameObject fxStart, fxEnd;
+		public GameObject FXStart, FXEnd, Lightning;
+		private GameObject fxStart, fxEnd, lightning;
 		public bool KeepConnect = false;
 		
 		void Start ()
@@ -109,6 +109,11 @@ namespace MagicalFX
 				fxEnd.transform.parent = this.transform;
 				
 			}
+
+			/*if (Lightning != null) {
+				lightning = GameObject (GameObject.Instantiate (Lightning, new Vector3(0,0,0), new Vector3(0,0,0)));
+			}*/
+
 		}
 		
 		void UpdatePosition ()

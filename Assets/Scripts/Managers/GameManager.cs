@@ -127,11 +127,14 @@ public class GameManager : MonoBehaviour {
 		player1Data.Level = player1.Level;
 		player1Data.Exp = player1.Exp;
 		player1Data.MaxHealth = player1.MaxHealth;
+		player1Data.baseMaxHealth = player1.baseMaxHealth;
 		player1Data.Health = player1.Health;
-		player1Data.MaxStamina = player1.MaxStamina;
+		player1Data.maxStamina = player1.maxStamina;
+		player1Data.baseMaxStamina = player1.baseMaxStamina;
 		player1Data.Stamina = player1.MaxStamina;
 		player1Data.Lives = player1.Lives;
 		player1Data.SkillPoints = player1.SkillPoints;
+
 
 		player1Data.maxHealthLevel = player1.skills.maxHealthLevel;
 		player1Data.minDmgLevel = player1.skills.minDmgLevel;
@@ -155,12 +158,15 @@ public class GameManager : MonoBehaviour {
 		player1.Level = player1Data.Level;
 		player1.Exp = player1Data.Exp;
 		player1.MaxHealth = player1Data.MaxHealth;
+		player1.baseMaxHealth = player1Data.baseMaxHealth;
 		player1.Health = player1Data.Health;
-		player1.MaxStamina = player1Data.MaxStamina;
+		player1.maxStamina = player1Data.maxStamina;
+		player1.baseMaxStamina = player1Data.baseMaxStamina;
 		player1.Stamina = player1.MaxStamina;
 		player1.playerNo = 1;
 		player1.Lives = player1Data.Lives;
 		player1.SkillPoints = player1Data.SkillPoints;
+		player1.recoverStamina = true;
 
 		player1.skills.maxHealthLevel = player1Data.maxHealthLevel;
 		player1.skills.minDmgLevel = player1Data.minDmgLevel;
@@ -178,8 +184,10 @@ public class GameManager : MonoBehaviour {
 		player2Data.Level = player2.Level;
 		player2Data.Exp = player2.Exp;
 		player2Data.MaxHealth = player2.MaxHealth;
+		player2Data.baseMaxHealth = player2.baseMaxHealth;
 		player2Data.Health = player2.Health;
-		player2Data.MaxStamina = player2.MaxStamina;
+		player2Data.maxStamina = player2.maxStamina;
+		player2Data.baseMaxStamina = player2.baseMaxStamina;
 		player2Data.Stamina = player2.MaxStamina;
 		player2Data.Lives = player2.Lives;
 		player2Data.SkillPoints = player2.SkillPoints;
@@ -205,9 +213,12 @@ public class GameManager : MonoBehaviour {
 		player2.Level = player2Data.Level;
 		player2.Exp = player2Data.Exp;
 		player2.MaxHealth = player2Data.MaxHealth;
+		player2.baseMaxHealth = player2Data.baseMaxHealth;
 		player2.Health = player2Data.Health;
-		player2.MaxStamina = player2Data.MaxStamina;
+		player2.maxStamina = player2Data.maxStamina;
+		player2.baseMaxStamina = player2Data.baseMaxStamina;
 		player2.Stamina = player2.MaxStamina;
+		player1.recoverStamina = true;
 
 		player2.Lives = player2Data.Lives;
 		player2.SkillPoints = player2Data.SkillPoints;

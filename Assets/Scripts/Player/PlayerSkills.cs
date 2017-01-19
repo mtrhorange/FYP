@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Skills{ FirePillar, IceSpike}
+
 public class PlayerSkills : MonoBehaviour {
 
 	//Spells
+	public int firePillarLevel = 1;
+	public int iceSpikesLevel = 1;
 
 	//Passives
 	public int maxHealthLevel = 0;
