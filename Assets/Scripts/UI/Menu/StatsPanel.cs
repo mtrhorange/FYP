@@ -41,7 +41,8 @@ public class StatsPanel : MonoBehaviour {
 			HealthTxt.text = manager.player1.Health.ToString() + "/" + manager.player1.MaxHealth.ToString();
 
 			HealthBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (HealthBarMaxWidth * (manager.player1.Health / manager.player1.MaxHealth), HealthBar.GetComponent<RectTransform> ().sizeDelta.y); 
-
+		
+		
 		}
 	}
 }

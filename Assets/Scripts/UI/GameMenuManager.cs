@@ -5,7 +5,7 @@ public class GameMenuManager : MonoBehaviour {
 
 	public static GameMenuManager instance;
 
-	public MenuButton selectedBtn;
+	public MenuButton selectedBtnP1;
 
 	public GameObject player1Menu;
 	public GameObject player2Menu;
@@ -46,16 +46,16 @@ public class GameMenuManager : MonoBehaviour {
 
 	public void CheckInput() {
 		if (Input.GetButtonDown ("AttackL"))
-			selectedBtn.Submit ();
+			selectedBtnP1.Submit ();
 		if (Input.GetButtonDown ("AttackR"))
-			selectedBtn.Cancel ();
+			selectedBtnP1.Cancel ();
 		if (Input.GetKeyDown (KeyCode.LeftArrow))
-			selectedBtn.MoveLeft ();
+			selectedBtnP1.MoveLeft ();
 		if (Input.GetKeyDown (KeyCode.RightArrow))
-			selectedBtn.MoveRight ();
+			selectedBtnP1.MoveRight ();
 		if (Input.GetKeyDown (KeyCode.UpArrow))
-			selectedBtn.MoveUp ();
+			selectedBtnP1.MoveUp ();
 		if (Input.GetKeyDown (KeyCode.DownArrow))
-			selectedBtn.MoveDown ();
+			selectedBtnP1.MoveDown ();
 	}
 }

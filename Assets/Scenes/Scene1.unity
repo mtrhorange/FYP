@@ -1584,43 +1584,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000013151347118, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013321757802, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013493769070, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114000011686535866, guid: 16082e71784b260429ecae34a51936e6,
         type: 2}
       propertyPath: player1UI
@@ -1634,23 +1597,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1969209746 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013493769070, guid: 16082e71784b260429ecae34a51936e6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1969209745}
---- !u!114 &1969209747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1969209746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47d5c04f57887b9438666c99cfd0eb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNo: 1
 --- !u!1 &1974856492
 GameObject:
   m_ObjectHideFlags: 0

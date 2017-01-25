@@ -46,6 +46,7 @@ public class SkillsBtn : MenuButton {
 			SubmitBtn.Select ();
 			selected = false;
 			Inactive ();
+
 		}
 
 
