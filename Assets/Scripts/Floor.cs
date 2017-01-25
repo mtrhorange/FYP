@@ -107,7 +107,7 @@ public class Floor : MonoBehaviour {
                 Themes TT;
                 do
                 {
-                    TT = currentTheme = (Themes)Random.Range(0, 3);
+                    TT = (Themes)Random.Range(0, 3);
                 }
                 while(TT == currentTheme);
                 currentTheme = TT;
@@ -171,7 +171,6 @@ public class Floor : MonoBehaviour {
         roomsToBoss--;
         Debug.Log("Rooms to boss: " + roomsToBoss);
 		NewRoom();
-
 	}
 
     //Next Floor

@@ -171,17 +171,20 @@ public class Enemy : MonoBehaviour
         //txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
         //txt.transform.Rotate(55, 0, 0);
 
-        if (health <= 0)
-        {
-            murderer = attacker;
-            Death();
-        }
-        else
-        {
-            //Flinch
-            if (myState != States.Flinch)
-                Flinch();
-        }
+        //if (myState != States.Dead)
+        //{
+            if (health <= 0)
+            {
+                murderer = attacker;
+                Death();
+            }
+            else
+            {
+                //Flinch
+                if (myState != States.Flinch)
+                    Flinch();
+            }
+        //}
     }
 
     //Flinch

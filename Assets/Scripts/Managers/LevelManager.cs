@@ -34,7 +34,6 @@ public class LevelManager : MonoBehaviour {
 
 		SceneManager.LoadScene ("MainMenu");
 		GameManager.instance.Reset ();
-
 	}
 
 	void SpawnPlayer(Scene a, Scene b) {

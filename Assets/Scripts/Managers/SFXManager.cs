@@ -24,12 +24,15 @@ public class SFXManager : MonoBehaviour
 
     public static SFXManager instance;
 
-    private AudioSource sfx;
+    private AudioSource sfx;    
 
     void Awake()
     {
-        instance = this;
-		DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(transform.gameObject);
+        if (instance && instance != this.gameObject)
+            Destroy(this.gameObject);
+        else
+            instance = this;
     }
 
     // Use this for initialization

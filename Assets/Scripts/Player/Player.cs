@@ -159,6 +159,19 @@ public class Player : MonoBehaviour {
 		CheatCodes ();
 	}
 
+    //LateUpdate
+    void LateUpdate()
+    {
+        if (playerNo == 1)
+        {
+            transform.Find("p1").transform.rotation = Quaternion.Euler(90, 0, 0);
+        }
+        else if (playerNo == 2)
+        {
+            transform.Find("p2").transform.rotation = Quaternion.Euler(90, 0, 0);
+        }
+    }
+
 	#endregion
 
 
@@ -257,6 +270,9 @@ public class Player : MonoBehaviour {
 	public void LevelUp() {
 
 		Level++;
+        //add level up bling bling effect
+        GameObject levelUpBeam = (GameObject)Instantiate(Resources.Load("LevelUpEffect"), transform.position, Quaternion.identity);
+        levelUpBeam.GetComponent<LevelUp>().p = this.gameObject;
 		MaxHealth += 10;
 		Health = MaxHealth;
 		SkillPoints++;

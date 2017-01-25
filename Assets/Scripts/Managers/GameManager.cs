@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour {
             UpdatePlayer2();
 
             player2Model.name = "Player2";
+            player2Model.transform.Find("p2").gameObject.SetActive(true);
 
             twoPlayers = true;
         }
@@ -235,7 +236,7 @@ public class GameManager : MonoBehaviour {
 		player2.maxStamina = player2Data.maxStamina;
 		player2.baseMaxStamina = player2Data.baseMaxStamina;
 		player2.Stamina = player2.MaxStamina;
-		player1.recoverStamina = true;
+		player2.recoverStamina = true;
 
 		player2.Lives = player2Data.Lives;
 		player2.SkillPoints = player2Data.SkillPoints;

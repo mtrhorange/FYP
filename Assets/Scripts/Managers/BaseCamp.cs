@@ -5,36 +5,39 @@ using System.Collections;
 
 public class BaseCamp : MonoBehaviour {
 
-    private bool leavingTown = false;
-    private bool fadeOut = true;
-    private float fadeTime = 0f;
-    private GameObject blackOverlay;
+    public bool leavingTown = false;
+    public float fadeTime = 0f;
+    public GameObject blackOverlay;
 
 	//Start
-	void Start ()
+	void Start()
     {
         GameManager.instance.SpawnPlayer();
-        blackOverlay = GameObject.Find("Canvas").transform.Find("BlackOverlay").gameObject;
 	}
 	
+    //Awake
+    void Awake()
+    {
+        leavingTown = false;
+        fadeTime = 0f;
+        blackOverlay = GameObject.Find("Canvas").transform.Find("BlackOverlay").gameObject;
+    }
+
 	//Update
-	void Update ()
+	void Update()
     {
         if (leavingTown)
         {
-            if (fadeOut)
+            fadeTime += Time.deltaTime;
+
+            //Camera Black overlay fade in
+            blackOverlay.GetComponent<Image>().color = new Color(0, 0, 0, fadeTime);
+
+            if (fadeTime > 1)
             {
-                fadeTime += Time.deltaTime;
-
-                //Camera Black overlay fade in
-                blackOverlay.GetComponent<Image>().color = new Color(0, 0, 0, fadeTime);
-
-                if (fadeTime > 1)
-                {
-                    GameManager.instance.SavePlayers();
-                    //load into game (dungeon)
-                    SceneManager.LoadScene(1);
-                }
+                GameManager.instance.SavePlayers();
+                //load into game (dungeon)
+                SceneManager.LoadScene(1);
             }
         }
 	}

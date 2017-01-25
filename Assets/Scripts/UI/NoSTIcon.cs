@@ -7,12 +7,12 @@ public class NoSTIcon : MonoBehaviour {
 
 	float timer = 2f;
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		Camera camera = FindObjectOfType<Camera>();
 		Vector3 screenPos = camera.WorldToScreenPoint(player.position);
 		transform.position = screenPos + new Vector3 (0, -20, 0);
