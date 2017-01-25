@@ -47,8 +47,6 @@ public class TabBtn : MenuButton {
 			Inactive ();
 			SelectionInactive ();
 		}
-
-
 	}
 
 	public override void Cancel() {

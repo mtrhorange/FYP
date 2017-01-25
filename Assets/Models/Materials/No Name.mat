@@ -111,7 +111,7 @@ Material:
       second: 0.02
     - first:
         name: _ShadowDarkness
-      second: 0
+      second: 1
     - first:
         name: _Shininess
       second: 1
@@ -136,7 +136,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.9411765, g: 0.31833914, b: 0.35699797, a: 0}
+      second: {r: 0.9898581, g: 1, b: 0.2647059, a: 0}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

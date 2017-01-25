@@ -6,7 +6,7 @@ public class MenuButton : MonoBehaviour {
 
 	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn, SubmitBtn, CancelBtn;
 
-	public enum ButtonTypes {MainMenu, Tab, Panel, Skill}
+	public enum ButtonTypes {MainMenu, Tab, Panel, Skill, SkillSelection, KeyAssign}
 	public ButtonTypes btnType;
 
 
@@ -45,7 +45,7 @@ public class MenuButton : MonoBehaviour {
 	public virtual void Select() {
 		selected = true;
 
-		GameMenuManager.instance.selectedBtn = this;
+		GameMenuManager.instance.selectedBtnP1 = this;
 	}
 
 	public virtual void Deselect() {
