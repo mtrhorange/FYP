@@ -391,7 +391,7 @@ GameObject:
   - 65: {fileID: 65000013358805968}
   m_Layer: 0
   m_Name: SkeletonMelee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2220,6 +2220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
+  maxHealth: 0
   damageText: {fileID: 0}
   damage: 8
   expValue: 0

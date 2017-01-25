@@ -64,23 +64,16 @@ public class FlowerMonster : Enemy {
         seeker.StartPath(transform.position, target, OnPathComplete);
         currentWayPoint = 1;
         myState = States.Chase;
-        
     }
     protected override void Chase()
     {
+        pathUpdate();
+
         //if no path yet
         if (path == null)
         {
             Debug.Log("NO PATH");
             //No path to move to yet
-            return;
-        }
-
-        if (currentWayPoint >= path.vectorPath.Count)
-        {
-            Debug.Log("End Point Reached");
-            //go back to idle
-            myState = States.Idle;
             return;
         }
 
@@ -160,14 +153,20 @@ public class FlowerMonster : Enemy {
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
 
+        if (currentWayPoint >= path.vectorPath.Count)
+        {
+            Debug.Log("End Point Reached");
+            //go back to idle
+            myState = States.Idle;
+            return;
+        }
+
         //update the waypoint on the path once the current one has been reached
         if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)
         {
             currentWayPoint++;
             return;
         }
-
-        pathUpdate();
     }
 
     //Flinch override

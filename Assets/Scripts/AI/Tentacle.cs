@@ -8,7 +8,7 @@ public class Tentacle : Enemy
     public float lifeTime = 45f;
     public TentacleBoss Boss;
     public float attackInterval;
-    private float attackTimer;
+    private float attackTimer, reTargetTimer = 3f;
     private Animator anim;
 
     //Start
@@ -89,9 +89,23 @@ public class Tentacle : Enemy
         attackTimer = attackInterval;
     }
 
+    //re-target
+    private void ReTarget()
+    {
+        reTargetTimer -= Time.deltaTime;
+
+        if (reTargetTimer <= 0)
+        {
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
+            reTargetTimer = 1f;
+        }
+    }
+
     //Idle override
     protected override void Idle()
     {
+        ReTarget();
+
         //look at player
         if (Vector3.Distance(this.transform.position, player.transform.position) < 6f)
         {

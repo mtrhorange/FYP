@@ -25,8 +25,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void LoadGame() {
-		
-		SceneManager.LoadScene(1); //Load game scene
+		SceneManager.LoadScene(2); //Load base camp scene
 		//SceneManager.activeSceneChanged += SpawnPlayer; //Methods to call after scene changes
 
 	}

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -38,27 +39,43 @@ public class GameManager : MonoBehaviour {
 
 	public void SpawnPlayer() {
 
-		GameObject playerModel = 
-			(GameObject)Instantiate (playerPrefab, 
-				Floor.instance.currentRoom.GetComponent<Room>().spawnPoint1.position, Quaternion.identity);
+        Vector3 spawnPos = Vector3.zero;
+        Vector3 spawnPos2 = Vector3.zero;
+        //if is game scene (rooms / floors)
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Scene1"))
+        {
+            spawnPos = Floor.instance.currentRoom.GetComponent<Room>().spawnPoint1.position;
+            spawnPos2 = Floor.instance.currentRoom.GetComponent<Room>().spawnPoint2.position;
+        }
+        //if is base camp scene
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("BaseCamp"))
+        {
+            spawnPos = GameObject.Find("Player1Spawn").transform.position;
+            spawnPos2 = GameObject.Find("Player2Spawn").transform.position;
+        }
 
-		player1 = playerModel.GetComponent<Player> ();
-		UpdatePlayer1 ();
+        GameObject playerModel =
+            (GameObject)Instantiate(playerPrefab,
+                spawnPos, Quaternion.identity);
 
-		playerModel.name = "Player1";
-		playerModel.transform.Find ("p1").gameObject.SetActive (true);
+        player1 = playerModel.GetComponent<Player>();
+        UpdatePlayer1();
 
-		if (player2Data.saveId != 0) {
-			GameObject player2Model = 
-				(GameObject)Instantiate (playerPrefab, 
-					Floor.instance.currentRoom.GetComponent<Room>().spawnPoint2.position, Quaternion.identity);
-			player2 = player2Model.GetComponent<Player> ();
-			UpdatePlayer2 ();
+        playerModel.name = "Player1";
+        playerModel.transform.Find("p1").gameObject.SetActive(true);
 
-			player2Model.name = "Player2";
+        if (player2Data.saveId != 0)
+        {
+            GameObject player2Model =
+                (GameObject)Instantiate(playerPrefab,
+                    spawnPos2, Quaternion.identity);
+            player2 = player2Model.GetComponent<Player>();
+            UpdatePlayer2();
 
-			twoPlayers = true;
-		}
+            player2Model.name = "Player2";
+
+            twoPlayers = true;
+        }
 	}
 
 	public void SelectPlayer(SaveSlot s) {

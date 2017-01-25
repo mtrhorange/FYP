@@ -23,6 +23,7 @@ public class TentacleBoss : Enemy {
     //flinch variables
     public float damagedAmount, flinchThreshold;
     public float flinchTimer = 5f;
+    private float reTargetTimer = 3f;
 
     //Start
     protected override void Start()
@@ -80,6 +81,8 @@ public class TentacleBoss : Enemy {
 
     protected override void Idle()
     {
+        ReTarget();
+
         //look at player
         if (Vector3.Distance(this.transform.position, player.transform.position) < 15f)
         {
@@ -125,6 +128,18 @@ public class TentacleBoss : Enemy {
 
         //reacquire closer target
         player = base.reacquireTgt(tgtStyle, this.gameObject);
+    }
+
+    //re-target
+    private void ReTarget()
+    {
+        reTargetTimer -= Time.deltaTime;
+
+        if (reTargetTimer <= 0)
+        {
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
+            reTargetTimer = 1f;
+        }
     }
 
     //Attack
@@ -175,6 +190,7 @@ public class TentacleBoss : Enemy {
         flinchTimer = 5f;
         damagedAmount = 0f;
         GetComponent<BoxCollider>().enabled = false;
+        reTargetTimer = 0f;
         myState = States.Idle;
     }
 

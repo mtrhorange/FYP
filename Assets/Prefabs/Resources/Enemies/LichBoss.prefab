@@ -2695,7 +2695,6 @@ MonoBehaviour:
     type: 2}
   HPBarPrefab: {fileID: 1000010142571192, guid: 2f4a60dae3ba3434eb5db56f2746134a,
     type: 2}
-  HpBar: {fileID: 0}
   damagedAmount: 0
   flinchThreshold: 0
   flinchTimer: 5

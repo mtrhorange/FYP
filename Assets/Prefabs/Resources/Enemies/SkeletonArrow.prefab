@@ -892,7 +892,7 @@ GameObject:
   - 114: {fileID: 114000010756157090}
   m_Layer: 0
   m_Name: SkeletonArrow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2251,6 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  maxHealth: 0
   damageText: {fileID: 0}
   damage: 2
   expValue: 0

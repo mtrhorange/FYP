@@ -232,8 +232,10 @@ public class Hornet : Enemy {
     //update calculated path every set time
     public void pathUpdate()
     {
+        pathUpdateTimer -= Time.deltaTime;
         if (pathUpdateTimer <= 0)
         {
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position
@@ -241,9 +243,7 @@ public class Hornet : Enemy {
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }
-
         nextPathPoint.y = 0;
-        pathUpdateTimer -= Time.deltaTime;
     }
     
     //Avoid Obstacles

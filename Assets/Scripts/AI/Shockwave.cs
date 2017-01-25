@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Shockwave : MonoBehaviour {
 
+    public float shockwaveDmg = 10;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -20,7 +22,7 @@ public class Shockwave : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<Player>().ReceiveDamage(10);
+            other.GetComponent<Player>().ReceiveDamage(shockwaveDmg);
         }
     }
 }

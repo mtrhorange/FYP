@@ -233,6 +233,7 @@ public class Mushroom : Enemy {
     {
         if (pathUpdateTimer <= 0)
         {
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position

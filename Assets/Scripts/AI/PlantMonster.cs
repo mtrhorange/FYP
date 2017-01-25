@@ -57,14 +57,12 @@ public class PlantMonster : Enemy {
     //Idle
     protected override void Idle()
     {
-        
         //chase target
         target = player.transform.position;
         //set a path to tgt position
         seeker.StartPath(transform.position, target, OnPathComplete);
         currentWayPoint = 1;
         myState = States.Chase;
-        
     }
 
     //Chase
@@ -225,6 +223,7 @@ public class PlantMonster : Enemy {
     {
         if (pathUpdateTimer <= 0)
         {
+            player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
             target = player.transform.position;
             //set a path to tgt position

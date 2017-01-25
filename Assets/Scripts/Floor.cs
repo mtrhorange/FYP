@@ -107,7 +107,7 @@ public class Floor : MonoBehaviour {
                 Themes TT;
                 do
                 {
-                    TT = (Themes)Random.Range(0, 3);
+                    TT = currentTheme = (Themes)Random.Range(0, 3);
                 }
                 while(TT == currentTheme);
                 currentTheme = TT;

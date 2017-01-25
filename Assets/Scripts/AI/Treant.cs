@@ -308,7 +308,8 @@ public class Treant : Enemy {
     public void spawnShockwave()
     {
         attackTimer = attackInterval;
-        Instantiate(shockwave, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+        GameObject sw = (GameObject)Instantiate(shockwave, new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
+        sw.GetComponent<Shockwave>().shockwaveDmg = Mathf.Floor(damage * 0.25f);
     }
 
     public void triggerOn()

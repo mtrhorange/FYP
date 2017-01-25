@@ -326,7 +326,7 @@ GameObject:
   - 65: {fileID: 65000010112391206}
   m_Layer: 0
   m_Name: Tentacle Monster-Yellow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
