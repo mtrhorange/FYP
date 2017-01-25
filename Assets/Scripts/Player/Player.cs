@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 	public float maxStamina = 100f;
 	public float stamina = 100f;
 	public bool recoverStamina = true; //Can stamina be recovered
+	public float spellStaminaDrain = 20f;
 	public int livesRemaining = 5;
 	public int skillPoints = 0;
 	bool isDead = false;
@@ -148,9 +149,9 @@ public class Player : MonoBehaviour {
 
 		StatusEffectsUpdate ();
 
-		if (recoverStamina && Stamina < MaxStamina) {
-			RecoverStamina (Time.deltaTime * 2f);
-			Debug.Log ("Staminaaaaaaaaaaaaaa");
+		if (recoverStamina && Stamina < MaxStamina && !controller.isCasting) {
+			RecoverStamina (Time.deltaTime * 5f);
+
 		}
 
 		UpdateStamina ();
@@ -604,8 +605,9 @@ public class Player : MonoBehaviour {
 			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
 			GameObject lightning = (GameObject)Instantiate (spellLightning, transform.position, Quaternion.identity);
 
-			lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 4f;
+			lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 3f;
 			lightning.GetComponent<ChainLightning> ().EndObject = closest;
+			lightning.GetComponent<ChainLightning> ().player = this;
 		}
 			
 	}

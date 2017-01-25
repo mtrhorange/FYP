@@ -69,15 +69,18 @@ public class PlayerController : MonoBehaviour
 	float rotationSpeed = 40f;
 
 	//skill variables
-	bool isCasting = false;
+	public bool isCasting = false;
 	float castTime = 0f;
 	float castTimeMax = 40f;
 	float spellCastTime = 0f;
 	bool isCastingC = false;
 	bool isCastingV = false;
-	bool canCast = false;
+	public bool canCast = false;
+	public bool isCharging = false;
 	GameObject castBarPrefab;
 	GameObject castBar;
+	GameObject NoST;
+
   
 	float x;
 	float z;
@@ -237,6 +240,7 @@ public class PlayerController : MonoBehaviour
 		animator.SetInteger("Weapon", 7);
 
 		castBarPrefab = (GameObject)Resources.Load("ChargeBar");
+		NoST = (GameObject)Resources.Load ("NoST");
 
 	}
 
@@ -327,14 +331,36 @@ public class PlayerController : MonoBehaviour
 			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) 
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
-				Attack(2);
-				GetComponent<Player> ().Stamina -= 6f;
+				
+				if (CheckStamina (6f)) {
+					GetComponent<Player> ().Stamina -= 6f;
+					Attack(2);
+				} else {
+					Camera camera = FindObjectOfType<Camera> ();
+					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+					GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
+					noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+					noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+				}
 			}
 			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (Input.GetButtonDown("BButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
-				Rolling ();
-				GetComponent<Player> ().Stamina -= 10f;
+				
+				if (CheckStamina(10f)) {
+					GetComponent<Player> ().Stamina -= 10f;
+					Rolling ();
+				} else {
+					Camera camera = FindObjectOfType<Camera> ();
+					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+					GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
+					noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+					noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+				}
 			}
             //if(Input.GetButtonDown("CastL") && canAction && isGrounded && !isBlocking && !isStrafing && !isDead)
             //{
@@ -347,22 +373,32 @@ public class PlayerController : MonoBehaviour
 
 			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("XButtonCtrl1") && player.playerNo == 2))
 			    && canAction && isGrounded && !isBlocking && !isDead && !isCasting) {
-				isCasting = true;
-				isStrafing = true;
-				isAiming = false;
-				animator.SetBool ("Strafing", true);
-				canAction = false;
+				if (CheckStamina (player.spellStaminaDrain * player.skillCTime ())) {
+					isCasting = true;
+					isStrafing = true;
+					isAiming = false;
+					animator.SetBool ("Strafing", true);
+					canAction = false;
 
-				isCastingC = true;
-				spellCastTime = player.skillCTime();
+					isCastingC = true;
+					spellCastTime = player.skillCTime ();
 
 
-				Camera camera = FindObjectOfType<Camera>();
-				Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-				GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
-				bar.transform.SetParent(GameObject.Find("Canvas").transform);
+					Camera camera = FindObjectOfType<Camera> ();
+					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+					GameObject bar = (GameObject)Instantiate (castBarPrefab, screenPos, Quaternion.identity);
+					bar.transform.SetParent (GameObject.Find ("Canvas").transform);
 
-				castBar = bar;
+					castBar = bar;
+				} else {
+					Camera camera = FindObjectOfType<Camera> ();
+					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+					GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
+					noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+					noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+				}
 			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
 				if (canCast) {
 					CastAttack (1);
@@ -375,20 +411,31 @@ public class PlayerController : MonoBehaviour
 			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
-				isCasting = true;
-				isStrafing = true;
-				isAiming = false;
-				animator.SetBool ("Strafing", true);
+				if (CheckStamina(player.spellStaminaDrain * player.skillVTime())) {
+					isCasting = true;
+					isStrafing = true;
+					isAiming = false;
+					isCharging = true;
+					animator.SetBool ("Strafing", true);
 
-				isCastingV = true;
-				spellCastTime = player.skillVTime();
+					isCastingV = true;
+					spellCastTime = player.skillVTime();
 
-				Camera camera = FindObjectOfType<Camera>();
-				Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-				GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
-				bar.transform.SetParent(GameObject.Find("Canvas").transform);
+					Camera camera = FindObjectOfType<Camera>();
+					Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+					GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
+					bar.transform.SetParent(GameObject.Find("Canvas").transform);
 
-				castBar = bar;
+					castBar = bar;
+				} else {
+					Camera camera = FindObjectOfType<Camera> ();
+					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+					GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
+					noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+					noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+				}
 
 			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
 
@@ -474,11 +521,13 @@ public class PlayerController : MonoBehaviour
 				if (castTime < castTimeMax) {
 					castTime += Time.deltaTime * castTimeMax/spellCastTime;
 					castBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (castTime, castBar.GetComponent<RectTransform> ().rect.height);
+					player.RecoverStamina (Time.deltaTime * -player.spellStaminaDrain);
 				}
 				else if (castTime > castTimeMax) {
 					castTime = castTimeMax;
 					castBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (castTime, castBar.GetComponent<RectTransform> ().rect.height);
 					canCast = true;
+					isCharging = false;
 					castBar.GetComponent<Image> ().color = Color.green;
 				}
 
@@ -1208,6 +1257,15 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine (_Revive ());
 	}
 
+	public bool CheckStamina(float stam) {
+
+		if (stam < player.Stamina)
+			return true;
+		else
+			return false;
+
+	}
+
 	#endregion
 
 	#region Rolling
@@ -1285,8 +1343,6 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 
-
-
 	#region _Coroutines
 
 	//method to keep character from moveing while attacking, etc
@@ -1326,6 +1382,7 @@ public class PlayerController : MonoBehaviour
 		castTime = 0;
 		//castTimeMax = 0;
 		canCast = false;
+		isCharging = false;
 		canAction = true;
 
 	}

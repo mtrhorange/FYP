@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-public class ChainLightning : MonoBehaviour
+public class ChainLightning : Spell
 {
 	public LineRenderer LineRender;
 	public bool RayCast;
@@ -121,6 +121,9 @@ public class ChainLightning : MonoBehaviour
 
 		if (bounces < maxBounces)
 			CastChainLightning ();
+
+		GetDamage ();
+		EndObject.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 	}
 
 	void UpdatePosition ()
@@ -199,7 +202,8 @@ public class ChainLightning : MonoBehaviour
 			lightningz.GetComponent<ChainLightning> ().EndObject = closest;
 			lightningz.GetComponent<ChainLightning> ().bounces = bounces + 1;
 
-			lightningz.GetComponent<ChainLightning> ().prevHit = StartObject.GetComponent<Enemy> ();
+			lightningz.GetComponent<ChainLightning> ().prevHit = EndObject.GetComponent<Enemy> ();
+			lightningz.GetComponent<ChainLightning> ().player = player;
 		}
 
 	}
