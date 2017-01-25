@@ -401,6 +401,7 @@ public class PlayerController : MonoBehaviour
 				}
 			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
 				if (canCast) {
+					
 					CastAttack (1);
 					player.skillC ();
 				} else {
@@ -1368,6 +1369,8 @@ public class PlayerController : MonoBehaviour
 	public IEnumerator _LockCasting(float delayTime, float lockTime) {
 
 		yield return new WaitForSeconds(delayTime);
+		canCast = false;
+		canAction = false;
 		yield return new WaitForSeconds(lockTime);
 
 		isCasting = false;
@@ -1381,7 +1384,7 @@ public class PlayerController : MonoBehaviour
 		Destroy (castBar);
 		castTime = 0;
 		//castTimeMax = 0;
-		canCast = false;
+
 		isCharging = false;
 		canAction = true;
 

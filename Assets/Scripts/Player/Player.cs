@@ -150,7 +150,7 @@ public class Player : MonoBehaviour {
 		StatusEffectsUpdate ();
 
 		if (recoverStamina && Stamina < MaxStamina && !controller.isCasting) {
-			RecoverStamina (Time.deltaTime * 5f);
+			RecoverStamina (Time.deltaTime * 7.5f);
 
 		}
 
@@ -572,7 +572,7 @@ public class Player : MonoBehaviour {
 
 	public float GetFirePillarTime() {
 		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
-		float time = 4f;
+		float time = 2f;
 		return time;
 	}
 
@@ -637,7 +637,7 @@ public class Player : MonoBehaviour {
 
 	public float GetIceSpikeTime() {
 		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
-		float time = 2f;
+		float time = 1.5f;
 		return time;
 	}
 
