@@ -8835,7 +8835,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leavingTown: 0
-  fadeOut: 1
   fadeTime: 0
   blackOverlay: {fileID: 0}
 --- !u!1 &1391908359
@@ -12252,6 +12251,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 64000013534177964, guid: 2cbe7d9da0fed894fb5dac3461136599,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cbe7d9da0fed894fb5dac3461136599, type: 2}
   m_IsPrefabParent: 0
@@ -12702,6 +12706,21 @@ Prefab:
       propertyPath: m_Pivot.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224000013369245432, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013369245432, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013369245432, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0
@@ -12710,23 +12729,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000014139960608, guid: 16082e71784b260429ecae34a51936e6,
     type: 2}
   m_PrefabInternal: {fileID: 2093320668}
---- !u!1 &2093320670 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013493769070, guid: 16082e71784b260429ecae34a51936e6,
-    type: 2}
-  m_PrefabInternal: {fileID: 2093320668}
---- !u!114 &2093320671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2093320670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47d5c04f57887b9438666c99cfd0eb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNo: 1
 --- !u!1001 &2093357928
 Prefab:
   m_ObjectHideFlags: 0

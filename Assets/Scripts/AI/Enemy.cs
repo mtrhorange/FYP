@@ -160,19 +160,19 @@ public class Enemy : MonoBehaviour
     //receive damage
     public virtual void ReceiveDamage(float dmg, Player attacker)
     {
-        health -= dmg;
-        if (health < 0) { health = 0; }
-        Camera camera = FindObjectOfType<Camera>();
-        Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-        GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
-        txt.transform.SetParent(GameObject.Find("Canvas").transform);
-        txt.GetComponent<UnityEngine.UI.Text>().text = dmg.ToString("F0");
-        txt.GetComponent<DamageText>().target = transform;
-        //txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
-        //txt.transform.Rotate(55, 0, 0);
+        if (myState != States.Dead)
+        {
+            health -= dmg;
+            if (health < 0) { health = 0; }
+            Camera camera = FindObjectOfType<Camera>();
+            Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+            GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
+            txt.transform.SetParent(GameObject.Find("Canvas").transform);
+            txt.GetComponent<UnityEngine.UI.Text>().text = dmg.ToString("F0");
+            txt.GetComponent<DamageText>().target = transform;
+            //txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
+            //txt.transform.Rotate(55, 0, 0);
 
-        //if (myState != States.Dead)
-        //{
             if (health <= 0)
             {
                 murderer = attacker;
@@ -184,7 +184,7 @@ public class Enemy : MonoBehaviour
                 if (myState != States.Flinch)
                     Flinch();
             }
-        //}
+        }
     }
 
     //Flinch

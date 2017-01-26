@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Lava
-  m_Shader: {fileID: 4800000, guid: 65ae9ae666ea007419d4f36e01d4a819, type: 3}
-  m_ShaderKeywords: _EMISSION _NORMALMAP _PARALLAXMAP
+  m_Name: LavaRock 1
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _NORMALMAP
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -18,13 +18,7 @@ Material:
     - first:
         name: _BumpMap
       second:
-        m_Texture: {fileID: 2800000, guid: b740133475ec9de489606a1b41b8de85, type: 3}
-        m_Scale: {x: 20, y: 20}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Detail
-      second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e0e3378225532704aafbcf1876641ecf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -52,22 +46,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Illum
-      second:
-        m_Texture: {fileID: 2800000, guid: 8577639794d6313419f33f2d34c61116, type: 3}
-        m_Scale: {x: 20, y: 20}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _LightMap
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 9fe571ad185399b438c0e67d46027fae, type: 3}
-        m_Scale: {x: 20, y: 20}
+        m_Texture: {fileID: 2800000, guid: e5be122e142ff874c8e03e30d130398d, type: 3}
+        m_Scale: {x: 40, y: 40}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
@@ -84,8 +66,8 @@ Material:
     - first:
         name: _ParallaxMap
       second:
-        m_Texture: {fileID: 2800000, guid: 8577639794d6313419f33f2d34c61116, type: 3}
-        m_Scale: {x: 20, y: 20}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
@@ -101,23 +83,17 @@ Material:
         name: _DstBlend
       second: 0
     - first:
-        name: _Emission
-      second: 1
-    - first:
-        name: _EmissionLM
-      second: 0
-    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _Metallic
-      second: 0
+      second: 0.1
     - first:
         name: _Mode
       second: 0
@@ -134,8 +110,8 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _Shininess
-      second: 0.078125
+        name: _RimPower
+      second: 3.267857
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -159,5 +135,5 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _SpecColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        name: _RimColor
+      second: {r: 1, g: 0, b: 0, a: 0}

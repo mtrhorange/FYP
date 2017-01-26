@@ -64,6 +64,9 @@ public class DragonBoss : Enemy
         HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
         HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
         HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+
+        //tell bgm mnanager to start epic music
+        BGMManager.instance.changeToBoss();
     }
 
     //Update
@@ -176,9 +179,12 @@ public class DragonBoss : Enemy
     //receive damage override
     public override void ReceiveDamage(float dmg, Player attacker)
     {
-        damagedAmount += dmg;
-        base.ReceiveDamage(dmg, attacker);
-        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+        if (myState != States.Dead)
+        {
+            damagedAmount += dmg;
+            base.ReceiveDamage(dmg, attacker);
+            HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+        }
     }
 
     //Flinch override
@@ -244,6 +250,8 @@ public class DragonBoss : Enemy
         StopAllCoroutines();
         Destroy(HpBar, 1f);
         base.Death();
+        //tell bgm mnanager to go back to lame music
+        BGMManager.instance.changeToNormal();
     }
 
     //play animation (legacy)

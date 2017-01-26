@@ -58,6 +58,9 @@ public class LichBoss : Enemy
         HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
         HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
         HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+
+        //tell bgm mnanager to go to epic music
+        BGMManager.instance.changeToBoss();
     }
 
     // Update is called once per frame
@@ -220,9 +223,12 @@ public class LichBoss : Enemy
     //receive damage override
     public override void ReceiveDamage(float dmg, Player attacker)
     {
-        damagedAmount += dmg;
-        base.ReceiveDamage(dmg, attacker);
-        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+        if (myState != States.Dead)
+        {
+            damagedAmount += dmg;
+            base.ReceiveDamage(dmg, attacker);
+            HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+        }
     }
 
     //Attack
@@ -246,6 +252,8 @@ public class LichBoss : Enemy
         GetComponent<BoxCollider>().enabled = false;
         Destroy(HpBar, 1f);
         base.Death();
+        //tell bgm mnanager to go back to lame music
+        BGMManager.instance.changeToNormal();
     }
 
     //Flinch override
