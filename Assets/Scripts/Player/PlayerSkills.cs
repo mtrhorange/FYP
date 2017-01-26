@@ -6,8 +6,9 @@ public enum Skills{ None, FirePillar, IceSpike, ChainLightning}
 public class PlayerSkills : MonoBehaviour {
 
 	//Spells
-	public int firePillarLevel = 1;
-	public int iceSpikesLevel = 1;
+	public int firePillarLevel = 0;
+	public int iceSpikesLevel = 0;
+	public int chainLightningLevel = 0;
 
 	//Passives
 	public int maxHealthLevel = 0;

@@ -156,6 +156,10 @@ public class GameManager : MonoBehaviour {
 		player1Data.skillCType = player1.skillCType;
 		player1Data.skillVType = player1.skillVType;
 
+		player1Data.firePillarLevel = player1.skills.firePillarLevel;
+		player1Data.iceSpikesLevel = player1.skills.iceSpikesLevel;
+		player1Data.chainLightningLevel = player1.skills.chainLightningLevel;
+
 		player1Data.maxHealthLevel = player1.skills.maxHealthLevel;
 		player1Data.minDmgLevel = player1.skills.minDmgLevel;
 		player1Data.maxDmgLevel = player1.skills.maxDmgLevel;
@@ -189,6 +193,10 @@ public class GameManager : MonoBehaviour {
 
 		player1.skillCType = player1Data.skillCType;
 		player1.skillVType = player1Data.skillVType;
+
+		player1.skills.firePillarLevel = player1Data.firePillarLevel;
+		player1.skills.iceSpikesLevel = player1Data.iceSpikesLevel;
+		player1.skills.chainLightningLevel = player1Data.chainLightningLevel;
 
 		player1.skills.maxHealthLevel = player1Data.maxHealthLevel;
 		player1.skills.minDmgLevel = player1Data.minDmgLevel;

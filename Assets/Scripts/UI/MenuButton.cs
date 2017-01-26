@@ -14,6 +14,8 @@ public class MenuButton : MonoBehaviour {
 
 	public GameObject selectedImg;
 
+	public int player = 1;
+
 	public virtual void Awake() {
 
 

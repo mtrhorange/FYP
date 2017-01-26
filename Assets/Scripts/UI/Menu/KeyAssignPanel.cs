@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class KeyAssignPanel : MenuButton {
 
 	public Skills assignSkill;
-	public int player = 1;
 
 	public Image firePillar, iceSpikes, ChainLightning;
 

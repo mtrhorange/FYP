@@ -72,6 +72,12 @@ public class SkillSelection : MenuButton {
 			//Inactive ();
 			SelectionInactive ();
 			keyAssignPanel.GetComponent<KeyAssignPanel> ().assignSkill = skill;
+		} else if (selectionType == SelectionType.AddPoint) {
+
+			Cancel ();
+			AddSkillPoint ();
+
+
 		}
 
 
@@ -86,6 +92,37 @@ public class SkillSelection : MenuButton {
 			selectionPanel.SetActive (false);
 			GameMenuManager.instance.canEscape = true;
 		}
+	}
+
+	public void AddSkillPoint() {
+
+		switch (skill) {
+		case Skills.FirePillar:
+			if (player == 1)
+				GameManager.instance.player1.skills.firePillarLevel++;
+			else
+				GameManager.instance.player2.skills.firePillarLevel++;
+			break;
+		case Skills.IceSpike:
+			if (player == 1)
+				GameManager.instance.player1.skills.iceSpikesLevel++;
+			else
+				GameManager.instance.player2.skills.iceSpikesLevel++;
+			break;
+		case Skills.ChainLightning:
+			if (player == 1)
+				GameManager.instance.player1.skills.chainLightningLevel++;
+			else
+				GameManager.instance.player2.skills.chainLightningLevel++;
+			break;
+		}
+
+		transform.parent.parent.GetComponent<SkillsBtn> ().UpdateSkillLvl ();
+
+		if (player == 1)
+			GameManager.instance.player1.SkillPoints--;
+		else
+			GameManager.instance.player2.SkillPoints--;
 
 	}
 }

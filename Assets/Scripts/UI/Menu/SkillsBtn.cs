@@ -6,7 +6,11 @@ public class SkillsBtn : MenuButton {
 
 	GameObject descPanel;
 	Text descTxt;
+	Text lvlTxt;
+	public int skillLvl;
 	public string description;
+
+	public Skills skill;
 
 
 	public override void Awake () {
@@ -15,12 +19,15 @@ public class SkillsBtn : MenuButton {
 
 		descPanel = transform.parent.Find ("Description").gameObject;
 		descTxt = descPanel.transform.GetChild (0).GetComponent<Text> ();
+		lvlTxt = transform.Find ("SkillLvl").GetComponent<Text> ();
 		base.Awake ();
 	}
 
 	// Use this for initialization
 	public override void Start () {
 		base.Start ();
+
+		UpdateSkillLvl ();
 
 	}
 
@@ -63,6 +70,37 @@ public class SkillsBtn : MenuButton {
 
 	}
 
+	public void UpdateSkillLvl() {
+
+		switch (skill) {
+
+		case Skills.FirePillar:
+			if (player == 1)
+				skillLvl = GameManager.instance.player1.skills.firePillarLevel;
+			else
+				skillLvl = GameManager.instance.player2.skills.firePillarLevel;
+			lvlTxt.text = "Lv." + skillLvl;
+			break;
+		case Skills.ChainLightning:
+			if (player == 1)
+				skillLvl = GameManager.instance.player1.skills.chainLightningLevel;
+			else
+				skillLvl = GameManager.instance.player2.skills.chainLightningLevel;
+			lvlTxt.text = "Lv." + skillLvl;
+			break;
+		case Skills.IceSpike:
+			if (player == 1)
+				skillLvl = GameManager.instance.player1.skills.iceSpikesLevel;
+			else
+				skillLvl = GameManager.instance.player2.skills.iceSpikesLevel;
+			lvlTxt.text = "Lv." + skillLvl;
+			break;
+
+		}
+
+
+	}
+
 	//Set description of skill here!!
 	void SetSkillDescription() {
 
@@ -100,6 +138,5 @@ public class SkillsBtn : MenuButton {
 			description = "This is Passive Skill 4";
 			break;
 		}
-
 	}
 }

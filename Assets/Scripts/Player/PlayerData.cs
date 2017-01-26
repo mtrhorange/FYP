@@ -27,6 +27,10 @@ public class PlayerData {
 	public Skills skillCType;
 	public Skills skillVType;
 
+	public int firePillarLevel = 0;
+	public int iceSpikesLevel = 0;
+	public int chainLightningLevel = 0;
+
 	//Passives
 	public int maxHealthLevel = 0;
 	public int minDmgLevel = 0;

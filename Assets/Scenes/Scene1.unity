@@ -435,7 +435,6 @@ MonoBehaviour:
   roomsToBoss: 6
   currentRoom: {fileID: 0}
   nextRoom: {fileID: 0}
-  currentTheme: 0
 --- !u!4 &519619492
 Transform:
   m_ObjectHideFlags: 0
@@ -782,6 +781,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1001 &967172214
 Prefab:
   m_ObjectHideFlags: 0
@@ -1277,6 +1277,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1 &1467380020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,43 +1795,6 @@ Prefab:
     - target: {fileID: 224000014139960608, guid: 16082e71784b260429ecae34a51936e6,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013151347118, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013321757802, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013493769070, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011085318140, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_Pivot.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000011686535866, guid: 16082e71784b260429ecae34a51936e6,

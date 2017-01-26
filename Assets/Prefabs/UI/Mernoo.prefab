@@ -1835,6 +1835,7 @@ GameObject:
   - 224: {fileID: 224000012778550354}
   - 222: {fileID: 222000012078094686}
   - 114: {fileID: 114000013960662584}
+  - 114: {fileID: 114000012498765854}
   m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
@@ -2045,6 +2046,7 @@ GameObject:
   - 224: {fileID: 224000012028032376}
   - 222: {fileID: 222000011581343998}
   - 114: {fileID: 114000011388371670}
+  - 114: {fileID: 114000011722965698}
   m_Layer: 5
   m_Name: SkillsPanel
   m_TagString: Untagged
@@ -3411,6 +3413,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000013364408302}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -3589,7 +3592,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 0
 --- !u!114 &114000010216580340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3643,6 +3649,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014050517058}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -3869,6 +3876,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000012241082764}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -3921,7 +3929,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 1000013314184230}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 1
 --- !u!114 &114000010501280074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3975,6 +3986,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000013364408302}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -4087,7 +4099,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 0
 --- !u!114 &114000010693796894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4255,6 +4270,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000011118665846}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -4367,8 +4383,8 @@ MonoBehaviour:
   btnType: 5
   selected: 0
   selectedImg: {fileID: 0}
-  assignSkill: 0
   player: 1
+  assignSkill: 0
   firePillar: {fileID: 114000012132491042}
   iceSpikes: {fileID: 114000011533687564}
   ChainLightning: {fileID: 114000011951556680}
@@ -4742,6 +4758,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000010506062902}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -4887,6 +4904,7 @@ MonoBehaviour:
   btnType: 1
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   panel: {fileID: 1000012967546394}
 --- !u!114 &114000011337184942
 MonoBehaviour:
@@ -5348,14 +5366,15 @@ MonoBehaviour:
   RightBtn: {fileID: 0}
   SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
-  btnType: 0
+  btnType: 4
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014180770290}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
   activeType: 0
-  skill: 0
+  skill: 1
 --- !u!114 &114000011667215016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5406,6 +5425,18 @@ MonoBehaviour:
   player1UI: {fileID: 0}
   player2UI: {fileID: 0}
   canEscape: 1
+--- !u!114 &114000011722965698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013321757802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfe373e34a0ea14280162de60a2aa10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 1
 --- !u!114 &114000011727008478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5827,6 +5858,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000012241082764}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -5963,9 +5995,10 @@ MonoBehaviour:
   RightBtn: {fileID: 0}
   SubmitBtn: {fileID: 0}
   CancelBtn: {fileID: 0}
-  btnType: 0
+  btnType: 4
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014180770290}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 1
@@ -5991,6 +6024,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000010506062902}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6070,6 +6104,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014050517058}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6128,7 +6163,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 3
 --- !u!114 &114000012310992324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6290,6 +6328,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000011698319562}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6315,6 +6354,7 @@ MonoBehaviour:
   btnType: 1
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   panel: {fileID: 1000010103508304}
 --- !u!114 &114000012469663740
 MonoBehaviour:
@@ -6384,6 +6424,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114000012498765854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013014159108}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
 --- !u!114 &114000012503580978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6491,6 +6543,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000011698319562}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6543,6 +6596,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000011118665846}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6710,6 +6764,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014252550004}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6954,6 +7009,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014050517058}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -6979,6 +7035,7 @@ MonoBehaviour:
   btnType: 1
   selected: 1
   selectedImg: {fileID: 0}
+  player: 1
   panel: {fileID: 1000013493769070}
 --- !u!114 &114000012885233216
 MonoBehaviour:
@@ -7207,6 +7264,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000011118665846}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -7265,6 +7323,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000012241082764}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -7317,7 +7376,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 0
 --- !u!114 &114000013061099510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7419,7 +7481,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 0
 --- !u!114 &114000013105506918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7467,6 +7532,7 @@ MonoBehaviour:
   btnType: 1
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   panel: {fileID: 1000012710273912}
 --- !u!114 &114000013167078232
 MonoBehaviour:
@@ -7581,7 +7647,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 0
 --- !u!114 &114000013264972656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8053,6 +8122,7 @@ MonoBehaviour:
   btnType: 1
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   panel: {fileID: 1000013321757802}
 --- !u!114 &114000013563873650
 MonoBehaviour:
@@ -8208,6 +8278,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014252550004}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -8293,6 +8364,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000013364408302}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -8405,6 +8477,7 @@ MonoBehaviour:
   btnType: 4
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014180770290}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 2
@@ -8517,6 +8590,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000011698319562}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
@@ -8542,7 +8616,10 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
+  skillLvl: 0
   description: 
+  skill: 2
 --- !u!114 &114000013960662584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8697,11 +8774,12 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000010506062902}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
   activeType: 0
-  skill: 0
+  skill: 2
 --- !u!114 &114000014142665748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8964,11 +9042,12 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
   selectionPanel: {fileID: 1000014252550004}
   keyAssignPanel: {fileID: 1000011714124480}
   selectionType: 0
   activeType: 0
-  skill: 0
+  skill: 3
 --- !u!114 &114000014281503558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10242,11 +10321,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 224000011308245446}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 120}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224000010546806020
 RectTransform:
   m_ObjectHideFlags: 1
@@ -12142,11 +12221,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 224000012778550354}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 120}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224000013377998270
 RectTransform:
   m_ObjectHideFlags: 1
@@ -12643,7 +12722,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010724427552}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
