@@ -49,6 +49,9 @@ public class TentacleBoss : Enemy {
         HpBar = (GameObject)Instantiate(HPBarPrefab, GameObject.Find("Canvas").GetComponent<RectTransform>(), false);
         HpBar.GetComponent<BossHpBar>().boss = this.gameObject;
         HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+
+        //tell bgm mnanager to go to epic music
+        BGMManager.instance.changeToBoss();
 	}
 	
 	//Update
@@ -207,14 +210,19 @@ public class TentacleBoss : Enemy {
         }
         Destroy(HpBar, 1f);
         base.Death();
+        //tell bgm mnanager to go back to lame music
+        BGMManager.instance.changeToNormal();
     }
 
     //receive damage override
     public override void ReceiveDamage(float dmg, Player attacker)
     {
-        damagedAmount += dmg;
-        base.ReceiveDamage(dmg, attacker);
-        HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+        if (myState != States.Dead)
+        {
+            damagedAmount += dmg;
+            base.ReceiveDamage(dmg, attacker);
+            HpBar.GetComponent<BossHpBar>().UpdateHPBar();
+        }
     }
 
     private void projectileAttack()

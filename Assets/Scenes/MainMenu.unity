@@ -4606,7 +4606,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013762334216, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
@@ -8619,7 +8619,7 @@ Transform:
   m_Children:
   - {fileID: 697627787}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &2027022812
 GameObject:
   m_ObjectHideFlags: 0

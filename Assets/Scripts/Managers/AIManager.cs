@@ -41,6 +41,7 @@ public class AIManager : MonoBehaviour
     private const int WEAK = 1, MEDIUM = 2, STRONG = 4; //enemy points each strength category is worth
     private List<int> mobPrefStrengths, spawnTheseStrengths;
     private bool spawning = false, isBossRoom = false;
+    private float doorCheckTimer = 3f;
 
     //temporary var for demonstration purposes
     private int enemPts;
@@ -122,6 +123,9 @@ public class AIManager : MonoBehaviour
         {
             fillUpRoom();
         }
+
+        //check door
+        checkDoor();
 
         //kill all
         if (Input.GetKeyDown(KeyCode.O))
@@ -371,6 +375,36 @@ public class AIManager : MonoBehaviour
                     g.GetComponent<BoxCollider>().enabled = false;
                 }
             }
+        }
+    }
+
+    //check door
+    private void checkDoor()
+    {
+        //check every 3 seconds
+        if (doorCheckTimer < 0)
+        {
+            //check while door canExit is false
+            if (Floor.instance.currentRoom.GetComponent<Room>().doors[0].GetComponent<Door>().canExit == false)
+            {
+                if (enemyList.Count < 1 && roomEnemyPoints < 1)
+                {
+                    //get floor manager > current room > door > enable exit
+                    foreach (GameObject g in Floor.instance.currentRoom.GetComponent<Room>().doors)
+                    {
+                        g.GetComponent<Door>().canExit = true;
+                        if (g.GetComponent<Door>().mesh == true)
+                        {
+                            g.GetComponent<MeshRenderer>().enabled = false;
+                            g.GetComponent<BoxCollider>().enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            doorCheckTimer -= Time.deltaTime;
         }
     }
 
