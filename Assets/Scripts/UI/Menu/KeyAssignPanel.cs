@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class KeyAssignPanel : MenuButton {
 
+	public Skills assignSkill;
+	public int player = 1;
 
+	public Image firePillar, iceSpikes, ChainLightning;
 
 	public override void Awake () {
 		
@@ -20,6 +25,7 @@ public class KeyAssignPanel : MenuButton {
 	// Update is called once per frame
 	public override void Update () {
 		base.Update ();
+		AssignKey ();
 	}
 
 	public override void Select(){
@@ -55,6 +61,27 @@ public class KeyAssignPanel : MenuButton {
 			gameObject.SetActive (false);
 			CancelBtn.SubmitBtn = this;
 		}
+
+	}
+
+	public void AssignKey() {
+
+		if (Input.GetKeyDown (KeyCode.C)) {
+			if (player == 1)
+				GameManager.instance.player1.SwapSkillC (assignSkill);
+			else
+				GameManager.instance.player2.SwapSkillC (assignSkill);
+			Cancel ();
+
+		} else if (Input.GetKeyDown (KeyCode.V)) {
+			if (player == 1)
+				GameManager.instance.player1.SwapSkillV (assignSkill);
+			else
+				GameManager.instance.player2.SwapSkillV (assignSkill);
+				
+			Cancel ();
+		}
+
 
 	}
 }

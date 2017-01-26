@@ -690,8 +690,10 @@ public class Player : MonoBehaviour {
 		} else if (s == Skills.IceSpike) {
 			skillC = CastIceSpike;
 			skillCTime = GetIceSpikeTime;
+		} else if (s == Skills.ChainLightning) {
+			skillC = CastChainLightning;
+			skillCTime = GetChainLightningTime;
 		}
-
 	}
 
 	public void SwapSkillV(Skills s) {
@@ -702,8 +704,10 @@ public class Player : MonoBehaviour {
 		} else if (s == Skills.IceSpike) {
 			skillV = CastIceSpike;
 			skillVTime = GetIceSpikeTime;
+		} else if (s == Skills.ChainLightning) {
+			skillV = CastChainLightning;
+			skillVTime = GetChainLightningTime;
 		}
-
 	}
 
 	#endregion

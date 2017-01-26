@@ -11,6 +11,8 @@ public class SkillSelection : MenuButton {
 	public enum ActiveType {Active, Passive}
 	public ActiveType activeType;
 
+	public Skills skill;
+
 	public override void Awake () {
 		btnType = ButtonTypes.SkillSelection;
 		if (name == "AddPoint") {
@@ -67,6 +69,7 @@ public class SkillSelection : MenuButton {
 			selected = false;
 			//Inactive ();
 			SelectionInactive ();
+			keyAssignPanel.GetComponent<KeyAssignPanel> ().assignSkill = skill;
 		}
 
 
