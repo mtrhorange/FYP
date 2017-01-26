@@ -1802,6 +1802,11 @@ Prefab:
       propertyPath: player1UI
       value: 
       objectReference: {fileID: 33802876}
+    - target: {fileID: 114000011686535866, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: player2UI
+      value: 
+      objectReference: {fileID: 2081377585}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0
