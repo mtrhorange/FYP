@@ -54,6 +54,8 @@ public class SkillSelection : MenuButton {
 		selectedImg.SetActive (true);
 		SelectionActive ();
 
+		GameMenuManager.instance.canEscape = false;
+
 	}
 
 	public override void Deselect() {
@@ -82,6 +84,7 @@ public class SkillSelection : MenuButton {
 			Deselect ();
 			CancelBtn.SubmitBtn = this;
 			selectionPanel.SetActive (false);
+			GameMenuManager.instance.canEscape = true;
 		}
 
 	}

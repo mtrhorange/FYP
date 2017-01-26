@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Skills{ FirePillar, IceSpike, ChainLightning}
+public enum Skills{ None, FirePillar, IceSpike, ChainLightning}
 
 public class PlayerSkills : MonoBehaviour {
 

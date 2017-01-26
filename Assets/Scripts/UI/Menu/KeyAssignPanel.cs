@@ -20,6 +20,33 @@ public class KeyAssignPanel : MenuButton {
 	// Use this for initialization
 	public override void Start () {
 		base.Start ();
+
+		if (player == 1) {
+			switch (GameManager.instance.player1.skillCType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("C", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("C", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("C", Skills.IceSpike);
+				break;
+			}
+
+			switch (GameManager.instance.player1.skillVType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("V", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("V", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("V", Skills.IceSpike);
+				break;
+			}
+
+		}
 	}
 
 	// Update is called once per frame
@@ -67,21 +94,44 @@ public class KeyAssignPanel : MenuButton {
 	public void AssignKey() {
 
 		if (Input.GetKeyDown (KeyCode.C)) {
-			if (player == 1)
+			if (player == 1) {
 				GameManager.instance.player1.SwapSkillC (assignSkill);
-			else
+				ChangeKeyImage ("C", assignSkill);
+			} else {
 				GameManager.instance.player2.SwapSkillC (assignSkill);
+				ChangeKeyImage ("C", assignSkill);
+			}
 			Cancel ();
 
 		} else if (Input.GetKeyDown (KeyCode.V)) {
-			if (player == 1)
+			if (player == 1) {
 				GameManager.instance.player1.SwapSkillV (assignSkill);
-			else
+				ChangeKeyImage ("V", assignSkill);
+			} else {
 				GameManager.instance.player2.SwapSkillV (assignSkill);
-				
+				ChangeKeyImage ("V", assignSkill);
+			}
 			Cancel ();
 		}
 
 
+	}
+
+	public void ChangeKeyImage(string key, Skills skill) {
+
+		switch (skill) {
+		case Skills.FirePillar:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = firePillar.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.IceSpike:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = iceSpikes.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.ChainLightning:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = ChainLightning.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		}
 	}
 }

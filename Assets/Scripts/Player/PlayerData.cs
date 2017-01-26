@@ -24,7 +24,8 @@ public class PlayerData {
 	public float exp = 0;
 
 	//Skills
-
+	public Skills skillCType;
+	public Skills skillVType;
 
 	//Passives
 	public int maxHealthLevel = 0;

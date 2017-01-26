@@ -13,6 +13,7 @@ public class GameMenuManager : MonoBehaviour {
 	public GameObject player2UI;
 
 	bool menuOpen = false;
+	public bool canEscape = true;
 
 	void Awake() {
 
@@ -31,16 +32,21 @@ public class GameMenuManager : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 
-			player1Menu.SetActive (!player1Menu.activeSelf);
-			player1UI.SetActive (!player1UI.activeSelf);
-			player2UI.SetActive (!player2UI.activeSelf);
-			menuOpen = !menuOpen;
+			if (canEscape) {
+				player1Menu.SetActive (!player1Menu.activeSelf);
+				player1UI.SetActive (!player1UI.activeSelf);
+				player2UI.SetActive (!player2UI.activeSelf);
+				menuOpen = !menuOpen;
 
-			if (menuOpen)
-				Time.timeScale = 0.0001f;
-			else
-				Time.timeScale = 1f;
+				if (menuOpen)
+					Time.timeScale = 0.0001f;
+				else
+					Time.timeScale = 1f;
+			} else {
 
+				selectedBtnP1.Cancel ();
+
+			}
 		}
 	}
 

@@ -16,7 +16,7 @@ public class NoSTIcon : MonoBehaviour {
 	void Update() {
 		Camera camera = FindObjectOfType<Camera>();
 		Vector3 screenPos = camera.WorldToScreenPoint(player.position);
-		transform.position = screenPos + new Vector3 (0, -30, 0);
+		transform.position = screenPos + new Vector3 (0, 40, 0);
 
 		timer -= Time.deltaTime;
 

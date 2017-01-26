@@ -153,6 +153,8 @@ public class GameManager : MonoBehaviour {
 		player1Data.Lives = player1.Lives;
 		player1Data.SkillPoints = player1.SkillPoints;
 
+		player1Data.skillCType = player1.skillCType;
+		player1Data.skillVType = player1.skillVType;
 
 		player1Data.maxHealthLevel = player1.skills.maxHealthLevel;
 		player1Data.minDmgLevel = player1.skills.minDmgLevel;
@@ -181,10 +183,12 @@ public class GameManager : MonoBehaviour {
 		player1.maxStamina = player1Data.maxStamina;
 		player1.baseMaxStamina = player1Data.baseMaxStamina;
 		player1.Stamina = player1.MaxStamina;
-		player1.playerNo = 1;
 		player1.Lives = player1Data.Lives;
 		player1.SkillPoints = player1Data.SkillPoints;
 		player1.recoverStamina = true;
+
+		player1.skillCType = player1Data.skillCType;
+		player1.skillVType = player1Data.skillVType;
 
 		player1.skills.maxHealthLevel = player1Data.maxHealthLevel;
 		player1.skills.minDmgLevel = player1Data.minDmgLevel;
@@ -192,7 +196,7 @@ public class GameManager : MonoBehaviour {
 		player1.skills.weaponBuffLevel = player1Data.weaponBuffLevel;
 		player1.skills.spellBuffLevel = player1Data.spellBuffLevel;
 
-
+		player1.playerNo = 1;
 	}
 
 	public void UpdatePlayer2Data() {
@@ -209,6 +213,9 @@ public class GameManager : MonoBehaviour {
 		player2Data.Stamina = player2.MaxStamina;
 		player2Data.Lives = player2.Lives;
 		player2Data.SkillPoints = player2.SkillPoints;
+
+		player2Data.skillCType = player2.skillCType;
+		player2Data.skillVType = player2.skillVType;
 
 		player2Data.maxHealthLevel = player2.skills.maxHealthLevel;
 		player2Data.minDmgLevel = player2.skills.minDmgLevel;
@@ -236,10 +243,12 @@ public class GameManager : MonoBehaviour {
 		player2.maxStamina = player2Data.maxStamina;
 		player2.baseMaxStamina = player2Data.baseMaxStamina;
 		player2.Stamina = player2.MaxStamina;
-		player2.recoverStamina = true;
-
 		player2.Lives = player2Data.Lives;
 		player2.SkillPoints = player2Data.SkillPoints;
+		player2.recoverStamina = true;
+
+		player2.skillCType = player2Data.skillCType;
+		player2.skillVType = player2Data.skillVType;
 
 		player2.skills.maxHealthLevel = player2Data.maxHealthLevel;
 		player2.skills.minDmgLevel = player2Data.minDmgLevel;

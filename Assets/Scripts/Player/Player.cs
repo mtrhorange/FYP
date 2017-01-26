@@ -41,6 +41,8 @@ public class Player : MonoBehaviour {
 	public SkillCastTime skillCTime;
 	public SkillCastTime skillVTime;
 
+	public Skills skillCType, skillVType;
+
 	public Weapon currentWeapon;
 	public Weapon nextWeapon;
 	public GameObject rightHand;
@@ -86,10 +88,7 @@ public class Player : MonoBehaviour {
 		if (GetComponent<PlayerController> ())
 			controller = GetComponent<PlayerController> ();
 
-		skillC = CastChainLightning;
-		skillV = CastIceSpike;
-		skillCTime = GetChainLightningTime;
-		skillVTime = GetIceSpikeTime;
+
 		//attackTrigger = transform.Find ("AttackTrigger").gameObject;
 		//enemyTargetHover = transform.Find ("Target").gameObject;
 
@@ -137,6 +136,32 @@ public class Player : MonoBehaviour {
 		}
 
 		canBeHit = true;
+
+		switch (skillCType) {
+		case Skills.ChainLightning:
+			SwapSkillC (Skills.ChainLightning);
+			break;
+		case Skills.FirePillar:
+			SwapSkillC (Skills.FirePillar);
+			break;
+		case Skills.IceSpike:
+			SwapSkillC (Skills.IceSpike);
+			break;
+		
+		}
+
+		switch (skillVType) {
+		case Skills.ChainLightning:
+			SwapSkillV (Skills.ChainLightning);
+			break;
+		case Skills.FirePillar:
+			SwapSkillV (Skills.FirePillar);
+			break;
+		case Skills.IceSpike:
+			SwapSkillV (Skills.IceSpike);
+			break;
+
+		}
 
 	}
 
@@ -680,19 +705,22 @@ public class Player : MonoBehaviour {
 
 	#endregion
 
-	#region Swapping
+	#region SwapSpells
 
 	public void SwapSkillC(Skills s) {
 
 		if (s == Skills.FirePillar) {
 			skillC = CastFirePillar;
 			skillCTime = GetFirePillarTime;
+			skillCType = Skills.FirePillar;
 		} else if (s == Skills.IceSpike) {
 			skillC = CastIceSpike;
 			skillCTime = GetIceSpikeTime;
+			skillCType = Skills.IceSpike;
 		} else if (s == Skills.ChainLightning) {
 			skillC = CastChainLightning;
 			skillCTime = GetChainLightningTime;
+			skillCType = Skills.ChainLightning;
 		}
 	}
 
@@ -701,12 +729,15 @@ public class Player : MonoBehaviour {
 		if (s == Skills.FirePillar) {
 			skillV = CastFirePillar;
 			skillVTime = GetFirePillarTime;
+			skillVType = Skills.FirePillar;
 		} else if (s == Skills.IceSpike) {
 			skillV = CastIceSpike;
 			skillVTime = GetIceSpikeTime;
+			skillVType = Skills.IceSpike;
 		} else if (s == Skills.ChainLightning) {
 			skillV = CastChainLightning;
 			skillVTime = GetChainLightningTime;
+			skillVType = Skills.ChainLightning;
 		}
 	}
 

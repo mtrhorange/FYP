@@ -373,31 +373,35 @@ public class PlayerController : MonoBehaviour
 
 			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("XButtonCtrl1") && player.playerNo == 2))
 			    && canAction && isGrounded && !isBlocking && !isDead && !isCasting) {
-				if (CheckStamina (player.spellStaminaDrain * player.skillCTime ())) {
-					isCasting = true;
-					isStrafing = true;
-					isAiming = false;
-					animator.SetBool ("Strafing", true);
-					canAction = false;
+				if (player.skillCType != Skills.None) {
+					if (CheckStamina (player.spellStaminaDrain * player.skillCTime ())) {
+						
+							isCasting = true;
+							isStrafing = true;
+							isAiming = false;
+							animator.SetBool ("Strafing", true);
+							canAction = false;
 
-					isCastingC = true;
-					spellCastTime = player.skillCTime ();
+							isCastingC = true;
+							spellCastTime = player.skillCTime ();
 
 
-					Camera camera = FindObjectOfType<Camera> ();
-					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
-					GameObject bar = (GameObject)Instantiate (castBarPrefab, screenPos, Quaternion.identity);
-					bar.transform.SetParent (GameObject.Find ("Canvas").transform);
+							Camera camera = FindObjectOfType<Camera> ();
+							Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+							GameObject bar = (GameObject)Instantiate (castBarPrefab, screenPos, Quaternion.identity);
+							bar.transform.SetParent (GameObject.Find ("Canvas").transform);
 
-					castBar = bar;
-				} else {
-					Camera camera = FindObjectOfType<Camera> ();
-					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
-					GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
-					noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+							castBar = bar;
+						
+					} else {
+						Camera camera = FindObjectOfType<Camera> ();
+						Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+						GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
+						noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
 
-					noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+						noSTIcon.GetComponent<NoSTIcon> ().player = transform;
 
+					}
 				}
 			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
 				if (canCast) {
@@ -412,32 +416,35 @@ public class PlayerController : MonoBehaviour
 			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
-				if (CheckStamina(player.spellStaminaDrain * player.skillVTime())) {
-					isCasting = true;
-					isStrafing = true;
-					isAiming = false;
-					isCharging = true;
-					animator.SetBool ("Strafing", true);
+				if (player.skillVType != Skills.None) {
+					if (CheckStamina(player.spellStaminaDrain * player.skillVTime())) {
+						
+							isCasting = true;
+							isStrafing = true;
+							isAiming = false;
+							isCharging = true;
+							animator.SetBool ("Strafing", true);
 
-					isCastingV = true;
-					spellCastTime = player.skillVTime();
+							isCastingV = true;
+							spellCastTime = player.skillVTime();
 
-					Camera camera = FindObjectOfType<Camera>();
-					Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-					GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
-					bar.transform.SetParent(GameObject.Find("Canvas").transform);
+							Camera camera = FindObjectOfType<Camera>();
+							Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+							GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
+							bar.transform.SetParent(GameObject.Find("Canvas").transform);
 
-					castBar = bar;
-				} else {
-					Camera camera = FindObjectOfType<Camera> ();
-					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
-					GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos, Quaternion.identity);
-					noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+							castBar = bar;
+						
+					} else {
+						Camera camera = FindObjectOfType<Camera> ();
+						Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+						GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos + new Vector3(0,999,0), Quaternion.identity);
+						noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
 
-					noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+						noSTIcon.GetComponent<NoSTIcon> ().player = transform;
 
+					}
 				}
-
 			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
 
 				if (canCast) {
