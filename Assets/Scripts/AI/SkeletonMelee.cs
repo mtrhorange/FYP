@@ -267,7 +267,6 @@ public class SkeletonMelee : Enemy
         if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
         {
-            Debug.Log(Hit.transform.name);
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
 
@@ -282,7 +281,6 @@ public class SkeletonMelee : Enemy
         if (Physics.Raycast((transform.position + transform.up),
             transform.forward, out Hit, minDistance))
         {
-            Debug.Log(Hit.transform.name);
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
 

@@ -41,7 +41,7 @@ public class AIManager : MonoBehaviour
     private const int WEAK = 1, MEDIUM = 2, STRONG = 4; //enemy points each strength category is worth
     private List<int> mobPrefStrengths, spawnTheseStrengths;
     private bool spawning = false, isBossRoom = false;
-    private float doorCheckTimer = 3f;
+    public float doorCheckTimer = 3f;
 
     //temporary var for demonstration purposes
     private int enemPts;
@@ -401,6 +401,7 @@ public class AIManager : MonoBehaviour
                     }
                 }
             }
+            doorCheckTimer = 3f;
         }
         else
         {

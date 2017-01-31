@@ -25,6 +25,9 @@ public class Floor : MonoBehaviour {
 	float fadeTime = 0f;
 	GameObject blackOverlay;
 
+    //temp var
+    private bool changeThemeBack = false;
+
 	void Awake() {
 		instance = this;
 	}
@@ -98,6 +101,99 @@ public class Floor : MonoBehaviour {
 			}
 
 		}
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            currentTheme = Themes.Cave;
+            changeThemeBack = true;
+            //if currently 1 room before boss room
+            if (roomsToBoss == 1)
+            {
+                switch (currentTheme)
+                {
+                    case Themes.Cave:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Cave/caveBossRoom");
+                        break;
+                    case Themes.Castle:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Castle/castleBossRoom");
+                        break;
+                    case Themes.Hell:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Hell/hellBossRoom");
+                        break;
+                }
+            }
+            //if not is normal rooms
+            else
+            {
+                do
+                {
+                    int rand = Random.Range(0, roomTypes[(int)currentTheme].Count);
+                    nextRoom = roomTypes[(int)currentTheme][rand];
+                } while (nextRoom.name == currentRoom.name);
+            }
+            Debug.Log("Theme switched to Cave");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            currentTheme = Themes.Castle;
+            changeThemeBack = true;
+            //if currently 1 room before boss room
+            if (roomsToBoss == 1)
+            {
+                switch (currentTheme)
+                {
+                    case Themes.Cave:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Cave/caveBossRoom");
+                        break;
+                    case Themes.Castle:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Castle/castleBossRoom");
+                        break;
+                    case Themes.Hell:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Hell/hellBossRoom");
+                        break;
+                }
+            }
+            //if not is normal rooms
+            else
+            {
+                do
+                {
+                    int rand = Random.Range(0, roomTypes[(int)currentTheme].Count);
+                    nextRoom = roomTypes[(int)currentTheme][rand];
+                } while (nextRoom.name == currentRoom.name);
+            }
+            Debug.Log("Theme switched to Castle");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            currentTheme = Themes.Hell;
+            changeThemeBack = true;
+            //if currently 1 room before boss room
+            if (roomsToBoss == 1)
+            {
+                switch (currentTheme)
+                {
+                    case Themes.Cave:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Cave/caveBossRoom");
+                        break;
+                    case Themes.Castle:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Castle/castleBossRoom");
+                        break;
+                    case Themes.Hell:
+                        nextRoom = (GameObject)Resources.Load("Rooms/Hell/hellBossRoom");
+                        break;
+                }
+            }
+            //if not is normal rooms
+            else
+            {
+                do
+                {
+                    int rand = Random.Range(0, roomTypes[(int)currentTheme].Count);
+                    nextRoom = roomTypes[(int)currentTheme][rand];
+                } while (nextRoom.name == currentRoom.name);
+            }
+            Debug.Log("Theme switched to Hell");
+        }
 
 	}
 
@@ -170,6 +266,13 @@ public class Floor : MonoBehaviour {
         roomsToBoss--;
         Debug.Log("Rooms to boss: " + roomsToBoss);
 		NewRoom();
+
+        if (changeThemeBack)
+        {
+            changeThemeBack = false;
+            SpawnBackground();
+        }
+
 	}
 
     //Next Floor
@@ -180,18 +283,7 @@ public class Floor : MonoBehaviour {
         //reset the number of rooms before boss room (6~8)
         roomsToBoss = Random.Range((int)6, (int)9);
         //spawn background
-        if (mapBG != null)
-        {
-            Destroy(mapBG);
-        }
-        if (currentTheme == Themes.Castle)
-        {
-            mapBG = (GameObject)Instantiate(Resources.Load("Rooms/Castle/CastleBG"), new Vector3(0, -35, 0), Quaternion.Euler(-90f, 0, 0));
-        }
-        else if (currentTheme == Themes.Cave)
-        {
-            mapBG = (GameObject)Instantiate(Resources.Load("Rooms/Cave/CaveBG"), new Vector3(0, -100, 0), Quaternion.Euler(-90f, 0, 0));
-        }
+        SpawnBackground();
     }
 
 	public void MovePlayers() {
@@ -222,14 +314,24 @@ public class Floor : MonoBehaviour {
         {
             currentTheme = (Themes)Random.Range(0, 3);
             //spawn background
-            if (currentTheme == Themes.Castle)
-            {
-                mapBG = (GameObject)Instantiate(Resources.Load("Rooms/Castle/CastleBG"), new Vector3(0, -35, 0), Quaternion.Euler(-90f, 0, 0));
-            }
-            else if (currentTheme == Themes.Cave)
-            {
-                mapBG = (GameObject)Instantiate(Resources.Load("Rooms/Cave/CaveBG"), new Vector3(0, -100, 0), Quaternion.Euler(-90f, 0, 0));
-            }
+            SpawnBackground();
+        }
+    }
+
+    //spawn background
+    private void SpawnBackground()
+    {
+        if (mapBG != null)
+        {
+            Destroy(mapBG);
+        }
+        if (currentTheme == Themes.Castle)
+        {
+            mapBG = (GameObject)Instantiate(Resources.Load("Rooms/Castle/CastleBG"), new Vector3(0, -35, 0), Quaternion.Euler(-90f, 0, 0));
+        }
+        else if (currentTheme == Themes.Cave)
+        {
+            mapBG = (GameObject)Instantiate(Resources.Load("Rooms/Cave/CaveBG"), new Vector3(0, -100, 0), Quaternion.Euler(-90f, 0, 0));
         }
     }
 }
