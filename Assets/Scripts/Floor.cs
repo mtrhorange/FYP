@@ -209,7 +209,7 @@ public class Floor : MonoBehaviour {
             }
 
             //if currently 1 room before boss room
-			if (roomsToBoss == 1)
+            if (roomsToBoss == 1)
             {
                 switch (currentTheme)
                 {

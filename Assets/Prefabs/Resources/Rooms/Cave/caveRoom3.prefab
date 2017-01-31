@@ -1306,7 +1306,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010340175820}
   m_LocalRotation: {x: 0.6887067, y: 0.16025984, z: -0.16025989, w: 0.6887066}
-  m_LocalPosition: {x: -8.481956, y: -3.077107, z: 6.554499}
+  m_LocalPosition: {x: -4.8, y: -3.1, z: 5.2}
   m_LocalScale: {x: 2.1201212, y: 2.116423, z: 2.048616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1644,7 +1644,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012966385172}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -161, y: 297.3743, z: -281.40216}
+  m_LocalPosition: {x: 422.82584, y: 13.6, z: 955.7556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2512,12 +2512,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.15
+  m_Intensity: 0.25
   m_Range: 35
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2546,12 +2546,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.15
+  m_Intensity: 0.25
   m_Range: 35
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2580,12 +2580,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.15
+  m_Intensity: 0.25
   m_Range: 35
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2648,12 +2648,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.15
+  m_Intensity: 0.25
   m_Range: 35
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2682,12 +2682,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.15
+  m_Intensity: 0.25
   m_Range: 35
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

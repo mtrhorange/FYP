@@ -927,6 +927,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011640433920}
+  - 114: {fileID: 114000011808933226}
   m_Layer: 0
   m_Name: hellRoom1
   m_TagString: Untagged
@@ -2949,3 +2950,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomEnemStr: 12
   IsBossRoom: 0
+--- !u!114 &114000011808933226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012881209982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b349ab44dbfb9c048b7a3b1a7822d495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.9
+  scrollSpeed2: 0.9
+  rend: {fileID: 2100000, guid: 932c9352088cb1f439e59f6e161ca530, type: 2}

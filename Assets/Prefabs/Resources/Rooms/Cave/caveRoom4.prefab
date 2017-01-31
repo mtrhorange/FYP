@@ -380,7 +380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010613876094
 GameObject:
   m_ObjectHideFlags: 1
@@ -3536,7 +3536,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012869705300}
   m_LocalRotation: {x: -0.041914042, y: -0.26050642, z: 0.13043237, w: 0.9557024}
-  m_LocalPosition: {x: -10.482, y: -0.705, z: 0.867}
+  m_LocalPosition: {x: -10.094, y: -0.705, z: 0.867}
   m_LocalScale: {x: 0.14055096, y: 0.1446728, z: 0.1494154}
   m_LocalEulerAnglesHint: {x: -0.689, y: -30.632002, z: 15.424001}
   m_Children:
@@ -3780,7 +3780,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012339122830}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -70.3, y: 302.07443, z: -291.8018}
+  m_LocalPosition: {x: 409.26242, y: 15.6, z: 945.57214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -5607,12 +5607,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5641,12 +5641,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5675,12 +5675,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5709,12 +5709,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5743,7 +5743,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.15
   m_Range: 150
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -5777,12 +5777,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5811,12 +5811,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5845,7 +5845,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.15
   m_Range: 150
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -5879,12 +5879,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5913,12 +5913,12 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.89705884, g: 0.67315805, b: 0.19128463, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 40
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -9508,7 +9508,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1428968960
+  randomSeed: -1177547027
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -14650,7 +14650,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1428968960
+  randomSeed: 107500670
   InitialModule:
     serializedVersion: 2
     enabled: 1

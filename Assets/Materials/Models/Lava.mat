@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Lava
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 65ae9ae666ea007419d4f36e01d4a819, type: 3}
   m_ShaderKeywords: _EMISSION _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -68,7 +68,7 @@ Material:
       second:
         m_Texture: {fileID: 2800000, guid: 9fe571ad185399b438c0e67d46027fae, type: 3}
         m_Scale: {x: 20, y: 20}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 9.248, y: 9.248}
     - first:
         name: _MetallicGlossMap
       second:
@@ -123,10 +123,10 @@ Material:
       second: 0
     - first:
         name: _MoveSpeedU
-      second: 0.5
+      second: 1
     - first:
         name: _MoveSpeedV
-      second: 0.5
+      second: 1
     - first:
         name: _OcclusionStrength
       second: 1
@@ -135,7 +135,7 @@ Material:
       second: 0.02
     - first:
         name: _Shininess
-      second: 0.078125
+      second: 0.134
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -150,6 +150,9 @@ Material:
       second: 0
     - first:
         name: _ZWrite
+      second: 1
+    - first:
+        name: emitLight
       second: 1
     m_Colors:
     - first:
