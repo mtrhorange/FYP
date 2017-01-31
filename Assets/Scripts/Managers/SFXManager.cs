@@ -16,8 +16,11 @@ public enum sounds
     unsheathe,
     woodHit,
     zombie,
-    explosion
-    
+    explosion,
+    iceBall,
+    iceSpike,
+    iceBlast
+
 }
 public class SFXManager : MonoBehaviour
 {
@@ -98,6 +101,15 @@ public class SFXManager : MonoBehaviour
                 break;
             case sounds.zombie:
                 sfx.PlayOneShot((AudioClip)Resources.Load("Sound/zombie"));
+                break;
+            case sounds.iceBall:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceBall"));
+                break;
+            case sounds.iceSpike:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceSpike"));
+                break;
+            case sounds.iceBlast:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceBlast"));
                 break;
         }
     }

@@ -1787,7 +1787,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013229369288}
   m_LocalRotation: {x: -0.4999171, y: -0.4999171, z: -0.5000829, w: 0.5000829}
-  m_LocalPosition: {x: -211.9231, y: 293.55243, z: -274.65353}
+  m_LocalPosition: {x: 397.65515, y: 2.3999996, z: 948.4956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -89.981, y: 0, z: -90}
   m_Children:
@@ -1835,7 +1835,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012787350274}
   m_LocalRotation: {x: 0.17700121, y: 0.5035971, z: -0.8044003, w: 0.26076958}
-  m_LocalPosition: {x: 3.657, y: -7.529, z: 0.96}
+  m_LocalPosition: {x: 3.657, y: -7.91, z: 0.96}
   m_LocalScale: {x: 0.4290627, y: 0.38117278, z: 0.2817547}
   m_LocalEulerAnglesHint: {x: 64.469, y: -2.858, z: -145.755}
   m_Children:
@@ -1999,7 +1999,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013977226428}
   m_LocalRotation: {x: -0.4578328, y: 0.13812695, z: 0.28080755, w: 0.83214015}
-  m_LocalPosition: {x: 5.022, y: 0.29, z: 1.141}
+  m_LocalPosition: {x: 5.022, y: 0.64, z: 1.141}
   m_LocalScale: {x: 0.40126276, y: 0.34889483, z: 0.26300406}
   m_LocalEulerAnglesHint: {x: -57.079002, y: -2.7910001, z: 39.125}
   m_Children:
@@ -2422,7 +2422,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012984915196}
   m_LocalRotation: {x: -0.39731967, y: -0.26613325, z: 0.82127845, w: 0.31114605}
-  m_LocalPosition: {x: -5.916, y: -1.913, z: 1.05}
+  m_LocalPosition: {x: -6.777, y: -1.913, z: 1.05}
   m_LocalScale: {x: 0.4144007, y: 0.36466447, z: 0.2729037}
   m_LocalEulerAnglesHint: {x: 10.89, y: -56.289, z: 132.70401}
   m_Children:
@@ -3473,7 +3473,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3507,7 +3507,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3541,7 +3541,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3575,7 +3575,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3677,7 +3677,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3711,7 +3711,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3745,7 +3745,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3779,7 +3779,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -14191,7 +14191,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -479243498
+  randomSeed: -1340376842
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -15905,7 +15905,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -910103467
+  randomSeed: 1059697553
   InitialModule:
     serializedVersion: 2
     enabled: 1

@@ -768,6 +768,7 @@ GameObject:
   - 23: {fileID: 23000010373508716}
   - 114: {fileID: 114000012848044644}
   - 114: {fileID: 114000012229212240}
+  - 114: {fileID: 114000010693627268}
   m_Layer: 0
   m_Name: hellRoom4
   m_TagString: Untagged
@@ -2275,6 +2276,20 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000010693627268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013853455008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b349ab44dbfb9c048b7a3b1a7822d495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.9
+  scrollSpeed2: 0.9
+  rend: {fileID: 2100000, guid: 932c9352088cb1f439e59f6e161ca530, type: 2}
 --- !u!114 &114000012229212240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2301,6 +2316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint1: {fileID: 0}
   spawnPoint2: {fileID: 0}
+  doors: []
   Objects:
-  - {fileID: 1000012068411512, guid: 09b95a91ed61cb04ba37999683bac498, type: 2}
-  - {fileID: 1000012489850496, guid: 8d8326963956a2449a883e3569d0f8eb, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -6,8 +6,7 @@ public class Ice_Blast_Script : MonoBehaviour {
     // Use this for initialization
     double TimeSpan = 2;
 	void Start () {
-	
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

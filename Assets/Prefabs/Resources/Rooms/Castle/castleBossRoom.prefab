@@ -1573,7 +1573,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013884698908}
   m_LocalRotation: {x: 0.00000020861623, y: -0.00000017881392, z: -0.74198943, w: -0.67041165}
-  m_LocalPosition: {x: -0.3, y: -17.5, z: 2.1}
+  m_LocalPosition: {x: -0.3, y: -17.5, z: 10.4}
   m_LocalScale: {x: 1.0000143, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1976,7 +1976,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012725509808}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.1, y: 8.6, z: -134.17438}
+  m_LocalPosition: {x: -66.10276, y: 81.349266, z: 99.603096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2025,7 +2025,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013265290314}
   m_LocalRotation: {x: 0.00000020861623, y: -0.00000017881392, z: -0.74198943, w: -0.67041165}
-  m_LocalPosition: {x: -19.6, y: 18.6, z: 2.4}
+  m_LocalPosition: {x: -19.6, y: 18.6, z: 10.7}
   m_LocalScale: {x: 1.0000131, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2278,7 +2278,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011519983766}
   m_LocalRotation: {x: 0.00000020861623, y: -0.00000017881392, z: -0.74198943, w: -0.67041165}
-  m_LocalPosition: {x: 23.5, y: 20.3, z: 2.1}
+  m_LocalPosition: {x: 23.5, y: 20.3, z: 10.4}
   m_LocalScale: {x: 1.0000143, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -3547,7 +3547,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.366, g: 0.26373526, b: 0.11033821, a: 1}
-  m_Intensity: 0.25
+  m_Intensity: 1.5
   m_Range: 300
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3717,7 +3717,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.366, g: 0.26373526, b: 0.11033821, a: 1}
-  m_Intensity: 0.25
+  m_Intensity: 1.5
   m_Range: 300
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3853,7 +3853,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.366, g: 0.26373526, b: 0.11033821, a: 1}
-  m_Intensity: 0.25
+  m_Intensity: 1.5
   m_Range: 300
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4077,6 +4077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canExit: 0
+  mesh: 0
 --- !u!114 &114000010978765664
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,8 +8,8 @@ public class Room : MonoBehaviour
     public GameObject[] doors, Objects;
     System.Random ran = new System.Random();
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		//to find all spawn point
         GameObject[] spons = GameObject.FindGameObjectsWithTag("ObjectSpawnPoint");
         //to obtain all the spawn point used
@@ -31,7 +31,18 @@ public class Room : MonoBehaviour
             GameObject obj = (GameObject)Instantiate(Objects[ran.Next(0,Objects.Length)], spons[one].transform.position, Objects[ran.Next(0, Objects.Length)].transform.rotation);
             obj.transform.SetParent(this.gameObject.transform,true);
         }
-	}
+
+        if (Floor.instance.currentTheme == Floor.Themes.Cave)
+        {
+            GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.18f;
+        }
+        else if (Floor.instance.currentTheme == Floor.Themes.Castle || Floor.instance.currentTheme == Floor.Themes.Hell)
+        {
+            GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.3f;
+        }
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

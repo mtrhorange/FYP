@@ -646,7 +646,8 @@ public class Player : MonoBehaviour {
 
 //		StartCoroutine (_IceSpike());
 //		StopCoroutine (_IceSpike ());
-		GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpikeSpell");
+        SFXManager.instance.playSFX(sounds.iceSpike);
+        GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpikeSpell");
 		iceSpike = (GameObject)Instantiate (iceSpike, transform.position, transform.localRotation);
 		iceSpike.GetComponent<IceSpikeSpell> ().player = this;
 	}
@@ -728,7 +729,7 @@ public class Player : MonoBehaviour {
 					SwapSkillV (Skills.FirePillar);
 				} else if (skillV == CastFirePillar) {
 					SwapSkillV (Skills.IceSpike);
-				}
+                }
 
 			}
 
