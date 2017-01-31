@@ -17,7 +17,7 @@ public class Floor : MonoBehaviour {
     //Room Theme
     public enum Themes { Cave, Castle, Hell, None }
     //the theme currently in use
-    private Themes currentTheme = Themes.None;
+    public Themes currentTheme = Themes.None;
 
 
 	bool changingRooms = false;
