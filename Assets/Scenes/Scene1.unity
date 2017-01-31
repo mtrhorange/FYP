@@ -1807,6 +1807,44 @@ Prefab:
       propertyPath: player2UI
       value: 
       objectReference: {fileID: 2081377585}
+    - target: {fileID: 1000013151347118, guid: 16082e71784b260429ecae34a51936e6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013321757802, guid: 16082e71784b260429ecae34a51936e6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0

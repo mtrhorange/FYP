@@ -48,4 +48,10 @@ public class LevelManager : MonoBehaviour {
 
 
 	}
+
+	public void QuitGame() {
+
+		Application.Quit ();
+
+	}
 }

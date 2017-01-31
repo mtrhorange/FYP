@@ -1424,6 +1424,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &645795344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,6 +1739,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &681802436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2004,6 +2006,11 @@ MonoBehaviour:
     isPermaDead: 0
     level: 0
     exp: 0
+    skillCType: 0
+    skillVType: 0
+    firePillarLevel: 0
+    iceSpikesLevel: 0
+    chainLightningLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
@@ -2024,6 +2031,11 @@ MonoBehaviour:
     isPermaDead: 0
     level: 0
     exp: 0
+    skillCType: 0
+    skillVType: 0
+    firePillarLevel: 0
+    iceSpikesLevel: 0
+    chainLightningLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
@@ -4005,7 +4017,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1116806451}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab2d5a0ef0027bb4bb1d2e3fdcf0f7c2, type: 3}
   m_Name: 
@@ -4019,6 +4031,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &1116806454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4072,6 +4085,17 @@ MonoBehaviour:
       - m_Target: {fileID: 184358855}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1011735488}
+        m_MethodName: QuitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4457,6 +4481,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1 &1194401821
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4769,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &1234415763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5070,6 +5096,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &1271904979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5949,6 +5976,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1 &1437901947
 GameObject:
   m_ObjectHideFlags: 0
@@ -6344,6 +6372,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &1531169496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6503,6 +6532,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &1574474493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7015,6 +7045,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1 &1734240429
 GameObject:
   m_ObjectHideFlags: 0
@@ -7395,6 +7426,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!114 &1781999575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7728,6 +7760,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1 &1844520299
 GameObject:
   m_ObjectHideFlags: 0
@@ -8429,6 +8462,7 @@ MonoBehaviour:
   btnType: 0
   selected: 0
   selectedImg: {fileID: 0}
+  player: 1
 --- !u!1 &1967566313
 GameObject:
   m_ObjectHideFlags: 0
