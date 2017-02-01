@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
 	bool isDead = false;
 	bool isPermaDead = false;
 	public bool canBeHit = true;
+	public bool isMelee = true;
 
 	public int level = 1;
 	public float exp = 0;
@@ -257,6 +258,9 @@ public class Player : MonoBehaviour {
 
 			dmg = dmg * (1f - ((0.05f * skills.defenseBuffLevel) > 0.5f ? 0.5f : (0.05f * skills.defenseBuffLevel)));
 
+			if (isMelee)
+				dmg *= 0.5f;
+
 			Camera camera = FindObjectOfType<Camera> ();
 			Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
 			GameObject txt = (GameObject)Instantiate (damageText, screenPos, Quaternion.identity);
@@ -271,7 +275,13 @@ public class Player : MonoBehaviour {
 	}
 
 	public void ReceiveHeal(float f) {
-
+		Camera camera = FindObjectOfType<Camera> ();
+		Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+		GameObject txt = (GameObject)Instantiate (damageText, screenPos, Quaternion.identity);
+		txt.transform.SetParent (GameObject.Find ("Canvas").transform);
+		txt.GetComponent<Text> ().text = f.ToString ("F0");
+		txt.GetComponent<DamageText> ().target = transform;
+		txt.GetComponent<Text> ().color = Color.green;
 		Health += f;
 	}
 
@@ -684,6 +694,21 @@ public class Player : MonoBehaviour {
 		return time;
 	}
 
+	public void CastDrainHeal() {
+
+		GameObject spellDrainHeal = (GameObject)Resources.Load ("Skills/DrainHeal");
+		spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 5f, Quaternion.identity);
+		spellDrainHeal.GetComponent<DrainHeal> ().player = this;
+	}
+
+	public float GetDrainHealTime() {
+
+		float time = 2.5f;
+		return time;
+
+
+	}
+
 	IEnumerator _IceSpike()
 	{
 		GameObject iceSpike = (GameObject)Resources.Load ("Skills/IceSpike");
@@ -723,6 +748,10 @@ public class Player : MonoBehaviour {
 			skillC = CastChainLightning;
 			skillCTime = GetChainLightningTime;
 			skillCType = Skills.ChainLightning;
+		} else if (s == Skills.DrainHeal) {
+			skillC = CastDrainHeal;
+			skillCTime = GetDrainHealTime;
+			skillCType = Skills.DrainHeal;
 		}
 	}
 
@@ -740,6 +769,10 @@ public class Player : MonoBehaviour {
 			skillV = CastChainLightning;
 			skillVTime = GetChainLightningTime;
 			skillVType = Skills.ChainLightning;
+		} else if (s == Skills.DrainHeal) {
+			skillV = CastDrainHeal;
+			skillVTime = GetDrainHealTime;
+			skillVType = Skills.DrainHeal;
 		}
 	}
 

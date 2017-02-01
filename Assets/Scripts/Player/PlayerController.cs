@@ -210,10 +210,10 @@ public class PlayerController : MonoBehaviour
 		{
 			itemR.SetActive(false);
 		}
-		if(shield != null)
-		{
-			shield.SetActive(false);
-		}
+//		if(shield != null)
+//		{
+//			shield.SetActive(false);
+//		}
 		if(pistolL != null)
 		{
 			pistolL.SetActive(false);
@@ -237,6 +237,7 @@ public class PlayerController : MonoBehaviour
 		rightWeapon = 19;
 		animator.SetInteger("RightWeapon", 9);
 		animator.SetBool("Armed", true);
+		animator.SetBool ("Shield", true);
 		animator.SetInteger("Weapon", 7);
 
 		castBarPrefab = (GameObject)Resources.Load("ChargeBar");
@@ -1735,20 +1736,32 @@ public class PlayerController : MonoBehaviour
 				if (weaponNumber < 19)
 				animator.SetInteger("RightWeapon", weaponNumber);
 				else if (weaponNumber == 19) {
-					if (firstWep.GetComponent<Weapon>().type == Weapon.Types.Staff)
+					if (firstWep.GetComponent<Weapon>().type == Weapon.Types.Staff) {
 						animator.SetInteger("RightWeapon", 11);
-					else
+						animator.SetBool ("Shield", false);
+						player.isMelee = false;
+					}
+					else {
 						animator.SetInteger("RightWeapon", 9);
+						animator.SetBool ("Shield", true);
+						player.isMelee = true;
+					}
 				}
 				else {
-					if (secondWep.GetComponent<Weapon>().type == Weapon.Types.Staff)
+					if (secondWep.GetComponent<Weapon>().type == Weapon.Types.Staff) {
 						animator.SetInteger("RightWeapon", 11);
-					else
+						animator.SetBool ("Shield", false);
+						player.isMelee = false;
+					}
+					else {
 						animator.SetInteger("RightWeapon", 9);
+						animator.SetBool ("Shield", true);
+						player.isMelee = true;
+					}
 				}
 
 				rightWeapon = weaponNumber;
-				StartCoroutine(_WeaponVisibility(weaponNumber, .6f, true));
+				StartCoroutine(_WeaponVisibility(weaponNumber, .7f, true));
 				weaponNumber = 7;
 				//set shield to false for animator, will reset later
 				if(leftWeapon == 7)
@@ -1918,9 +1931,11 @@ public class PlayerController : MonoBehaviour
 		if(weaponNumber == 19) 
 		{
 			firstWep.SetActive(visible);
+			shield.SetActive (visible);
 			currentWeapon = firstWep;
 			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
 			player.nextWeapon = secondWep.GetComponent<Weapon> ();
+			animator.SetBool ("Shield", true);
 		}
 		if(weaponNumber == 20) 
 		{
@@ -1928,6 +1943,7 @@ public class PlayerController : MonoBehaviour
 			currentWeapon = secondWep;
 			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
 			player.nextWeapon = firstWep.GetComponent<Weapon> ();
+			animator.SetBool ("Shield", false);
 		}
 		yield return null;
 	}

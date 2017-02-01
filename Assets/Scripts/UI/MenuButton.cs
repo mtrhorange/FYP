@@ -19,13 +19,13 @@ public class MenuButton : MonoBehaviour {
 	public virtual void Awake() {
 
 
-
 	}
 
 	// Use this for initialization
 	public virtual void Start () {
+		
 		if (btnType != ButtonTypes.MainMenu) {
-			
+
 
 			if (!selected)
 				Deselect ();
@@ -33,7 +33,6 @@ public class MenuButton : MonoBehaviour {
 				Select ();
 
 		}
-
 
 	}
 	
@@ -82,7 +81,6 @@ public class MenuButton : MonoBehaviour {
 		selectedImg.GetComponent<Image> ().color = new Color (color.r, color.g, color.b, 1f);
 		if (selectedImg.GetComponent<Animator> ())
 			selectedImg.GetComponent<Animator> ().enabled = true;
-
 	}
 
 	public void SelectionInactive() {
@@ -90,15 +88,14 @@ public class MenuButton : MonoBehaviour {
 		selectedImg.GetComponent<Image> ().color = new Color (color.r, color.g, color.b, 0.5f);
 		if (selectedImg.GetComponent<Animator> ())
 			selectedImg.GetComponent<Animator> ().enabled = false;
-
 	}
 
 	public bool MoveLeft() {
 		if (LeftBtn == null)
 			return false;
 		else {
-			LeftBtn.Select ();
 			Deselect ();
+			LeftBtn.Select ();
 			return true;
 		}
 	}
@@ -108,8 +105,8 @@ public class MenuButton : MonoBehaviour {
 		if (RightBtn == null)
 			return false;
 		else {
-			RightBtn.Select ();
 			Deselect ();
+			RightBtn.Select ();
 			return true;
 		}
 	}
@@ -119,8 +116,8 @@ public class MenuButton : MonoBehaviour {
 		if (DownBtn == null)
 			return false;
 		else {
-			DownBtn.Select ();
 			Deselect ();
+			DownBtn.Select ();
 			return true;
 		}
 	}
@@ -130,8 +127,8 @@ public class MenuButton : MonoBehaviour {
 		if (UpBtn == null)
 			return false;
 		else {
-			UpBtn.Select ();
 			Deselect ();
+			UpBtn.Select ();
 			return true;
 		}
 	}

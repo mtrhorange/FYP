@@ -8,7 +8,7 @@ public class KeyAssignPanel : MenuButton {
 
 	public Skills assignSkill;
 
-	public Image firePillar, iceSpikes, ChainLightning;
+	public Image firePillar, iceSpikes, chainLightning, drainHeal, aoeLightning, groundSmash, verticalStrike, frontSlash;
 
 	public override void Awake () {
 		
@@ -31,6 +31,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.IceSpike:
 				ChangeKeyImage ("C", Skills.IceSpike);
 				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("C", Skills.DrainHeal);
+				break;
 			}
 
 			switch (GameManager.instance.player1.skillVType) {
@@ -42,6 +45,9 @@ public class KeyAssignPanel : MenuButton {
 				break;
 			case Skills.IceSpike:
 				ChangeKeyImage ("V", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("V", Skills.DrainHeal);
 				break;
 			}
 
@@ -128,7 +134,27 @@ public class KeyAssignPanel : MenuButton {
 			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
 			break;
 		case Skills.ChainLightning:
-			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = ChainLightning.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = chainLightning.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.DrainHeal:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = drainHeal.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.AoeLightning:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = aoeLightning.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.GroundSmash:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = groundSmash.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.VerticalStrike:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = verticalStrike.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.FrontSlash:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = frontSlash.sprite;
 			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
 			break;
 		}
