@@ -58,12 +58,6 @@ public class SlimeNew : Enemy {
         }
 
         jumpTimer -= Time.deltaTime;
-
-        if (jumpTimer <= 0 && myState != States.Dead)
-        {
-            SFXManager.instance.playSFX(sounds.slime);
-            jumpTimer = 1f;
-        }
     }
 
     //Idle state
@@ -188,6 +182,7 @@ public class SlimeNew : Enemy {
     public void AttackEvent1()
     {
         GetComponent<BoxCollider>().enabled = true;
+        SFXManager.instance.playSFX(sounds.slime);
     }
 
     //attack event 2
