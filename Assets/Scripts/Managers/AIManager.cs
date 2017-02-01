@@ -275,9 +275,15 @@ public class AIManager : MonoBehaviour
             //check which strngth categories we can spawn from
             if (roomEnemyPoints >= WEAK)
             {
+                //lazy weighted randoms LOL ezez
+                spawnTheseStrengths.Add(WEAK);
+                spawnTheseStrengths.Add(WEAK);
+                spawnTheseStrengths.Add(WEAK);
                 spawnTheseStrengths.Add(WEAK);
                 if (roomEnemyPoints >= MEDIUM)
                 {
+                    spawnTheseStrengths.Add(MEDIUM);
+                    spawnTheseStrengths.Add(MEDIUM);
                     spawnTheseStrengths.Add(MEDIUM);
                     if (roomEnemyPoints >= STRONG)
                     {
@@ -374,6 +380,7 @@ public class AIManager : MonoBehaviour
                     g.GetComponent<MeshRenderer>().enabled = false;
                     g.GetComponent<BoxCollider>().enabled = false;
                 }
+                Floor.instance.currentRoom.GetComponent<Room>().trailActive = true;
             }
         }
     }
@@ -398,6 +405,7 @@ public class AIManager : MonoBehaviour
                             g.GetComponent<MeshRenderer>().enabled = false;
                             g.GetComponent<BoxCollider>().enabled = false;
                         }
+                        Floor.instance.currentRoom.GetComponent<Room>().trailActive = true;
                     }
                 }
             }

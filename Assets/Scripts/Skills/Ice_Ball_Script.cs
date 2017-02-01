@@ -25,7 +25,6 @@ public class Ice_Ball_Script : Spell
         Lifespan -= Time.deltaTime;
         if (Lifespan <= 0)
         {
-            Debug.Log("test");
             SFXManager.instance.playSFX(sounds.iceBlast);
             Instantiate(Ice_blast, new Vector3(this.transform.position.x,0,transform.position.z), transform.rotation);
             Destroy(gameObject);

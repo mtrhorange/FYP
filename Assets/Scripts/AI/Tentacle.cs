@@ -75,6 +75,18 @@ public class Tentacle : Enemy
         myState = States.Idle;
     }
 
+    //receive damage override
+    public override void ReceiveDamage(float dmg, Player attacker)
+    {
+        if (myState != States.Dead)
+        {
+            //receive damageee
+            base.ReceiveDamage(dmg, attacker);
+            //give damage to the main body
+            Boss.ReceiveDamage(Mathf.Ceil((Boss.health / Boss.maxHealth) * 0.35f * dmg), attacker);
+        }
+    }
+
     //attacking trigger on
     public void triggerOn()
     {

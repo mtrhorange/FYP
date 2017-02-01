@@ -119,10 +119,10 @@ public class Player : MonoBehaviour {
 
 		foreach (HealthBar bar in hpbars) {
 
-			if (bar.playerNo == playerNo)
-				bar.SetPlayer (this);
-			if (GameManager.instance.twoPlayers == false && bar.playerNo == 2) 
-				bar.transform.parent.gameObject.SetActive (false);
+            if (bar.playerNo == playerNo)
+                bar.SetPlayer(this);
+            if (GameManager.instance.twoPlayers == false && bar.playerNo == 2)
+                bar.transform.parent.gameObject.SetActive(false);
 		}
 
 		StaminaBar[] stambars = FindObjectsOfType<StaminaBar> ();

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: water
-  m_Shader: {fileID: 4800000, guid: 65ae9ae666ea007419d4f36e01d4a819, type: 3}
+  m_Shader: {fileID: 4800000, guid: cde999df452490c4aa3a63d2a5cb48e9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -55,6 +55,9 @@ Material:
     - first:
         name: _Multiply
       second: 5
+    - first:
+        name: emitLight
+      second: 0.35
     m_Colors:
     - first:
         name: _Color

@@ -6,7 +6,7 @@ public class TentacleBoss : Enemy {
 
     //tentacle prefab
     public bool spawn;
-    public float SpawnX = 4f, SpawnZ = 4f;
+    private float SpawnX = 2f, SpawnZ = 2f;
     public GameObject tentaclePref;
     public float attackInterval = 3f;
     public GameObject mouth;
@@ -62,7 +62,6 @@ public class TentacleBoss : Enemy {
             spawnTentacle();
             spawn = false;
         }
-
         if (myState == States.Idle)
         {
             Idle();

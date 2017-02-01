@@ -8,6 +8,9 @@ public class Room : MonoBehaviour
     public GameObject[] doors, Objects;
     System.Random ran = new System.Random();
 
+    public bool trailActive = false;
+    private float trailTimer = 0.5f;
+
     // Use this for initialization
     void Start () {
 		//to find all spawn point
@@ -46,7 +49,25 @@ public class Room : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (trailActive)
+        {
+            if (trailTimer <= 0)
+            {
+                //spawn new trail
+                Vector3 spawnHere = new Vector3(GameManager.instance.player1.transform.position.x, GameManager.instance.player1.transform.position.y + 0.5f, GameManager.instance.player1.transform.position.z);
+
+                GameObject Trale = (GameObject)Instantiate((GameObject)Resources.Load("GuideTrail"), spawnHere, Quaternion.identity);
+                //set the start and the end points for the trail to fly
+                Trale.GetComponent<GuideTrail>().start = spawnHere;
+                Trale.GetComponent<GuideTrail>().end = doors[0].transform.position;
+
+                trailTimer = 2f;
+            }
+            else
+            {
+                trailTimer -= Time.deltaTime;
+            }
+        }
 	}
 
 	public void SpawnAdjRooms() {

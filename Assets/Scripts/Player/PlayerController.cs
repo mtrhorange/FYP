@@ -1519,7 +1519,6 @@ public class PlayerController : MonoBehaviour
 		else if(weapon == WeaponType.ARMED)
 		{
 			
-			Debug.Log ("Check2");
 			//character is switching to 2 hand weapon or unarmed, put put away all weapons
 			if(weaponNumber < 7 || weaponNumber == 18)
 			{

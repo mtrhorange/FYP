@@ -42,9 +42,9 @@ Shader "Water Flow FREE/Water Flow FREE Simple" {
 			o.Albedo = c.rgb * _Color;
 			o.Alpha = _Color.a;
 
-			if (emitLight == 1.0)
+			if (emitLight >= 0.1)
 			{
-				o.Emission = c.rgb * 0.4;
+				o.Emission = c.rgb * emitLight;
 			}
 			else
 			{
