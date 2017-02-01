@@ -19,7 +19,10 @@ public enum sounds
     explosion,
     iceBall,
     iceSpike,
-    iceBlast
+    iceBlast,
+    firePillar,
+    lightning,
+    levelup
 
 }
 public class SFXManager : MonoBehaviour
@@ -27,7 +30,9 @@ public class SFXManager : MonoBehaviour
 
     public static SFXManager instance;
 
-    private AudioSource sfx;    
+    private AudioSource sfx;
+
+    public float sfxValue = 1;
 
     void Awake()
     {
@@ -111,11 +116,26 @@ public class SFXManager : MonoBehaviour
             case sounds.iceBlast:
                 sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceBlast"));
                 break;
+            case sounds.firePillar:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/firePillar"));
+                break;
+            case sounds.lightning:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/lightning"));
+                break;
+            case sounds.levelup:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/levelup"));
+                break;
         }
     }
 
     public void setVolume(float v)
     {
-        sfx.volume = v;
+        GetComponent<AudioSource>().volume = v;
+    }
+
+    public void setSFX(float f)
+    {
+        sfxValue = f;
+        setVolume(f);
     }
 }

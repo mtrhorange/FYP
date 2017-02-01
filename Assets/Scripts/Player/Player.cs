@@ -296,6 +296,7 @@ public class Player : MonoBehaviour {
 
 		Level++;
         //add level up bling bling effect
+        SFXManager.instance.playSFX(sounds.levelup);
         GameObject levelUpBeam = (GameObject)Instantiate(Resources.Load("LevelUpEffect"), transform.position, Quaternion.identity);
         levelUpBeam.GetComponent<LevelUp>().p = this.gameObject;
 		MaxHealth += 10;

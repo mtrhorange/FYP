@@ -149,7 +149,8 @@ public class MenuButton : MonoBehaviour {
 	public void SelectPlayer() {
 
 		GameManager.instance.SelectPlayer (this.GetComponent<SaveSlot> ());
-	}
+    }
+
 
 	public void NewCharacter() {
 

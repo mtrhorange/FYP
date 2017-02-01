@@ -6,7 +6,6 @@ public class BGMManager : MonoBehaviour
     public static BGMManager instance;
 
     public float bgmValue = 1;
-    public float sfxValue = 1;
     public AudioClip normal;
     public AudioClip boss;
     void Awake()
@@ -38,15 +37,10 @@ public class BGMManager : MonoBehaviour
         GetComponent<AudioSource>().volume = v;
     }
 
-    public void setSFX(float f)
-    {
-        sfxValue = f;
-    }
-
     public void setBGM(float f)
     {
-        bgmValue = f;
-        setVolume(f);
+        bgmValue =f;
+        setVolume(bgmValue);
     }
 
     public void changeToBoss()
