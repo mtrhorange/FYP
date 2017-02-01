@@ -117,7 +117,7 @@ public class TentacleBoss : Enemy {
     }
 
     //Spawn tentacle
-    void spawnTentacle()
+    public void spawnTentacle()
     {
         //spawn a tentacle within a given area of of the player.
         float randomX = Random.Range(player.transform.position.x + SpawnX, player.transform.position.x - SpawnX);

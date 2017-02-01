@@ -10,22 +10,22 @@ public class Tentacle : Enemy
     public float attackInterval;
     private float attackTimer, reTargetTimer = 3f;
     private Animator anim;
-
+    private float despawnTimer;
     //Start
     protected override void Start()
     {
         myStrength = Strength.Weak;
-        
+
         base.Start();
 
         anim = GetComponent<Animator>();
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
-	}
-	
-	//Update
-	void Update()
+    }
+
+    //Update
+    void Update()
     {
 
         if (myState == States.Idle)
@@ -134,5 +134,20 @@ public class Tentacle : Enemy
             myState = States.Attack;
             attackTimer = attackInterval;
         }
+
+        if (Vector3.Distance(this.transform.position, player.transform.position) > 7f)
+        {
+            despawnTimer += Time.deltaTime;
+            if(despawnTimer> 10f)
+            {
+                anim.SetTrigger("Despawn");
+            }
+        }
+    }
+
+    public void event1()
+    {
+        Boss.spawnTentacle();
+        Destroy(gameObject);
     }
 }
