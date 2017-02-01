@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Skills{ None, FirePillar, IceSpike, ChainLightning}
+public enum Skills{ None, FirePillar, IceSpike, ChainLightning, DrainHeal, AoeLightning, GroundSmash, VerticalStrike, FrontSlash}
 
 public class PlayerSkills : MonoBehaviour {
 
@@ -9,6 +9,7 @@ public class PlayerSkills : MonoBehaviour {
 	public int firePillarLevel = 0;
 	public int iceSpikesLevel = 0;
 	public int chainLightningLevel = 0;
+	public int drainHealLevel = 0;
 
 	//Passives
 	public int maxHealthLevel = 0;

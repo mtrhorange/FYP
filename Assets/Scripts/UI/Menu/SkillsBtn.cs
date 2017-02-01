@@ -11,6 +11,7 @@ public class SkillsBtn : MenuButton {
 	public string description;
 
 	public Skills skill;
+	public GameObject panel;
 
 
 	public override void Awake () {
@@ -20,6 +21,7 @@ public class SkillsBtn : MenuButton {
 		descPanel = transform.parent.Find ("Description").gameObject;
 		descTxt = descPanel.transform.GetChild (0).GetComponent<Text> ();
 		lvlTxt = transform.Find ("SkillLvl").GetComponent<Text> ();
+		//panel = transform.parent.gameObject;
 		base.Awake ();
 	}
 
@@ -38,14 +40,18 @@ public class SkillsBtn : MenuButton {
 
 	public override void Select(){
 		base.Select ();
+		//panel.SetActive (true);
 		Active ();
 		descPanel.SetActive (true);
 		descTxt.text = description;
+
 	}
 
 	public override void Deselect() {
 		base.Deselect ();
+		//panel.SetActive (false);
 		Inactive ();
+
 	}
 
 	public override void Submit() {
@@ -65,6 +71,7 @@ public class SkillsBtn : MenuButton {
 			CancelBtn.Select ();
 			Deselect ();
 			CancelBtn.SubmitBtn = this;
+			CancelBtn.GetComponent<TabBtn> ().panel = panel;
 			descPanel.SetActive (false);
 		}
 
@@ -93,6 +100,13 @@ public class SkillsBtn : MenuButton {
 				skillLvl = GameManager.instance.player1.skills.iceSpikesLevel;
 			else
 				skillLvl = GameManager.instance.player2.skills.iceSpikesLevel;
+			lvlTxt.text = "Lv." + skillLvl;
+			break;
+		case Skills.DrainHeal:
+			if (player == 1)
+				skillLvl = GameManager.instance.player1.skills.drainHealLevel;
+			else
+				skillLvl = GameManager.instance.player2.skills.drainHealLevel;
 			lvlTxt.text = "Lv." + skillLvl;
 			break;
 

@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.57508564, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   roomEnemyPoints: 0
   enemyList: []
   roomSpawnPoints: []
+  doorCheckTimer: 3
 --- !u!4 &72541961
 Transform:
   m_ObjectHideFlags: 0
@@ -435,6 +436,7 @@ MonoBehaviour:
   roomsToBoss: 6
   currentRoom: {fileID: 0}
   nextRoom: {fileID: 0}
+  currentTheme: 3
 --- !u!4 &519619492
 Transform:
   m_ObjectHideFlags: 0
@@ -1807,44 +1809,6 @@ Prefab:
       propertyPath: player2UI
       value: 
       objectReference: {fileID: 2081377585}
-    - target: {fileID: 1000013151347118, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013321757802, guid: 16082e71784b260429ecae34a51936e6, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012181021130, guid: 16082e71784b260429ecae34a51936e6,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0
