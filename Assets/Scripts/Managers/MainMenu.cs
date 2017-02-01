@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
 	public string playerName;
+    public Slider BGM;
+    public Slider SFX;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -52,5 +54,13 @@ public class MainMenu : MonoBehaviour {
 
 	}
 
+    public void setBGM()
+    {
+        BGMManager.instance.setBGM(BGM.value);
+    }
 
+    public void setSFX()
+    {
+        SFXManager.instance.setSFX(SFX.value);
+    }
 }

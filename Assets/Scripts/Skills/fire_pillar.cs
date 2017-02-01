@@ -18,8 +18,11 @@ public class fire_pillar : Spell {
         lifeSpan -= Time.deltaTime;
 		triggerDelay -= Time.deltaTime;
 
-		if (triggerDelay <= 0 && GetComponent<Collider>().enabled == false)
-			GetComponent<Collider> ().enabled = true;
+        if (triggerDelay <= 0 && GetComponent<Collider>().enabled == false)
+        {
+            SFXManager.instance.playSFX(sounds.firePillar);
+            GetComponent<Collider>().enabled = true;
+        }
 
         if (lifeSpan <= 0)
         {

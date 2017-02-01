@@ -33,7 +33,7 @@ public class ChainLightning : Spell
 	public Enemy prevHit = null;
 	void Start ()
 	{
-		if (StartObject) {
+        if (StartObject) {
 			StartPosition = StartObject.transform.position + StartObject.transform.up * 2f;
 		}
 		if (EndObject) {
@@ -198,7 +198,10 @@ public class ChainLightning : Spell
 			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
 			GameObject lightningz = (GameObject)Instantiate (spellLightning, EndPosition, Quaternion.identity);
 
-			lightningz.GetComponent<ChainLightning> ().StartObject = EndObject;
+            Debug.Log("Test");
+            SFXManager.instance.playSFX(sounds.lightning);
+
+            lightningz.GetComponent<ChainLightning> ().StartObject = EndObject;
 			lightningz.GetComponent<ChainLightning> ().EndObject = closest;
 			lightningz.GetComponent<ChainLightning> ().bounces = bounces + 1;
 
