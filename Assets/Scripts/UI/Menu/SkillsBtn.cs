@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SkillsBtn : MenuButton {
 
 	public GameObject descPanel;
-	Text descTxt;
+	public Text descTxt;
 	Text lvlTxt;
 	public int skillLvl;
 	public string description;
@@ -19,7 +19,7 @@ public class SkillsBtn : MenuButton {
 		SetSkillDescription ();
 
 		//descPanel = transform.parent.Find ("Description").gameObject;
-		descTxt = descPanel.transform.GetChild (0).GetComponent<Text> ();
+		//descTxt = descPanel.transform.GetChild (0).GetComponent<Text> ();
 		lvlTxt = transform.Find ("SkillLvl").GetComponent<Text> ();
 		//panel = transform.parent.gameObject;
 
@@ -29,7 +29,7 @@ public class SkillsBtn : MenuButton {
 	// Use this for initialization
 	public override void Start () {
 		base.Start ();
-		panel.SetActive (false);
+		//panel.SetActive (false);
 		UpdateSkillLvl ();
 
 	}
@@ -130,7 +130,8 @@ public class SkillsBtn : MenuButton {
 			//RightBtn.GetComponent<SkillsBtn> ().Awake ();
 			if (panel != RightBtn.GetComponent<SkillsBtn> ().panel) {
 				SwitchPanel ();
-				RightBtn.GetComponent<SkillsBtn> ().SwitchPanel ();
+				//RightBtn.GetComponent<SkillsBtn> ().SwitchPanel ();
+				RightBtn.GetComponent<SkillsBtn>().panel.SetActive(!panel.activeSelf);
 			}
 			return true;
 		}
@@ -144,7 +145,7 @@ public class SkillsBtn : MenuButton {
 			//RightBtn.GetComponent<SkillsBtn> ().Awake ();
 			if (panel != LeftBtn.GetComponent<SkillsBtn> ().panel) {
 				SwitchPanel ();
-				LeftBtn.GetComponent<SkillsBtn> ().SwitchPanel ();
+				LeftBtn.GetComponent<SkillsBtn> ().panel.SetActive(!panel.activeSelf);
 			}
 			return true;
 		}
@@ -156,18 +157,34 @@ public class SkillsBtn : MenuButton {
 		switch (gameObject.name) {
 
 		case "ActiveSkill1":
-			description = "This is Active Skill 1";
+			description = "Fire Pillar\nCharge Time: " + GameManager.instance.player1.GetFirePillarTime().ToString();
 			break;
 
 		case "ActiveSkill2":
-			description = "This is Active Skill 2";
+			description = "Chain Lightning\nCharge Time: " + GameManager.instance.player1.GetChainLightningTime().ToString();
 			break;
 
 		case "ActiveSkill3":
-			description = "This is Active Skill 3";
+			description = "Ice Spikes\nCharge Time: " + GameManager.instance.player1.GetIceSpikeTime().ToString();
 			break;
 
 		case "ActiveSkill4":
+			description = "Drain Heal\nCharge Time: " + GameManager.instance.player1.GetDrainHealTime().ToString();
+			break;
+
+		case "ActiveSkill5":
+			description = "This is Active Skill 1";
+			break;
+
+		case "ActiveSkill6":
+			description = "This is Active Skill 2";
+			break;
+
+		case "ActiveSkill7":
+			description = "This is Active Skill 3";
+			break;
+
+		case "ActiveSkill8":
 			description = "This is Active Skill 4";
 			break;
 

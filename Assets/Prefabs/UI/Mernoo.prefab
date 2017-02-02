@@ -2875,7 +2875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013347003482
 GameObject:
   m_ObjectHideFlags: 1
@@ -5102,6 +5102,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 0}
+  descTxt: {fileID: 0}
   skillLvl: 0
   description: 
   skill: 0
@@ -5521,6 +5523,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 1000013314184230}
   player: 1
+  descPanel: {fileID: 1000010518591194}
+  descTxt: {fileID: 114000010501280074}
   skillLvl: 0
   description: 
   skill: 5
@@ -5787,6 +5791,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 0}
+  descTxt: {fileID: 0}
   skillLvl: 0
   description: 
   skill: 0
@@ -6270,6 +6276,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 1000012951362532}
+  descTxt: {fileID: 114000013985724046}
   skillLvl: 0
   description: 
   skill: 2
@@ -8601,6 +8609,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 1000011382335610}
   player: 1
+  descPanel: {fileID: 1000012951362532}
+  descTxt: {fileID: 114000013985724046}
   skillLvl: 0
   description: 
   skill: 1
@@ -8968,6 +8978,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 1000010518591194}
+  descTxt: {fileID: 114000010501280074}
   skillLvl: 0
   description: 
   skill: 6
@@ -8993,6 +9005,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 1000012951362532}
+  descTxt: {fileID: 114000013985724046}
   skillLvl: 0
   description: 
   skill: 4
@@ -9240,6 +9254,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 1000012951362532}
+  descTxt: {fileID: 114000013985724046}
   skillLvl: 0
   description: 
   skill: 3
@@ -10590,6 +10606,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 1000010518591194}
+  descTxt: {fileID: 114000010501280074}
   skillLvl: 0
   description: 
   skill: 7
@@ -10723,6 +10741,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 0}
+  descTxt: {fileID: 0}
   skillLvl: 0
   description: 
   skill: 0
@@ -11009,6 +11029,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 0}
+  descTxt: {fileID: 0}
   skillLvl: 0
   description: 
   skill: 0
@@ -12338,6 +12360,8 @@ MonoBehaviour:
   selected: 0
   selectedImg: {fileID: 0}
   player: 1
+  descPanel: {fileID: 1000010518591194}
+  descTxt: {fileID: 114000010501280074}
   skillLvl: 0
   description: 
   skill: 8

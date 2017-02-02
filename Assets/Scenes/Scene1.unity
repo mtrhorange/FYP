@@ -154,6 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6432c9e319f1740805ba48184651a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobPrefabs: []
+  weakGuys: []
+  medGuys: []
+  strongGuys: []
+  bossGuys: []
   roomEnemyPoints: 0
   enemyList: []
   roomSpawnPoints: []
