@@ -11,8 +11,16 @@ public class MainMenu : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        if (PlayerPrefs.HasKey("BGM"))
+        {
+            BGM.value = PlayerPrefs.GetFloat("BGM");
+        }
+
+        if (PlayerPrefs.HasKey("SFX"))
+        {
+            SFX.value = PlayerPrefs.GetFloat("SFX");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -57,10 +65,12 @@ public class MainMenu : MonoBehaviour {
     public void setBGM()
     {
         BGMManager.instance.setBGM(BGM.value);
+        PlayerPrefs.SetFloat("BGM", BGM.value);
     }
 
     public void setSFX()
     {
         SFXManager.instance.setSFX(SFX.value);
+        PlayerPrefs.SetFloat("SFX", SFX.value);
     }
 }

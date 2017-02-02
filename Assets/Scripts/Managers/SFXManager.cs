@@ -47,6 +47,13 @@ public class SFXManager : MonoBehaviour
     void Start()
     {
         sfx = GetComponent<AudioSource>();
+        if (!PlayerPrefs.HasKey("SFX")){
+            sfxValue = 1f;
+        }
+        else
+        {
+            sfxValue = PlayerPrefs.GetFloat("SFX");
+        }
 
     }
 
