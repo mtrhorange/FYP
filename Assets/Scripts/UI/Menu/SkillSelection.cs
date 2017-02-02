@@ -115,6 +115,36 @@ public class SkillSelection : MenuButton {
 			else
 				GameManager.instance.player2.skills.chainLightningLevel++;
 			break;
+		case Skills.DrainHeal:
+			if (player == 1)
+				GameManager.instance.player1.skills.drainHealLevel++;
+			else
+				GameManager.instance.player2.skills.drainHealLevel++;
+			break;
+		case Skills.AoeLightning:
+			if (player == 1)
+				GameManager.instance.player1.skills.aoeLightningLevel++;
+			else
+				GameManager.instance.player2.skills.aoeLightningLevel++;
+			break;
+		case Skills.GroundSmash:
+			if (player == 1)
+				GameManager.instance.player1.skills.groundSmashLevel++;
+			else
+				GameManager.instance.player2.skills.groundSmashLevel++;
+			break;
+		case Skills.VerticalStrike:
+			if (player == 1)
+				GameManager.instance.player1.skills.verticalStrikeLevel++;
+			else
+				GameManager.instance.player2.skills.verticalStrikeLevel++;
+			break;
+		case Skills.FrontSlash:
+			if (player == 1)
+				GameManager.instance.player1.skills.frontSlashLevel++;
+			else
+				GameManager.instance.player2.skills.frontSlashLevel++;
+			break;
 		}
 
 		transform.parent.parent.GetComponent<SkillsBtn> ().UpdateSkillLvl ();

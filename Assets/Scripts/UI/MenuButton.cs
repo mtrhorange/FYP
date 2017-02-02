@@ -23,7 +23,8 @@ public class MenuButton : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Start () {
-		
+
+
 		if (btnType != ButtonTypes.MainMenu) {
 
 

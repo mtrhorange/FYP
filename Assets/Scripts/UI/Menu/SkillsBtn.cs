@@ -69,10 +69,10 @@ public class SkillsBtn : MenuButton {
 	public override void Cancel() {
 
 		if (CancelBtn != null) {
+			CancelBtn.GetComponent<TabBtn> ().panel = panel;
 			CancelBtn.Select ();
 			Deselect ();
 			CancelBtn.SubmitBtn = this;
-			CancelBtn.GetComponent<TabBtn> ().panel = panel;
 			descPanel.SetActive (false);
 		}
 
