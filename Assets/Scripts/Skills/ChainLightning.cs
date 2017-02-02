@@ -186,12 +186,10 @@ public class ChainLightning : Spell
 		Transform closest = null;
 
 		foreach (Enemy e in enemies) {
-
 			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
 				Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position)) 
-				&& e != EndObject.GetComponent<Enemy>() && e != prevHit)
+				&& e != EndObject.GetComponent<Enemy>() && e != prevHit && e.myState != Enemy.States.Dead)
 				closest = e.transform;
-
 		}
 
 		if (closest != null) {

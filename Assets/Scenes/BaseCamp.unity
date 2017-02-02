@@ -12062,6 +12062,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1648721452}
   - 108: {fileID: 1648721451}
+  - 114: {fileID: 1648721453}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -12116,6 +12117,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1366061903}
   m_RootOrder: 14
+--- !u!114 &1648721453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648721450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ee5fd8f6985644e87569ee1a162feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 5.5
+  maxIntensity: 8
+  minRange: 35
+  maxRange: 65
 --- !u!1001 &1664966679
 Prefab:
   m_ObjectHideFlags: 0

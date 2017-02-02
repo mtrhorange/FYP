@@ -666,7 +666,7 @@ public class Player : MonoBehaviour {
 		List<Enemy> enemies = new List<Enemy> ();
 		foreach (Enemy e in enemiesA) {
 
-			if (Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) < 45 ||
+			if (e.myState != Enemy.States.Dead && Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) < 45 ||
 			   Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) > 315) {
 				enemies.Add (e);
 			}

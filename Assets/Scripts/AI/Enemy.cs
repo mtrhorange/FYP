@@ -262,25 +262,25 @@ public class Enemy : MonoBehaviour
 
         if (myStrength == Strength.Weak)
         {
-            baseHP = 8;
+            baseHP = GameManager.instance.twoPlayers ? 8 : 6;
             baseMul = 3.5f;
             levelMul = 1f;
         }
         else if (myStrength == Strength.Medium)
         {
-            baseHP = 20;
+            baseHP = GameManager.instance.twoPlayers ? 20 : 15;
             baseMul = 6.5f;
             levelMul = 3f;
         }
         else if (myStrength == Strength.Strong)
         {
-            baseHP = 30;
+            baseHP = GameManager.instance.twoPlayers ? 30 : 22.5f;
             baseMul = 10.5f;
             levelMul = 5f;
         }
         else if (myStrength == Strength.Boss)
         {
-            baseHP = 250;
+            baseHP = GameManager.instance.twoPlayers ? 250 : 220;
             baseMul = 20f;
             levelMul = 8f;
         }
