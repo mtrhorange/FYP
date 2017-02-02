@@ -289,10 +289,8 @@ public class Floor : MonoBehaviour {
 	public void MovePlayers() {
 
 		GameManager.instance.player1.transform.position = currentRoom.GetComponent<Room>().spawnPoint1.position;
-		GameManager.instance.player1.transform.rotation = currentRoom.GetComponent<Room>().spawnPoint1.rotation;
 		if (GameManager.instance.twoPlayers) {
 			GameManager.instance.player2.transform.position = currentRoom.GetComponent<Room>().spawnPoint2.position;
-			GameManager.instance.player2.transform.rotation = currentRoom.GetComponent<Room>().spawnPoint2.rotation;
 		}
 	}
 

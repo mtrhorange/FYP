@@ -33,7 +33,7 @@ public class AIManager : MonoBehaviour
 {
     //public instance
     public static AIManager instance;
-    private List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
+    public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
     private List<GameObject> bossPrefabs;
     public int roomEnemyPoints; //total enemy points in current room
     public List<GameObject> enemyList;
@@ -273,19 +273,25 @@ public class AIManager : MonoBehaviour
             spawnTheseStrengths.Clear();
             spawnTheseStrengths.TrimExcess();
             //check which strngth categories we can spawn from
+            //also check level requirements
+            int highestLevel = 0;
+            if (GameManager.instance.twoPlayers)
+            {
+                highestLevel = GameManager.instance.player1.Level >= GameManager.instance.player2.Level ? GameManager.instance.player1.Level : GameManager.instance.player2.Level;
+            }
+            else { highestLevel = GameManager.instance.player1.Level; }
+
             if (roomEnemyPoints >= WEAK)
             {
                 //lazy weighted randoms LOL ezez
                 spawnTheseStrengths.Add(WEAK);
                 spawnTheseStrengths.Add(WEAK);
                 spawnTheseStrengths.Add(WEAK);
-                spawnTheseStrengths.Add(WEAK);
-                if (roomEnemyPoints >= MEDIUM)
+                if (roomEnemyPoints >= MEDIUM && highestLevel >= 5)
                 {
                     spawnTheseStrengths.Add(MEDIUM);
                     spawnTheseStrengths.Add(MEDIUM);
-                    spawnTheseStrengths.Add(MEDIUM);
-                    if (roomEnemyPoints >= STRONG)
+                    if (roomEnemyPoints >= STRONG && highestLevel >= 10)
                     {
                         spawnTheseStrengths.Add(STRONG);
                     }

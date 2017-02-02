@@ -14,7 +14,7 @@ public class GuideTrail : MonoBehaviour {
     //Fly Speed
     private float speed = 16f;
     //distance AI is to a waypoint for it to continue to the next
-    public float nextWayPointDistance = 4f;
+    public float nextWayPointDistance = 3f;
     //current waypoint
     public int currentWayPoint = 3;
 
@@ -30,9 +30,8 @@ public class GuideTrail : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (currentWayPoint < path.vectorPath.Count)
-            nextPathPoint =
-                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+        if (path != null && currentWayPoint < path.vectorPath.Count)
+            nextPathPoint = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
         Vector3 look = nextPathPoint - transform.position;
 

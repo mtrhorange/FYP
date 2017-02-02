@@ -56,7 +56,7 @@ public class Room : MonoBehaviour
                 //spawn new trail
                 Vector3 spawnHere = new Vector3(GameManager.instance.player1.transform.position.x, GameManager.instance.player1.transform.position.y + 0.5f, GameManager.instance.player1.transform.position.z);
 
-                GameObject Trale = (GameObject)Instantiate((GameObject)Resources.Load("GuideTrail"), spawnHere, Quaternion.identity);
+                GameObject Trale = (GameObject)Instantiate((GameObject)Resources.Load("GuideTrail"), spawnHere, GameManager.instance.player1.transform.rotation);
                 //set the start and the end points for the trail to fly
                 Trale.GetComponent<GuideTrail>().start = spawnHere;
                 Trale.GetComponent<GuideTrail>().end = doors[0].transform.position;
