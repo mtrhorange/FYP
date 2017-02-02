@@ -1001,35 +1001,29 @@ public class Player : MonoBehaviour {
 	#region Cheats
 
 	public void CheatCodes() {
-		if (playerNo == 1) {
-			if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			
-				if (skillC == CastIceSpike) {
-					SwapSkillC (Skills.FirePillar);
-				} else if (skillC == CastFirePillar) {
-					SwapSkillC (Skills.IceSpike);
-				}
+	
 
-			}
-
-			if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			
-				if (skillV == CastIceSpike) {
-					SwapSkillV (Skills.FirePillar);
-				} else if (skillV == CastFirePillar) {
-					SwapSkillV (Skills.IceSpike);
-                }
-
-			}
-
-			if (Input.GetKeyDown (KeyCode.Alpha3)) {
-				ReceiveDamage (10f);
-			}
-
-			if (Input.GetKeyDown (KeyCode.Alpha4)) {
-				ReceiveHeal (10f);
-			}
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			ReceiveDamage (10f);
 		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			ReceiveHeal (50f);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			RecoverStamina (1000f);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			SkillPoints++;
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha5)) {
+
+			LevelUp ();
+		}
+	
 
 		if (Input.GetKeyDown(KeyCode.Equals)) {
 			if (isDead)

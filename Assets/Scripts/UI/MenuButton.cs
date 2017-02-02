@@ -9,7 +9,6 @@ public class MenuButton : MonoBehaviour {
 	public enum ButtonTypes {MainMenu, Tab, Panel, Skill, SkillSelection, KeyAssign}
 	public ButtonTypes btnType;
 
-
 	public bool selected;
 
 	public GameObject selectedImg;
@@ -26,13 +25,10 @@ public class MenuButton : MonoBehaviour {
 
 
 		if (btnType != ButtonTypes.MainMenu) {
-
-
 			if (!selected)
 				Deselect ();
 			else
 				Select ();
-
 		}
 
 	}
@@ -171,9 +167,7 @@ public class MenuButton : MonoBehaviour {
 	}
 
 	public void SavePlayer() {
-		GameManager.instance.UpdatePlayer1Data ();
-		if (GameManager.instance.player2Data.saveId != 0)
-			GameManager.instance.UpdatePlayer2Data ();
+		GameManager.instance.SavePlayers ();
 	}
 	#endregion
 }

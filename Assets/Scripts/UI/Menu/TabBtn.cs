@@ -9,8 +9,6 @@ public class TabBtn : MenuButton {
 	public override void Awake () {
 		btnType = ButtonTypes.Tab;
 		base.Awake ();
-
-
 	}
 
 	// Use this for initialization

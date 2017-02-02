@@ -12,7 +12,6 @@ public class PlayerMenu : MonoBehaviour {
 
 		foreach (MenuButton btn in btns) {
 			btn.player = player;
-
 		}
 	}
 	
