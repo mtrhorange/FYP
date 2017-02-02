@@ -20,6 +20,10 @@ public class DrainHeal : Spell {
 	// Update is called once per frame
 	void Update () {
 		UpdateEnemiesHit ();
+
+		lifeSpan -= Time.deltaTime;
+		if (lifeSpan < 0)
+			Destroy (gameObject);
 	}
 
 	void UpdateEnemiesHit() {
@@ -40,7 +44,7 @@ public class DrainHeal : Spell {
 		if (other.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
 		{
 			bool hit = true;
-			foreach (Enemy enemy in transform.parent.GetComponent<IceSpikeSpell>().enemiesHit) {
+			foreach (Enemy enemy in enemiesHit) {
 				if (other.GetComponent<Enemy> () == enemy) {
 					hit = false;
 				}

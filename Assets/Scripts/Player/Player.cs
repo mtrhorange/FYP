@@ -148,7 +148,21 @@ public class Player : MonoBehaviour {
 		case Skills.IceSpike:
 			SwapSkillC (Skills.IceSpike);
 			break;
-		
+		case Skills.DrainHeal:
+			SwapSkillC (Skills.DrainHeal);
+			break;
+		case Skills.AoeLightning:
+			SwapSkillC (Skills.AoeLightning);
+			break;
+		case Skills.GroundSmash:
+			SwapSkillC (Skills.GroundSmash);
+			break;
+		case Skills.VerticalStrike:
+			SwapSkillC (Skills.VerticalStrike);
+			break;
+		case Skills.FrontSlash:
+			SwapSkillC (Skills.FrontSlash);
+			break;
 		}
 
 		switch (skillVType) {
@@ -160,6 +174,21 @@ public class Player : MonoBehaviour {
 			break;
 		case Skills.IceSpike:
 			SwapSkillV (Skills.IceSpike);
+			break;
+		case Skills.DrainHeal:
+			SwapSkillV (Skills.DrainHeal);
+			break;
+		case Skills.AoeLightning:
+			SwapSkillV (Skills.AoeLightning);
+			break;
+		case Skills.GroundSmash:
+			SwapSkillV (Skills.GroundSmash);
+			break;
+		case Skills.VerticalStrike:
+			SwapSkillV (Skills.VerticalStrike);
+			break;
+		case Skills.FrontSlash:
+			SwapSkillV (Skills.FrontSlash);
 			break;
 
 		}
@@ -697,7 +726,7 @@ public class Player : MonoBehaviour {
 	public void CastDrainHeal() {
 
 		GameObject spellDrainHeal = (GameObject)Resources.Load ("Skills/DrainHeal");
-		spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 5f, Quaternion.identity);
+		spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 6f + transform.up * 0.5f, transform.rotation * Quaternion.Euler(-90,0,0));
 		spellDrainHeal.GetComponent<DrainHeal> ().player = this;
 	}
 

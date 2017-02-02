@@ -15,7 +15,8 @@ public class PlayerData {
 	public float maxStamina = 100f;
 	public float baseMaxStamina = 100f;
 	public float stamina = 100f;
-	public int livesRemaining = 0;
+	public float spellStaminaDrain = 20f;
+	public int livesRemaining = 5;
 	public int skillPoints = 0;
 	public bool recoverStamina = true; //Can stamina be recovered
 	public bool isPermaDead = false;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class SkillsBtn : MenuButton {
 
-	GameObject descPanel;
+	public GameObject descPanel;
 	Text descTxt;
 	Text lvlTxt;
 	public int skillLvl;
@@ -18,17 +18,18 @@ public class SkillsBtn : MenuButton {
 		btnType = ButtonTypes.Skill;
 		SetSkillDescription ();
 
-		descPanel = transform.parent.Find ("Description").gameObject;
+		//descPanel = transform.parent.Find ("Description").gameObject;
 		descTxt = descPanel.transform.GetChild (0).GetComponent<Text> ();
 		lvlTxt = transform.Find ("SkillLvl").GetComponent<Text> ();
 		//panel = transform.parent.gameObject;
+
 		base.Awake ();
 	}
 
 	// Use this for initialization
 	public override void Start () {
 		base.Start ();
-
+		panel.SetActive (false);
 		UpdateSkillLvl ();
 
 	}
@@ -77,6 +78,12 @@ public class SkillsBtn : MenuButton {
 
 	}
 
+	public void SwitchPanel() {
+		panel.SetActive (!panel.activeSelf);
+		descPanel.SetActive (!descPanel.activeSelf);
+
+	}
+
 	public void UpdateSkillLvl() {
 
 		switch (skill) {
@@ -113,6 +120,34 @@ public class SkillsBtn : MenuButton {
 		}
 
 
+	}
+
+	public override bool MoveRight() {
+
+		if (base.MoveRight () == false)
+			return false;
+		else {
+			//RightBtn.GetComponent<SkillsBtn> ().Awake ();
+			if (panel != RightBtn.GetComponent<SkillsBtn> ().panel) {
+				SwitchPanel ();
+				RightBtn.GetComponent<SkillsBtn> ().SwitchPanel ();
+			}
+			return true;
+		}
+	}
+
+	public override bool MoveLeft() {
+
+		if (base.MoveLeft () == false)
+			return false;
+		else {
+			//RightBtn.GetComponent<SkillsBtn> ().Awake ();
+			if (panel != LeftBtn.GetComponent<SkillsBtn> ().panel) {
+				SwitchPanel ();
+				LeftBtn.GetComponent<SkillsBtn> ().SwitchPanel ();
+			}
+			return true;
+		}
 	}
 
 	//Set description of skill here!!

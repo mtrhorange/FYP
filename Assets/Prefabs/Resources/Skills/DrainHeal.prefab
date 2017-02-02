@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013977843854}
   - 114: {fileID: 114000011088254836}
+  - 136: {fileID: 136000010204488808}
   m_Layer: 0
   m_Name: DrainHeal
   m_TagString: Untagged
@@ -180,6 +181,20 @@ MonoBehaviour:
   enemiesHit: []
   enemyHitTime: []
   hitTime: 0.75
+  lifeSpan: 3.5
+--- !u!136 &136000010204488808
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012482847960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 9
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198000010060657172
 ParticleSystem:
   m_ObjectHideFlags: 1

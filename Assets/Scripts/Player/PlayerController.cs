@@ -236,9 +236,10 @@ public class PlayerController : MonoBehaviour
 		weapon = WeaponType.ARMED;
 		rightWeapon = 19;
 		animator.SetInteger("RightWeapon", 9);
-		animator.SetBool("Armed", true);
+		//animator.SetBool("Armed", true);
 		animator.SetBool ("Shield", true);
 		animator.SetInteger("Weapon", 7);
+		player.isMelee = true;
 
 		castBarPrefab = (GameObject)Resources.Load("ChargeBar");
 		NoST = (GameObject)Resources.Load ("NoST");
@@ -301,6 +302,7 @@ public class PlayerController : MonoBehaviour
 		}
 		inputVec =  x * right + z * forward;
 
+		Debug.Log (animator.GetBool ("Shield"));
 
 		//make sure there is animator on character
 		if(animator)
@@ -1738,25 +1740,18 @@ public class PlayerController : MonoBehaviour
 				else if (weaponNumber == 19) {
 					if (firstWep.GetComponent<Weapon>().type == Weapon.Types.Staff) {
 						animator.SetInteger("RightWeapon", 11);
-						animator.SetBool ("Shield", false);
-						player.isMelee = false;
 					}
 					else {
 						animator.SetInteger("RightWeapon", 9);
-						animator.SetBool ("Shield", true);
-						player.isMelee = true;
 					}
 				}
 				else {
 					if (secondWep.GetComponent<Weapon>().type == Weapon.Types.Staff) {
 						animator.SetInteger("RightWeapon", 11);
-						animator.SetBool ("Shield", false);
-						player.isMelee = false;
+
 					}
 					else {
 						animator.SetInteger("RightWeapon", 9);
-						animator.SetBool ("Shield", true);
-						player.isMelee = true;
 					}
 				}
 
@@ -1936,6 +1931,8 @@ public class PlayerController : MonoBehaviour
 			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
 			player.nextWeapon = secondWep.GetComponent<Weapon> ();
 			animator.SetBool ("Shield", true);
+			animator.SetBool ("Armed", false);
+			player.isMelee = true;
 		}
 		if(weaponNumber == 20) 
 		{
@@ -1944,6 +1941,8 @@ public class PlayerController : MonoBehaviour
 			player.currentWeapon = currentWeapon.GetComponent<Weapon> ();
 			player.nextWeapon = firstWep.GetComponent<Weapon> ();
 			animator.SetBool ("Shield", false);
+			animator.SetBool ("Armed", true);
+			player.isMelee = false;
 		}
 		yield return null;
 	}

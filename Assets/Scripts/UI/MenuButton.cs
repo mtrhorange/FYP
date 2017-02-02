@@ -90,7 +90,7 @@ public class MenuButton : MonoBehaviour {
 			selectedImg.GetComponent<Animator> ().enabled = false;
 	}
 
-	public bool MoveLeft() {
+	public virtual bool MoveLeft() {
 		if (LeftBtn == null)
 			return false;
 		else {
@@ -100,7 +100,7 @@ public class MenuButton : MonoBehaviour {
 		}
 	}
 
-	public bool MoveRight() {
+	public virtual bool MoveRight() {
 
 		if (RightBtn == null)
 			return false;
@@ -111,7 +111,7 @@ public class MenuButton : MonoBehaviour {
 		}
 	}
 
-	public bool MoveDown() {
+	public virtual bool MoveDown() {
 
 		if (DownBtn == null)
 			return false;
@@ -122,7 +122,7 @@ public class MenuButton : MonoBehaviour {
 		}
 	}
 
-	public bool MoveUp() {
+	public virtual bool MoveUp() {
 
 		if (UpBtn == null)
 			return false;

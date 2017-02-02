@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour {
 		player1Data.Stamina = player1.MaxStamina;
 		player1Data.Lives = player1.Lives;
 		player1Data.SkillPoints = player1.SkillPoints;
+		player1Data.spellStaminaDrain = player1.spellStaminaDrain;
 
 		player1Data.skillCType = player1.skillCType;
 		player1Data.skillVType = player1.skillVType;
@@ -189,6 +190,7 @@ public class GameManager : MonoBehaviour {
 		player1.Stamina = player1.MaxStamina;
 		player1.Lives = player1Data.Lives;
 		player1.SkillPoints = player1Data.SkillPoints;
+		player1.spellStaminaDrain = player1Data.spellStaminaDrain;
 		player1.recoverStamina = true;
 
 		player1.skillCType = player1Data.skillCType;
@@ -221,6 +223,7 @@ public class GameManager : MonoBehaviour {
 		player2Data.Stamina = player2.MaxStamina;
 		player2Data.Lives = player2.Lives;
 		player2Data.SkillPoints = player2.SkillPoints;
+		player2Data.spellStaminaDrain = player2.spellStaminaDrain;
 
 		player2Data.skillCType = player2.skillCType;
 		player2Data.skillVType = player2.skillVType;
@@ -253,6 +256,7 @@ public class GameManager : MonoBehaviour {
 		player2.Stamina = player2.MaxStamina;
 		player2.Lives = player2Data.Lives;
 		player2.SkillPoints = player2Data.SkillPoints;
+		player2.spellStaminaDrain = player2Data.spellStaminaDrain;
 		player2.recoverStamina = true;
 
 		player2.skillCType = player2Data.skillCType;

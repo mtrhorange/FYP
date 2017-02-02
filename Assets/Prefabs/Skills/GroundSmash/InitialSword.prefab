@@ -140,4 +140,4 @@ MonoBehaviour:
   GroundParticle: {fileID: 1000013670031020, guid: 97530b57c4e7e2f428482d199ba9bcbb,
     type: 2}
   hitfloor: 1.6
-  destroy: 5
+  destroy: 2
