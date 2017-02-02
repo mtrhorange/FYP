@@ -23,7 +23,14 @@ public class BGMManager : MonoBehaviour
 	// Use this for initialization
     void Start()
     {
-
+        if (!PlayerPrefs.HasKey("BGM"))
+        {
+            bgmValue = 1f;
+        }
+        else
+        {
+            bgmValue = PlayerPrefs.GetFloat("BGM");
+        }
     }
 
     // Update is called once per frame
