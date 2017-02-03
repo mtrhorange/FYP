@@ -22,7 +22,10 @@ public enum sounds
     iceBlast,
     firePillar,
     lightning,
-    levelup
+    levelup,
+    healing,
+    dragonFire,
+    arrowShoot
 
 }
 public class SFXManager : MonoBehaviour
@@ -117,11 +120,11 @@ public class SFXManager : MonoBehaviour
             case sounds.iceBall:
                 sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceBall"));
                 break;
-            case sounds.iceSpike:
-                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceSpike"));
-                break;
             case sounds.iceBlast:
                 sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceBlast"));
+                break;
+            case sounds.iceSpike:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/iceSpike"));
                 break;
             case sounds.firePillar:
                 sfx.PlayOneShot((AudioClip)Resources.Load("Sound/firePillar"));
@@ -132,6 +135,16 @@ public class SFXManager : MonoBehaviour
             case sounds.levelup:
                 sfx.PlayOneShot((AudioClip)Resources.Load("Sound/levelup"));
                 break;
+            case sounds.healing:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/healing"));
+                break;
+            case sounds.dragonFire:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/dragonFire"));
+                break;
+            case sounds.arrowShoot:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/arrowShoot"));
+                break;
+                
         }
     }
 

@@ -93,7 +93,6 @@ public class Mushroom : Enemy {
             if ((player.transform.position - transform.position).magnitude <= 1.5f)
             {
                 anim.SetBool("Hop", false);
-
                 anim.SetTrigger("Attack");
                 rB.velocity = Vector3.zero;
                 attacking = true;
@@ -199,6 +198,11 @@ public class Mushroom : Enemy {
     //Attack
     protected override void Attack()
     {
+
+        if(attacking == true)
+        {
+            SFXManager.instance.playSFX(sounds.bite);
+        }
         Vector3 look = player.transform.position - transform.position;
 
         look.y = 0;
@@ -207,7 +211,6 @@ public class Mushroom : Enemy {
 
         rB.velocity = transform.forward * speed;
         attacking = false;
-            
         pathUpdateTimer = 0f;
         
         rB.velocity = Vector3.zero;
@@ -216,7 +219,6 @@ public class Mushroom : Enemy {
 
     public void triggerOn()
     {
-
         rB.velocity = Vector3.zero;
         GetComponent<BoxCollider>().enabled = true;
     }

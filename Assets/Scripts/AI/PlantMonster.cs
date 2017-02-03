@@ -196,8 +196,11 @@ public class PlantMonster : Enemy {
     //Attack
     protected override void Attack()
     {
+        if(attacking == true)
+        {
+            SFXManager.instance.playSFX(sounds.bite);
+        }
         attacking = false;
-            
         pathUpdateTimer = 0f;
         
         rB.velocity = Vector3.zero;

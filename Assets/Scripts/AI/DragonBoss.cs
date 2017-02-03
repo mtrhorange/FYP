@@ -222,6 +222,7 @@ public class DragonBoss : Enemy
             //Fire Breath
             else if (atkType == attackType.FireBreath)
             {
+                SFXManager.instance.playSFX(sounds.dragonFire);
                 playAnim("stand_breath", 0.5f, true);
                 breath.SetActive(true);
                 breathTimer = breathInterval;

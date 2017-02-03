@@ -708,7 +708,9 @@ public class Player : MonoBehaviour {
 			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
 			GameObject lightning = (GameObject)Instantiate (spellLightning, transform.position, Quaternion.identity);
 
-			lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 3f;
+            SFXManager.instance.playSFX(sounds.lightning);
+
+            lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 3f;
 			lightning.GetComponent<ChainLightning> ().EndObject = closest;
 			lightning.GetComponent<ChainLightning> ().player = this;
 		}
@@ -789,7 +791,8 @@ public class Player : MonoBehaviour {
 	public void CastDrainHeal() {
 
 		GameObject spellDrainHeal = (GameObject)Resources.Load ("Skills/DrainHeal");
-		spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 6f + transform.up * 0.5f, transform.rotation * Quaternion.Euler(-90,0,0));
+        SFXManager.instance.playSFX(sounds.healing);
+        spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 6f + transform.up * 0.5f, transform.rotation * Quaternion.Euler(-90,0,0));
 		spellDrainHeal.GetComponent<DrainHeal> ().player = this;
 	}
 

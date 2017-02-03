@@ -196,9 +196,6 @@ public class ChainLightning : Spell
 			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
 			GameObject lightningz = (GameObject)Instantiate (spellLightning, EndPosition, Quaternion.identity);
 
-            Debug.Log("Test");
-            SFXManager.instance.playSFX(sounds.lightning);
-
             lightningz.GetComponent<ChainLightning> ().StartObject = EndObject;
 			lightningz.GetComponent<ChainLightning> ().EndObject = closest;
 			lightningz.GetComponent<ChainLightning> ().bounces = bounces + 1;
