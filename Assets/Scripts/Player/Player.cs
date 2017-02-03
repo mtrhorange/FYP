@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 
 	#endregion
 
-           	#endregion
+    #endregion
 
 	#region Initialization
 
@@ -221,7 +221,7 @@ public class Player : MonoBehaviour {
 		StatusEffectsUpdate ();
 
 		if (recoverStamina && Stamina < MaxStamina && !controller.isCasting) {
-			RecoverStamina (Time.deltaTime * 7.5f);
+			RecoverStamina (Time.deltaTime * 10f);
 
 		}
 
