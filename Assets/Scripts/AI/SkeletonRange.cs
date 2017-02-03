@@ -64,8 +64,8 @@ public class SkeletonRange : Enemy
         seeker.StartPath(transform.position, target, OnPathComplete);
         currentWayPoint = 1;
         myState = States.Chase;
-        
     }
+
     protected override void Chase()
     {
         pathUpdate();
@@ -73,7 +73,6 @@ public class SkeletonRange : Enemy
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -82,7 +81,7 @@ public class SkeletonRange : Enemy
         if (attackTimer >= 0)
         {
             //5f away from player, move towards (R.I.P English)
-            if (path.GetTotalLength() > 15f)
+            if (path.GetTotalLength() > 12f)
             {
 
                 nextPathPoint =
@@ -110,9 +109,7 @@ public class SkeletonRange : Enemy
                 Quaternion targetRotation = Quaternion.LookRotation(look);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
                 rB.velocity = Vector3.zero;
-                
             }
-
 
             attackTimer -= Time.deltaTime;
         }
@@ -161,7 +158,6 @@ public class SkeletonRange : Enemy
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             myState = States.Idle;
             return;
@@ -254,7 +250,6 @@ public class SkeletonRange : Enemy
         //right ray
         if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (-transform.right).normalized * 0.05f;
 
         }
@@ -262,7 +257,6 @@ public class SkeletonRange : Enemy
         //left ray
         else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (transform.right).normalized * 0.05f;
 
         }

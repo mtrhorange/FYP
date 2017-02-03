@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
 {   
     public Transform spawnPoint1, spawnPoint2;
     public GameObject[] doors, Objects;
-    System.Random ran = new System.Random();
+    public List<GameObject> spawnedObjects;
 
     public bool trailActive = false;
     private float trailTimer = 0.5f;
@@ -14,26 +14,25 @@ public class Room : MonoBehaviour
     // Use this for initialization
     void Start () {
 		//to find all spawn point
-        GameObject[] spons = GameObject.FindGameObjectsWithTag("ObjectSpawnPoint");
-        //to obtain all the spawn point used
-        List<int> SpawnedNum = new List<int>();
-        //to get the set amount of objects 
-        int SetOfObjects = ran.Next(1, spons.Length);
+        List<GameObject> spons = new List<GameObject>();
+        spons.AddRange(GameObject.FindGameObjectsWithTag("ObjectSpawnPoint"));
 
-        for (int i = 0; i < SetOfObjects; i++)
+        spawnedObjects = new List<GameObject>();
+
+        //decide how many to spawn (1 - max number of spawn points)
+        int setOfObjects = Random.Range(1, spons.Count);
+
+        do
         {
-            int one;
-            //to keep doing till a new spawn point is obtained 
-            do
-            {
-                 one = ran.Next(1, spons.Length);
-            }
-            while (SpawnedNum.Contains(one));
-            SpawnedNum.Add(one);
-            // to instantiate the prefab
-            GameObject obj = (GameObject)Instantiate(Objects[ran.Next(0,Objects.Length)], spons[one].transform.position, Objects[ran.Next(0, Objects.Length)].transform.rotation);
-            obj.transform.SetParent(this.gameObject.transform,true);
+            //Spawn the object
+            GameObject spawnHere = spons[Random.Range(0, spons.Count)];
+            spons.Remove(spawnHere);
+            GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spawnHere.transform.position, Quaternion.identity);
+            obj.transform.SetParent(this.gameObject.transform, true);
+            spawnedObjects.Add(obj);
+
         }
+        while (spawnedObjects.Count < setOfObjects);
 
         if (Floor.instance.currentTheme == Floor.Themes.Cave)
         {
@@ -59,7 +58,15 @@ public class Room : MonoBehaviour
                 GameObject Trale = (GameObject)Instantiate((GameObject)Resources.Load("GuideTrail"), spawnHere, GameManager.instance.player1.transform.rotation);
                 //set the start and the end points for the trail to fly
                 Trale.GetComponent<GuideTrail>().start = spawnHere;
-                Trale.GetComponent<GuideTrail>().end = doors[0].transform.position;
+                Vector3 closestDor = doors[0].transform.position;
+                foreach (GameObject dor in doors)
+                {
+                    if ((dor.transform.position - GameManager.instance.player1.transform.position).magnitude < (closestDor - GameManager.instance.player1.transform.position).magnitude)
+                    {
+                        closestDor = dor.transform.position;
+                    }
+                }
+                Trale.GetComponent<GuideTrail>().end = closestDor;
 
                 trailTimer = 2f;
             }
@@ -69,6 +76,17 @@ public class Room : MonoBehaviour
             }
         }
 	}
+
+    //destroy items
+    public void DestroyItems()
+    {
+        //destroy all spawned objects
+        for (int i = spawnedObjects.Count - 1; i >= 0; i--)
+        {
+            Destroy(spawnedObjects[i]);
+            Debug.Log("sadasf");
+        }
+    }
 
 	public void SpawnAdjRooms() {
 		

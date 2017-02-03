@@ -71,9 +71,6 @@ public class Enemy : MonoBehaviour
     //Status Effects
     bool isBurning = false;
     bool isFrozen = false;
-    bool isSlowed = false;
-    bool isStunned = false;
-    bool isConfused = false;
 
     //Start
     protected virtual void Start()

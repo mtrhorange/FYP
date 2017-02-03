@@ -30,7 +30,10 @@ public class GuideTrail : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (path != null && currentWayPoint < path.vectorPath.Count)
+        if (path == null)
+            return;
+
+        if (currentWayPoint < path.vectorPath.Count)
             nextPathPoint = path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
         Vector3 look = nextPathPoint - transform.position;

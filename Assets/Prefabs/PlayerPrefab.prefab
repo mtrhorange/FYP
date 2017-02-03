@@ -2404,6 +2404,7 @@ MonoBehaviour:
   firePillarLevel: 1
   iceSpikesLevel: 1
   chainLightningLevel: 0
+  drainHealLevel: 0
   maxHealthLevel: 0
   minDmgLevel: 0
   maxDmgLevel: 0

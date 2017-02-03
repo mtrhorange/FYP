@@ -77,7 +77,6 @@ public class CatBat : Enemy {
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -157,7 +156,6 @@ public class CatBat : Enemy {
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             if ((player.transform.position - transform.position).magnitude >= 1.5f)
                 myState = States.Idle;

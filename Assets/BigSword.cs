@@ -17,7 +17,7 @@ public class BigSword : MonoBehaviour {
 		hitfloor -= Time.deltaTime;
 		destroy -= Time.deltaTime;
 		if (hitfloor <= 0 && !summononce) {
-			Instantiate(GroundParticle, this.transform.position , this.transform.rotation);
+			Destroy(Instantiate(GroundParticle, this.transform.position , this.transform.rotation), 2f);
 			summononce = true;
 		}
 		if (destroy <= 0) {

@@ -52,11 +52,7 @@ public class Floor : MonoBehaviour {
         hellRooms.Add((GameObject)Resources.Load("Rooms/Hell/hellRoom3"));
         hellRooms.Add((GameObject)Resources.Load("Rooms/Hell/hellRoom4"));
 
-        Debug.Log(currentTheme);
-
         NextTheme();
-
-        Debug.Log(currentTheme);
 
         roomTypes = new List<List<GameObject>>();
         roomTypes.Add(caveRooms);
@@ -254,7 +250,7 @@ public class Floor : MonoBehaviour {
             {
                 NextFloor();
             }
-
+            currentRoom.GetComponent<Room>().DestroyItems();
             Destroy(currentRoom);
         }
 
