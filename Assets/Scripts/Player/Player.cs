@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 
 	#region Variables
 
+	#region Stats
 	public string name = " ";
 	public int saveId = -1;
 	public int playerNo = 1;
@@ -31,18 +32,24 @@ public class Player : MonoBehaviour {
 	public int level = 1;
 	public float exp = 0;
 
+	#endregion
+
+	#region SkillKeys
+
 	public delegate void SkillKey();
-	public SkillKey skillC;
-	public SkillKey skillV;
-	public SkillKey skillA;
-	public SkillKey skillS;
-	public SkillKey skillD;
+	public SkillKey skillC, skillV, skillA, skillS, skillD;
 
 	public delegate float SkillCastTime();
-	public SkillCastTime skillCTime;
-	public SkillCastTime skillVTime;
+	public SkillCastTime skillCTime, skillVTime, skillATime, skillSTime, skillDTime;
 
-	public Skills skillCType, skillVType;
+	public Skills skillCType, skillVType, skillAType, skillSType, skillDType;
+
+	public delegate float SkillCost();
+	public SkillCost skillCCost, skillVCost, skillACost, skillSCost, skillDCost;
+
+	#endregion
+
+	#region Etc
 
 	public Weapon currentWeapon;
 	public Weapon nextWeapon;
@@ -62,6 +69,10 @@ public class Player : MonoBehaviour {
 
 	public PlayerSkills skills;
 
+	#endregion
+
+	#region Status Effects
+
 	//Status Effects
 	bool isBurning = false;
 	bool isStrongBurning = false;
@@ -76,13 +87,16 @@ public class Player : MonoBehaviour {
 
 	#endregion
 
+    #endregion
+
+	#region Initialization
+
 	public Player(string n, int sId) {
 
 		name = n;
 		saveId = sId;
 
 	}
-
 
 	void Awake() {
 
@@ -195,6 +209,8 @@ public class Player : MonoBehaviour {
 
 	}
 
+	#endregion
+
 	#region Update
 
 	// Update is called once per frame
@@ -205,7 +221,7 @@ public class Player : MonoBehaviour {
 		StatusEffectsUpdate ();
 
 		if (recoverStamina && Stamina < MaxStamina && !controller.isCasting) {
-			RecoverStamina (Time.deltaTime * 7.5f);
+			RecoverStamina (Time.deltaTime * 10f);
 
 		}
 
@@ -642,6 +658,7 @@ public class Player : MonoBehaviour {
 
 	#region Spells
 
+	#region FirePillar
 	public void CastFirePillar() {
 		GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
 		GameObject spellFirePillar = (GameObject)Resources.Load ("Skills/FirePillar");
@@ -653,14 +670,19 @@ public class Player : MonoBehaviour {
 
 	public float GetFirePillarTime() {
 		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
-		float time = 2f;
+		float time = 1f;
 		return time;
 	}
 
+	public float GetFirePillarCost() {
+
+		float cost = 10f;
+		return cost;
+	}
+	#endregion
+
+	#region ChainLightning
 	public void CastChainLightning() {
-
-
-
 
 		Enemy[]	enemiesA = FindObjectsOfType<Enemy> ();
 		List<Enemy> enemies = new List<Enemy> ();
@@ -695,11 +717,19 @@ public class Player : MonoBehaviour {
 
 	public float GetChainLightningTime() {
 
-		float time = 1f;
+		float time = 0.7f;
 		return time;
 
 	}
 
+	public float GetChainLightningCost() {
+
+		float cost = 5f;
+		return cost;
+	}
+	#endregion
+
+	#region IceBolt
 	public void CastIceBolt() {
 
 		GameObject spellIceBall = (GameObject)Resources.Load ("Skills/Ice_Ball");
@@ -707,6 +737,9 @@ public class Player : MonoBehaviour {
 
 	}
 
+	#endregion
+
+	#region IceSpike
 	public void CastIceSpike() {
 
 //		StartCoroutine (_IceSpike());
@@ -719,23 +752,14 @@ public class Player : MonoBehaviour {
 
 	public float GetIceSpikeTime() {
 		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
-		float time = 1.5f;
+		float time = 1.3f;
 		return time;
 	}
 
-	public void CastDrainHeal() {
+	public float GetIceSpikeCost() {
 
-		GameObject spellDrainHeal = (GameObject)Resources.Load ("Skills/DrainHeal");
-		spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 6f + transform.up * 0.5f, transform.rotation * Quaternion.Euler(-90,0,0));
-		spellDrainHeal.GetComponent<DrainHeal> ().player = this;
-	}
-
-	public float GetDrainHealTime() {
-
-		float time = 2.5f;
-		return time;
-
-
+		float cost = 5f;
+		return cost;
 	}
 
 	IEnumerator _IceSpike()
@@ -761,6 +785,124 @@ public class Player : MonoBehaviour {
 
 	#endregion
 
+	#region DrainHeal
+	public void CastDrainHeal() {
+
+		GameObject spellDrainHeal = (GameObject)Resources.Load ("Skills/DrainHeal");
+		spellDrainHeal = (GameObject)Instantiate (spellDrainHeal, transform.position + transform.forward * 6f + transform.up * 0.5f, transform.rotation * Quaternion.Euler(-90,0,0));
+		spellDrainHeal.GetComponent<DrainHeal> ().player = this;
+	}
+
+	public float GetDrainHealTime() {
+
+		float time = 2.5f;
+		return time;
+
+	}
+
+	public float GetDrainHealCost() {
+
+		float cost = 5f;
+		return cost;
+	}
+	#endregion
+
+	#region AoeLightning
+	public void CastAoeLightning() {
+
+		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
+		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
+		spellGroundSmash.GetComponent<Spell> ().player = this;
+
+	}
+
+	public float GetAoeLightningTime() {
+
+		float time = 0.3f;
+		return time;
+
+	}
+
+	public float GetAoeLightningCost() {
+
+		float cost = 20f;
+		return cost;
+	}
+	#endregion
+
+	#region GroundSmash
+	public void CastGroundSmash() {
+
+		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
+		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
+		spellGroundSmash.GetComponent<Spell> ().player = this;
+
+	}
+
+	public float GetGroundSmashTime() {
+
+		float time = 0.3f;
+		return time;
+
+	}
+
+	public float GetGroundSmashCost() {
+
+		float cost = 20f;
+		return cost;
+	}
+	#endregion
+
+	#region VerticalStrike
+
+	public void CastVerticalStrike() {
+
+		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
+		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
+		spellGroundSmash.GetComponent<Spell> ().player = this;
+
+	}
+
+	public float GetVerticalStrikeTime() {
+
+		float time = 0.3f;
+		return time;
+
+	}
+
+	public float GetVerticalStrikeCost() {
+
+		float cost = 20f;
+		return cost;
+	}
+
+	#endregion
+
+	#region FrontSlash
+	public void CastFrontSlash() {
+
+		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
+		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
+		spellGroundSmash.GetComponent<Spell> ().player = this;
+
+	}
+
+	public float GetFrontSlashTime() {
+
+		float time = 0.3f;
+		return time;
+
+	}
+
+	public float GetFrontSlashCost() {
+
+		float cost = 20f;
+		return cost;
+	}
+	#endregion
+
+	#endregion
+
 	#region SwapSpells
 
 	public void SwapSkillC(Skills s) {
@@ -769,18 +911,43 @@ public class Player : MonoBehaviour {
 			skillC = CastFirePillar;
 			skillCTime = GetFirePillarTime;
 			skillCType = Skills.FirePillar;
+			skillCCost = GetFirePillarCost;
 		} else if (s == Skills.IceSpike) {
 			skillC = CastIceSpike;
 			skillCTime = GetIceSpikeTime;
 			skillCType = Skills.IceSpike;
+			skillCCost = GetIceSpikeCost;
 		} else if (s == Skills.ChainLightning) {
 			skillC = CastChainLightning;
 			skillCTime = GetChainLightningTime;
 			skillCType = Skills.ChainLightning;
+			skillCCost = GetChainLightningCost;
 		} else if (s == Skills.DrainHeal) {
 			skillC = CastDrainHeal;
 			skillCTime = GetDrainHealTime;
 			skillCType = Skills.DrainHeal;
+			skillCCost = GetDrainHealCost;
+		} else if (s == Skills.AoeLightning) {
+			skillC = CastAoeLightning;
+			skillCTime = GetAoeLightningTime;
+			skillCType = Skills.AoeLightning;
+			skillCCost = GetAoeLightningCost;
+
+		} else if (s == Skills.GroundSmash) {
+			skillC = CastGroundSmash;
+			skillCTime = GetGroundSmashTime;
+			skillCType = Skills.GroundSmash;
+			skillCCost = GetGroundSmashCost;
+		} else if (s == Skills.VerticalStrike) {
+			skillC = CastVerticalStrike;
+			skillCTime = GetVerticalStrikeTime;
+			skillCType = Skills.DrainHeal;
+			skillCCost = GetVerticalStrikeCost;
+		} else if (s == Skills.FrontSlash) {
+			skillC = CastFrontSlash;
+			skillCTime = GetFrontSlashTime;
+			skillCType = Skills.FrontSlash;
+			skillCCost = GetFrontSlashCost;
 		}
 	}
 
@@ -790,18 +957,42 @@ public class Player : MonoBehaviour {
 			skillV = CastFirePillar;
 			skillVTime = GetFirePillarTime;
 			skillVType = Skills.FirePillar;
+			skillVCost = GetFirePillarCost;
 		} else if (s == Skills.IceSpike) {
 			skillV = CastIceSpike;
 			skillVTime = GetIceSpikeTime;
 			skillVType = Skills.IceSpike;
+			skillVCost = GetIceSpikeCost;
 		} else if (s == Skills.ChainLightning) {
 			skillV = CastChainLightning;
 			skillVTime = GetChainLightningTime;
 			skillVType = Skills.ChainLightning;
+			skillVCost = GetChainLightningCost;
 		} else if (s == Skills.DrainHeal) {
 			skillV = CastDrainHeal;
 			skillVTime = GetDrainHealTime;
 			skillVType = Skills.DrainHeal;
+			skillVCost = GetDrainHealCost;
+		} else if (s == Skills.AoeLightning) {
+			skillV = CastAoeLightning;
+			skillVTime = GetAoeLightningTime;
+			skillVType = Skills.AoeLightning;
+			skillVCost = GetAoeLightningCost;
+		} else if (s == Skills.GroundSmash) {
+			skillV = CastGroundSmash;
+			skillVTime = GetGroundSmashTime;
+			skillVType = Skills.GroundSmash;
+			skillVCost = GetGroundSmashCost;
+		} else if (s == Skills.VerticalStrike) {
+			skillV = CastVerticalStrike;
+			skillVTime = GetVerticalStrikeTime;
+			skillVType = Skills.VerticalStrike;
+			skillVCost = GetVerticalStrikeCost;
+		} else if (s == Skills.FrontSlash) {
+			skillV = CastFrontSlash;
+			skillVTime = GetFrontSlashTime;
+			skillVType = Skills.FrontSlash;
+			skillVCost = GetFrontSlashCost;
 		}
 	}
 
@@ -810,35 +1001,29 @@ public class Player : MonoBehaviour {
 	#region Cheats
 
 	public void CheatCodes() {
-		if (playerNo == 1) {
-			if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			
-				if (skillC == CastIceSpike) {
-					SwapSkillC (Skills.FirePillar);
-				} else if (skillC == CastFirePillar) {
-					SwapSkillC (Skills.IceSpike);
-				}
+	
 
-			}
-
-			if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			
-				if (skillV == CastIceSpike) {
-					SwapSkillV (Skills.FirePillar);
-				} else if (skillV == CastFirePillar) {
-					SwapSkillV (Skills.IceSpike);
-                }
-
-			}
-
-			if (Input.GetKeyDown (KeyCode.Alpha3)) {
-				ReceiveDamage (10f);
-			}
-
-			if (Input.GetKeyDown (KeyCode.Alpha4)) {
-				ReceiveHeal (10f);
-			}
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			ReceiveDamage (10f);
 		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			ReceiveHeal (50f);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			RecoverStamina (1000f);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			SkillPoints++;
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha5)) {
+
+			LevelUp ();
+		}
+	
 
 		if (Input.GetKeyDown(KeyCode.Equals)) {
 			if (isDead)

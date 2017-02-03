@@ -31,9 +31,10 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void LoadMainMenu() {
-
-		SceneManager.LoadScene ("MainMenu");
 		GameManager.instance.Reset ();
+		SavePlayers ();
+		SceneManager.LoadScene ("MainMenu");
+
 	}
 
 	void SpawnPlayer(Scene a, Scene b) {
@@ -53,5 +54,9 @@ public class LevelManager : MonoBehaviour {
 
 		Application.Quit ();
 
+	}
+
+	public void SavePlayers() {
+		GameManager.instance.SavePlayers ();
 	}
 }

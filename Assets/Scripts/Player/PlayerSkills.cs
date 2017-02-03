@@ -10,6 +10,10 @@ public class PlayerSkills : MonoBehaviour {
 	public int iceSpikesLevel = 0;
 	public int chainLightningLevel = 0;
 	public int drainHealLevel = 0;
+	public int aoeLightningLevel = 0;
+	public int groundSmashLevel = 0;
+	public int verticalStrikeLevel = 0;
+	public int frontSlashLevel = 0;
 
 	//Passives
 	public int maxHealthLevel = 0;

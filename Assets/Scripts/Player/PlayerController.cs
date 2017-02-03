@@ -302,8 +302,6 @@ public class PlayerController : MonoBehaviour
 		}
 		inputVec =  x * right + z * forward;
 
-		Debug.Log (animator.GetBool ("Shield"));
-
 		//make sure there is animator on character
 		if(animator)
 		{
@@ -377,7 +375,7 @@ public class PlayerController : MonoBehaviour
 			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("XButtonCtrl1") && player.playerNo == 2))
 			    && canAction && isGrounded && !isBlocking && !isDead && !isCasting) {
 				if (player.skillCType != Skills.None) {
-					if (CheckStamina (player.spellStaminaDrain * player.skillCTime ())) {
+					if (CheckStamina (player.spellStaminaDrain * player.skillCTime () + player.skillCCost())) {
 						
 							isCasting = true;
 							isStrafing = true;
@@ -411,6 +409,7 @@ public class PlayerController : MonoBehaviour
 					
 					CastAttack (1);
 					player.skillC ();
+					player.RecoverStamina(-player.skillCCost ());
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}
@@ -420,7 +419,7 @@ public class PlayerController : MonoBehaviour
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
 				if (player.skillVType != Skills.None) {
-					if (CheckStamina(player.spellStaminaDrain * player.skillVTime())) {
+					if (CheckStamina(player.spellStaminaDrain * player.skillVTime() + player.skillVCost())) {
 						
 							isCasting = true;
 							isStrafing = true;
@@ -453,6 +452,7 @@ public class PlayerController : MonoBehaviour
 				if (canCast) {
 					CastAttack (1);
 					player.skillV ();
+					player.RecoverStamina(-player.skillVCost ());
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}

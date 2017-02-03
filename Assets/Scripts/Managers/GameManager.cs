@@ -133,9 +133,83 @@ public class GameManager : MonoBehaviour {
 
 	public void SavePlayers() {
 		if (GameManager.instance.player1Data.saveId != 0)
-			GameManager.instance.UpdatePlayer1Data ();
+			GameManager.instance.UpdatePlayerData (player1, player1Data);
 		if (GameManager.instance.player2Data.saveId != 0)
-			GameManager.instance.UpdatePlayer2Data ();
+			GameManager.instance.UpdatePlayerData (player2, player2Data);
+	}
+
+	public void UpdatePlayerData(Player p, PlayerData pd) {
+
+		pd.name = p.name;
+		pd.saveId = p.saveId;
+		pd.Level = p.Level;
+		pd.Exp = p.Exp;
+		pd.MaxHealth = p.MaxHealth;
+		pd.baseMaxHealth = p.baseMaxHealth;
+		pd.Health = p.Health;
+		pd.maxStamina = p.maxStamina;
+		pd.baseMaxStamina = p.baseMaxStamina;
+		pd.Stamina = p.MaxStamina;
+		pd.Lives = p.Lives;
+		pd.SkillPoints = p.SkillPoints;
+		pd.spellStaminaDrain = p.spellStaminaDrain;
+
+		pd.skillCType = p.skillCType;
+		pd.skillVType = p.skillVType;
+
+		pd.firePillarLevel = p.skills.firePillarLevel;
+		pd.iceSpikesLevel = p.skills.iceSpikesLevel;
+		pd.chainLightningLevel = p.skills.chainLightningLevel;
+
+		pd.maxHealthLevel = p.skills.maxHealthLevel;
+		pd.minDmgLevel = p.skills.minDmgLevel;
+		pd.maxDmgLevel = p.skills.maxDmgLevel;
+		pd.weaponBuffLevel = p.skills.weaponBuffLevel;
+		pd.spellBuffLevel = p.skills.spellBuffLevel;
+
+		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
+			if (pd.saveId == SaveLoad.savedCharacters [i].saveId) {
+				SaveLoad.savedCharacters.RemoveAt (i);
+			}
+		}
+
+		SaveLoad.NewCharacter (pd);
+
+	}
+
+	public void UpdatePlayer(Player p, PlayerData pd) {
+		p.name = pd.name;
+		p.saveId = pd.saveId;
+		p.Level = pd.Level;
+		p.Exp = pd.Exp;
+		p.MaxHealth = pd.MaxHealth;
+		p.baseMaxHealth = pd.baseMaxHealth;
+		p.Health = pd.Health;
+		p.maxStamina = pd.maxStamina;
+		p.baseMaxStamina = pd.baseMaxStamina;
+		p.Stamina = p.MaxStamina;
+		p.Lives = pd.Lives;
+		p.SkillPoints = pd.SkillPoints;
+		p.spellStaminaDrain = pd.spellStaminaDrain;
+		p.recoverStamina = true;
+
+		p.skillCType = pd.skillCType;
+		p.skillVType = pd.skillVType;
+
+		p.skills.firePillarLevel = pd.firePillarLevel;
+		p.skills.iceSpikesLevel = pd.iceSpikesLevel;
+		p.skills.chainLightningLevel = pd.chainLightningLevel;
+
+		p.skills.maxHealthLevel = pd.maxHealthLevel;
+		p.skills.minDmgLevel = pd.minDmgLevel;
+		p.skills.maxDmgLevel = pd.maxDmgLevel;
+		p.skills.weaponBuffLevel = pd.weaponBuffLevel;
+		p.skills.spellBuffLevel = pd.spellBuffLevel;
+
+		if (p == player1)
+			p.playerNo = 1;
+		else
+			p.playerNo = 2;
 	}
 
 	public void UpdatePlayer1Data() {
