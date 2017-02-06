@@ -193,6 +193,8 @@ public class Dragon : Enemy {
             {
                 attacking = true;
                 waitAnim = true;
+
+                SFXManager.instance.playSFX(sounds.dragonFire);
                 //if flying, breathe fire from the air
                 if (flying)
                 {

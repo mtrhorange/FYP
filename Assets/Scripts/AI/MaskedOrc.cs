@@ -199,7 +199,6 @@ public class MaskedOrc : Enemy {
     protected override void Attack()
     {
         attacking = false;
-            
         pathUpdateTimer = 0f;
         
         rB.velocity = Vector3.zero;

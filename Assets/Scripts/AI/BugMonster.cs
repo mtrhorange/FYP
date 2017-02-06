@@ -298,6 +298,7 @@ public class BugMonster : Enemy
         if (!attacking)
         {
             attacking = true;
+            SFXManager.instance.playSFX(sounds.bite);
             anim.SetBool("Walk", false);
             anim.SetTrigger("Attack 01");
             rB.velocity = Vector3.zero;
