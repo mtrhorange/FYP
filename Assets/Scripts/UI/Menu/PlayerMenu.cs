@@ -6,13 +6,18 @@ public class PlayerMenu : MonoBehaviour {
 
 	public int player = 1;
 
-	// Use this for initialization
-	void Start () {
+	void Awake() {
 		MenuButton[] btns = transform.GetComponentsInChildren<MenuButton> (true);
 
 		foreach (MenuButton btn in btns) {
 			btn.player = player;
 		}
+
+	}
+
+	// Use this for initialization
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame

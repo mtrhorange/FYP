@@ -52,6 +52,39 @@ public class KeyAssignPanel : MenuButton {
 			}
 
 		}
+
+		if (player == 2) {
+			switch (GameManager.instance.player1.skillCType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("C", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("C", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("C", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("C", Skills.DrainHeal);
+				break;
+			}
+
+			switch (GameManager.instance.player1.skillVType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("V", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("V", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("V", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("V", Skills.DrainHeal);
+				break;
+			}
+
+		}
 	}
 
 	// Update is called once per frame
@@ -97,28 +130,57 @@ public class KeyAssignPanel : MenuButton {
 	}
 
 	public void AssignKey() {
-
-		if (Input.GetKeyDown (KeyCode.C)) {
-			if (player == 1) {
+		if (player == 1) {
+			if (Input.GetKeyDown (KeyCode.C)) {
 				GameManager.instance.player1.SwapSkillC (assignSkill);
 				ChangeKeyImage ("C", assignSkill);
-			} else {
-				GameManager.instance.player2.SwapSkillC (assignSkill);
-				ChangeKeyImage ("C", assignSkill);
-			}
-			Cancel ();
+				Cancel ();
 
-		} else if (Input.GetKeyDown (KeyCode.V)) {
-			if (player == 1) {
+			} else if (Input.GetKeyDown (KeyCode.V)) {
 				GameManager.instance.player1.SwapSkillV (assignSkill);
 				ChangeKeyImage ("V", assignSkill);
-			} else {
-				GameManager.instance.player2.SwapSkillV (assignSkill);
-				ChangeKeyImage ("V", assignSkill);
+				Cancel ();
+			} else if (Input.GetKeyDown (KeyCode.A)) {
+				GameManager.instance.player1.SwapSkillA (assignSkill);
+				ChangeKeyImage ("A", assignSkill);
+				Cancel ();
+			} else if (Input.GetKeyDown (KeyCode.S)) {
+				GameManager.instance.player1.SwapSkillS (assignSkill);
+				ChangeKeyImage ("S", assignSkill);
+				Cancel ();
+			} else if (Input.GetKeyDown (KeyCode.D)) {
+				GameManager.instance.player1.SwapSkillD (assignSkill);
+				ChangeKeyImage ("D", assignSkill);
+				Cancel ();
 			}
-			Cancel ();
 		}
 
+		if (player == 2) {
+			if (Input.GetButtonDown ("YButtonCtrl1")) {
+				GameManager.instance.player2.SwapSkillC (assignSkill);
+				ChangeKeyImage ("C", assignSkill);
+				Cancel ();
+			} else if (Input.GetButtonDown ("LButtonCtrl1")) {
+				GameManager.instance.player2.SwapSkillV (assignSkill);
+				ChangeKeyImage ("V", assignSkill);
+				Cancel ();
+			} else if (Input.GetButtonDown ("RButtonCtrl1")) {
+				GameManager.instance.player2.SwapSkillA (assignSkill);
+				ChangeKeyImage ("A", assignSkill);
+				Cancel ();
+			} else if (LTAxis()) {
+				GameManager.instance.player2.SwapSkillS (assignSkill);
+				ChangeKeyImage ("S", assignSkill);
+				Cancel ();
+			} else if (RTAxis()) {
+				GameManager.instance.player2.SwapSkillD (assignSkill);
+				ChangeKeyImage ("D", assignSkill);
+				Cancel ();
+			}
+
+
+
+		}
 
 	}
 
@@ -158,5 +220,24 @@ public class KeyAssignPanel : MenuButton {
 			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
 			break;
 		}
+	}
+
+	bool LTAxis() 
+	{
+		float ltAxis = Input.GetAxis ("LTAxisCtrl1");
+
+		if (ltAxis >= 0.5f)
+			return true;
+		else
+			return false;
+	}
+
+	bool RTAxis()
+	{
+		float rtAxis = Input.GetAxis ("RTAxisCtrl1");
+		if (rtAxis >= 0.5f)
+			return true;
+		else
+			return false;
 	}
 }
