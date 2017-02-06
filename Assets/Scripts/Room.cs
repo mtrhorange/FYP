@@ -17,22 +17,25 @@ public class Room : MonoBehaviour
         List<GameObject> spons = new List<GameObject>();
         spons.AddRange(GameObject.FindGameObjectsWithTag("ObjectSpawnPoint"));
 
-        spawnedObjects = new List<GameObject>();
-
-        //decide how many to spawn (1 - max number of spawn points)
-        int setOfObjects = Random.Range(1, spons.Count);
-
-        do
+        if (spons.Count > 0)
         {
-            //Spawn the object
-            GameObject spawnHere = spons[Random.Range(0, spons.Count)];
-            spons.Remove(spawnHere);
-            GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spawnHere.transform.position, Quaternion.identity);
-            obj.transform.SetParent(this.gameObject.transform, true);
-            spawnedObjects.Add(obj);
+            spawnedObjects = new List<GameObject>();
 
+            //decide how many to spawn (1 - max number of spawn points)
+            int setOfObjects = Random.Range(1, spons.Count);
+
+            do
+            {
+                //Spawn the object
+                GameObject spawnHere = spons[Random.Range(0, spons.Count)];
+                spons.Remove(spawnHere);
+                GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spawnHere.transform.position, Quaternion.identity);
+                obj.transform.SetParent(this.gameObject.transform, true);
+                spawnedObjects.Add(obj);
+
+            }
+            while (spawnedObjects.Count < setOfObjects);
         }
-        while (spawnedObjects.Count < setOfObjects);
 
         if (Floor.instance.currentTheme == Floor.Themes.Cave)
         {
