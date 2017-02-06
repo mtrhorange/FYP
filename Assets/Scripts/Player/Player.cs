@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
 	GameObject enemyTargetHover;
 	GameObject damageText;
 
-	PlayerController controller;
+	public PlayerController controller;
 
 
 	public PlayerSkills skills;
@@ -204,7 +204,87 @@ public class Player : MonoBehaviour {
 		case Skills.FrontSlash:
 			SwapSkillV (Skills.FrontSlash);
 			break;
+		}
 
+		switch (skillAType) {
+		case Skills.ChainLightning:
+			SwapSkillA (Skills.ChainLightning);
+			break;
+		case Skills.FirePillar:
+			SwapSkillA (Skills.FirePillar);
+			break;
+		case Skills.IceSpike:
+			SwapSkillA (Skills.IceSpike);
+			break;
+		case Skills.DrainHeal:
+			SwapSkillA (Skills.DrainHeal);
+			break;
+		case Skills.AoeLightning:
+			SwapSkillA (Skills.AoeLightning);
+			break;
+		case Skills.GroundSmash:
+			SwapSkillA (Skills.GroundSmash);
+			break;
+		case Skills.VerticalStrike:
+			SwapSkillA (Skills.VerticalStrike);
+			break;
+		case Skills.FrontSlash:
+			SwapSkillA (Skills.FrontSlash);
+			break;
+		}
+
+		switch (skillSType) {
+		case Skills.ChainLightning:
+			SwapSkillS (Skills.ChainLightning);
+			break;
+		case Skills.FirePillar:
+			SwapSkillS (Skills.FirePillar);
+			break;
+		case Skills.IceSpike:
+			SwapSkillS (Skills.IceSpike);
+			break;
+		case Skills.DrainHeal:
+			SwapSkillS (Skills.DrainHeal);
+			break;
+		case Skills.AoeLightning:
+			SwapSkillS (Skills.AoeLightning);
+			break;
+		case Skills.GroundSmash:
+			SwapSkillS (Skills.GroundSmash);
+			break;
+		case Skills.VerticalStrike:
+			SwapSkillS (Skills.VerticalStrike);
+			break;
+		case Skills.FrontSlash:
+			SwapSkillS (Skills.FrontSlash);
+			break;
+		}
+
+		switch (skillDType) {
+		case Skills.ChainLightning:
+			SwapSkillD (Skills.ChainLightning);
+			break;
+		case Skills.FirePillar:
+			SwapSkillD (Skills.FirePillar);
+			break;
+		case Skills.IceSpike:
+			SwapSkillD (Skills.IceSpike);
+			break;
+		case Skills.DrainHeal:
+			SwapSkillD (Skills.DrainHeal);
+			break;
+		case Skills.AoeLightning:
+			SwapSkillD (Skills.AoeLightning);
+			break;
+		case Skills.GroundSmash:
+			SwapSkillD (Skills.GroundSmash);
+			break;
+		case Skills.VerticalStrike:
+			SwapSkillD (Skills.VerticalStrike);
+			break;
+		case Skills.FrontSlash:
+			SwapSkillD (Skills.FrontSlash);
+			break;
 		}
 
 	}
@@ -952,7 +1032,6 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SwapSkillV(Skills s) {
-
 		if (s == Skills.FirePillar) {
 			skillV = CastFirePillar;
 			skillVTime = GetFirePillarTime;
@@ -993,6 +1072,138 @@ public class Player : MonoBehaviour {
 			skillVTime = GetFrontSlashTime;
 			skillVType = Skills.FrontSlash;
 			skillVCost = GetFrontSlashCost;
+		}
+	}
+
+	public void SwapSkillA(Skills s) {
+		if (s == Skills.FirePillar) {
+			skillA = CastFirePillar;
+			skillATime = GetFirePillarTime;
+			skillAType = Skills.FirePillar;
+			skillACost = GetFirePillarCost;
+		} else if (s == Skills.IceSpike) {
+			skillA = CastIceSpike;
+			skillATime = GetIceSpikeTime;
+			skillAType = Skills.IceSpike;
+			skillACost = GetIceSpikeCost;
+		} else if (s == Skills.ChainLightning) {
+			skillA = CastChainLightning;
+			skillATime = GetChainLightningTime;
+			skillAType = Skills.ChainLightning;
+			skillACost = GetChainLightningCost;
+		} else if (s == Skills.DrainHeal) {
+			skillA = CastDrainHeal;
+			skillATime = GetDrainHealTime;
+			skillAType = Skills.DrainHeal;
+			skillACost = GetDrainHealCost;
+		} else if (s == Skills.AoeLightning) {
+			skillA = CastAoeLightning;
+			skillATime = GetAoeLightningTime;
+			skillAType = Skills.AoeLightning;
+			skillACost = GetAoeLightningCost;
+		} else if (s == Skills.GroundSmash) {
+			skillA = CastGroundSmash;
+			skillATime = GetGroundSmashTime;
+			skillAType = Skills.GroundSmash;
+			skillACost = GetGroundSmashCost;
+		} else if (s == Skills.VerticalStrike) {
+			skillA = CastVerticalStrike;
+			skillATime = GetVerticalStrikeTime;
+			skillAType = Skills.VerticalStrike;
+			skillACost = GetVerticalStrikeCost;
+		} else if (s == Skills.FrontSlash) {
+			skillA = CastFrontSlash;
+			skillATime = GetFrontSlashTime;
+			skillAType = Skills.FrontSlash;
+			skillACost = GetFrontSlashCost;
+		}
+	}
+
+	public void SwapSkillS(Skills s) {
+		if (s == Skills.FirePillar) {
+			skillS = CastFirePillar;
+			skillSTime = GetFirePillarTime;
+			skillSType = Skills.FirePillar;
+			skillSCost = GetFirePillarCost;
+		} else if (s == Skills.IceSpike) {
+			skillS = CastIceSpike;
+			skillSTime = GetIceSpikeTime;
+			skillSType = Skills.IceSpike;
+			skillSCost = GetIceSpikeCost;
+		} else if (s == Skills.ChainLightning) {
+			skillS = CastChainLightning;
+			skillSTime = GetChainLightningTime;
+			skillSType = Skills.ChainLightning;
+			skillSCost = GetChainLightningCost;
+		} else if (s == Skills.DrainHeal) {
+			skillS = CastDrainHeal;
+			skillSTime = GetDrainHealTime;
+			skillSType = Skills.DrainHeal;
+			skillSCost = GetDrainHealCost;
+		} else if (s == Skills.AoeLightning) {
+			skillS = CastAoeLightning;
+			skillSTime = GetAoeLightningTime;
+			skillSType = Skills.AoeLightning;
+			skillSCost = GetAoeLightningCost;
+		} else if (s == Skills.GroundSmash) {
+			skillS = CastGroundSmash;
+			skillSTime = GetGroundSmashTime;
+			skillSType = Skills.GroundSmash;
+			skillSCost = GetGroundSmashCost;
+		} else if (s == Skills.VerticalStrike) {
+			skillS = CastVerticalStrike;
+			skillSTime = GetVerticalStrikeTime;
+			skillSType = Skills.VerticalStrike;
+			skillSCost = GetVerticalStrikeCost;
+		} else if (s == Skills.FrontSlash) {
+			skillS = CastFrontSlash;
+			skillSTime = GetFrontSlashTime;
+			skillSType = Skills.FrontSlash;
+			skillSCost = GetFrontSlashCost;
+		}
+	}
+
+	public void SwapSkillD(Skills s) {
+		if (s == Skills.FirePillar) {
+			skillD = CastFirePillar;
+			skillDTime = GetFirePillarTime;
+			skillDType = Skills.FirePillar;
+			skillDCost = GetFirePillarCost;
+		} else if (s == Skills.IceSpike) {
+			skillD = CastIceSpike;
+			skillDTime = GetIceSpikeTime;
+			skillDType = Skills.IceSpike;
+			skillDCost = GetIceSpikeCost;
+		} else if (s == Skills.ChainLightning) {
+			skillD = CastChainLightning;
+			skillDTime = GetChainLightningTime;
+			skillDType = Skills.ChainLightning;
+			skillDCost = GetChainLightningCost;
+		} else if (s == Skills.DrainHeal) {
+			skillD = CastDrainHeal;
+			skillDTime = GetDrainHealTime;
+			skillDType = Skills.DrainHeal;
+			skillDCost = GetDrainHealCost;
+		} else if (s == Skills.AoeLightning) {
+			skillD = CastAoeLightning;
+			skillDTime = GetAoeLightningTime;
+			skillDType = Skills.AoeLightning;
+			skillDCost = GetAoeLightningCost;
+		} else if (s == Skills.GroundSmash) {
+			skillD = CastGroundSmash;
+			skillDTime = GetGroundSmashTime;
+			skillDType = Skills.GroundSmash;
+			skillDCost = GetGroundSmashCost;
+		} else if (s == Skills.VerticalStrike) {
+			skillD = CastVerticalStrike;
+			skillDTime = GetVerticalStrikeTime;
+			skillDType = Skills.VerticalStrike;
+			skillDCost = GetVerticalStrikeCost;
+		} else if (s == Skills.FrontSlash) {
+			skillD = CastFrontSlash;
+			skillDTime = GetFrontSlashTime;
+			skillDType = Skills.FrontSlash;
+			skillDCost = GetFrontSlashCost;
 		}
 	}
 

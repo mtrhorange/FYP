@@ -25,12 +25,16 @@ public class PlayerData {
 	public float exp = 0;
 
 	//Skills
-	public Skills skillCType;
-	public Skills skillVType;
+	public Skills skillCType, skillVType, skillAType, skillSType, skillDType;
 
 	public int firePillarLevel = 0;
 	public int iceSpikesLevel = 0;
 	public int chainLightningLevel = 0;
+	public int drainHealLevel = 0;
+	public int aoeLightningLevel = 0;
+	public int groundSmashLevel = 0;
+	public int verticalStrikeLevel = 0;
+	public int frontSlashLevel = 0;
 
 	//Passives
 	public int maxHealthLevel = 0;

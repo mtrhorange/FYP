@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
 	//movement variables
 	bool isMoving = false;
-	bool canMove = true;
+	public bool canMove = true;
 	public float walkSpeed = 1.35f;
 	float moveSpeed;
 	public float runSpeed = 6f;
@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
 	float spellCastTime = 0f;
 	bool isCastingC = false;
 	bool isCastingV = false;
+	bool isCastingA = false;
+	bool isCastingS = false;
+	bool isCastingD = false;
 	public bool canCast = false;
 	public bool isCharging = false;
 	GameObject castBarPrefab;
@@ -97,7 +100,7 @@ public class PlayerController : MonoBehaviour
 	bool isRelax = false;
 
 	//isStrafing/action variables
-	bool canAction = true;
+	public bool canAction = true;
 	bool isStrafing = false;
 	bool isDead = false;
 	bool isBlocking = false;
@@ -372,7 +375,7 @@ public class PlayerController : MonoBehaviour
             //    AttackKick(2);
             //}
 
-			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("XButtonCtrl1") && player.playerNo == 2))
+			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("YButtonCtrl1") && player.playerNo == 2))
 			    && canAction && isGrounded && !isBlocking && !isDead && !isCasting) {
 				if (player.skillCType != Skills.None) {
 					if (CheckStamina (player.spellStaminaDrain * player.skillCTime () + player.skillCCost())) {
@@ -404,7 +407,7 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
+			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
 				if (canCast) {
 					
 					CastAttack (1);
@@ -415,7 +418,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 
-			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("YButtonCtrl1") && player.playerNo == 2))
+			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("LButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
 				if (player.skillVType != Skills.None) {
@@ -447,12 +450,143 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
+			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("LButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
 
 				if (canCast) {
 					CastAttack (1);
 					player.skillV ();
 					player.RecoverStamina(-player.skillVCost ());
+				} else {
+					StartCoroutine(_LockCasting(0, 0f));
+				}
+
+			}
+
+			if (((Input.GetButtonDown("SkillA") && player.playerNo == 1) || (Input.GetButtonDown("RButtonCtrl1") && player.playerNo == 2))
+				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
+			{
+				if (player.skillAType != Skills.None) {
+					if (CheckStamina(player.spellStaminaDrain * player.skillATime() + player.skillACost())) {
+
+						isCasting = true;
+						isStrafing = true;
+						isAiming = false;
+						isCharging = true;
+						animator.SetBool ("Strafing", true);
+
+						isCastingA = true;
+						spellCastTime = player.skillATime();
+
+						Camera camera = FindObjectOfType<Camera>();
+						Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+						GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
+						bar.transform.SetParent(GameObject.Find("Canvas").transform);
+
+						castBar = bar;
+
+					} else {
+						Camera camera = FindObjectOfType<Camera> ();
+						Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+						GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos + new Vector3(0,999,0), Quaternion.identity);
+						noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+						noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+					}
+				}
+			} else if (((Input.GetButtonUp ("SkillA") && player.playerNo == 1) || (Input.GetButtonUp ("RButtonCtrl1") && player.playerNo == 2)) && isCastingA) {
+
+				if (canCast) {
+					CastAttack (1);
+					player.skillA ();
+					player.RecoverStamina(-player.skillACost ());
+				} else {
+					StartCoroutine(_LockCasting(0, 0f));
+				}
+			}
+
+			if (((Input.GetButtonDown("SkillS") && player.playerNo == 1) || (LTAxis() && player.playerNo == 2))
+				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
+			{
+				if (player.skillSType != Skills.None) {
+					if (CheckStamina(player.spellStaminaDrain * player.skillSTime() + player.skillSCost())) {
+
+						isCasting = true;
+						isStrafing = true;
+						isAiming = false;
+						isCharging = true;
+						animator.SetBool ("Strafing", true);
+
+						isCastingS = true;
+						spellCastTime = player.skillSTime();
+
+						Camera camera = FindObjectOfType<Camera>();
+						Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+						GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
+						bar.transform.SetParent(GameObject.Find("Canvas").transform);
+
+						castBar = bar;
+
+					} else {
+						Camera camera = FindObjectOfType<Camera> ();
+						Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+						GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos + new Vector3(0,999,0), Quaternion.identity);
+						noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+						noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+					}
+				}
+			} else if (((Input.GetButtonUp ("SkillS") && player.playerNo == 1) || (!LTAxis() && player.playerNo == 2)) && isCastingS) {
+
+				if (canCast) {
+					CastAttack (1);
+					player.skillS ();
+					player.RecoverStamina(-player.skillSCost ());
+				} else {
+					StartCoroutine(_LockCasting(0, 0f));
+				}
+
+			}
+
+			if (((Input.GetButtonDown("SkillD") && player.playerNo == 1) || (RTAxis() && player.playerNo == 2))
+				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
+			{
+				if (player.skillDType != Skills.None) {
+					if (CheckStamina(player.spellStaminaDrain * player.skillDTime() + player.skillDCost())) {
+
+						isCasting = true;
+						isStrafing = true;
+						isAiming = false;
+						isCharging = true;
+						animator.SetBool ("Strafing", true);
+
+						isCastingD = true;
+						spellCastTime = player.skillSTime();
+
+						Camera camera = FindObjectOfType<Camera>();
+						Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+						GameObject bar = (GameObject)Instantiate(castBarPrefab, screenPos, Quaternion.identity);
+						bar.transform.SetParent(GameObject.Find("Canvas").transform);
+
+						castBar = bar;
+
+					} else {
+						Camera camera = FindObjectOfType<Camera> ();
+						Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
+						GameObject noSTIcon = (GameObject)Instantiate (NoST, screenPos + new Vector3(0,999,0), Quaternion.identity);
+						noSTIcon.transform.SetParent (GameObject.Find ("Canvas").transform);
+
+						noSTIcon.GetComponent<NoSTIcon> ().player = transform;
+
+					}
+				}
+			} else if (((Input.GetButtonUp ("SkillD") && player.playerNo == 1) || (!RTAxis() && player.playerNo == 2)) && isCastingD) {
+
+				if (canCast) {
+					CastAttack (1);
+					player.skillD ();
+					player.RecoverStamina(-player.skillDCost ());
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}
@@ -574,15 +708,32 @@ public class PlayerController : MonoBehaviour
 
         if (yAxis > 0)
         {
-            weaponToggle = false;
             return true;
         }
         else
         {
-            weaponToggle = true;
             return false;
         }
     }
+
+	bool LTAxis() 
+	{
+		float ltAxis = Input.GetAxis ("LTAxisCtrl1");
+
+		if (ltAxis >= 0.5f)
+			return true;
+		else
+			return false;
+	}
+
+	bool RTAxis()
+	{
+		float rtAxis = Input.GetAxis ("RTAxisCtrl1");
+		if (rtAxis >= 0.5f)
+			return true;
+		else
+			return false;
+	}
 	#endregion
 
 	#region Fixed/Late Updates
@@ -1390,6 +1541,9 @@ public class PlayerController : MonoBehaviour
 
 		isCastingC = false;
 		isCastingV = false;
+		isCastingA = false;
+		isCastingS = false;
+		isCastingD = false;
 
 		Destroy (castBar);
 		castTime = 0;
