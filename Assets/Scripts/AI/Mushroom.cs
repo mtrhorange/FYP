@@ -40,7 +40,7 @@ public class Mushroom : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -54,6 +54,8 @@ public class Mushroom : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -77,7 +79,6 @@ public class Mushroom : Enemy {
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -98,8 +99,11 @@ public class Mushroom : Enemy {
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Hop", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -126,8 +130,11 @@ public class Mushroom : Enemy {
             {
                 anim.SetBool("Hop", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Hop", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -150,7 +157,6 @@ public class Mushroom : Enemy {
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             if ((player.transform.position - transform.position).magnitude >= 1.5f)
                 myState = States.Idle;

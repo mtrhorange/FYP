@@ -39,7 +39,7 @@ public class BugMonster : Enemy
     }
 
     //Update
-    void Update()
+    protected override void Update()
     {
         if (myState == States.Idle)
         {
@@ -53,6 +53,8 @@ public class BugMonster : Enemy
         {
             Attack();
         }
+
+        base.Update();
     }
 
     //Idle
@@ -73,7 +75,6 @@ public class BugMonster : Enemy
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -157,15 +158,6 @@ public class BugMonster : Enemy
         Vector3 aimBot = (interceptPoint - transform.position);
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
-
-
-
-
-        //debug the path length
-        Debug.Log(path.GetTotalLength());
-
-
-
 
         if (currentWayPoint >= path.vectorPath.Count)
         {

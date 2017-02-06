@@ -39,7 +39,7 @@ public class SkeletonRange : Enemy
     }
 
     //Update
-    void Update()
+    protected override void Update()
     {
         if (myState == States.Idle)
         {
@@ -53,6 +53,8 @@ public class SkeletonRange : Enemy
         {
             Attack();
         }
+
+        base.Update();
     }
 
     //Idle
@@ -81,8 +83,10 @@ public class SkeletonRange : Enemy
         if (attackTimer >= 0)
         {
             //5f away from player, move towards (R.I.P English)
-            if (path.GetTotalLength() > 12f)
+            if (path.GetTotalLength() > 12f && (triggered || path.GetTotalLength() <= 60f))
             {
+                if (!triggered)
+                    triggered = true;
 
                 nextPathPoint =
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
@@ -131,8 +135,10 @@ public class SkeletonRange : Enemy
                     myState = States.Attack;
                 }
                 //else if cannot "see" player, delay the shot till next iteration and check again
-                else
+                else if (triggered || path.GetTotalLength() <= 60f)
                 {
+                    if (!triggered)
+                        triggered = true;
 
                     nextPathPoint =
                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];

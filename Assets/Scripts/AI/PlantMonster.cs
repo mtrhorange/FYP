@@ -38,7 +38,7 @@ public class PlantMonster : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -52,6 +52,8 @@ public class PlantMonster : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -68,7 +70,6 @@ public class PlantMonster : Enemy {
     //Chase
     protected override void Chase()
     {
-       
         pathUpdate();
 
         //if no path yet
@@ -95,8 +96,11 @@ public class PlantMonster : Enemy {
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Walk", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -123,8 +127,11 @@ public class PlantMonster : Enemy {
             {
                 anim.SetBool("Walk", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Walk", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =

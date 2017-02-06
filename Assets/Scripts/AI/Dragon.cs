@@ -42,7 +42,7 @@ public class Dragon : Enemy {
 	}
 	
 	//Update
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -56,6 +56,8 @@ public class Dragon : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -72,13 +74,11 @@ public class Dragon : Enemy {
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             myState = States.Idle;
             return;
@@ -97,59 +97,65 @@ public class Dragon : Enemy {
         //check distance,
         //fly, walk depending on distance
         //Start flying
-        if (path.GetTotalLength() > 15f && !flying)
+        if (triggered || path.GetTotalLength() <= 60f)
         {
-            flying = true;
-            playAnim("flyBegin", 1, true);
-        }
-        //if close enough to bite
-        else if ((transform.position - player.transform.position).magnitude <= 3f && !flying)
-        {
-            myState = States.Attack;
-        }
-        //close enough, check whether can use firebreath, if not land and walk
-        else if (path.GetTotalLength() <= 15f)
-        {
-            //attack interval is up && can see player
-            if (attackTimer <= 0)
+            if (!triggered)
+                triggered = true;
+
+            if (path.GetTotalLength() > 15f && !flying)
             {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, (player.transform.position - transform.position).normalized, out hit, 10f))
+                flying = true;
+                playAnim("flyBegin", 1, true);
+            }
+            //if close enough to bite
+            else if ((transform.position - player.transform.position).magnitude <= 3f && !flying)
+            {
+                myState = States.Attack;
+            }
+            //close enough, check whether can use firebreath, if not land and walk
+            else if (path.GetTotalLength() <= 15f)
+            {
+                //attack interval is up && can see player
+                if (attackTimer <= 0)
                 {
-                    if (hit.transform.tag == "Player")
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, (player.transform.position - transform.position).normalized, out hit, 10f))
                     {
-                        myState = States.Attack;
+                        if (hit.transform.tag == "Player")
+                        {
+                            myState = States.Attack;
+                        }
+                    }
+                }
+                else if (!waitAnim)
+                {
+                    //if not flying, cotinue pursuit on foot
+                    if (!flying)
+                    {
+                        playAnim("walk", 2f, false);
+                    }
+                    //if flying, land first
+                    else
+                    {
+                        waitAnim = true;
+                        playAnim("land", 2f, true);
                     }
                 }
             }
-            else if (!waitAnim)
-            {
-                //if not flying, cotinue pursuit on foot
-                if (!flying)
-                {
-                    playAnim("walk", 2f, false);
-                }
-                //if flying, land first
-                else
-                {
-                    waitAnim = true;
-                    playAnim("land", 2f, true);
-                }
-            }
+            nextPathPoint =
+                    path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+            //look & move
+            dir = velocity.normalized + AvoidObstacle();
+            Vector3 look = dir;
+            look.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(look);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
+            rB.velocity = transform.forward * (flying ? speed : walkSpeed);
+
+            Debug.DrawRay(transform.position, look, Color.yellow);
+
+            attackTimer -= Time.deltaTime;
         }
-        nextPathPoint =
-                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
-        //look & move
-        dir = velocity.normalized + AvoidObstacle();
-        Vector3 look = dir;
-        look.y = 0;
-        Quaternion targetRotation = Quaternion.LookRotation(look);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8);
-        rB.velocity = transform.forward * (flying ? speed : walkSpeed);
-
-        Debug.DrawRay(transform.position, look, Color.yellow);
-
-        attackTimer -= Time.deltaTime;
     }
 
     //Flinch override

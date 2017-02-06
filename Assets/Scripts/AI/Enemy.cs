@@ -87,9 +87,13 @@ public class Enemy : MonoBehaviour
     }
 
     //Update
-    void Update()
+    protected virtual void Update()
     {
-
+        if (myState == States.Dead)
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().freezeRotation = true;
+        }
     }
 
     //Idle state

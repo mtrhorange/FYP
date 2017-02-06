@@ -38,7 +38,7 @@ public class Zombie : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -52,6 +52,8 @@ public class Zombie : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -94,8 +96,11 @@ public class Zombie : Enemy {
         {
             myState = States.Attack;
         }
-        else
+        else if (triggered || path.GetTotalLength() <= 60f)
         {
+            if (!triggered)
+                triggered = true;
+
             nextPathPoint =
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
@@ -113,7 +118,6 @@ public class Zombie : Enemy {
 
             attackTimer -= Time.deltaTime;
         }
-
 
         //update the waypoint on the path once the current one has been reached
         if (Vector3.Distance(transform.position, path.vectorPath[currentWayPoint]) < nextWayPointDistance)

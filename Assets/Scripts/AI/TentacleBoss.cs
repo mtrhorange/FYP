@@ -55,7 +55,7 @@ public class TentacleBoss : Enemy {
 	}
 	
 	//Update
-	void Update ()
+	protected override void Update ()
     {
         if (spawn)
         {
@@ -349,6 +349,7 @@ public class TentacleBoss : Enemy {
     {
         tentacles.Remove(me);
         Destroy(me.gameObject, 2.5f);
+        tentacles.RemoveAll(list_item => list_item == null);
     }
 
 

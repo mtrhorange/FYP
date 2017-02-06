@@ -37,7 +37,7 @@ public class MagmaDemon : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -51,6 +51,8 @@ public class MagmaDemon : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -94,8 +96,11 @@ public class MagmaDemon : Enemy {
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Move", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -122,8 +127,11 @@ public class MagmaDemon : Enemy {
             {
                 anim.SetBool("Move", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Move", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =

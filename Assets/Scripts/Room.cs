@@ -84,7 +84,6 @@ public class Room : MonoBehaviour
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)
         {
             Destroy(spawnedObjects[i]);
-            Debug.Log("sadasf");
         }
     }
 

@@ -267,8 +267,9 @@ MonoBehaviour:
   skullExplode: {fileID: 1000010336979586, guid: 961422a6ce2f6684681e9065b2781847,
     type: 2}
   lifeTime: 5
-  speed: 250
+  speed: 225
   damage: 0
+  slerpMul: 1
 --- !u!135 &135000013028150420
 SphereCollider:
   m_ObjectHideFlags: 1

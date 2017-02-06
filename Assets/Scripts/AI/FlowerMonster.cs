@@ -39,7 +39,7 @@ public class FlowerMonster : Enemy {
 	}
 	
 	//Update
-	void Update ()
+	protected override void Update ()
     {
         if(myState == States.Idle)
         {
@@ -53,6 +53,8 @@ public class FlowerMonster : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -80,8 +82,11 @@ public class FlowerMonster : Enemy {
         //if attackTimer is not over yet
         if (attackTimer >= 0)
         {
-            if (path.GetTotalLength() > 15f)
+            if (path.GetTotalLength() > 15f && (triggered || path.GetTotalLength() <= 60f))
             {
+                if (!triggered)
+                    triggered = true;
+
                 nextPathPoint =
                  path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
@@ -129,8 +134,11 @@ public class FlowerMonster : Enemy {
                     myState = States.Attack;
                 }
                 //else if cannot "see" player, delay the shot till next iteration and check again
-                else
+                else if (triggered || path.GetTotalLength() <= 60f)
                 {
+                    if (!triggered)
+                        triggered = true;
+
                     nextPathPoint =
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 

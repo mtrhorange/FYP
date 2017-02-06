@@ -64,7 +64,7 @@ public class LichBoss : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (myState == States.Idle)
         {
@@ -78,6 +78,8 @@ public class LichBoss : Enemy
         {
             Attack();
         }
+
+        base.Update();
 
         //flinch time window
         if (flinchTimer <= 0)

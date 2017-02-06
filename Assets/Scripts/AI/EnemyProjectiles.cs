@@ -125,31 +125,33 @@ public class EnemyProjectiles : MonoBehaviour {
                 break;
             //if type is web shot
             case type.WebShot:
-                //if hit environment, destroy
+                //if hit environment (obstacle layer), destroy
                 if (other.gameObject.layer == 8)
                 {
                     Destroy(this.gameObject);
                 }
                 break;
+            //if is normal shot (tentacle boss)
             case type.NormalShot:
                 if (other.gameObject.tag == "Player")
                 {
-                    other.GetComponent<Player>().ReceiveDamage(10);
+                    other.GetComponent<Player>().ReceiveDamage(damage);
                     Destroy(gameObject);
                 }
-
+                //if hit environment (obstacle layer), destroy
                 if (other.gameObject.layer == 8)
                 {
                     Destroy(this.gameObject);
                 }
                 break;
+            //if is fire arrow
             case type.fireArrow:
                 if (other.gameObject.tag == "Player")
                 {
-                    other.GetComponent<Player>().ReceiveDamage(10);
+                    other.GetComponent<Player>().ReceiveDamage(damage);
                     Destroy(gameObject);
                 }
-
+                //if hit environment (obstacle layer), destroy
                 if (other.gameObject.layer == 8)
                 {
                     Destroy(this.gameObject);
