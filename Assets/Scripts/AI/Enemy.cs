@@ -93,6 +93,7 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().freezeRotation = true;
+            GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

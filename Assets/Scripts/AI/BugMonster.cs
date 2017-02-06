@@ -161,7 +161,6 @@ public class BugMonster : Enemy
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             myState = States.Idle;
             return;
