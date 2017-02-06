@@ -329,6 +329,7 @@ public class SkeletonRange : Enemy
       
         Quaternion targetRotation = Quaternion.LookRotation(shootHere);
         GameObject boo = (GameObject)Instantiate(projectile, hand.transform.position, targetRotation);
+        boo.GetComponent<EnemyProjectiles>().damage = damage;
         boo.transform.up = shootHere;
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
         boo.GetComponent<EnemyProjectiles>().target = here;

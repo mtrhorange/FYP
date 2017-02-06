@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
     //current waypoint
     protected int currentWayPoint = 0;
     public float minDistance = 2.0f;
+    //wheter they triggered and should chase
+    protected bool triggered = false;
 
     //myStrength (how strong this enemy is)
     public Strength myStrength = Strength.Weak;
@@ -81,6 +83,7 @@ public class Enemy : MonoBehaviour
         maxHealth = health;
         damage = CalculateDamage();
         expValue = CalculateExpReward();
+        triggered = false;
     }
 
     //Update
