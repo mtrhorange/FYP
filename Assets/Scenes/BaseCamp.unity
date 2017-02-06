@@ -11846,6 +11846,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee5fd8f6985644e87569ee1a162feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minIntensity: 5
+  maxIntensity: 7.5
+  minRange: 40
+  maxRange: 60
 --- !u!1001 &1664966679
 Prefab:
   m_ObjectHideFlags: 0
