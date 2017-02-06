@@ -1707,7 +1707,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010803937804}
   m_LocalRotation: {x: 0, y: 0.7069895, z: 0.707224, w: 0}
-  m_LocalPosition: {x: 10.756913, y: 96.10777, z: -275.3486}
+  m_LocalPosition: {x: -8.01572, y: 93.282486, z: -69.7825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -89.981, y: 0, z: 180}
   m_Children:
@@ -2442,7 +2442,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011787742000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7399903, z: 0}
+  m_LocalPosition: {x: 0, y: 0.09, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3678,6 +3678,7 @@ MonoBehaviour:
   Objects:
   - {fileID: 1000013563735402, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
   - {fileID: 1000012669139064, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
+  spawnedObjects: []
   trailActive: 0
 --- !u!114 &114000013499730892
 MonoBehaviour:

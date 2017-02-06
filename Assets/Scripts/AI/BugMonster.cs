@@ -82,8 +82,10 @@ public class BugMonster : Enemy
         if (attackTimer >= 0)
         {
             //5f away from player, move towards (R.I.P English)
-            if (path.GetTotalLength() > 5f)
+            if (path.GetTotalLength() > 5f && (path.GetTotalLength() <= 60f || triggered))
             {
+                if (!triggered)
+                    triggered = true;
 
                 nextPathPoint =
                 path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
@@ -129,18 +131,23 @@ public class BugMonster : Enemy
                 //else if cannot "see" player, delay the shot till next iteration and check again
                 else
                 {
+                    if (path.GetTotalLength() <= 60 || triggered)
+                    {
+                        if (!triggered)
+                            triggered = true;
 
-                    nextPathPoint =
+                        nextPathPoint =
                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 
-                    dir = velocity;
+                        dir = velocity;
 
-                    Vector3 look = dir.normalized + AvoidObstacle();
-                    look.y = 0;
-                    Quaternion targetRotation = Quaternion.LookRotation(look);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
+                        Vector3 look = dir.normalized + AvoidObstacle();
+                        look.y = 0;
+                        Quaternion targetRotation = Quaternion.LookRotation(look);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
-                    rB.velocity = transform.forward * speed;
+                        rB.velocity = transform.forward * speed;
+                    }
                 }
             }
 
@@ -150,6 +157,15 @@ public class BugMonster : Enemy
         Vector3 aimBot = (interceptPoint - transform.position);
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
+
+
+
+
+        //debug the path length
+        Debug.Log(path.GetTotalLength());
+
+
+
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
@@ -239,7 +255,6 @@ public class BugMonster : Enemy
         //right ray
         if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (-transform.right).normalized * 0.05f;
 
         }
@@ -247,7 +262,6 @@ public class BugMonster : Enemy
         //left ray
         else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
-            Debug.Log("hit wall!!");
             transform.position += (transform.right).normalized * 0.05f;
 
         }
