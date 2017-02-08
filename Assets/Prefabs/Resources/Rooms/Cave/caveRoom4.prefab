@@ -3412,7 +3412,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012026268422}
-  m_LocalRotation: {x: -0, y: -0, z: 0.28486395, w: -0.958568}
+  m_LocalRotation: {x: 0, y: -0, z: 0.2860648, w: -0.95821035}
   m_LocalPosition: {x: -0.14100064, y: -1.9540005, z: 0.11999995}
   m_LocalScale: {x: 1.0126444, y: 1.0126462, z: 1.0000244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 326.755}
@@ -3900,7 +3900,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012339122830}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -61.40041, y: 135.95598, z: -157.09454}
+  m_LocalPosition: {x: -134.3, y: 141.2, z: -164.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -5345,8 +5345,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9695863, y: 0.3771303, z: 2.3606017}
-  m_Center: {x: 1.315785, y: -3.121769, z: 0.6806416}
+  m_Size: {x: 2.83, y: 0.3771303, z: 2.3606017}
+  m_Center: {x: 1.62, y: -3.07, z: 0.6806416}
 --- !u!65 &65000011344702384
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6218,9 +6218,8 @@ MonoBehaviour:
   doors:
   - {fileID: 1000012640639822}
   Objects:
-  - {fileID: 1000013563735402, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
-  - {fileID: 1000012669139064, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
-  spawnedObjects: []
+  - {fileID: 1000011975278748, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
+  - {fileID: 1000013926436104, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
   trailActive: 0
 --- !u!114 &114000012831843170
 MonoBehaviour:

@@ -496,7 +496,7 @@ Prefab:
     - target: {fileID: 114000013534165386, guid: f1ed895ce4700644a9e1879953099baa,
         type: 2}
       propertyPath: health
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114000013534165386, guid: f1ed895ce4700644a9e1879953099baa,
         type: 2}
@@ -891,9 +891,17 @@ MonoBehaviour:
     exp: 0
     skillCType: 0
     skillVType: 0
+    skillAType: 0
+    skillSType: 0
+    skillDType: 0
     firePillarLevel: 0
     iceSpikesLevel: 0
     chainLightningLevel: 0
+    drainHealLevel: 0
+    aoeLightningLevel: 0
+    groundSmashLevel: 0
+    verticalStrikeLevel: 0
+    frontSlashLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
@@ -917,9 +925,17 @@ MonoBehaviour:
     exp: 0
     skillCType: 0
     skillVType: 0
+    skillAType: 0
+    skillSType: 0
+    skillDType: 0
     firePillarLevel: 0
     iceSpikesLevel: 0
     chainLightningLevel: 0
+    drainHealLevel: 0
+    aoeLightningLevel: 0
+    groundSmashLevel: 0
+    verticalStrikeLevel: 0
+    frontSlashLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
@@ -1452,6 +1468,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010724427552, guid: 16082e71784b260429ecae34a51936e6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0
@@ -1505,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

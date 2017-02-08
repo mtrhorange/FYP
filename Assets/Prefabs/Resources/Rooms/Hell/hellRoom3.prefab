@@ -2771,10 +2771,7 @@ MonoBehaviour:
   - {fileID: 1000011759316040}
   - {fileID: 1000014005060248}
   - {fileID: 1000013440137264}
-  Objects:
-  - {fileID: 1000013563735402, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
-  - {fileID: 1000012669139064, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
-  spawnedObjects: []
+  Objects: []
   trailActive: 0
 --- !u!114 &114000012475127992
 MonoBehaviour:
