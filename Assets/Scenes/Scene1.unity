@@ -1430,6 +1430,31 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011981747558, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: skill1
+      value: 
+      objectReference: {fileID: 1924254903}
+    - target: {fileID: 114000011981747558, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: skill2
+      value: 
+      objectReference: {fileID: 943117114}
+    - target: {fileID: 114000011981747558, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: skill3
+      value: 
+      objectReference: {fileID: 1422227661}
+    - target: {fileID: 114000011981747558, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: skill4
+      value: 
+      objectReference: {fileID: 49896949}
+    - target: {fileID: 114000011981747558, guid: 16082e71784b260429ecae34a51936e6,
+        type: 2}
+      propertyPath: skill5
+      value: 
+      objectReference: {fileID: 1153224022}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16082e71784b260429ecae34a51936e6, type: 2}
   m_IsPrefabParent: 0

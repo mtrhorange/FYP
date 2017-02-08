@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013081350458}
   - 114: {fileID: 114000013936105120}
-  - 65: {fileID: 65000010779426078}
+  - 136: {fileID: 136000013880599848}
   m_Layer: 0
   m_Name: IceSpike
   m_TagString: Untagged
@@ -295,18 +295,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012252699512}
   m_Mesh: {fileID: 4300000, guid: 5019dae6a5ce9b04f809fc6277b0c69e, type: 3}
---- !u!65 &65000010779426078
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011767157010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0.2}
 --- !u!95 &95000012829779844
 Animator:
   serializedVersion: 3
@@ -335,7 +323,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533be9898fb9f8d418b5f32bf65ce3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  player: {fileID: 0}
   Ice_spike: {fileID: 1000012252699512}
+--- !u!136 &136000013880599848
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011767157010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0.2}
 --- !u!198 &198000010346749384
 ParticleSystem:
   m_ObjectHideFlags: 1

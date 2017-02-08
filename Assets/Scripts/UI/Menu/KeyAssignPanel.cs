@@ -10,16 +10,11 @@ public class KeyAssignPanel : MenuButton {
 
 	public Image firePillar, iceSpikes, chainLightning, drainHeal, aoeLightning, groundSmash, verticalStrike, frontSlash;
 
+	public GameObject skill1, skill2, skill3, skill4, skill5;
+
 	public override void Awake () {
 		
 		base.Awake ();
-
-	}
-
-	// Use this for initialization
-	public override void Start () {
-		base.Start ();
-
 		if (player == 1) {
 			switch (GameManager.instance.player1.skillCType) {
 			case Skills.ChainLightning:
@@ -34,6 +29,16 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.DrainHeal:
 				ChangeKeyImage ("C", Skills.DrainHeal);
 				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("C", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("C", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("C", Skills.VerticalStrike);
+				break;
+
 			}
 
 			switch (GameManager.instance.player1.skillVType) {
@@ -49,12 +54,93 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.DrainHeal:
 				ChangeKeyImage ("V", Skills.DrainHeal);
 				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("V", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("V", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("V", Skills.VerticalStrike);
+				break;
+			}
+
+			switch (GameManager.instance.player1.skillAType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("A", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("A", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("A", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("A", Skills.DrainHeal);
+				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("A", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("A", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("A", Skills.VerticalStrike);
+				break;
+			}
+
+			switch (GameManager.instance.player1.skillSType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("S", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("S", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("S", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("S", Skills.DrainHeal);
+				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("S", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("S", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("S", Skills.VerticalStrike);
+				break;
+			}
+
+			switch (GameManager.instance.player1.skillDType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("D", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("D", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("D", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("D", Skills.DrainHeal);
+				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("D", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("D", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("D", Skills.VerticalStrike);
+				break;
 			}
 
 		}
 
 		if (player == 2) {
-			switch (GameManager.instance.player1.skillCType) {
+			switch (GameManager.instance.player2.skillCType) {
 			case Skills.ChainLightning:
 				ChangeKeyImage ("C", Skills.ChainLightning);
 				break;
@@ -67,9 +153,19 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.DrainHeal:
 				ChangeKeyImage ("C", Skills.DrainHeal);
 				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("C", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("C", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("C", Skills.VerticalStrike);
+				break;
+
 			}
 
-			switch (GameManager.instance.player1.skillVType) {
+			switch (GameManager.instance.player2.skillVType) {
 			case Skills.ChainLightning:
 				ChangeKeyImage ("V", Skills.ChainLightning);
 				break;
@@ -82,9 +178,99 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.DrainHeal:
 				ChangeKeyImage ("V", Skills.DrainHeal);
 				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("V", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("V", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("V", Skills.VerticalStrike);
+				break;
+			}
+
+			switch (GameManager.instance.player2.skillAType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("A", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("A", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("A", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("A", Skills.DrainHeal);
+				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("A", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("A", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("A", Skills.VerticalStrike);
+				break;
+			}
+
+			switch (GameManager.instance.player2.skillSType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("S", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("S", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("S", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("S", Skills.DrainHeal);
+				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("S", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("S", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("S", Skills.VerticalStrike);
+				break;
+			}
+
+			switch (GameManager.instance.player2.skillDType) {
+			case Skills.ChainLightning:
+				ChangeKeyImage ("D", Skills.ChainLightning);
+				break;
+			case Skills.FirePillar:
+				ChangeKeyImage ("D", Skills.FirePillar);
+				break;
+			case Skills.IceSpike:
+				ChangeKeyImage ("D", Skills.IceSpike);
+				break;
+			case Skills.DrainHeal:
+				ChangeKeyImage ("D", Skills.DrainHeal);
+				break;
+			case Skills.AoeLightning:
+				ChangeKeyImage ("D", Skills.AoeLightning);
+				break;
+			case Skills.GroundSmash:
+				ChangeKeyImage ("D", Skills.GroundSmash);
+				break;
+			case Skills.VerticalStrike:
+				ChangeKeyImage ("D", Skills.VerticalStrike);
+				break;
 			}
 
 		}
+
+		RefreshSkillKeyIcons ();
+	}
+
+	// Use this for initialization
+	public override void Start () {
+		base.Start ();
+
+
 	}
 
 	// Update is called once per frame
@@ -219,6 +405,97 @@ public class KeyAssignPanel : MenuButton {
 			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = frontSlash.sprite;
 			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
 			break;
+		}
+
+		RefreshSkillKeyIcons ();
+
+	}
+
+	public void RefreshSkillKeyIcons() {
+
+		int noOfSkills = 0;
+
+		skill1.SetActive (false);
+		skill2.SetActive (false);
+		skill3.SetActive (false);
+		skill4.SetActive (false);
+		skill5.SetActive (false);
+
+		if (player == 1) {
+			if (GameManager.instance.player1.skillCType != Skills.None) {
+				noOfSkills++;
+				skill1.SetActive (true);
+				skill1.GetComponent<Image> ().sprite = transform.Find ("C").GetChild (0).GetComponent<Image> ().sprite;
+				skill1.transform.Find ("Text").GetComponent<Text> ().text = "C";
+			} if (GameManager.instance.player1.skillVType != Skills.None) {
+				noOfSkills++;
+				if (noOfSkills == 1) {
+					skill1.SetActive (true);
+					skill1.GetComponent<Image> ().sprite = transform.Find ("V").GetChild (0).GetComponent<Image> ().sprite;
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "V";
+				} else if (noOfSkills == 2) {
+					skill2.SetActive (true);
+					skill2.GetComponent<Image> ().sprite = transform.Find ("V").GetChild (0).GetComponent<Image> ().sprite;
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "V";
+				}
+			} if (GameManager.instance.player1.skillAType != Skills.None) {
+				noOfSkills++;
+				if (noOfSkills == 1) {
+					skill1.SetActive (true);
+					skill1.GetComponent<Image> ().sprite = transform.Find ("A").GetChild (0).GetComponent<Image> ().sprite;
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "A";
+				} else if (noOfSkills == 2) {
+					skill2.SetActive (true);
+					skill2.GetComponent<Image> ().sprite = transform.Find ("A").GetChild (0).GetComponent<Image> ().sprite;
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "A";
+				} else if (noOfSkills == 3) {
+					skill3.SetActive (true);
+					skill3.GetComponent<Image> ().sprite = transform.Find ("A").GetChild (0).GetComponent<Image> ().sprite;
+					skill3.transform.Find ("Text").GetComponent<Text> ().text = "A";
+				}
+			} if (GameManager.instance.player1.skillSType != Skills.None) {
+				noOfSkills++;
+				if (noOfSkills == 1) {
+					skill1.SetActive (true);
+					skill1.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "S";
+				} else if (noOfSkills == 2) {
+					skill2.SetActive (true);
+					skill2.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "S";
+				} else if (noOfSkills == 3) {
+					skill3.SetActive (true);
+					skill3.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
+					skill3.transform.Find ("Text").GetComponent<Text> ().text = "S";
+				} else if (noOfSkills == 4) {
+					skill4.SetActive (true);
+					skill4.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
+					skill4.transform.Find ("Text").GetComponent<Text> ().text = "S";
+				}
+			} if (GameManager.instance.player1.skillDType != Skills.None) {
+				noOfSkills++;
+				if (noOfSkills == 1) {
+					skill1.SetActive (true);
+					skill1.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "D";
+				} else if (noOfSkills == 2) {
+					skill2.SetActive (true);
+					skill2.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "D";
+				} else if (noOfSkills == 3) {
+					skill3.SetActive (true);
+					skill3.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
+					skill3.transform.Find ("Text").GetComponent<Text> ().text = "D";
+				} else if (noOfSkills == 4) {
+					skill4.SetActive (true);
+					skill4.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
+					skill4.transform.Find ("Text").GetComponent<Text> ().text = "D";
+				} else if (noOfSkills == 5) {
+					skill5.SetActive (true);
+					skill5.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
+					skill5.transform.Find ("Text").GetComponent<Text> ().text = "D";
+				}
+			}
 		}
 	}
 

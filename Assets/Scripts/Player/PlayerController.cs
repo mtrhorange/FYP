@@ -339,6 +339,7 @@ public class PlayerController : MonoBehaviour
 				if (CheckStamina (6f)) {
 					GetComponent<Player> ().Stamina -= 6f;
 					Attack(2);
+
 				} else {
 					Camera camera = FindObjectOfType<Camera> ();
 					Vector3 screenPos = camera.WorldToScreenPoint (transform.position);
@@ -409,8 +410,13 @@ public class PlayerController : MonoBehaviour
 				}
 			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
 				if (canCast) {
-					
-					CastAttack (1);
+					if (player.skillCType != Skills.VerticalStrike)
+						CastAttack (1);
+					else {
+						canAction = true;
+						Attack (4);
+						StartCoroutine (_LockCasting (0, 0.8f));
+					}
 					player.skillC ();
 					player.RecoverStamina(-player.skillCCost ());
 				} else {
@@ -1209,23 +1215,20 @@ public class PlayerController : MonoBehaviour
 				}
 				if(isGrounded)
 				{
-					if(attackSide != 3)
-					{
-						animator.SetTrigger("Attack" + (attackNumber + 1).ToString() + "Trigger");
-						if(leftWeapon == 12 || leftWeapon == 14 || rightWeapon == 13 || rightWeapon == 15)
-						{
-							StartCoroutine(_LockMovementAndAttack(0, .7f));
-						} 
-						else
-						{
-							StartCoroutine(_LockMovementAndAttack(0, .7f));
-							StartCoroutine(_AttackTrigger(0.1f, 0.6f));
+					if (attackSide != 3 && attackSide != 4) {
+						animator.SetTrigger ("Attack" + (attackNumber + 1).ToString () + "Trigger");
+						if (leftWeapon == 12 || leftWeapon == 14 || rightWeapon == 13 || rightWeapon == 15) {
+							StartCoroutine (_LockMovementAndAttack (0, .7f));
+						} else {
+							StartCoroutine (_LockMovementAndAttack (0, .7f));
+							StartCoroutine (_AttackTrigger (0.1f, 0.6f));
 						}
-					}
-					else
-					{
-						animator.SetTrigger("AttackDual" + (attackNumber + 1).ToString() + "Trigger");
-						StartCoroutine(_LockMovementAndAttack(0, .75f));
+					} else if (attackSide == 3) {
+						animator.SetTrigger ("AttackDual" + (attackNumber + 1).ToString () + "Trigger");
+						StartCoroutine (_LockMovementAndAttack (0, .75f));
+					} else if (attackSide == 4) {
+						animator.SetTrigger ("VerticalStrikeTrigger");
+						StartCoroutine (_LockMovementAndAttack (0, .7f));
 					}
 				}
 			}
@@ -1559,8 +1562,35 @@ public class PlayerController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(delayTime);
 		player.currentWeapon.AttackTrigger (1);
+
+		if (player.isMelee) {
+
+			int chance = 5 * player.skills.frontSlashLevel;
+			int noOfSlashes = 0;
+			while (chance > 100) {
+				chance -= 100;
+				noOfSlashes++;
+			}
+			int rand = Random.Range (0, 100);
+			rand++;
+			if (rand > (100 - chance))
+				noOfSlashes++;
+
+			for (int i = 0; i < noOfSlashes; i++) {
+				StartCoroutine (_CastFrontSlash (0f + 0.3f * i));
+			}
+		} else {
+
+
+		}
+
 		yield return new WaitForSeconds(triggerTime);
 		player.currentWeapon.AttackTrigger (0);
+	}
+
+	IEnumerator _CastFrontSlash(float delayTime) {
+		yield return new WaitForSeconds (delayTime);
+		player.CastFrontSlash ();
 	}
 
 	//for controller weapon switching

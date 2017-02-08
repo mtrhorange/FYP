@@ -191,6 +191,7 @@ MonoBehaviour:
   damage: 0
   player: {fileID: 0}
   Ice_blast: {fileID: 123008, guid: 18a756ff86a91b74983dfbb42d19ba08, type: 2}
+  iceSpike: {fileID: 1000011767157010, guid: d2144a4a7aea2224799bbf87520da568, type: 2}
   Speed: 0.3
   Lifespan: 0.5
 --- !u!135 &13573896

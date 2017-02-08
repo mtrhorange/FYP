@@ -18,7 +18,7 @@ public class Spell : MonoBehaviour {
 	
 	}
 
-	public float GetDamage() {
+	public virtual float GetDamage() {
 
 		float dmg = Random.Range (player.currentWeapon.damageMin, player.currentWeapon.damageMax);
 		dmg = dmg * (1f + 0.05f * player.skills.spellBuffLevel);

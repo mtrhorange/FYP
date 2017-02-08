@@ -3184,6 +3184,9 @@ MonoBehaviour:
     maxDmgLevel: 0
     weaponBuffLevel: 0
     spellBuffLevel: 0
+    defenseBuffLevel: 0
+    frontSlashLevel: 0
+    iceBoltSpikeLevel: 0
   player2Data:
     name: 
     saveId: 0
@@ -3218,6 +3221,9 @@ MonoBehaviour:
     maxDmgLevel: 0
     weaponBuffLevel: 0
     spellBuffLevel: 0
+    defenseBuffLevel: 0
+    frontSlashLevel: 0
+    iceBoltSpikeLevel: 0
   playerPrefab: {fileID: 1000010824984246, guid: f1ed895ce4700644a9e1879953099baa,
     type: 2}
   twoPlayers: 0
@@ -6617,7 +6623,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013762334216, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011647545220, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
@@ -15430,7 +15436,7 @@ Transform:
   m_Children:
   - {fileID: 1669773891}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &2060392938
 GameObject:
   m_ObjectHideFlags: 0

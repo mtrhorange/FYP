@@ -893,9 +893,9 @@ public class Player : MonoBehaviour {
 	#region AoeLightning
 	public void CastAoeLightning() {
 
-		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
-		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
-		spellGroundSmash.GetComponent<Spell> ().player = this;
+		GameObject spell = (GameObject)Resources.Load ("Skills/AoeLightning");
+		spell = (GameObject)Instantiate (spell, transform.position + transform.forward * 5f, Quaternion.identity);
+		spell.GetComponent<Spell> ().player = this;
 
 	}
 
@@ -908,7 +908,7 @@ public class Player : MonoBehaviour {
 
 	public float GetAoeLightningCost() {
 
-		float cost = 20f;
+		float cost = 10f;
 		return cost;
 	}
 	#endregion
@@ -940,9 +940,10 @@ public class Player : MonoBehaviour {
 
 	public void CastVerticalStrike() {
 
-		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
-		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
-		spellGroundSmash.GetComponent<Spell> ().player = this;
+		GameObject spell = (GameObject)Resources.Load ("Skills/VerticalStrike");
+		spell = (GameObject)Instantiate (spell, rightHand.transform.position, transform.rotation);
+		spell.transform.parent = rightHand.transform;
+		spell.GetComponent<Spell> ().player = this;
 
 	}
 
@@ -964,9 +965,9 @@ public class Player : MonoBehaviour {
 	#region FrontSlash
 	public void CastFrontSlash() {
 
-		GameObject spellGroundSmash = (GameObject)Resources.Load ("Skills/GroundSmash");
-		spellGroundSmash = (GameObject)Instantiate (spellGroundSmash, transform.position + transform.forward * 5f, Quaternion.identity);
-		spellGroundSmash.GetComponent<Spell> ().player = this;
+		GameObject spell = (GameObject)Resources.Load ("Skills/FrontSlash");
+		spell = (GameObject)Instantiate (spell, transform.position, transform.rotation * Quaternion.Euler(0,180,0));
+		spell.GetComponent<Spell> ().player = this;
 
 	}
 
@@ -1024,7 +1025,7 @@ public class Player : MonoBehaviour {
 		} else if (s == Skills.VerticalStrike) {
 			skillC = CastVerticalStrike;
 			skillCTime = GetVerticalStrikeTime;
-			skillCType = Skills.DrainHeal;
+			skillCType = Skills.VerticalStrike;
 			skillCCost = GetVerticalStrikeCost;
 		} else if (s == Skills.FrontSlash) {
 			skillC = CastFrontSlash;

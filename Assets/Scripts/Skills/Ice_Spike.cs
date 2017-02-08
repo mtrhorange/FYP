@@ -2,12 +2,14 @@
 using System.Collections;
 
 
-public class Ice_Spike : MonoBehaviour {
+public class Ice_Spike : Spell {
 
     // Use this for initialization
     public GameObject Ice_spike;
     private float Ice_spike_lifespan = 2f;
     private float lifespan = 3f;
+
+	float colliderLife = 0.2f;
 	void Start () {
 	
 	}
@@ -24,24 +26,38 @@ public class Ice_Spike : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+		colliderLife -= Time.deltaTime;
+		if (GetComponent<CapsuleCollider> ().enabled && colliderLife < 0)
+			GetComponent<CapsuleCollider> ().enabled = false;
+
+
     }
 
 	void OnTriggerEnter(Collider other) {
 
-        if (other.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
-        {
-			bool hit = true;
-			foreach (Enemy enemy in transform.parent.GetComponent<IceSpikeSpell>().enemiesHit) {
-				if (other.GetComponent<Enemy> () == enemy) {
+//        if (other.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
+//        {
+//			bool hit = true;
+//			foreach (Enemy enemy in transform.parent.GetComponent<IceSpikeSpell>().enemiesHit) {
+//				if (other.GetComponent<Enemy> () == enemy) {
+//
+//					hit = false;
+//
+//				}
+//			}
+//			if (hit == true) {
+//				transform.parent.GetComponent<IceSpikeSpell> ().EnemyHit (other.GetComponent<Enemy> ());
+//
+//			}
+//		}
 
-					hit = false;
+		if (other.GetComponent<Enemy> () && other.GetType () == typeof(CapsuleCollider)) {
 
-				}
-			}
-			if (hit == true) {
-				transform.parent.GetComponent<IceSpikeSpell> ().EnemyHit (other.GetComponent<Enemy> ());
+			float dmg = GetDamage ();
+			dmg *= 0.6f;
 
-			}
+			other.GetComponent<Enemy> ().ReceiveDamage (dmg, player);
+			Debug.Log ("SPike dealt: " + dmg);
 		}
 	}
 
