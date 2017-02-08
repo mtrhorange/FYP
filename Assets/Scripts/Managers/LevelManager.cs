@@ -31,8 +31,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void LoadMainMenu() {
-		GameManager.instance.Reset ();
 		SavePlayers ();
+		GameManager.instance.Reset ();
 		SceneManager.LoadScene ("MainMenu");
 
 	}

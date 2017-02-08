@@ -40,7 +40,7 @@ public class CatBat : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update ()
     {
         if (myState == States.Idle)
         {
@@ -54,6 +54,8 @@ public class CatBat : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -104,8 +106,11 @@ public class CatBat : Enemy {
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Fly", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -132,8 +137,11 @@ public class CatBat : Enemy {
             {
                 anim.SetBool("Fly", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Fly", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -152,7 +160,6 @@ public class CatBat : Enemy {
                 
             }
         }
-
 
         if (currentWayPoint >= path.vectorPath.Count)
         {

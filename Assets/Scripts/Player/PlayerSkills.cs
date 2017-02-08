@@ -13,7 +13,7 @@ public class PlayerSkills : MonoBehaviour {
 	public int aoeLightningLevel = 0;
 	public int groundSmashLevel = 0;
 	public int verticalStrikeLevel = 0;
-	public int frontSlashLevel = 0;
+
 
 	//Passives
 	public int maxHealthLevel = 0;
@@ -22,6 +22,8 @@ public class PlayerSkills : MonoBehaviour {
 	public int weaponBuffLevel = 0;
 	public int spellBuffLevel = 0;
 	public int defenseBuffLevel = 0;
+	public int frontSlashLevel = 0;
+	public int iceBoltSpikeLevel = 0;
 
 	Player player;
 	// Use this for initialization

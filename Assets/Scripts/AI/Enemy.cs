@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 {
     public float health, maxHealth;
     public GameObject damageText;
-
+    protected int numOfOrbs = 1;
     public float damage;
     public float expValue;
     //target position
@@ -83,13 +83,19 @@ public class Enemy : MonoBehaviour
         maxHealth = health;
         damage = CalculateDamage();
         expValue = CalculateExpReward();
+
         triggered = false;
     }
 
     //Update
-    void Update()
+    protected virtual void Update()
     {
-
+        if (myState == States.Dead)
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().freezeRotation = true;
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 
     //Idle state
@@ -131,6 +137,8 @@ public class Enemy : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         AIManager.instance.RemoveMe(this.gameObject);
+        //Drop health orbs
+        DropHealthOrbs();
         Destroy(this.gameObject, 5f);
     }
 
@@ -301,18 +309,22 @@ public class Enemy : MonoBehaviour
         if (myStrength == Strength.Weak)
         {
             baseExp = 3;
+            numOfOrbs = Random.Range(0, 2);
         }
         else if (myStrength == Strength.Medium)
         {
             baseExp = 5f;
+            numOfOrbs = Random.Range(1, 4);
         }
         else if (myStrength == Strength.Strong)
         {
             baseExp = 7;
+            numOfOrbs = Random.Range(3, 6);
         }
         else if (myStrength == Strength.Boss)
         {
             baseExp = 30;
+            numOfOrbs = Random.Range(6, 10);
         }
 
         //scale for 1 or 2 players
@@ -334,6 +346,24 @@ public class Enemy : MonoBehaviour
         {
             //attack player
             other.GetComponent<Player>().ReceiveDamage(damage);
+        }
+    }
+
+    //Drop Health Orbs
+    private void DropHealthOrbs()
+    {
+        if (numOfOrbs == 1)
+        {
+            Instantiate(Resources.Load("HealthOrb"), transform.position + transform.up, Quaternion.identity);
+        }
+        else if (numOfOrbs > 1)
+        {
+            for (int i = 0; i < numOfOrbs; i++)
+            {
+                float angle = i * Mathf.PI * 2 / numOfOrbs;
+                Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 1.8f;
+                Instantiate(Resources.Load("HealthOrb"), transform.position + transform.up + pos, Quaternion.identity);
+            }
         }
     }
 

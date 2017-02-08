@@ -7,6 +7,7 @@ public class LichSkullMissiles : MonoBehaviour {
     public GameObject chaseThis, skullExplode;
     public float lifeTime = 5f, speed = 500f, damage = 0;
     private GameObject explosion;
+    public float slerpMul = 1f;
     private bool exploded = false;
 
 	//Start
@@ -48,10 +49,12 @@ public class LichSkullMissiles : MonoBehaviour {
         {
             //slerp to face target
             Quaternion lookTgt = Quaternion.LookRotation(chaseThis.transform.position + chaseThis.transform.up - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookTgt, Time.deltaTime * 1.25f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookTgt, Time.deltaTime * slerpMul);
 
             //move forwards
             GetComponent<Rigidbody>().velocity = transform.forward * speed * Time.deltaTime;
+
+            slerpMul += Time.deltaTime * 0.45f;
 
             lifeTime -= Time.deltaTime;
         }

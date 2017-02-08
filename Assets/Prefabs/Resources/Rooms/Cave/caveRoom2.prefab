@@ -1592,7 +1592,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014245530652}
-  m_LocalRotation: {x: 0.7797582, y: 0.31765965, z: -0.16100967, w: 0.51492256}
+  m_LocalRotation: {x: 0.77975833, y: 0.31765968, z: -0.16100968, w: 0.5149226}
   m_LocalPosition: {x: -4.82, y: 2.34, z: 8.28}
   m_LocalScale: {x: 2.757481, y: 2.6005106, z: 2.7768555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4058,9 +4058,8 @@ MonoBehaviour:
   doors:
   - {fileID: 1000011953911526}
   Objects:
-  - {fileID: 1000013563735402, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
-  - {fileID: 1000012669139064, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
-  spawnedObjects: []
+  - {fileID: 1000011975278748, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
+  - {fileID: 1000013926436104, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
   trailActive: 0
 --- !u!114 &114000013258890492
 MonoBehaviour:

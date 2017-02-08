@@ -41,7 +41,7 @@ public class Hornet : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -55,6 +55,8 @@ public class Hornet : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -100,8 +102,10 @@ public class Hornet : Enemy {
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
                 anim.SetBool("Fly Forward", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -128,8 +132,11 @@ public class Hornet : Enemy {
             {
                 anim.SetBool("Fly Forward", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("Fly Forward", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -145,10 +152,8 @@ public class Hornet : Enemy {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
-                
             }
         }
-
 
         if (currentWayPoint >= path.vectorPath.Count)
         {

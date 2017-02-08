@@ -42,7 +42,7 @@ public class SlimeNew : Enemy {
 	}
 	
 	//Update
-	void Update ()
+	protected override void Update ()
     {
         if (myState == States.Idle)
         {
@@ -56,6 +56,8 @@ public class SlimeNew : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 
         jumpTimer -= Time.deltaTime;
     }
@@ -78,7 +80,6 @@ public class SlimeNew : Enemy {
         }
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             myState = States.Idle;
             return;
@@ -104,8 +105,11 @@ public class SlimeNew : Enemy {
             myState = States.Attack;
         }
         //continue chasing
-        else
+        else if (triggered || path.GetTotalLength() <= 40f)
         {
+            if (!triggered)
+                triggered = true;
+
             nextPathPoint =
                path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
 

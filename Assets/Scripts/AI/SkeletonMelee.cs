@@ -38,7 +38,7 @@ public class SkeletonMelee : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (myState == States.Idle)
         {
@@ -52,6 +52,8 @@ public class SkeletonMelee : Enemy
         {
             Attack();
         }
+
+        base.Update();
     }
 
     //Idle
@@ -98,8 +100,11 @@ public class SkeletonMelee : Enemy
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("move", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -126,8 +131,11 @@ public class SkeletonMelee : Enemy
             {
                 anim.SetBool("move", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("move", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -150,7 +158,6 @@ public class SkeletonMelee : Enemy
 
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             if ((player.transform.position - transform.position).magnitude >= 3f)
                 myState = States.Idle;

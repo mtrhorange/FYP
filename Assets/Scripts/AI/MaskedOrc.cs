@@ -39,7 +39,7 @@ public class MaskedOrc : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected override void Update () 
     {
         if (myState == States.Idle)
         {
@@ -53,6 +53,8 @@ public class MaskedOrc : Enemy {
         {
             Attack();
         }
+
+        base.Update();
 	}
 
     //Idle
@@ -98,8 +100,11 @@ public class MaskedOrc : Enemy {
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("RunWalk", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -126,8 +131,11 @@ public class MaskedOrc : Enemy {
             {
                 anim.SetBool("RunWalk",false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("RunWalk", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =

@@ -25,7 +25,7 @@ public class Tentacle : Enemy
     }
 
     //Update
-    void Update()
+    protected override void Update()
     {
 
         if (myState == States.Idle)
@@ -54,10 +54,16 @@ public class Tentacle : Enemy
     //Death override
     protected override void Death()
     {
+        myState = States.Dead;
         anim.SetTrigger("Die");
         GetComponent<BoxCollider>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        //reward exp
+        if (murderer != null)
+            RewardEXP();
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         Boss.TentacleDeath(this);
-        base.Death();
     }
 
     //Flinch override

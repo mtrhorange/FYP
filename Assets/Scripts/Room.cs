@@ -6,8 +6,6 @@ public class Room : MonoBehaviour
 {   
     public Transform spawnPoint1, spawnPoint2;
     public GameObject[] doors, Objects;
-    public List<GameObject> spawnedObjects;
-
     public bool trailActive = false;
     private float trailTimer = 0.5f;
 
@@ -17,22 +15,23 @@ public class Room : MonoBehaviour
         List<GameObject> spons = new List<GameObject>();
         spons.AddRange(GameObject.FindGameObjectsWithTag("ObjectSpawnPoint"));
 
-        spawnedObjects = new List<GameObject>();
-
-        //decide how many to spawn (1 - max number of spawn points)
-        int setOfObjects = Random.Range(1, spons.Count);
-
-        do
+        if (spons.Count > 0)
         {
-            //Spawn the object
-            GameObject spawnHere = spons[Random.Range(0, spons.Count)];
-            spons.Remove(spawnHere);
-            GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spawnHere.transform.position, Quaternion.identity);
-            obj.transform.SetParent(this.gameObject.transform, true);
-            spawnedObjects.Add(obj);
+            //decide how many to spawn (1 - max number of spawn points)
+            int setOfObjects = Random.Range(1, spons.Count);
+            int numSpawned = 0;
 
+            do
+            {
+                //Spawn the object
+                int spIndex = Random.Range(0, spons.Count);
+                GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spons[spIndex].transform.position + transform.up + transform.up, Quaternion.Euler(-90f, 0, 0));
+                obj.transform.SetParent(this.gameObject.transform, true);
+                spons.RemoveAt(spIndex);
+                numSpawned++;
+            }
+            while (numSpawned < setOfObjects);
         }
-        while (spawnedObjects.Count < setOfObjects);
 
         if (Floor.instance.currentTheme == Floor.Themes.Cave)
         {
@@ -78,18 +77,21 @@ public class Room : MonoBehaviour
 	}
 
     //destroy items
-    public void DestroyItems()
+    public void DestroyLingeringItems()
     {
         //destroy all spawned objects
-        for (int i = spawnedObjects.Count - 1; i >= 0; i--)
+        GameObject[] items = GameObject.FindGameObjectsWithTag("RoomObjects");
+
+        for (int i = items.Length - 1; i >= 0; i--)
         {
-            Destroy(spawnedObjects[i]);
-            Debug.Log("sadasf");
+            Destroy(items[i]);
+        }
+
+        //remove any remaining health orbs
+        HealthOrb[] HO = FindObjectsOfType<HealthOrb>();
+        for (int i = HO.Length - 1; i >= 0; i--)
+        {
+            Destroy(HO[i].gameObject);
         }
     }
-
-	public void SpawnAdjRooms() {
-		
-
-	}
 }

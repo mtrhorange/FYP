@@ -156,10 +156,18 @@ public class GameManager : MonoBehaviour {
 
 		pd.skillCType = p.skillCType;
 		pd.skillVType = p.skillVType;
+		pd.skillAType = p.skillAType;
+		pd.skillSType = p.skillSType;
+		pd.skillDType = p.skillDType;
+
 
 		pd.firePillarLevel = p.skills.firePillarLevel;
 		pd.iceSpikesLevel = p.skills.iceSpikesLevel;
 		pd.chainLightningLevel = p.skills.chainLightningLevel;
+		pd.drainHealLevel = p.skills.drainHealLevel;
+		pd.aoeLightningLevel = p.skills.aoeLightningLevel;
+		pd.groundSmashLevel = p.skills.groundSmashLevel;
+		pd.verticalStrikeLevel = p.skills.verticalStrikeLevel;
 
 		pd.maxHealthLevel = p.skills.maxHealthLevel;
 		pd.minDmgLevel = p.skills.minDmgLevel;

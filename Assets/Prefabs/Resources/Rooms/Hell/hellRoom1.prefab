@@ -2851,9 +2851,8 @@ MonoBehaviour:
   spawnPoint2: {fileID: 4000013894607108}
   doors:
   - {fileID: 1000011148112314}
-  Objects:
-  - {fileID: 1000013563735402, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
-  - {fileID: 1000012669139064, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
+  Objects: []
+  trailActive: 0
 --- !u!114 &114000012535977500
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1122,7 +1122,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000012796404558, guid: f1ed895ce4700644a9e1879953099baa, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f1ed895ce4700644a9e1879953099baa, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &245150338
@@ -3167,9 +3168,17 @@ MonoBehaviour:
     exp: 0
     skillCType: 0
     skillVType: 0
+    skillAType: 0
+    skillSType: 0
+    skillDType: 0
     firePillarLevel: 0
     iceSpikesLevel: 0
     chainLightningLevel: 0
+    drainHealLevel: 0
+    aoeLightningLevel: 0
+    groundSmashLevel: 0
+    verticalStrikeLevel: 0
+    frontSlashLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
@@ -3193,9 +3202,17 @@ MonoBehaviour:
     exp: 0
     skillCType: 0
     skillVType: 0
+    skillAType: 0
+    skillSType: 0
+    skillDType: 0
     firePillarLevel: 0
     iceSpikesLevel: 0
     chainLightningLevel: 0
+    drainHealLevel: 0
+    aoeLightningLevel: 0
+    groundSmashLevel: 0
+    verticalStrikeLevel: 0
+    frontSlashLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
@@ -5219,7 +5236,6 @@ GameObject:
   - 54: {fileID: 1001262512}
   - 136: {fileID: 1001262511}
   - 114: {fileID: 1001262517}
-  - 114: {fileID: 1001262516}
   - 114: {fileID: 1001262515}
   m_Layer: 11
   m_Name: PlayerPrefab
@@ -5335,58 +5351,8 @@ MonoBehaviour:
   leftHand: {fileID: 0}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  controller: {fileID: 0}
   skills: {fileID: 0}
---- !u!114 &1001262516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012796404558, guid: f1ed895ce4700644a9e1879953099baa,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1001262510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2242ce6c102b2b8448e4c31dae5f3915, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  sceneCamera: {fileID: 0}
-  waistRotationOffset: {x: 0, y: 0, z: 0}
-  gravity: -9.8
-  jumpSpeed: 12
-  doublejumpSpeed: 12
-  inAirSpeed: 8
-  rollSpeed: 10
-  rollduration: 0.5
-  walkSpeed: 1.35
-  runSpeed: 6
-  isCasting: 0
-  canCast: 0
-  isCharging: 0
-  knockbackMultiplier: 1
-  isSwimming: 0
-  inWaterSpeed: 8
-  twohandaxe: {fileID: 0}
-  twohandsword: {fileID: 0}
-  twohandspear: {fileID: 0}
-  twohandbow: {fileID: 0}
-  twohandcrossbow: {fileID: 0}
-  staff: {fileID: 0}
-  swordL: {fileID: 0}
-  swordR: {fileID: 0}
-  maceL: {fileID: 0}
-  maceR: {fileID: 0}
-  daggerL: {fileID: 0}
-  daggerR: {fileID: 0}
-  itemL: {fileID: 0}
-  itemR: {fileID: 0}
-  shield: {fileID: 0}
-  pistolL: {fileID: 0}
-  pistolR: {fileID: 0}
-  rifle: {fileID: 0}
-  firstWep: {fileID: 2129892346}
-  secondWep: {fileID: 0}
-  spellFirePillar: {fileID: 0}
-  spellTransmutationFire: {fileID: 0}
 --- !u!114 &1001262517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5406,13 +5372,14 @@ MonoBehaviour:
   aoeLightningLevel: 0
   groundSmashLevel: 0
   verticalStrikeLevel: 0
-  frontSlashLevel: 0
   maxHealthLevel: 0
   minDmgLevel: 0
   maxDmgLevel: 0
   weaponBuffLevel: 0
   spellBuffLevel: 0
   defenseBuffLevel: 0
+  frontSlashLevel: 0
+  iceBoltSpikeLevel: 0
 --- !u!1 &1011735487
 GameObject:
   m_ObjectHideFlags: 0

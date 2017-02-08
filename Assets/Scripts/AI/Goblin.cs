@@ -38,7 +38,7 @@ public class Goblin : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (myState == States.Idle)
         {
@@ -52,6 +52,8 @@ public class Goblin : Enemy
         {
             Attack();
         }
+
+        base.Update();
     }
 
     //Idle
@@ -73,7 +75,6 @@ public class Goblin : Enemy
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -95,8 +96,11 @@ public class Goblin : Enemy
                 attacking = true;
                 myState = States.Attack;
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("run", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -113,7 +117,6 @@ public class Goblin : Enemy
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                 rB.velocity = transform.forward * speed;
-
             }
 
         }
@@ -123,8 +126,11 @@ public class Goblin : Enemy
             {
                 anim.SetBool("run", false);
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 60f)
             {
+                if (!triggered)
+                    triggered = true;
+
                 anim.SetBool("run", true);
                 if (currentWayPoint < path.vectorPath.Count)
                     nextPathPoint =
@@ -144,10 +150,8 @@ public class Goblin : Enemy
             }
         }
 
-
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             if ((player.transform.position - transform.position).magnitude >= 3f)
                 myState = States.Idle;

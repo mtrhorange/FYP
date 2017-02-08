@@ -4207,8 +4207,8 @@ MonoBehaviour:
   doors:
   - {fileID: 1000010112915306}
   Objects:
-  - {fileID: 1000013563735402, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
-  - {fileID: 1000012669139064, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
+  - {fileID: 1000011975278748, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
+  - {fileID: 1000013926436104, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
   trailActive: 0
 --- !u!114 &114000010595600340
 MonoBehaviour:

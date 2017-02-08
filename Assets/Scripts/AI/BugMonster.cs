@@ -39,7 +39,7 @@ public class BugMonster : Enemy
     }
 
     //Update
-    void Update()
+    protected override void Update()
     {
         if (myState == States.Idle)
         {
@@ -53,6 +53,8 @@ public class BugMonster : Enemy
         {
             Attack();
         }
+
+        base.Update();
     }
 
     //Idle
@@ -73,7 +75,6 @@ public class BugMonster : Enemy
         //if no path yet
         if (path == null)
         {
-            Debug.Log("NO PATH");
             //No path to move to yet
             return;
         }
@@ -160,7 +161,6 @@ public class BugMonster : Enemy
      
         if (currentWayPoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Point Reached");
             //go back to idle
             myState = States.Idle;
             return;

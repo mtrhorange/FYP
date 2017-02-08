@@ -70,7 +70,7 @@ public class DragonBoss : Enemy
     }
 
     //Update
-    void Update()
+    protected override void Update()
     {
         //states
         if (myState == States.Idle)
@@ -85,6 +85,8 @@ public class DragonBoss : Enemy
         {
             Attack();
         }
+
+        base.Update();
 
         //flinch time window
         if (flinchTimer <= 0)

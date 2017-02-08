@@ -43,7 +43,10 @@ public class MenuButton : MonoBehaviour {
 	public virtual void Select() {
 		selected = true;
 
-		GameMenuManager.instance.selectedBtnP1 = this;
+		if (player == 1)
+			GameMenuManager.instance.selectedBtnP1 = this;
+		else
+			GameMenuManager.instance.selectedBtnP2 = this;
 	}
 
 	public virtual void Deselect() {
