@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
                 spawnPos, Quaternion.identity);
 
         player1 = playerModel.GetComponent<Player>();
-        UpdatePlayer1();
+		UpdatePlayer (player1, player1Data);
 
         playerModel.name = "Player1";
         playerModel.transform.Find("p1").gameObject.SetActive(true);
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour {
                 (GameObject)Instantiate(playerPrefab,
                     spawnPos2, Quaternion.identity);
             player2 = player2Model.GetComponent<Player>();
-            UpdatePlayer2();
+			UpdatePlayer (player2, player2Data);
 
             player2Model.name = "Player2";
             player2Model.transform.Find("p2").gameObject.SetActive(true);
@@ -174,6 +174,9 @@ public class GameManager : MonoBehaviour {
 		pd.maxDmgLevel = p.skills.maxDmgLevel;
 		pd.weaponBuffLevel = p.skills.weaponBuffLevel;
 		pd.spellBuffLevel = p.skills.spellBuffLevel;
+		pd.defenseBuffLevel = p.skills.defenseBuffLevel;
+		pd.frontSlashLevel = p.skills.frontSlashLevel;
+		pd.iceBoltSpikeLevel = p.skills.iceBoltSpikeLevel;
 
 		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
 			if (pd.saveId == SaveLoad.savedCharacters [i].saveId) {
@@ -203,16 +206,26 @@ public class GameManager : MonoBehaviour {
 
 		p.skillCType = pd.skillCType;
 		p.skillVType = pd.skillVType;
+		p.skillAType = pd.skillAType;
+		p.skillSType = pd.skillSType;
+		p.skillDType = pd.skillDType;
 
 		p.skills.firePillarLevel = pd.firePillarLevel;
 		p.skills.iceSpikesLevel = pd.iceSpikesLevel;
 		p.skills.chainLightningLevel = pd.chainLightningLevel;
+		p.skills.drainHealLevel = pd.drainHealLevel;
+		p.skills.aoeLightningLevel = pd.aoeLightningLevel;
+		p.skills.groundSmashLevel = pd.groundSmashLevel;
+		p.skills.verticalStrikeLevel = pd.verticalStrikeLevel;
 
 		p.skills.maxHealthLevel = pd.maxHealthLevel;
 		p.skills.minDmgLevel = pd.minDmgLevel;
 		p.skills.maxDmgLevel = pd.maxDmgLevel;
 		p.skills.weaponBuffLevel = pd.weaponBuffLevel;
 		p.skills.spellBuffLevel = pd.spellBuffLevel;
+		p.skills.defenseBuffLevel = pd.defenseBuffLevel;
+		p.skills.frontSlashLevel = pd.frontSlashLevel;
+		p.skills.iceBoltSpikeLevel = pd.iceBoltSpikeLevel;
 
 		if (p == player1)
 			p.playerNo = 1;

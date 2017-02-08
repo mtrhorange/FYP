@@ -3256,14 +3256,24 @@ MonoBehaviour:
     exp: 0
     skillCType: 0
     skillVType: 0
+    skillAType: 0
+    skillSType: 0
+    skillDType: 0
     firePillarLevel: 0
     iceSpikesLevel: 0
     chainLightningLevel: 0
+    drainHealLevel: 0
+    aoeLightningLevel: 0
+    groundSmashLevel: 0
+    verticalStrikeLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
     weaponBuffLevel: 0
     spellBuffLevel: 0
+    defenseBuffLevel: 0
+    frontSlashLevel: 0
+    iceBoltSpikeLevel: 0
   player2Data:
     name: 
     saveId: 0
@@ -3282,14 +3292,24 @@ MonoBehaviour:
     exp: 0
     skillCType: 0
     skillVType: 0
+    skillAType: 0
+    skillSType: 0
+    skillDType: 0
     firePillarLevel: 0
     iceSpikesLevel: 0
     chainLightningLevel: 0
+    drainHealLevel: 0
+    aoeLightningLevel: 0
+    groundSmashLevel: 0
+    verticalStrikeLevel: 0
     maxHealthLevel: 0
     minDmgLevel: 0
     maxDmgLevel: 0
     weaponBuffLevel: 0
     spellBuffLevel: 0
+    defenseBuffLevel: 0
+    frontSlashLevel: 0
+    iceBoltSpikeLevel: 0
   playerPrefab: {fileID: 1000010824984246, guid: f1ed895ce4700644a9e1879953099baa,
     type: 2}
   twoPlayers: 0
@@ -5391,6 +5411,7 @@ MonoBehaviour:
   leftHand: {fileID: 0}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  controller: {fileID: 0}
   skills: {fileID: 0}
 --- !u!114 &1001262516
 MonoBehaviour:
@@ -5413,11 +5434,13 @@ MonoBehaviour:
   inAirSpeed: 8
   rollSpeed: 10
   rollduration: 0.5
+  canMove: 1
   walkSpeed: 1.35
   runSpeed: 6
   isCasting: 0
   canCast: 0
   isCharging: 0
+  canAction: 1
   knockbackMultiplier: 1
   isSwimming: 0
   inWaterSpeed: 8
@@ -5462,13 +5485,14 @@ MonoBehaviour:
   aoeLightningLevel: 0
   groundSmashLevel: 0
   verticalStrikeLevel: 0
-  frontSlashLevel: 0
   maxHealthLevel: 0
   minDmgLevel: 0
   maxDmgLevel: 0
   weaponBuffLevel: 0
   spellBuffLevel: 0
   defenseBuffLevel: 0
+  frontSlashLevel: 0
+  iceBoltSpikeLevel: 0
 --- !u!1 &1011735487
 GameObject:
   m_ObjectHideFlags: 0
@@ -6695,7 +6719,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013762334216, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011647545220, guid: 2d4c3a4b82bce2544b834957efe49f95, type: 2}
@@ -15465,7 +15489,7 @@ Transform:
   m_Children:
   - {fileID: 1669773891}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &2060392938
 GameObject:
   m_ObjectHideFlags: 0

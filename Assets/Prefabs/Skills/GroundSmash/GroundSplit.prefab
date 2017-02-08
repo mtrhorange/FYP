@@ -554,8 +554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -596,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -680,8 +680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -741,8 +741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -762,8 +762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -795,8 +795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
@@ -816,8 +816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9f0b82b6ced6f4b8a9175bf4a451aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
-  Frequency: 1.2
+  Number: 5
+  Frequency: 1.1
   FixRotation: 0
   Normal: 0
   FXSpawn: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}

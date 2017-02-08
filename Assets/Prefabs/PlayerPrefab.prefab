@@ -1437,7 +1437,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824984246}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.09, y: 0, z: -15.85}
+  m_LocalPosition: {x: -7.0643444, y: 0.00000023841858, z: -2.3858867}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -2306,11 +2306,13 @@ MonoBehaviour:
   inAirSpeed: 8
   rollSpeed: 10
   rollduration: 0.5
+  canMove: 1
   walkSpeed: 1.35
   runSpeed: 6
   isCasting: 0
   canCast: 0
   isCharging: 0
+  canAction: 1
   knockbackMultiplier: 1
   isSwimming: 0
   inWaterSpeed: 8
@@ -2366,12 +2368,16 @@ MonoBehaviour:
   exp: 0
   skillCType: 0
   skillVType: 0
+  skillAType: 0
+  skillSType: 0
+  skillDType: 0
   currentWeapon: {fileID: 0}
   nextWeapon: {fileID: 0}
-  rightHand: {fileID: 0}
-  leftHand: {fileID: 0}
+  rightHand: {fileID: 1000011720079848}
+  leftHand: {fileID: 1000013972928318}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  controller: {fileID: 0}
   skills: {fileID: 0}
 --- !u!114 &114000014223036334
 MonoBehaviour:
@@ -2405,12 +2411,17 @@ MonoBehaviour:
   iceSpikesLevel: 1
   chainLightningLevel: 0
   drainHealLevel: 0
+  aoeLightningLevel: 0
+  groundSmashLevel: 0
+  verticalStrikeLevel: 0
   maxHealthLevel: 0
   minDmgLevel: 0
   maxDmgLevel: 0
   weaponBuffLevel: 0
   spellBuffLevel: 0
   defenseBuffLevel: 0
+  frontSlashLevel: 0
+  iceBoltSpikeLevel: 0
 --- !u!135 &135000012227128480
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2444,7 +2455,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.01
+  m_Radius: 0.1
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.25, z: 0}

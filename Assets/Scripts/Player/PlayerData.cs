@@ -34,7 +34,6 @@ public class PlayerData {
 	public int aoeLightningLevel = 0;
 	public int groundSmashLevel = 0;
 	public int verticalStrikeLevel = 0;
-	public int frontSlashLevel = 0;
 
 	//Passives
 	public int maxHealthLevel = 0;
@@ -42,6 +41,9 @@ public class PlayerData {
 	public int maxDmgLevel = 0;
 	public int weaponBuffLevel = 0;
 	public int spellBuffLevel = 0;
+	public int defenseBuffLevel = 0;
+	public int frontSlashLevel = 0;
+	public int iceBoltSpikeLevel = 0;
 
 	public PlayerData(string n, int sId) {
 

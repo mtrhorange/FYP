@@ -14,7 +14,6 @@ public class PlayerSkills : MonoBehaviour {
 	public int groundSmashLevel = 0;
 	public int verticalStrikeLevel = 0;
 
-
 	//Passives
 	public int maxHealthLevel = 0;
 	public int minDmgLevel = 0;

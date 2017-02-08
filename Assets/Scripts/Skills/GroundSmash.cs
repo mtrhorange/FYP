@@ -8,6 +8,9 @@ public class GroundSmash : Spell {
 	public GameObject Sword;
 	private bool SpawnedOnce = false;
 
+	public float colliderTimer = 1.0f;
+	bool collided = false;
+
 	void Start () {
 
 	}
@@ -22,5 +25,28 @@ public class GroundSmash : Spell {
 			Instantiate(Sword, this.transform.position , this.transform.rotation);
 			SpawnedOnce = true;
 		}
+
+		if (GetComponent<SphereCollider> ().enabled)
+			GetComponent<SphereCollider> ().enabled = false;
+
+		colliderTimer -= Time.deltaTime;
+		if (colliderTimer <= 0 && !collided) {
+			GetComponent<SphereCollider> ().enabled = true;
+			collided = true;
+
+
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+
+		if (other.GetComponent<Enemy> () && other.GetType () == typeof(CapsuleCollider)) {
+
+			float dmg = GetDamage ();
+			dmg *= 1.5f;
+			other.GetComponent<Enemy> ().ReceiveDamage (dmg, player);
+
+		}
+
 	}
 }
