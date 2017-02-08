@@ -12,7 +12,7 @@ public class SkillsBtn : MenuButton {
 
 	public Skills skill;
 	public GameObject panel;
-
+	public Image spellImage;
 
 	public override void Awake () {
 		btnType = ButtonTypes.Skill;
@@ -22,7 +22,7 @@ public class SkillsBtn : MenuButton {
 		//descTxt = descPanel.transform.GetChild (0).GetComponent<Text> ();
 		lvlTxt = transform.Find ("SkillLvl").GetComponent<Text> ();
 		//panel = transform.parent.gameObject;
-
+		GetComponent<Image>().sprite = spellImage.sprite;
 		base.Awake ();
 	}
 

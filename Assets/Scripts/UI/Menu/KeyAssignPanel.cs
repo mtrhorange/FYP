@@ -8,7 +8,7 @@ public class KeyAssignPanel : MenuButton {
 
 	public Skills assignSkill;
 
-	public Image firePillar, iceSpikes, chainLightning, drainHeal, aoeLightning, groundSmash, verticalStrike, frontSlash;
+	public Image firePillar, iceSpikes, chainLightning, drainHeal, aoeLightning, groundSmash, verticalStrike, spearBreaker, fireBall;
 
 	public GameObject skill1, skill2, skill3, skill4, skill5;
 
@@ -399,10 +399,6 @@ public class KeyAssignPanel : MenuButton {
 			break;
 		case Skills.VerticalStrike:
 			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = verticalStrike.sprite;
-			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
-			break;
-		case Skills.FrontSlash:
-			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = frontSlash.sprite;
 			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
 			break;
 		}

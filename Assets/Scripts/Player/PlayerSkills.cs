@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public enum Skills{ None, FirePillar, IceSpike, ChainLightning, DrainHeal, AoeLightning, GroundSmash, VerticalStrike, FrontSlash}
+public enum Skills{ None, FirePillar, IceSpike, ChainLightning, DrainHeal, AoeLightning, GroundSmash, VerticalStrike, SpearBreaker, FireBall}
+public enum Passives{ None, MaxHealth, MinDmg, MaxDmg, WeaponBuff, SpellBuff, DefenseBuff, FrontSlash, IceBoltSpike} 
 
 public class PlayerSkills : MonoBehaviour {
 
@@ -25,6 +27,9 @@ public class PlayerSkills : MonoBehaviour {
 	public int iceBoltSpikeLevel = 0;
 
 	Player player;
+
+
+
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Player> ();

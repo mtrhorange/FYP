@@ -1615,7 +1615,6 @@ GameObject:
   - 224: {fileID: 224000011204544936}
   - 222: {fileID: 222000013325142788}
   - 114: {fileID: 114000012283210972}
-  - 114: {fileID: 114000010829449630}
   - 114: {fileID: 114000011324747044}
   m_Layer: 5
   m_Name: ActiveSkill4
@@ -2565,7 +2564,6 @@ GameObject:
   - 224: {fileID: 224000013417644514}
   - 222: {fileID: 222000013063346660}
   - 114: {fileID: 114000010787747754}
-  - 114: {fileID: 114000013111373132}
   - 114: {fileID: 114000013371343622}
   m_Layer: 5
   m_Name: ActiveSkill1
@@ -3230,7 +3228,6 @@ GameObject:
   - 224: {fileID: 224000013465812828}
   - 222: {fileID: 222000013630198824}
   - 114: {fileID: 114000012760837222}
-  - 114: {fileID: 114000013571687704}
   - 114: {fileID: 114000011406179882}
   m_Layer: 5
   m_Name: ActiveSkill3
@@ -5560,7 +5557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013151483332
 GameObject:
   m_ObjectHideFlags: 1
@@ -5802,7 +5799,6 @@ GameObject:
   - 224: {fileID: 224000011067313718}
   - 222: {fileID: 222000010578890230}
   - 114: {fileID: 114000011061259320}
-  - 114: {fileID: 114000014110063790}
   - 114: {fileID: 114000010028312776}
   m_Layer: 5
   m_Name: ActiveSkill2
@@ -6530,7 +6526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013765996950
 GameObject:
   m_ObjectHideFlags: 1
@@ -9767,6 +9763,7 @@ MonoBehaviour:
   description: 
   skill: 3
   panel: {fileID: 1000011106967192}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010040303348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9847,6 +9844,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000010048883672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10085,6 +10083,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000010128515952}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010127278460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10513,6 +10512,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000012967546394}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010216580340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10572,6 +10572,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000010219694690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10733,6 +10734,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 5
+  passive: 0
 --- !u!114 &114000010270102910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11326,6 +11328,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000010406952490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11413,6 +11416,7 @@ MonoBehaviour:
   description: 
   skill: 5
   panel: {fileID: 1000012710273912}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010491239282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11586,6 +11590,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000010537158926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11699,6 +11704,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000010573455190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12038,6 +12044,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000012967546394}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010682122778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12265,6 +12272,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 4
+  passive: 0
 --- !u!114 &114000010749133420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12405,6 +12413,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000010777569314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12649,7 +12658,13 @@ MonoBehaviour:
   aoeLightning: {fileID: 114000012132491042}
   groundSmash: {fileID: 114000011951556680}
   verticalStrike: {fileID: 114000011754950046}
-  frontSlash: {fileID: 114000011533687564}
+  spearBreaker: {fileID: 0}
+  fireBall: {fileID: 0}
+  skill1: {fileID: 0}
+  skill2: {fileID: 0}
+  skill3: {fileID: 0}
+  skill4: {fileID: 0}
+  skill5: {fileID: 0}
 --- !u!114 &114000010812388156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12745,47 +12760,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000010829449630
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010873723366}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 114000012283210972}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000010835611324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13047,6 +13021,7 @@ MonoBehaviour:
   description: 
   skill: 2
   panel: {fileID: 1000014215817878}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010916506610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13115,6 +13090,7 @@ MonoBehaviour:
   description: 
   skill: 8
   panel: {fileID: 1000013786129046}
+  spellImage: {fileID: 0}
 --- !u!114 &114000010927896504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13377,6 +13353,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 2
+  passive: 0
 --- !u!114 &114000011011071190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13749,6 +13726,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 7
+  passive: 0
 --- !u!114 &114000011133986502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13820,6 +13798,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 3
+  passive: 0
 --- !u!114 &114000011154086232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13873,6 +13852,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011167428260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13926,6 +13906,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 8
+  passive: 0
 --- !u!114 &114000011179007710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14006,6 +13987,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 6
+  passive: 0
 --- !u!114 &114000011217788974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14245,6 +14227,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 2
+  passive: 0
 --- !u!114 &114000011279681354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14304,6 +14287,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011296669594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14536,6 +14520,7 @@ MonoBehaviour:
   description: 
   skill: 4
   panel: {fileID: 1000011106967192}
+  spellImage: {fileID: 0}
 --- !u!114 &114000011332002880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14611,6 +14596,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011343118160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14752,6 +14738,7 @@ MonoBehaviour:
   description: 
   skill: 2
   panel: {fileID: 1000011106967192}
+  spellImage: {fileID: 0}
 --- !u!114 &114000011419839172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15119,6 +15106,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000011484848172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15197,6 +15185,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011492761566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15310,6 +15299,7 @@ MonoBehaviour:
   selectionType: 2
   activeType: 0
   skill: 1
+  passive: 0
 --- !u!114 &114000011516273756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15445,6 +15435,7 @@ MonoBehaviour:
   selectionType: 1
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011528542604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15525,6 +15516,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 8
+  passive: 0
 --- !u!114 &114000011553371154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15925,6 +15917,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 5
+  passive: 0
 --- !u!114 &114000011657268386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16418,6 +16411,7 @@ MonoBehaviour:
   selectionType: 2
   activeType: 0
   skill: 1
+  passive: 0
 --- !u!114 &114000011808054174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16444,6 +16438,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 2
+  passive: 0
 --- !u!114 &114000011811302460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16539,6 +16534,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000010128515952}
+  spellImage: {fileID: 0}
 --- !u!114 &114000011825363036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16657,6 +16653,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000011836871486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16683,6 +16680,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 4
+  passive: 0
 --- !u!114 &114000011836994250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16949,6 +16947,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000011876925198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17041,6 +17040,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 2
+  passive: 0
 --- !u!114 &114000011885349100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17254,6 +17254,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011928012126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17280,6 +17281,7 @@ MonoBehaviour:
   selectionType: 1
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011943645786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17509,14 +17511,20 @@ MonoBehaviour:
   selectedImg: {fileID: 0}
   player: 1
   assignSkill: 0
-  firePillar: {fileID: 114000010787747754}
-  iceSpikes: {fileID: 114000012760837222}
-  chainLightning: {fileID: 114000011061259320}
-  drainHeal: {fileID: 114000012283210972}
-  aoeLightning: {fileID: 114000012802137894}
-  groundSmash: {fileID: 114000010750421794}
-  verticalStrike: {fileID: 114000011069468036}
-  frontSlash: {fileID: 114000012716495320}
+  firePillar: {fileID: 0}
+  iceSpikes: {fileID: 0}
+  chainLightning: {fileID: 0}
+  drainHeal: {fileID: 0}
+  aoeLightning: {fileID: 0}
+  groundSmash: {fileID: 0}
+  verticalStrike: {fileID: 0}
+  spearBreaker: {fileID: 0}
+  fireBall: {fileID: 0}
+  skill1: {fileID: 0}
+  skill2: {fileID: 0}
+  skill3: {fileID: 0}
+  skill4: {fileID: 0}
+  skill5: {fileID: 0}
 --- !u!114 &114000011989798622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17543,6 +17551,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000011996809802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17800,6 +17809,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000012093957114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17859,6 +17869,7 @@ MonoBehaviour:
   selectionType: 1
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012098029224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17886,6 +17897,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000010128515952}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012100316112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17913,6 +17925,7 @@ MonoBehaviour:
   description: 
   skill: 1
   panel: {fileID: 1000014215817878}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012105659940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17939,6 +17952,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012108654126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18172,6 +18186,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012149620608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18312,6 +18327,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 6
+  passive: 0
 --- !u!114 &114000012191282350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18668,6 +18684,7 @@ MonoBehaviour:
   description: 
   skill: 6
   panel: {fileID: 1000012710273912}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012296546184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18695,6 +18712,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000010128515952}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012309761432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18722,6 +18740,7 @@ MonoBehaviour:
   description: 
   skill: 4
   panel: {fileID: 1000014215817878}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012310870384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19009,6 +19028,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012409410472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19062,6 +19082,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 7
+  passive: 0
 --- !u!114 &114000012425029112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19171,6 +19192,7 @@ MonoBehaviour:
   description: 
   skill: 3
   panel: {fileID: 1000014215817878}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012456542444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19492,6 +19514,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 1
+  passive: 0
 --- !u!114 &114000012504791808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19605,6 +19628,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012549574144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19712,6 +19736,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012558445444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19858,6 +19883,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012574690836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19938,6 +19964,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012586368330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20296,6 +20323,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 4
+  passive: 0
 --- !u!114 &114000012693800524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20349,6 +20377,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012703614500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20543,6 +20572,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000012757979090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20855,6 +20885,7 @@ MonoBehaviour:
   description: 
   skill: 6
   panel: {fileID: 1000013786129046}
+  spellImage: {fileID: 0}
 --- !u!114 &114000012806521312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21034,6 +21065,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000012856457792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21060,6 +21092,7 @@ MonoBehaviour:
   selectionType: 2
   activeType: 0
   skill: 5
+  passive: 0
 --- !u!114 &114000012865360018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21135,6 +21168,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000012885233216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21492,6 +21526,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000013014086242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21605,6 +21640,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000013034186072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21698,6 +21734,7 @@ MonoBehaviour:
   description: 
   skill: 7
   panel: {fileID: 1000012710273912}
+  spellImage: {fileID: 0}
 --- !u!114 &114000013053752924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21860,6 +21897,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000012967546394}
+  spellImage: {fileID: 0}
 --- !u!114 &114000013080531810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21919,6 +21957,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000013092202468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22036,47 +22075,6 @@ MonoBehaviour:
   selectedImg: {fileID: 0}
   player: 1
   panel: {fileID: 1000012374001462}
---- !u!114 &114000013111373132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011417471046}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 114000010787747754}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000013117482748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22267,6 +22265,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 1
+  passive: 0
 --- !u!114 &114000013167078232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22387,6 +22386,7 @@ MonoBehaviour:
   description: 
   skill: 0
   panel: {fileID: 1000012967546394}
+  spellImage: {fileID: 0}
 --- !u!114 &114000013225473332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22492,6 +22492,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000013262749498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22853,6 +22854,7 @@ MonoBehaviour:
   selectionType: 1
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000013316127210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23158,6 +23160,7 @@ MonoBehaviour:
   description: 
   skill: 1
   panel: {fileID: 1000011106967192}
+  spellImage: {fileID: 0}
 --- !u!114 &114000013387416896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23211,6 +23214,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 3
+  passive: 0
 --- !u!114 &114000013425056102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23634,47 +23638,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Key assign
---- !u!114 &114000013571687704
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011759043238}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 114000012760837222}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000013573829708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23795,6 +23758,7 @@ MonoBehaviour:
   description: 
   skill: 5
   panel: {fileID: 1000013786129046}
+  spellImage: {fileID: 0}
 --- !u!114 &114000013591055160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23821,6 +23785,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 1
   skill: 0
+  passive: 0
 --- !u!114 &114000013601223872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23901,6 +23866,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 3
+  passive: 0
 --- !u!114 &114000013614132990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24121,6 +24087,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 6
+  passive: 0
 --- !u!114 &114000013663321346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24300,6 +24267,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 3
+  passive: 0
 --- !u!114 &114000013740779640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24326,6 +24294,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000013757950782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24493,6 +24462,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000013771088504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24699,6 +24669,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 4
+  passive: 0
 --- !u!114 &114000013851294056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24758,6 +24729,7 @@ MonoBehaviour:
   selectionType: 2
   activeType: 0
   skill: 5
+  passive: 0
 --- !u!114 &114000013863549452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25020,6 +24992,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000013923160134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25134,6 +25107,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 7
+  passive: 0
 --- !u!114 &114000013943166566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25188,6 +25162,7 @@ MonoBehaviour:
   description: 
   skill: 8
   panel: {fileID: 1000012710273912}
+  spellImage: {fileID: 0}
 --- !u!114 &114000013960662584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25675,6 +25650,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 0
+  passive: 0
 --- !u!114 &114000014069987316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25775,6 +25751,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 8
+  passive: 0
 --- !u!114 &114000014098655072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25843,47 +25820,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000014110063790
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013294953536}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 114000011061259320}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000014113347446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25943,6 +25879,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 8
+  passive: 0
 --- !u!114 &114000014138726308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26373,6 +26310,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 7
+  passive: 0
 --- !u!114 &114000014236535130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26486,6 +26424,7 @@ MonoBehaviour:
   selectionType: 0
   activeType: 0
   skill: 6
+  passive: 0
 --- !u!114 &114000014258017990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26513,6 +26452,7 @@ MonoBehaviour:
   description: 
   skill: 7
   panel: {fileID: 1000013786129046}
+  spellImage: {fileID: 0}
 --- !u!114 &114000014259458074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37204,7 +37144,7 @@ RectTransform:
   m_GameObject: {fileID: 1000010724427552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.913242, y: 0.913242, z: 1}
+  m_LocalScale: {x: 1.10875, y: 1.10875, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000011468795898}
