@@ -57,7 +57,6 @@ public class Ice_Spike : Spell {
 			dmg *= 0.6f;
 
 			other.GetComponent<Enemy> ().ReceiveDamage (dmg, player);
-			Debug.Log ("SPike dealt: " + dmg);
 		}
 	}
 

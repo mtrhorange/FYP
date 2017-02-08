@@ -33,7 +33,8 @@ public class GroundSmash : Spell {
 		if (colliderTimer <= 0 && !collided) {
 			GetComponent<SphereCollider> ().enabled = true;
 			collided = true;
-
+			Camera cam = FindObjectOfType<Camera> ();
+			cam.GetComponent<CameraShake> ().ShakeCamera (0.3f, 0.2f);
 
 		}
 	}

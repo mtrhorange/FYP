@@ -184,6 +184,9 @@ public class Player : MonoBehaviour {
 		case Skills.VerticalStrike:
 			SwapSkillC (Skills.VerticalStrike);
 			break;
+		case Skills.SpearBreaker:
+			SwapSkillC (Skills.SpearBreaker);
+			break;
 		}
 
 		switch (skillVType) {
@@ -207,6 +210,9 @@ public class Player : MonoBehaviour {
 			break;
 		case Skills.VerticalStrike:
 			SwapSkillV (Skills.VerticalStrike);
+			break;
+		case Skills.SpearBreaker:
+			SwapSkillV (Skills.SpearBreaker);
 			break;
 		}
 
@@ -232,6 +238,9 @@ public class Player : MonoBehaviour {
 		case Skills.VerticalStrike:
 			SwapSkillA (Skills.VerticalStrike);
 			break;
+		case Skills.SpearBreaker:
+			SwapSkillA (Skills.SpearBreaker);
+			break;
 		}
 
 		switch (skillSType) {
@@ -256,6 +265,9 @@ public class Player : MonoBehaviour {
 		case Skills.VerticalStrike:
 			SwapSkillS (Skills.VerticalStrike);
 			break;
+		case Skills.SpearBreaker:
+			SwapSkillS (Skills.SpearBreaker);
+			break;
 		}
 
 		switch (skillDType) {
@@ -279,6 +291,9 @@ public class Player : MonoBehaviour {
 			break;
 		case Skills.VerticalStrike:
 			SwapSkillD (Skills.VerticalStrike);
+			break;
+		case Skills.SpearBreaker:
+			SwapSkillD (Skills.SpearBreaker);
 			break;
 		}
 
@@ -982,6 +997,31 @@ public class Player : MonoBehaviour {
 	}
 	#endregion
 
+	#region SpearBreaker
+
+	public void CastSpearBreaker() {
+
+		GameObject spell = (GameObject)Resources.Load ("Skills/SpearBreaker");
+		spell = (GameObject)Instantiate (spell, transform.position + transform.forward * 5f, transform.rotation);
+		spell.GetComponent<Spell> ().player = this;
+
+	}
+
+	public float GetSpearBreakerTime() {
+
+		float time = 0.5f;
+		return time;
+
+	}
+
+	public float GetSpearBreakerCost() {
+
+		float cost = 15f;
+		return cost;
+	}
+
+	#endregion
+
 	#endregion
 
 	#region SwapSpells
@@ -1024,6 +1064,11 @@ public class Player : MonoBehaviour {
 			skillCTime = GetVerticalStrikeTime;
 			skillCType = Skills.VerticalStrike;
 			skillCCost = GetVerticalStrikeCost;
+		} else if (s == Skills.SpearBreaker) {
+			skillC = CastSpearBreaker;
+			skillCTime = GetSpearBreakerTime;
+			skillCType = Skills.SpearBreaker;
+			skillCCost = GetSpearBreakerCost;
 		}
 	}
 
@@ -1063,6 +1108,11 @@ public class Player : MonoBehaviour {
 			skillVTime = GetVerticalStrikeTime;
 			skillVType = Skills.VerticalStrike;
 			skillVCost = GetVerticalStrikeCost;
+		} else if (s == Skills.SpearBreaker) {
+			skillV = CastSpearBreaker;
+			skillVTime = GetSpearBreakerTime;
+			skillVType = Skills.SpearBreaker;
+			skillVCost = GetSpearBreakerCost;
 		}
 	}
 
@@ -1102,6 +1152,11 @@ public class Player : MonoBehaviour {
 			skillATime = GetVerticalStrikeTime;
 			skillAType = Skills.VerticalStrike;
 			skillACost = GetVerticalStrikeCost;
+		} else if (s == Skills.SpearBreaker) {
+			skillA = CastSpearBreaker;
+			skillATime = GetSpearBreakerTime;
+			skillAType = Skills.SpearBreaker;
+			skillACost = GetSpearBreakerCost;
 		}
 	}
 
@@ -1141,6 +1196,11 @@ public class Player : MonoBehaviour {
 			skillSTime = GetVerticalStrikeTime;
 			skillSType = Skills.VerticalStrike;
 			skillSCost = GetVerticalStrikeCost;
+		} else if (s == Skills.SpearBreaker) {
+			skillS = CastSpearBreaker;
+			skillSTime = GetSpearBreakerTime;
+			skillSType = Skills.SpearBreaker;
+			skillSCost = GetSpearBreakerCost;
 		}
 	}
 
@@ -1180,6 +1240,11 @@ public class Player : MonoBehaviour {
 			skillDTime = GetVerticalStrikeTime;
 			skillDType = Skills.VerticalStrike;
 			skillDCost = GetVerticalStrikeCost;
+		} else if (s == Skills.SpearBreaker) {
+			skillD = CastSpearBreaker;
+			skillDTime = GetSpearBreakerTime;
+			skillDType = Skills.SpearBreaker;
+			skillDCost = GetSpearBreakerCost;
 		}
 	}
 

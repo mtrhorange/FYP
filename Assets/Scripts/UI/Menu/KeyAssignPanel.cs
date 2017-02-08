@@ -38,6 +38,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("C", Skills.VerticalStrike);
 				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("C", Skills.SpearBreaker);
+				break;
 
 			}
 
@@ -63,6 +66,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("V", Skills.VerticalStrike);
 				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("V", Skills.SpearBreaker);
+				break;
 			}
 
 			switch (GameManager.instance.player1.skillAType) {
@@ -86,6 +92,9 @@ public class KeyAssignPanel : MenuButton {
 				break;
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("A", Skills.VerticalStrike);
+				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("A", Skills.SpearBreaker);
 				break;
 			}
 
@@ -111,6 +120,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("S", Skills.VerticalStrike);
 				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("S", Skills.SpearBreaker);
+				break;
 			}
 
 			switch (GameManager.instance.player1.skillDType) {
@@ -134,6 +146,9 @@ public class KeyAssignPanel : MenuButton {
 				break;
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("D", Skills.VerticalStrike);
+				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("D", Skills.SpearBreaker);
 				break;
 			}
 
@@ -162,6 +177,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("C", Skills.VerticalStrike);
 				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("C", Skills.SpearBreaker);
+				break;
 
 			}
 
@@ -187,6 +205,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("V", Skills.VerticalStrike);
 				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("V", Skills.SpearBreaker);
+				break;
 			}
 
 			switch (GameManager.instance.player2.skillAType) {
@@ -210,6 +231,9 @@ public class KeyAssignPanel : MenuButton {
 				break;
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("A", Skills.VerticalStrike);
+				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("A", Skills.SpearBreaker);
 				break;
 			}
 
@@ -235,6 +259,9 @@ public class KeyAssignPanel : MenuButton {
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("S", Skills.VerticalStrike);
 				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("S", Skills.SpearBreaker);
+				break;
 			}
 
 			switch (GameManager.instance.player2.skillDType) {
@@ -258,6 +285,9 @@ public class KeyAssignPanel : MenuButton {
 				break;
 			case Skills.VerticalStrike:
 				ChangeKeyImage ("D", Skills.VerticalStrike);
+				break;
+			case Skills.SpearBreaker:
+				ChangeKeyImage ("D", Skills.SpearBreaker);
 				break;
 			}
 
@@ -399,6 +429,10 @@ public class KeyAssignPanel : MenuButton {
 			break;
 		case Skills.VerticalStrike:
 			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = verticalStrike.sprite;
+			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
+			break;
+		case Skills.SpearBreaker:
+			transform.Find (key).GetChild (0).GetComponent<Image> ().sprite = spearBreaker.sprite;
 			transform.Find (key).GetChild (0).GetComponent<Image> ().color = Color.white;
 			break;
 		}

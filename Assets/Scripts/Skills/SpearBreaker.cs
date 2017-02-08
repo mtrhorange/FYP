@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PoleArm : MonoBehaviour {
+public class SpearBreaker : Spell {
 
 	// Use this for initialization
 	public GameObject Ice, Rocks, spawnPoint1, spawnPoint2;
-	public Camera maincam;
+	Camera maincam;
 	public float spawnTime = 0.05f;
 	public GameObject Aura1, Aura2, Smoke, End, Splatter, EndSmoke;
 
@@ -18,6 +18,8 @@ public class PoleArm : MonoBehaviour {
 	private bool spawned = false;
 	private int state; 
 	private float lifespan = 3;
+
+	float colliderSpan = 0.3f;
 	void Start () {
 		state = Random.Range (0, 3);// 0 = ice 1 = fire 2 = poison
 		maincam = FindObjectOfType<Camera>();
@@ -44,6 +46,13 @@ public class PoleArm : MonoBehaviour {
 		{
 			spawnend (state);
 			Destroy (this.gameObject);
+		}
+
+		if (GetComponent<BoxCollider> ().enabled) {
+			colliderSpan -= Time.deltaTime;
+			if (colliderSpan < 0)
+				GetComponent<BoxCollider> ().enabled = false;
+
 		}
 	}
 
@@ -83,6 +92,7 @@ public class PoleArm : MonoBehaviour {
 		maincam.GetComponent<CameraShake> ().ShakeCamera (0.4f, 0.7f);
 		spawned = true;
 
+		GetComponent<BoxCollider> ().enabled = true;
 
 	}
 
@@ -99,5 +109,17 @@ public class PoleArm : MonoBehaviour {
 		} else if (statecheck == 2) {
 			EndSmoke.GetComponent<ParticleSystem> ().startColor = poison;
 			Splatter.GetComponent<ParticleSystem> ().startColor = poison;*/
+	}
+
+	void OnTriggerEnter(Collider other) {
+
+		if (other.GetComponent<Enemy> () && other.GetType () == typeof(CapsuleCollider)) {
+
+			float dmg = GetDamage ();
+			dmg *= 2.5f;
+
+			other.GetComponent<Enemy> ().ReceiveDamage (dmg, player);
+		}
+
 	}
 }
