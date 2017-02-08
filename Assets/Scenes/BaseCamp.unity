@@ -3566,6 +3566,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000012235034980, guid: 46609fc89818cd14789d338ab8a01142,
     type: 2}
   m_PrefabInternal: {fileID: 169576210}
+--- !u!1 &169576212 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011188692618, guid: 46609fc89818cd14789d338ab8a01142,
+    type: 2}
+  m_PrefabInternal: {fileID: 169576210}
 --- !u!1 &171190253
 GameObject:
   m_ObjectHideFlags: 0
@@ -11297,6 +11302,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000013876900424, guid: 6fd56ee303280c044b22413cd8fc8c72,
     type: 2}
   m_PrefabInternal: {fileID: 1601462641}
+--- !u!1 &1601462643 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011682032952, guid: 6fd56ee303280c044b22413cd8fc8c72,
+    type: 2}
+  m_PrefabInternal: {fileID: 1601462641}
 --- !u!1 &1612079392
 GameObject:
   m_ObjectHideFlags: 0
@@ -11729,13 +11739,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1648721450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b42fec4a1e071c45be807259e37a4ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ee5fd8f6985644e87569ee1a162feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minIntensity: 5
   maxIntensity: 7.5
-  minRange: 40
-  maxRange: 60
+  minRange: 45
+  maxRange: 70
 --- !u!1001 &1664966679
 Prefab:
   m_ObjectHideFlags: 0
@@ -14321,12 +14331,12 @@ Prefab:
         type: 2}
       propertyPath: player1UI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 169576212}
     - target: {fileID: 114000011686535866, guid: 16082e71784b260429ecae34a51936e6,
         type: 2}
       propertyPath: player2UI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1601462643}
     - target: {fileID: 224000014139960608, guid: 16082e71784b260429ecae34a51936e6,
         type: 2}
       propertyPath: m_LocalScale.x
