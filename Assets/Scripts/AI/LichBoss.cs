@@ -367,6 +367,7 @@ public class LichBoss : Enemy
     //summon minions (anim event callback)
     private void Summon()
     {
+        SFXManager.instance.playSFX(sounds.shadeLong);
         //choose 2 out of the 3 undead themed monsters
         mobType Alpha = (mobType)Random.Range(3, 6);
         mobType Beta = (mobType)Random.Range(3, 6);

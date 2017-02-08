@@ -338,6 +338,7 @@ public class SkeletonRange : Enemy
     //attack event 1
     public void AttackEvent1()
     {
+        SFXManager.instance.playSFX(sounds.arrowShoot);
         //offset for the shot
         float offset;
         if (player.GetComponent<Rigidbody>().velocity != Vector3.zero)

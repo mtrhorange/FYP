@@ -247,6 +247,7 @@ public class TentacleBoss : Enemy {
     //attack event 1
     public void AttackEvent1()
     {
+        SFXManager.instance.playSFX(sounds.roar);
         float offset;
         //offset for the shot
         if (player.GetComponent<Rigidbody>().velocity != Vector3.zero)

@@ -201,7 +201,7 @@ public class Mushroom : Enemy {
 
         if(attacking == true)
         {
-            SFXManager.instance.playSFX(sounds.bite);
+            SFXManager.instance.playSFX(sounds.bite2);
         }
         Vector3 look = player.transform.position - transform.position;
 

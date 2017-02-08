@@ -157,16 +157,7 @@ public class BugMonster : Enemy
         Vector3 aimBot = (interceptPoint - transform.position);
         aimBot.y = 0;
         Debug.DrawRay(transform.position, aimBot.normalized * 15f, Color.magenta);
-
-
-
-
-        //debug the path length
-        Debug.Log(path.GetTotalLength());
-
-
-
-
+     
         if (currentWayPoint >= path.vectorPath.Count)
         {
             Debug.Log("End Point Reached");
@@ -312,7 +303,6 @@ public class BugMonster : Enemy
         if (!attacking)
         {
             attacking = true;
-            SFXManager.instance.playSFX(sounds.bite);
             anim.SetBool("Walk", false);
             anim.SetTrigger("Attack 01");
             rB.velocity = Vector3.zero;

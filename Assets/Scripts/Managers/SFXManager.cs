@@ -4,6 +4,7 @@ using System.Collections;
 public enum sounds
 {
     bite,
+    bite2,
     cloth,
     door,
     giant,
@@ -25,7 +26,10 @@ public enum sounds
     levelup,
     healing,
     dragonFire,
-    arrowShoot
+    arrowShoot,
+    roar,
+    click,
+    stomp
 
 }
 public class SFXManager : MonoBehaviour
@@ -75,8 +79,20 @@ public class SFXManager : MonoBehaviour
 
         switch (s)
         {
+            case sounds.click:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/click"));
+                break;
             case sounds.bite:
-                sfx.PlayOneShot((AudioClip) Resources.Load("Sound/bite"));
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/bite"));
+                break;
+            case sounds.stomp:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/stomp"));
+                break;
+            case sounds.roar:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/roar"));
+                break;
+            case sounds.bite2:
+                sfx.PlayOneShot((AudioClip)Resources.Load("Sound/bite2"));
                 break;
             case sounds.cloth:
                 sfx.PlayOneShot((AudioClip) Resources.Load("Sound/cloth"));

@@ -62,7 +62,8 @@ public class LichSkullMissiles : MonoBehaviour {
     {
         //if the contacted object is not an enemy or another skull, explode
         if (!exploded && !other.gameObject.GetComponent<Enemy>() && !other.gameObject.GetComponent<LichSkullMissiles>() && !other.gameObject.GetComponent<EnemyLeftBehinds>())
-        {
+
+            SFXManager.instance.playSFX(sounds.explosion);
             exploded = true;
             explosion = (GameObject)Instantiate(skullExplode, transform.position, Quaternion.Euler(-90, 0, 0));
             explosion.GetComponent<EnemyLeftBehinds>().dmg = damage;
@@ -72,4 +73,4 @@ public class LichSkullMissiles : MonoBehaviour {
             GetComponentInChildren<MeshRenderer>().enabled = false;
         }
     }
-}
+

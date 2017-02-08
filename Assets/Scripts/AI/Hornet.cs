@@ -215,7 +215,7 @@ public class Hornet : Enemy {
 
     public void triggerOn()
     {
-        SFXManager.instance.playSFX(sounds.bite);
+        SFXManager.instance.playSFX(sounds.bite2);
         rB.velocity = Vector3.zero;
         GetComponent<BoxCollider>().enabled = true;
     }

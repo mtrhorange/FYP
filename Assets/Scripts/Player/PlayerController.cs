@@ -1297,6 +1297,7 @@ public class PlayerController : MonoBehaviour
 
 	public IEnumerator _DirectionalRoll(float x, float v)
 	{
+        SFXManager.instance.playSFX(sounds.cloth);
 		//check which way the dash is pressed relative to the character facing
 		float angle = Vector3.Angle(targetDashDirection,-transform.forward);
 		float sign = Mathf.Sign(Vector3.Dot(transform.up,Vector3.Cross(targetDashDirection,transform.forward)));

@@ -73,4 +73,9 @@ public class MainMenu : MonoBehaviour {
         SFXManager.instance.setSFX(SFX.value);
         PlayerPrefs.SetFloat("SFX", SFX.value);
     }
+
+    public void playClickSound()
+    {
+        SFXManager.instance.playSFX(sounds.click);
+    }
 }
