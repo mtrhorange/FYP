@@ -603,7 +603,7 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine (_BlockBreak ());
 			}
             if (((Input.GetButtonDown("SwapWep") && player.playerNo == 1) ||
-				(weaponToggle && DPadYAxis() && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
+				(Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
             {
 
 				//player.SwapWeapon ();

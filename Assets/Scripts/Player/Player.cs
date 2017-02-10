@@ -779,33 +779,29 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		Transform closest = null;
+		Enemy strongest = null;
 
 		foreach (Enemy e in enemies) {
 
-			if (Vector3.Distance (transform.position, e.transform.position) < 9 && (closest == null ||
-				Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position)))
-				closest = e.transform;
+			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (strongest == null || e.damage > strongest.damage))
+				strongest = e.transform;
 
 		}
 
-		if (closest != null) {
-			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
-			GameObject lightning = (GameObject)Instantiate (spellLightning, transform.position, Quaternion.identity);
+		if (strongest != null) {
+			
+		} else {
 
-			SFXManager.instance.playSFX(sounds.lightning);
+			GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
+			GameObject spellFirePillar = (GameObject)Resources.Load ("Skills/FirePillar");
+			Instantiate (spellFireTransmutation, transform.position + transform.forward * 8f, Quaternion.identity);
+			GameObject firePillar = (GameObject)Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
+			firePillar.GetComponent<fire_pillar> ().player = this;
 
-			lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 3f;
-			lightning.GetComponent<ChainLightning> ().EndObject = closest;
-			lightning.GetComponent<ChainLightning> ().player = this;
 		}
 
 
-		GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
-		GameObject spellFirePillar = (GameObject)Resources.Load ("Skills/FirePillar");
-		Instantiate (spellFireTransmutation, transform.position + transform.forward * 8f, Quaternion.identity);
-		GameObject firePillar = (GameObject)Instantiate (spellFirePillar, transform.position + transform.forward * 8f, Quaternion.identity);
-		firePillar.GetComponent<fire_pillar> ().player = this;
+
 
 	}
 

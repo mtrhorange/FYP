@@ -6,7 +6,7 @@ public enum Skills{ None, FirePillar, IceSpike, ChainLightning, DrainHeal, AoeLi
 public enum Passives{ None, MaxHealth, MinDmg, MaxDmg, WeaponBuff, SpellBuff, DefenseBuff, FrontSlash, IceBoltSpike} 
 
 public class PlayerSkills : MonoBehaviour {
-
+	
 	//Spells
 	public int firePillarLevel = 0;
 	public int iceSpikesLevel = 0;
@@ -15,6 +15,7 @@ public class PlayerSkills : MonoBehaviour {
 	public int aoeLightningLevel = 0;
 	public int groundSmashLevel = 0;
 	public int verticalStrikeLevel = 0;
+	public int spearBreakerLevel = 0;
 
 	//Passives
 	public int maxHealthLevel = 0;
@@ -27,8 +28,6 @@ public class PlayerSkills : MonoBehaviour {
 	public int iceBoltSpikeLevel = 0;
 
 	Player player;
-
-
 
 	// Use this for initialization
 	void Start () {

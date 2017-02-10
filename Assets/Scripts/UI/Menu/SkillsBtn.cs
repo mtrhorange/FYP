@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+public enum ActiveType {Active, Passive}
+
+
 public class SkillsBtn : MenuButton {
 
 	public GameObject descPanel;
@@ -11,8 +14,10 @@ public class SkillsBtn : MenuButton {
 	public string description;
 
 	public Skills skill;
+	public Passives passive;
 	public GameObject panel;
 	public Image spellImage;
+	public ActiveType activeType;
 
 	public override void Awake () {
 		btnType = ButtonTypes.Skill;
@@ -86,39 +91,128 @@ public class SkillsBtn : MenuButton {
 
 	public void UpdateSkillLvl() {
 
-		switch (skill) {
+		if (activeType == ActiveType.Active) {
+			switch (skill) {
 
-		case Skills.FirePillar:
-			if (player == 1)
-				skillLvl = GameManager.instance.player1.skills.firePillarLevel;
-			else
-				skillLvl = GameManager.instance.player2.skills.firePillarLevel;
-			lvlTxt.text = "Lv." + skillLvl;
-			break;
-		case Skills.ChainLightning:
-			if (player == 1)
-				skillLvl = GameManager.instance.player1.skills.chainLightningLevel;
-			else
-				skillLvl = GameManager.instance.player2.skills.chainLightningLevel;
-			lvlTxt.text = "Lv." + skillLvl;
-			break;
-		case Skills.IceSpike:
-			if (player == 1)
-				skillLvl = GameManager.instance.player1.skills.iceSpikesLevel;
-			else
-				skillLvl = GameManager.instance.player2.skills.iceSpikesLevel;
-			lvlTxt.text = "Lv." + skillLvl;
-			break;
-		case Skills.DrainHeal:
-			if (player == 1)
-				skillLvl = GameManager.instance.player1.skills.drainHealLevel;
-			else
-				skillLvl = GameManager.instance.player2.skills.drainHealLevel;
-			lvlTxt.text = "Lv." + skillLvl;
-			break;
+			case Skills.FirePillar:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.firePillarLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.firePillarLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.ChainLightning:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.chainLightningLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.chainLightningLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.IceSpike:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.iceSpikesLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.iceSpikesLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.DrainHeal:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.drainHealLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.drainHealLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.AoeLightning:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.aoeLightningLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.aoeLightningLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.GroundSmash:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.groundSmashLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.groundSmashLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.VerticalStrike:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.verticalStrikeLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.verticalStrikeLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Skills.SpearBreaker:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.spearBreakerLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.spearBreakerLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			}
+		} else {
+			switch (passive) {
 
+			case Passives.DefenseBuff:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.defenseBuffLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.defenseBuffLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.FrontSlash:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.frontSlashLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.frontSlashLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.IceBoltSpike:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.iceBoltSpikeLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.iceBoltSpikeLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.MaxDmg:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.maxDmgLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.maxDmgLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.MaxHealth:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.maxHealthLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.maxHealthLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.MinDmg:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.minDmgLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.minDmgLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.SpellBuff:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.spellBuffLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.spellBuffLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			case Passives.WeaponBuff:
+				if (player == 1)
+					skillLvl = GameManager.instance.player1.skills.weaponBuffLevel;
+				else
+					skillLvl = GameManager.instance.player2.skills.weaponBuffLevel;
+				lvlTxt.text = "Lv." + skillLvl;
+				break;
+			}
+				
 		}
-
 
 	}
 

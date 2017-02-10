@@ -8,7 +8,6 @@ public class SkillSelection : MenuButton {
 	public GameObject keyAssignPanel;
 	public enum SelectionType {AddPoint, SkillInfo, KeyAssign}
 	public SelectionType selectionType;
-	public enum ActiveType {Active, Passive}
 	public ActiveType activeType;
 
 	public Skills skill;
@@ -38,7 +37,11 @@ public class SkillSelection : MenuButton {
 
 	// Use this for initialization
 	public override void Start () {
-		
+		activeType = transform.parent.parent.GetComponent<SkillsBtn> ().activeType;
+		skill = transform.parent.parent.GetComponent<SkillsBtn> ().skill;
+		passive = transform.parent.parent.GetComponent<SkillsBtn> ().passive;
+
+
 		base.Start ();
 	}
 
@@ -140,6 +143,12 @@ public class SkillSelection : MenuButton {
 					GameManager.instance.player1.skills.verticalStrikeLevel++;
 				else
 					GameManager.instance.player2.skills.verticalStrikeLevel++;
+				break;
+			case Skills.SpearBreaker:
+				if (player == 1)
+					GameManager.instance.player1.skills.spearBreakerLevel++;
+				else
+					GameManager.instance.player2.skills.spearBreakerLevel++;
 				break;
 			}
 		} else {
