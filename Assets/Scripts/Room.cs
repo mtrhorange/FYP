@@ -8,12 +8,18 @@ public class Room : MonoBehaviour
     public GameObject[] doors, Objects;
     public bool trailActive = false;
     private float trailTimer = 0.5f;
+    public List<GameObject> spawnedObjects;
 
     // Use this for initialization
     void Start () {
 		//to find all spawn point
         List<GameObject> spons = new List<GameObject>();
+
+        spawnedObjects = new List<GameObject>();
+
         spons.AddRange(GameObject.FindGameObjectsWithTag("ObjectSpawnPoint"));
+
+        GameObject[] hehehe = GameObject.FindGameObjectsWithTag("RoomObjects");
 
         if (spons.Count > 0)
         {
@@ -26,8 +32,9 @@ public class Room : MonoBehaviour
                 //Spawn the object
                 int spIndex = Random.Range(0, spons.Count);
                 GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spons[spIndex].transform.position + transform.up + transform.up, Quaternion.Euler(-90f, 0, 0));
-                obj.transform.SetParent(this.gameObject.transform, true);
+                obj.transform.SetParent(this.gameObject.transform);
                 spons.RemoveAt(spIndex);
+                spawnedObjects.Add(obj);
                 numSpawned++;
             }
             while (numSpawned < setOfObjects);
@@ -42,7 +49,13 @@ public class Room : MonoBehaviour
             GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.3f;
         }
 
-
+        foreach (GameObject gg in hehehe)
+        {
+            if (spawnedObjects.Contains(gg))
+            {
+                Destroy(gg);
+            }
+        }
     }
 	
 	// Update is called once per frame

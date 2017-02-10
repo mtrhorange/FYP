@@ -14,7 +14,14 @@ public class EnemyLeftBehinds : MonoBehaviour {
 	
 	//Update
 	void Update()
-    {	
+    {
+	    if (typ == EnemyProjectiles.type.WebShot)
+        {
+            if (GetComponent<ParticleSystem>().time / GetComponent<ParticleSystem>().duration >= 0.7f)
+            {
+                GetComponent<BoxCollider>().enabled = false;
+            }
+        }
 	}
 
     //Trigger Enter

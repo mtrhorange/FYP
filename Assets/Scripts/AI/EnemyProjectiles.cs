@@ -52,13 +52,12 @@ public class EnemyProjectiles : MonoBehaviour {
         //if has a target to explode at
         else if (target != Vector3.zero)
         {
-            Debug.Log((target - transform.position).magnitude <= 0.5f);
             //explode if close enough
             if ((target - transform.position).magnitude <= 0.5f)
             {
                 if (!leftBehinds)
                 {
-                    leftBehinds = (GameObject) Instantiate(stickyArea, transform.position, Quaternion.Euler(-90f, 0f, 0f));
+                    leftBehinds = (GameObject) Instantiate(stickyArea, transform.position, Quaternion.Euler(0f, 0f, 0f));
                     leftBehinds.GetComponent<EnemyLeftBehinds>().dmg = 0;
                     leftBehinds.GetComponent<EnemyLeftBehinds>().typ = projectileType;
                     GetComponent<SphereCollider>().enabled = false;
