@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonPool: {fileID: 0}
-  stickyArea: {fileID: 1000010944419598, guid: 0fe017b03b7f060418c201ec063de99b, type: 2}
+  stickyArea: {fileID: 1000012053554222, guid: d0bc8fcb00bc8c94f846589d6626d779, type: 2}
   projectileType: 1
   hasLifeSpan: 1
   timeOut: 12

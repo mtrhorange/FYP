@@ -175,7 +175,7 @@ public class Enemy : MonoBehaviour
             Camera camera = FindObjectOfType<Camera>();
             Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
             //offset
-            Vector3 offset = new Vector3(Random.Range(-20f, 20f), Random.Range(-10f, 20f), 0f);
+            Vector3 offset = new Vector3(Random.Range(-30f, 30f), Random.Range(-20f, 20f), 0f);
             GameObject txt = (GameObject)Instantiate(damageText, screenPos + offset, Quaternion.identity);
             txt.transform.SetParent(GameObject.Find("Canvas").transform);
             txt.GetComponent<UnityEngine.UI.Text>().text = dmg.ToString("F0");

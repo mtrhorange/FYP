@@ -33,7 +33,7 @@ public class AIManager : MonoBehaviour
 {
     //public instance
     public static AIManager instance;
-    public List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
+    private List<GameObject> mobPrefabs, weakGuys, medGuys, strongGuys, bossGuys;
     private List<GameObject> bossPrefabs;
     public int roomEnemyPoints; //total enemy points in current room
     public List<GameObject> enemyList;

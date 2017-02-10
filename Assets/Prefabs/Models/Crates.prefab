@@ -21,8 +21,6 @@ GameObject:
   - 4: {fileID: 4000014037960012}
   - 33: {fileID: 33000013908567518}
   - 23: {fileID: 23000012055665888}
-  - 54: {fileID: 54000011515996432}
-  - 65: {fileID: 65000011368103132}
   m_Layer: 0
   m_Name: Crates
   m_TagString: RoomObjects
@@ -80,30 +78,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013926436104}
   m_Mesh: {fileID: 4300000, guid: 6c5a394d186d6ed499341a34bf46a170, type: 3}
---- !u!54 &54000011515996432
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013926436104}
-  serializedVersion: 2
-  m_Mass: 4000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 48
-  m_CollisionDetection: 0
---- !u!65 &65000011368103132
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013926436104}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3128982, y: 2.2072048, z: 2.0352218}
-  m_Center: {x: -0.00000011920929, y: -0.000000059604645, z: -1.0587912e-22}

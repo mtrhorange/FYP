@@ -12,7 +12,7 @@ public class SpearBreaker : Spell {
 	private Color32 fire = new Color32 (130, 0, 0,255);
 	private Color32 ice = new Color32 (0, 153, 161,255);
 	private Color32 poison = new Color32 (3, 107, 0,255);
-	private Color32 iceaura = new Color32 (0, 55, 255, 255);
+	private Color32 iceaura = new Color32 (0, 110, 255, 200);
 	private Color32 poisonaura = new Color32( 4,180,78,255);
 	private GameObject rocks1, rocks2;
 	private bool spawned = false;
