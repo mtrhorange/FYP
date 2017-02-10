@@ -87,6 +87,8 @@ public class Player : MonoBehaviour {
 	float poisonTime = 0f;
 	float strongPoisonTime = 0f;
 
+	public GameObject fireEffect, poisonEffect, slowEffect;
+
 	#endregion
 
     #endregion
@@ -514,18 +516,20 @@ public class Player : MonoBehaviour {
 
 	public void ApplyBurn(float t) {
 		if (!isBurning && !isStrongBurning)
-			Invoke ("BurnDamage", 1.0f);
+			Invoke ("BurnDamage", 1f);
 
 		isBurning = true;
 		burnTime = t;
+		fireEffect.SetActive (true);
 	}
 
 	public void ApplyStrongBurn(float t) {
 		if (!isBurning && !isStrongBurning)
-			Invoke ("StrongBurnDamage", 1.0f);
+			Invoke ("StrongBurnDamage", 1f);
 
 		isStrongBurning = true;
 		strongBurnTime = t;
+		fireEffect.SetActive (true);
 	}
 
 	public void ApplySlow(float t) {
@@ -536,50 +540,56 @@ public class Player : MonoBehaviour {
 
 	public void ApplyPoison(float t) {
 		if (!isPoisoned && !isStrongPoisoned)
-			Invoke ("PoisonDamage", 1.0f);
+			Invoke ("PoisonDamage", 1f);
 
 
 		isPoisoned = true;
 		poisonTime = t;
+		poisonEffect.SetActive (true);
 	}
 
 	public void ApplyStrongPoison(float t) {
-
+		if (!isPoisoned && !isStrongPoisoned)
+			Invoke ("StrongPoisonDamage", 1f);
 
 		isStrongPoisoned = true;
-		isPoisoned = false;
 		poisonTime = t;
+		poisonEffect.SetActive (true);
 	}
 
 	void BurnDamage() {
-		StatusDamage (MaxHealth * 0.01f);
-		if (isStrongBurning)
+		int rand = Random.Range (2, 6);
+		StatusDamage (MaxHealth * 0.001f * rand);
+		if (isStrongBurning && strongBurnTime > 1f)
 			Invoke ("StrongBurnDamage", 1.0f);
-		else if (isBurning)
+		else if (isBurning && burnTime > 1f)
 			Invoke ("BurnDamage", 1.0f);
 	}
 
 	void StrongBurnDamage() {
-		StatusDamage (MaxHealth * 0.025f);
-		if (isStrongBurning)
+		int rand = Random.Range (8, 17);
+		StatusDamage (MaxHealth * 0.001f * rand);
+		if (isStrongBurning && strongBurnTime > 1f)
 			Invoke ("StrongBurnDamage", 1.0f);
-		else if (isBurning)
+		else if (isBurning && burnTime > 1f)
 			Invoke ("BurnDamage", 1.0f);
 	}
 
 	void PoisonDamage() {
-		StatusDamage (MaxHealth * 0.01f);
-		if (isStrongPoisoned)
+		int rand = Random.Range (2, 6);
+		StatusDamage (MaxHealth * 0.001f * rand);
+		if (isStrongPoisoned && strongPoisonTime > 1f)
 			Invoke ("StrongPoisonDamage", 1.0f);
-		else if (isPoisoned)
+		else if (isPoisoned && poisonTime > 1f)
 			Invoke ("PoisonDamage", 1.0f);
 	}
 
 	void StrongPoisonDamage() {
-		StatusDamage (MaxHealth * 0.025f);
-		if (isStrongPoisoned)
+		int rand = Random.Range (8, 16);
+		StatusDamage (MaxHealth * 0.001f * rand);
+		if (isStrongPoisoned && strongPoisonTime > 1f)
 			Invoke ("StrongPoisonDamage", 1.0f);
-		else if (isPoisoned)
+		else if (isPoisoned && poisonTime > 1f)
 			Invoke ("PoisonDamage", 1.0f);
 	}
 
@@ -632,6 +642,12 @@ public class Player : MonoBehaviour {
 				isPoisoned = false;
 			}
 		}
+
+		if (!isStrongBurning && !isBurning && fireEffect.activeSelf)
+			fireEffect.SetActive (false);
+
+		if (!isStrongPoisoned && !isPoisoned && poisonEffect.activeSelf)
+			poisonEffect.SetActive (false);
 
 	}
 
@@ -752,6 +768,39 @@ public class Player : MonoBehaviour {
 
 	#region FirePillar
 	public void CastFirePillar() {
+
+		Enemy[]	enemiesA = FindObjectsOfType<Enemy> ();
+		List<Enemy> enemies = new List<Enemy> ();
+		foreach (Enemy e in enemiesA) {
+
+			if (e.myState != Enemy.States.Dead && Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) < 60 ||
+				Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) > 300) {
+				enemies.Add (e);
+			}
+		}
+
+		Transform closest = null;
+
+		foreach (Enemy e in enemies) {
+
+			if (Vector3.Distance (transform.position, e.transform.position) < 9 && (closest == null ||
+				Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position)))
+				closest = e.transform;
+
+		}
+
+		if (closest != null) {
+			GameObject spellLightning = (GameObject)Resources.Load ("Skills/Lightning/ChainLightning");
+			GameObject lightning = (GameObject)Instantiate (spellLightning, transform.position, Quaternion.identity);
+
+			SFXManager.instance.playSFX(sounds.lightning);
+
+			lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 3f;
+			lightning.GetComponent<ChainLightning> ().EndObject = closest;
+			lightning.GetComponent<ChainLightning> ().player = this;
+		}
+
+
 		GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
 		GameObject spellFirePillar = (GameObject)Resources.Load ("Skills/FirePillar");
 		Instantiate (spellFireTransmutation, transform.position + transform.forward * 8f, Quaternion.identity);
@@ -790,7 +839,7 @@ public class Player : MonoBehaviour {
 
 		foreach (Enemy e in enemies) {
 
-			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
+			if (Vector3.Distance (transform.position, e.transform.position) < 9 && (closest == null ||
 			    Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position)))
 				closest = e.transform;
 
@@ -953,8 +1002,10 @@ public class Player : MonoBehaviour {
 	public void CastVerticalStrike() {
 
 		GameObject spell = (GameObject)Resources.Load ("Skills/VerticalStrike");
-		spell = (GameObject)Instantiate (spell, rightHand.transform.position, transform.rotation);
-		spell.transform.parent = rightHand.transform;
+		spell = (GameObject)Instantiate (spell, rightHand.transform.position, Quaternion.identity);
+		spell.transform.parent = rightHand.transform.Find ("WeaponSlot");
+		spell.transform.position = rightHand.transform.Find ("WeaponSlot").position;
+		spell.transform.rotation = rightHand.transform.Find ("WeaponSlot").rotation;
 		spell.GetComponent<Spell> ().player = this;
 
 	}

@@ -226,7 +226,7 @@ GameObject:
   - 114: {fileID: 114000013148362862}
   - 65: {fileID: 65000011498698694}
   m_Layer: 0
-  m_Name: Polearm
+  m_Name: SpearBreaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1718,7 +1718,6 @@ MonoBehaviour:
   Rocks: {fileID: 1000010524059114, guid: 01d2ccb76a1d80a469675008b4454e1c, type: 2}
   spawnPoint1: {fileID: 1000012263882604}
   spawnPoint2: {fileID: 1000010289765376}
-  maincam: {fileID: 0}
   spawnTime: -0.6471638
   Aura1: {fileID: 1000011460951268}
   Aura2: {fileID: 1000011389900916}

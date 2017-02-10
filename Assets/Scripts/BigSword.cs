@@ -19,6 +19,8 @@ public class BigSword : MonoBehaviour {
 		if (hitfloor <= 0 && !summononce) {
 			Destroy(Instantiate(GroundParticle, this.transform.position , this.transform.rotation), 2f);
 			summononce = true;
+			Camera cam = FindObjectOfType<Camera> ();
+			cam.GetComponent<CameraShake> ().ShakeCamera (0.3f, 0.2f);
 		}
 		if (destroy <= 0) {
 			Destroy (this.gameObject);
