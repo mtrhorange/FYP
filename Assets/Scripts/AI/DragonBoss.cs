@@ -8,7 +8,7 @@ public class DragonBoss : Enemy
     private Rigidbody rB;
     //timers
     private float pathUpdateTimer = 0.5f, breathTimer, stompTimer, summonTimer;
-    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 45f;
+    private float breathInterval = 13f, stompInterval = 6f, summonInterval = 40f;
     //attacking variables
     private bool attacking = false;
     public GameObject breath, fireBlast, summonEffect, HPBarPrefab;
@@ -311,9 +311,16 @@ public class DragonBoss : Enemy
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 1;
             pathUpdateTimer = 1f;
         }

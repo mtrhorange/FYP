@@ -83,7 +83,7 @@ public class BugMonster : Enemy
         if (attackTimer >= 0)
         {
             //5f away from player, move towards (R.I.P English)
-            if (path.GetTotalLength() > 5f && (path.GetTotalLength() <= 60f || triggered))
+            if (path.GetTotalLength() > 5f && (path.GetTotalLength() <= 45f || triggered))
             {
                 if (!triggered)
                     triggered = true;
@@ -132,7 +132,7 @@ public class BugMonster : Enemy
                 //else if cannot "see" player, delay the shot till next iteration and check again
                 else
                 {
-                    if (path.GetTotalLength() <= 60 || triggered)
+                    if (path.GetTotalLength() <= 45f || triggered)
                     {
                         if (!triggered)
                             triggered = true;
@@ -289,9 +289,16 @@ public class BugMonster : Enemy
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 1;
             pathUpdateTimer = 1f;
         }

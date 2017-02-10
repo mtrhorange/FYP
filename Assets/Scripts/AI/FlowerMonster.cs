@@ -81,7 +81,7 @@ public class FlowerMonster : Enemy {
         //if attackTimer is not over yet
         if (attackTimer >= 0)
         {
-            if (path.GetTotalLength() > 15f && (triggered || path.GetTotalLength() <= 60f))
+            if (path.GetTotalLength() > 15f && (triggered || path.GetTotalLength() <= 45f))
             {
                 if (!triggered)
                     triggered = true;
@@ -133,7 +133,7 @@ public class FlowerMonster : Enemy {
                     myState = States.Attack;
                 }
                 //else if cannot "see" player, delay the shot till next iteration and check again
-                else if (triggered || path.GetTotalLength() <= 60f)
+                else if (triggered || path.GetTotalLength() <= 45f)
                 {
                     if (!triggered)
                         triggered = true;
@@ -152,7 +152,10 @@ public class FlowerMonster : Enemy {
                     rB.velocity = transform.forward * speed;
                 }
             }
-
+            else
+            {
+                Debug.Log("NI XIAN ZAI ZAI NA LI");
+            }
         }
 
         //shot prediction debug ray
@@ -205,9 +208,16 @@ public class FlowerMonster : Enemy {
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }

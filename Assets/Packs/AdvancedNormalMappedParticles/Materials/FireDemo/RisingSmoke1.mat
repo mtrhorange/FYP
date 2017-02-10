@@ -260,7 +260,7 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _FixedAmbientColour
-      second: {r: 0.04873225, g: 0.053009026, b: 0.057, a: 0}
+      second: {r: 0.60294116, g: 0.60294116, b: 0.60294116, a: 0}
     - first:
         name: _ParticleColour
       second: {r: 1, g: 1, b: 1, a: 1}

@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorLevel: 1
-  roomsToBoss: 6
+  roomsToBoss: 3
   currentRoom: {fileID: 0}
   nextRoom: {fileID: 0}
   currentTheme: 3

@@ -96,7 +96,7 @@ public class Zombie : Enemy {
         {
             myState = States.Attack;
         }
-        else if (triggered || path.GetTotalLength() <= 60f)
+        else if (triggered || path.GetTotalLength() <= 45f)
         {
             if (!triggered)
                 triggered = true;
@@ -200,9 +200,16 @@ public class Zombie : Enemy {
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }

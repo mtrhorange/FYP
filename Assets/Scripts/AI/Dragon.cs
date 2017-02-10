@@ -97,7 +97,7 @@ public class Dragon : Enemy {
         //check distance,
         //fly, walk depending on distance
         //Start flying
-        if (triggered || path.GetTotalLength() <= 60f)
+        if (triggered || path.GetTotalLength() <= 45f)
         {
             if (!triggered)
                 triggered = true;
@@ -283,6 +283,7 @@ public class Dragon : Enemy {
             case "idle_stretch":
                 pathUpdateTimer = 0;
                 pathUpdate();
+                attackTimer = attackInterval;
                 myState = States.Chase;
                 break;
         }
@@ -305,9 +306,16 @@ public class Dragon : Enemy {
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 1;
             pathUpdateTimer = 1f;
         }

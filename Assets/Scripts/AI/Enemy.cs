@@ -174,12 +174,13 @@ public class Enemy : MonoBehaviour
             if (health < 0) { health = 0; }
             Camera camera = FindObjectOfType<Camera>();
             Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-            GameObject txt = (GameObject)Instantiate(damageText, screenPos, Quaternion.identity);
+            //offset
+            Vector3 offset = new Vector3(Random.Range(-20f, 20f), Random.Range(-10f, 20f), 0f);
+            GameObject txt = (GameObject)Instantiate(damageText, screenPos + offset, Quaternion.identity);
             txt.transform.SetParent(GameObject.Find("Canvas").transform);
             txt.GetComponent<UnityEngine.UI.Text>().text = dmg.ToString("F0");
+            txt.GetComponent<DamageText>().initialOffset = offset;
             txt.GetComponent<DamageText>().target = transform;
-            //txt.GetComponent<TextMesh>().text = dmg.ToString("F0");
-            //txt.transform.Rotate(55, 0, 0);
 
             if (health <= 0)
             {
