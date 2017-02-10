@@ -6,6 +6,7 @@ public class DamageText : MonoBehaviour {
 
 	float lifespan = 0.5f, scale = 1f;
 	float posOffset = 0f;
+    public Vector3 initialOffset;
 	public Transform target;
 	//TextMesh text;
 	Text text;
@@ -25,7 +26,7 @@ public class DamageText : MonoBehaviour {
 		if (target) {
 			Camera camera = FindObjectOfType<Camera>();
 			Vector3 screenPos = camera.WorldToScreenPoint(target.position);
-			transform.position = screenPos + new Vector3 (0, posOffset, 0);
+			transform.position = screenPos + initialOffset + new Vector3 (0, posOffset, 0);
 		}
 
         transform.localScale = new Vector3(scale, scale, scale);

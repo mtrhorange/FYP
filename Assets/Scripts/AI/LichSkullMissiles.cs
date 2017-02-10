@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LichSkullMissiles : MonoBehaviour {
+public class LichSkullMissiles : MonoBehaviour
+{
 
 
     public GameObject chaseThis, skullExplode;
@@ -10,14 +11,14 @@ public class LichSkullMissiles : MonoBehaviour {
     public float slerpMul = 1f;
     private bool exploded = false;
 
-	//Start
-	void Start ()
+    //Start
+    void Start()
     {
 
-	}
-	
-	//Update
-	void Update ()
+    }
+
+    //Update
+    void Update()
     {
         //explode once lifetime is over
         if (lifeTime <= 0f && !exploded)
@@ -58,14 +59,14 @@ public class LichSkullMissiles : MonoBehaviour {
 
             lifeTime -= Time.deltaTime;
         }
-	}
+    }
 
     //trigger enter
     void OnTriggerEnter(Collider other)
     {
         //if the contacted object is not an enemy or another skull, explode
         if (!exploded && !other.gameObject.GetComponent<Enemy>() && !other.gameObject.GetComponent<LichSkullMissiles>() && !other.gameObject.GetComponent<EnemyLeftBehinds>())
-
+        {
             SFXManager.instance.playSFX(sounds.explosion);
             exploded = true;
             explosion = (GameObject)Instantiate(skullExplode, transform.position, Quaternion.Euler(-90, 0, 0));
@@ -76,4 +77,4 @@ public class LichSkullMissiles : MonoBehaviour {
             GetComponentInChildren<MeshRenderer>().enabled = false;
         }
     }
-
+}

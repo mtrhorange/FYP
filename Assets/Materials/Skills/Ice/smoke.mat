@@ -8,9 +8,12 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: smoke
   m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _ALPHA_STYLE_FADE _AMBIENT_LIGHT_OFF _CAST_SHADOWS_OFF _DISTANCE_FADE_OFF
+    _EMISSIVE_NONE _LIGHT_COUNT_ONE _LIGHT_QUALITY_VERTEX_ONLY _LIGHT_STYLE_FIXED
+    _NON_SQUARE_UV_OFF _NORMAL_STYLE_VERTEX _SHADOWING_EFFECT_FIXED _SOFT_PARTICLE_HARD
+    _SPOTLIGHT_QUALITY_OFF
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -58,6 +61,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _NormalMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _OcclusionMap
       second:
         m_Texture: {fileID: 0}
@@ -69,10 +78,25 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ShadowDitherTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - first:
+        name: _Alpha_Style
+      second: 0
+    - first:
+        name: _Ambient_Light
+      second: 0
     - first:
         name: _BumpScale
       second: 1
+    - first:
+        name: _Cast_Shadows
+      second: 0
     - first:
         name: _Cutoff
       second: 0.5
@@ -80,14 +104,47 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
+        name: _DistanceFadeEnd
+      second: 1
+    - first:
+        name: _DistanceFadeRate
+      second: 1
+    - first:
+        name: _DistanceFadeStart
+      second: 1
+    - first:
+        name: _Distance_Fade
+      second: 0
+    - first:
         name: _DstBlend
+      second: 0
+    - first:
+        name: _Emissive
       second: 0
     - first:
         name: _Glossiness
       second: 0.5
     - first:
+        name: _HeightClippedFadeRate
+      second: 1
+    - first:
+        name: _HeightClippedOffset
+      second: 0
+    - first:
         name: _InvFade
       second: 1
+    - first:
+        name: _LightWrapAround
+      second: 0.1
+    - first:
+        name: _Light_Count
+      second: 0
+    - first:
+        name: _Light_Quality
+      second: 0
+    - first:
+        name: _Light_Style
+      second: 0
     - first:
         name: _Metallic
       second: 0
@@ -95,11 +152,35 @@ Material:
         name: _Mode
       second: 0
     - first:
+        name: _Non_Square_Uv
+      second: 0
+    - first:
+        name: _NormalBend
+      second: 1
+    - first:
+        name: _NormalSharpness
+      second: 1
+    - first:
+        name: _Normal_Style
+      second: 0
+    - first:
         name: _OcclusionStrength
       second: 1
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _ShadowEffectMultiplyer
+      second: 1
+    - first:
+        name: _Shadowing_Effect
+      second: 0
+    - first:
+        name: _Soft_Particle
+      second: 0
+    - first:
+        name: _Spotlight_Quality
+      second: 0
     - first:
         name: _SrcBlend
       second: 1
@@ -109,6 +190,12 @@ Material:
     - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _fShadowClip
+      second: 0.5
+    - first:
+        name: _fShadowMultiplyer
+      second: 0.5
     m_Colors:
     - first:
         name: _Color
@@ -117,5 +204,17 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
+        name: _FixedAmbientColour
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _ParticleColour
+      second: {r: 1, g: 0.21323532, b: 0.21323532, a: 1}
+    - first:
         name: _TintColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      second: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 0.5}
+    - first:
+        name: _UVRowsAndColumbs
+      second: {r: 1, g: 1, b: 0, a: 0}
+    - first:
+        name: _fNonSquareUVFactor
+      second: {r: 1, g: 1, b: 0, a: 0}

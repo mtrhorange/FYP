@@ -8,7 +8,7 @@ public class SkeletonRange : Enemy
     private Rigidbody rB;
     //timers
     public float attackInterval = 1f, pathUpdateTimer = 3f;
-    private float attackTimer;
+    public float attackTimer;
     //movement variables
     private Vector3 dir = Vector3.zero;
     private Animator anim;
@@ -83,7 +83,7 @@ public class SkeletonRange : Enemy
         if (attackTimer >= 0)
         {
             //5f away from player, move towards (R.I.P English)
-            if (path.GetTotalLength() > 12f && (triggered || path.GetTotalLength() <= 60f))
+            if (path.GetTotalLength() > 12f && (triggered || path.GetTotalLength() <= 45f))
             {
                 if (!triggered)
                     triggered = true;
@@ -120,11 +120,6 @@ public class SkeletonRange : Enemy
         //can shoot provided there is a direct LOS to player
         else
         {
-            Vector3 look = (player.transform.position - transform.position).normalized;
-            look.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(look);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4f);
-
             RaycastHit hit;
             Vector3 sight = (player.transform.position - transform.position);
             sight.y = transform.position.y;
@@ -135,7 +130,7 @@ public class SkeletonRange : Enemy
                     myState = States.Attack;
                 }
                 //else if cannot "see" player, delay the shot till next iteration and check again
-                else if (triggered || path.GetTotalLength() <= 60f)
+                else if (triggered || path.GetTotalLength() <= 45f)
                 {
                     if (!triggered)
                         triggered = true;
@@ -145,13 +140,14 @@ public class SkeletonRange : Enemy
 
                     dir = velocity;
 
-                    look = dir.normalized + AvoidObstacle();
+                    anim.SetBool("move", true);
+
+                    Vector3 look = dir.normalized + AvoidObstacle();
                     look.y = 0;
-                    targetRotation = Quaternion.LookRotation(look);
+                    Quaternion targetRotation = Quaternion.LookRotation(look);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
 
                     rB.velocity = transform.forward * speed;
-                    anim.SetBool("move", true);
                 }
             }
 
@@ -210,11 +206,11 @@ public class SkeletonRange : Enemy
         Vector3 destPos = path.vectorPath[currentWayPoint];
         RaycastHit Hit;
         //Check if there is obstacle
-        Vector3 right45 = (transform.forward + transform.right).normalized;
-        Vector3 left45 = (transform.forward - transform.right).normalized;
+        Vector3 right45 = (transform.forward + transform.right + transform.up).normalized;
+        Vector3 left45 = (transform.forward - transform.right + transform.up).normalized;
 
         //Shoot the rays!
-        if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             right45, out Hit, minDistance))
         {
 
@@ -227,7 +223,7 @@ public class SkeletonRange : Enemy
                 return transform.forward - transform.right;
         }
 
-        if (Physics.Raycast((transform.position),
+        if (Physics.Raycast((transform.position + transform.up),
             left45, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
@@ -240,8 +236,8 @@ public class SkeletonRange : Enemy
                 return transform.forward + transform.right;
         }
 
-        if (Physics.Raycast((transform.position),
-            transform.forward, out Hit, minDistance))
+        if (Physics.Raycast((transform.position + transform.up),
+            transform.forward + transform.up, out Hit, minDistance))
         {
             if (Hit.transform.GetComponent<Enemy>() && Hit.transform.GetComponent<Enemy>().myType != myType)
             {
@@ -254,14 +250,14 @@ public class SkeletonRange : Enemy
         }
 
         //right ray
-        if (Physics.Raycast((transform.position), transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
+        if (Physics.Raycast((transform.position + transform.up), (transform.right + transform.up).normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
             transform.position += (-transform.right).normalized * 0.05f;
 
         }
 
         //left ray
-        else if (Physics.Raycast((transform.position), -transform.right.normalized, out Hit, minDistance - 0.5f, 1 << 8))
+        else if (Physics.Raycast((transform.position + transform.up), (transform.up - transform.right).normalized, out Hit, minDistance - 0.5f, 1 << 8))
         {
             transform.position += (transform.right).normalized * 0.05f;
 
@@ -299,9 +295,16 @@ public class SkeletonRange : Enemy
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 1;
             pathUpdateTimer = 1f;
         }

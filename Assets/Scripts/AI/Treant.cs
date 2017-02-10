@@ -10,7 +10,7 @@ public class Treant : Enemy {
     //timers
     private float pathUpdateTimer = 3f;
     public float attackInterval = 3f;
-    private float summonInterval = 45f, summonTimer;
+    private float summonInterval = 35f, summonTimer;
 
     public float attackTimer;
     public GameObject shockwave, summonEffect, HPBarPrefab;
@@ -345,9 +345,16 @@ public class Treant : Enemy {
             //get target
             player = base.reacquireTgt(tgtStyle, this.gameObject);
             //chase target
-            target = player.transform.position;
-            //set a path to tgt position
-            seeker.StartPath(transform.position, target, OnPathComplete);
+            if (player != null)
+            {
+                target = player.transform.position;
+                //set a path to tgt position
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+            else
+            {
+                path = null;
+            }
             currentWayPoint = 2;
             pathUpdateTimer = 1f;
         }

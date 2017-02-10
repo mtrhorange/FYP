@@ -8,7 +8,7 @@ public class Floor : MonoBehaviour {
 	public static Floor instance;
 
 	public int floorLevel = 1;
-	public int roomsToBoss = 2;
+	public int roomsToBoss = 3;
 	public GameObject currentRoom, nextRoom;
     //room prefab lists
 	private List<GameObject> caveRooms, castleRooms, hellRooms;
@@ -260,7 +260,6 @@ public class Floor : MonoBehaviour {
 
         //decrement rooms to boss counter
         roomsToBoss--;
-        Debug.Log("Rooms to boss: " + roomsToBoss);
 		NewRoom();
 
         if (changeThemeBack)
@@ -276,8 +275,8 @@ public class Floor : MonoBehaviour {
     {
         //increment the floor counter
         floorLevel++;
-        //reset the number of rooms before boss room (6~8)
-        roomsToBoss = Random.Range((int)2, (int)4);
+        //reset the number of rooms before boss room (2~3)
+        roomsToBoss = Random.Range((int)3, (int)5);
         //spawn background
         SpawnBackground();
     }

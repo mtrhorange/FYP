@@ -50,16 +50,24 @@ public class DeadScript : MonoBehaviour {
             {
                 de.SetActive(true);
 
-                if (cover.color.a < 0f)
+                if (cover)
                 {
-                    Destroy(cover.gameObject);
-                }
-                else
-                {
-                    cover.color = new Color(0, 0, 0, cover.color.a - Time.deltaTime * 0.5f);
+                    if (cover.color.a < 0f)
+                    {
+                        Destroy(cover.gameObject);
+                    }
+                    else
+                    {
+                        cover.color = new Color(0, 0, 0, cover.color.a - Time.deltaTime * 0.5f);
+                    }
                 }
             }
         }
 
+    }
+
+    public void ReturnToTown()
+    {
+        LevelManager.instance.LoadGame();
     }
 }
