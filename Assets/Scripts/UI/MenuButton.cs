@@ -6,7 +6,7 @@ public class MenuButton : MonoBehaviour {
 
 	public MenuButton UpBtn, DownBtn, LeftBtn, RightBtn, SubmitBtn, CancelBtn;
 
-	public enum ButtonTypes {MainMenu, Tab, Panel, Skill, SkillSelection, KeyAssign}
+	public enum ButtonTypes {MainMenu, Tab, Panel, Skill, SkillSelection, KeyAssign, SkillDesc}
 	public ButtonTypes btnType;
 
 	public bool selected;

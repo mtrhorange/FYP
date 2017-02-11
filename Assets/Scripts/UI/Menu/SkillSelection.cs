@@ -82,6 +82,9 @@ public class SkillSelection : MenuButton {
 			AddSkillPoint ();
 
 
+		} else if (selectionType == SelectionType.SkillInfo) {
+
+
 		}
 
 
