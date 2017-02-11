@@ -2424,7 +2424,7 @@ MonoBehaviour:
   myType: 15
   attackInterval: 6
   breath: {fileID: 1000010221320128}
-  walkSpeed: 2.8
+  walkSpeed: 2.2
 --- !u!114 &114000012131368700
 MonoBehaviour:
   m_ObjectHideFlags: 1

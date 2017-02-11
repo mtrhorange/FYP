@@ -36,6 +36,8 @@ public class BugMonster : Enemy
         //targetting style
         tgtStyle = targetStyle.ClosestPlayer;
         player = base.reacquireTgt(tgtStyle, this.gameObject);
+
+        AIManager.instance.bugCount++;
     }
 
     //Update
@@ -368,6 +370,7 @@ public class BugMonster : Enemy
     protected override void Death()
     {
         anim.SetTrigger("Die");
+        AIManager.instance.bugCount--;
         base.Death();
     }
 
