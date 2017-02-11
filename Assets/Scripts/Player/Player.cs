@@ -784,12 +784,16 @@ public class Player : MonoBehaviour {
 		foreach (Enemy e in enemies) {
 
 			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (strongest == null || e.damage > strongest.damage))
-				strongest = e.transform;
+				strongest = e;
 
 		}
 
 		if (strongest != null) {
-			
+			GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
+			GameObject spellFirePillar = (GameObject)Resources.Load ("Skills/FirePillar");
+			Instantiate (spellFireTransmutation, strongest.transform.position, Quaternion.identity);
+			GameObject firePillar = (GameObject)Instantiate (spellFirePillar,strongest.transform.position, Quaternion.identity);
+			firePillar.GetComponent<fire_pillar> ().player = this;
 		} else {
 
 			GameObject spellFireTransmutation = (GameObject)Resources.Load ("Skills/TransmutationFire");
@@ -1048,9 +1052,34 @@ public class Player : MonoBehaviour {
 
 	public void CastSpearBreaker() {
 
-		GameObject spell = (GameObject)Resources.Load ("Skills/SpearBreaker");
-		spell = (GameObject)Instantiate (spell, transform.position + transform.forward * 5f, transform.rotation);
-		spell.GetComponent<Spell> ().player = this;
+		Enemy[]	enemiesA = FindObjectsOfType<Enemy> ();
+		List<Enemy> enemies = new List<Enemy> ();
+		foreach (Enemy e in enemiesA) {
+
+			if (e.myState != Enemy.States.Dead && Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) < 60 ||
+				Vector3.Angle (transform.forward, (e.transform.position - transform.position).normalized) > 300) {
+				enemies.Add (e);
+			}
+		}
+
+		Enemy strongest = null;
+
+		foreach (Enemy e in enemies) {
+
+			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (strongest == null || e.damage > strongest.damage))
+				strongest = e;
+
+		}
+
+		if (strongest != null) {
+			GameObject spell = (GameObject)Resources.Load ("Skills/SpearBreaker");
+			spell = (GameObject)Instantiate (spell, strongest.transform.position, transform.rotation);
+			spell.GetComponent<Spell> ().player = this;
+		} else {
+			GameObject spell = (GameObject)Resources.Load ("Skills/SpearBreaker");
+			spell = (GameObject)Instantiate (spell, transform.position + transform.forward * 5f, transform.rotation);
+			spell.GetComponent<Spell> ().player = this;
+		}
 
 	}
 
