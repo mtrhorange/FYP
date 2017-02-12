@@ -34,6 +34,8 @@ public class fire_pillar : Spell {
         if (other.transform.GetComponent<Enemy>() && other.GetType() == typeof(CapsuleCollider))
         {
 			GetDamage ();
+			int lvl = player.skills.firePillarLevel;
+			damage *=
 			other.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 		}
 

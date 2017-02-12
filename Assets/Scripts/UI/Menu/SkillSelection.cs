@@ -6,6 +6,7 @@ public class SkillSelection : MenuButton {
 
 	public GameObject selectionPanel;
 	public GameObject keyAssignPanel;
+	public GameObject skillInfoPanel;
 	public enum SelectionType {AddPoint, SkillInfo, KeyAssign}
 	public SelectionType selectionType;
 	public ActiveType activeType;
@@ -81,10 +82,15 @@ public class SkillSelection : MenuButton {
 			Cancel ();
 			AddSkillPoint ();
 
-
 		} else if (selectionType == SelectionType.SkillInfo) {
 
-
+			SubmitBtn.Select ();
+			SubmitBtn.CancelBtn = this;
+			selected = false;
+			SelectionInactive ();
+			skillInfoPanel.GetComponent<SkillDescPanel> ().type = activeType;
+			skillInfoPanel.GetComponent<SkillDescPanel> ().passive = passive;
+			skillInfoPanel.GetComponent<SkillDescPanel> ().skill = skill;
 		}
 
 
