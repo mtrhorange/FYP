@@ -123,7 +123,7 @@ public class BugMonster : Enemy
         else
         {
             RaycastHit hit;
-            Vector3 sight = (player.transform.position - transform.position);
+            Vector3 sight = ((player.transform.position + player.transform.up) - transform.position);
             sight.y = transform.position.y;
             if (Physics.Raycast(transform.position, sight.normalized, out hit))
             {

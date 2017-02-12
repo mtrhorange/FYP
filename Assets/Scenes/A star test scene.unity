@@ -731,6 +731,7 @@ MonoBehaviour:
     points: 0
     recoverStamina: 0
     isPermaDead: 0
+    isDead: 0
     level: 0
     exp: 0
     skillCType: 0
@@ -768,6 +769,7 @@ MonoBehaviour:
     points: 0
     recoverStamina: 0
     isPermaDead: 0
+    isDead: 0
     level: 0
     exp: 0
     skillCType: 0

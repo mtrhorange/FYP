@@ -126,7 +126,7 @@ public class FlowerMonster : Enemy {
         {
             RaycastHit hit;
             Vector3 sight = (player.transform.position - transform.position);
-            if (Physics.Raycast(transform.position + transform.up, sight.normalized, out hit))
+            if (Physics.Raycast(transform.position + transform.up, sight.normalized, out hit, 30))
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
@@ -152,10 +152,25 @@ public class FlowerMonster : Enemy {
                     rB.velocity = transform.forward * speed;
                 }
             }
-            else
+            else if (triggered || path.GetTotalLength() <= 45f)
             {
-                Debug.Log("NI XIAN ZAI ZAI NA LI");
+                if (!triggered)
+                    triggered = true;
+
+                nextPathPoint =
+            path.vectorPath[currentWayPoint + 1 >= path.vectorPath.Count ? currentWayPoint : currentWayPoint + 1];
+
+                dir = velocity;
+
+                //look & move
+                Vector3 look = dir.normalized + AvoidObstacle();
+                look.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(look);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
+
+                rB.velocity = transform.forward * speed;
             }
+
         }
 
         //shot prediction debug ray
