@@ -445,50 +445,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000013574415240, guid: 868e0add07f1321448fd05e76b8b54a4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013438228862, guid: 868e0add07f1321448fd05e76b8b54a4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013331778092, guid: 868e0add07f1321448fd05e76b8b54a4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 868e0add07f1321448fd05e76b8b54a4, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &609242785 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013536908460, guid: 868e0add07f1321448fd05e76b8b54a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 609242784}
---- !u!114 &609242786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 609242785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54a243bc7ef3764089d35233f857d5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpBtn: {fileID: 0}
-  DownBtn: {fileID: 0}
-  LeftBtn: {fileID: 0}
-  RightBtn: {fileID: 0}
-  SubmitBtn: {fileID: 0}
-  CancelBtn: {fileID: 0}
-  btnType: 0
-  selected: 0
-  selectedImg: {fileID: 0}
-  player: 1
-  skill: 0
-  passive: 0
-  type: 0
 --- !u!1 &1999943620
 GameObject:
   m_ObjectHideFlags: 0

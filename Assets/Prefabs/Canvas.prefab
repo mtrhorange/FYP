@@ -8800,6 +8800,7 @@ GameObject:
   - 114: {fileID: 114000013068876144}
   - 95: {fileID: 95000012216896274}
   - 114: {fileID: 114000011382911560}
+  - 114: {fileID: 114000012792328658}
   m_Layer: 5
   m_Name: SkillDescriptionPanel
   m_TagString: Untagged
@@ -13867,7 +13868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpBtn: {fileID: 114000011557411586}
   DownBtn: {fileID: 0}
-  LeftBtn: {fileID: 0}
+  LeftBtn: {fileID: 114000014135617548}
   RightBtn: {fileID: 114000011474928032}
   SubmitBtn: {fileID: 114000011743047166}
   CancelBtn: {fileID: 114000013354852238}
@@ -14600,7 +14601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpBtn: {fileID: 0}
   DownBtn: {fileID: 114000011498422552}
-  LeftBtn: {fileID: 0}
+  LeftBtn: {fileID: 114000010416407920}
   RightBtn: {fileID: 114000011945174494}
   SubmitBtn: {fileID: 114000011331158864}
   CancelBtn: {fileID: 114000014156000320}
@@ -15386,7 +15387,7 @@ MonoBehaviour:
   UpBtn: {fileID: 0}
   DownBtn: {fileID: 114000011358609718}
   LeftBtn: {fileID: 114000012556550794}
-  RightBtn: {fileID: 0}
+  RightBtn: {fileID: 114000010286115726}
   SubmitBtn: {fileID: 114000012447279084}
   CancelBtn: {fileID: 114000014156000320}
   btnType: 0
@@ -20072,7 +20073,7 @@ MonoBehaviour:
   UpBtn: {fileID: 114000010416407920}
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 114000013835529640}
-  RightBtn: {fileID: 0}
+  RightBtn: {fileID: 114000011498422552}
   SubmitBtn: {fileID: 114000011060349176}
   CancelBtn: {fileID: 114000014156000320}
   btnType: 0
@@ -21191,7 +21192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpBtn: {fileID: 114000010286115726}
   DownBtn: {fileID: 0}
-  LeftBtn: {fileID: 0}
+  LeftBtn: {fileID: 114000011358609718}
   RightBtn: {fileID: 114000010560627416}
   SubmitBtn: {fileID: 114000012102763444}
   CancelBtn: {fileID: 114000014156000320}
@@ -21623,7 +21624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpBtn: {fileID: 0}
   DownBtn: {fileID: 114000010176867010}
-  LeftBtn: {fileID: 0}
+  LeftBtn: {fileID: 114000013966100656}
   RightBtn: {fileID: 114000013945029256}
   SubmitBtn: {fileID: 114000012234176428}
   CancelBtn: {fileID: 114000013354852238}
@@ -29099,6 +29100,30 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000012792328658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013536908460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54a243bc7ef3764089d35233f857d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpBtn: {fileID: 0}
+  DownBtn: {fileID: 0}
+  LeftBtn: {fileID: 0}
+  RightBtn: {fileID: 0}
+  SubmitBtn: {fileID: 0}
+  CancelBtn: {fileID: 0}
+  btnType: 0
+  selected: 0
+  selectedImg: {fileID: 0}
+  player: 1
+  skill: 0
+  passive: 0
+  type: 0
 --- !u!114 &114000012798544906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -35202,7 +35227,7 @@ MonoBehaviour:
   UpBtn: {fileID: 0}
   DownBtn: {fileID: 114000014135617548}
   LeftBtn: {fileID: 114000011312965106}
-  RightBtn: {fileID: 0}
+  RightBtn: {fileID: 114000011557411586}
   SubmitBtn: {fileID: 114000012576488656}
   CancelBtn: {fileID: 114000013354852238}
   btnType: 0
@@ -36309,7 +36334,7 @@ MonoBehaviour:
   UpBtn: {fileID: 114000013966100656}
   DownBtn: {fileID: 0}
   LeftBtn: {fileID: 114000011643547834}
-  RightBtn: {fileID: 0}
+  RightBtn: {fileID: 114000010176867010}
   SubmitBtn: {fileID: 114000010611934054}
   CancelBtn: {fileID: 114000013354852238}
   btnType: 0
