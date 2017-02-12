@@ -16,7 +16,7 @@ public class SpearBreaker : Spell {
 	private Color32 poisonaura = new Color32( 4,180,78,255);
 	private GameObject rocks1, rocks2;
 	private bool spawned = false;
-	private int state; 
+	private int state;
 	private float lifespan = 3;
 
 	float colliderSpan = 0.3f;

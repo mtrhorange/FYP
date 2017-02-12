@@ -26,14 +26,14 @@ public class DeadScript : MonoBehaviour {
 
         if (GameManager.instance.twoPlayers)
         {
-            if(GameManager.instance.player1.Health <= 0 && GameManager.instance.player2.Health <= 0)
+			if(GameManager.instance.player1.isDead && GameManager.instance.player2.isDead)
             {
                 ded = true;
             }
         }
         else
         {
-            if (GameManager.instance.player1.Health <= 0)
+			if (GameManager.instance.player1.isDead)
             {
                 ded = true;
             }
@@ -83,8 +83,12 @@ public class DeadScript : MonoBehaviour {
         //{
         //    GameManager.instance.player1.ReceiveHeal(10f);
         //}
+		if (GameManager.instance.player1.isDead)
+			GameManager.instance.player1.PlayerRevive ();
+		if (GameManager.instance.twoPlayers && GameManager.instance.player2.isDead)
+			GameManager.instance.player2.PlayerRevive ();
+			LevelManager.instance.LoadGame ();
 
-        LevelManager.instance.LoadGame();
     }
 
     public void ReturnToMainMerneor()
@@ -98,7 +102,10 @@ public class DeadScript : MonoBehaviour {
         //{
         //    GameManager.instance.player1.ReceiveHeal(10f);
         //}
-
+		if (GameManager.instance.player1.isDead)
+			GameManager.instance.player1.PlayerRevive ();
+		if (GameManager.instance.twoPlayers && GameManager.instance.player2.isDead)
+			GameManager.instance.player2.PlayerRevive ();
         LevelManager.instance.LoadMainMenu();
     }
 }

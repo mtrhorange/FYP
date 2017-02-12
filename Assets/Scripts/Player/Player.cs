@@ -24,8 +24,8 @@ public class Player : MonoBehaviour {
 	public float spellStaminaDrain = 20f;
 	public int livesRemaining = 5;
 	public int skillPoints = 0;
-	bool isDead = false;
-	bool isPermaDead = false;
+	public bool isDead = false;
+	public bool isPermaDead = false;
 	public bool canBeHit = true;
 	public bool isMelee = true;
 
@@ -498,6 +498,9 @@ public class Player : MonoBehaviour {
 			isDead = true;
 			canBeHit = false;
 			controller.PlayerDeath ();
+			Lives--;
+			if (Lives == 0)
+				isPermaDead = true;
 		}
 	}
 
