@@ -58,8 +58,6 @@ public class DeadScript : MonoBehaviour {
 
     public void ReportDeath()
     {
-        Debug.Log("hi");
-
         if (GameManager.instance.twoPlayers)
         {
             if (GameManager.instance.player1.isDead && GameManager.instance.player2.isDead)
