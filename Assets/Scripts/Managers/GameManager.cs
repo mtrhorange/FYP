@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour {
 		pd.Stamina = p.MaxStamina;
 		pd.Lives = p.Lives;
 		pd.SkillPoints = p.SkillPoints;
+        pd.Points = p.Points;
 		pd.spellStaminaDrain = p.spellStaminaDrain;
 
 		pd.skillCType = p.skillCType;
@@ -202,8 +203,11 @@ public class GameManager : MonoBehaviour {
 		p.Stamina = p.MaxStamina;
 		p.Lives = pd.Lives;
 		p.SkillPoints = pd.SkillPoints;
+        p.Points = pd.Points;
 		p.spellStaminaDrain = pd.spellStaminaDrain;
 		p.recoverStamina = true;
+        p.controller.rollSpeed = 10;
+        p.controller.rollduration = 0.6f;
 
 		p.skillCType = pd.skillCType;
 		p.skillVType = pd.skillVType;
@@ -234,139 +238,6 @@ public class GameManager : MonoBehaviour {
 			p.playerNo = 2;
 	}
 
-	public void UpdatePlayer1Data() {
-
-		player1Data.name = player1.name;
-		player1Data.saveId = player1.saveId;
-		player1Data.Level = player1.Level;
-		player1Data.Exp = player1.Exp;
-		player1Data.MaxHealth = player1.MaxHealth;
-		player1Data.baseMaxHealth = player1.baseMaxHealth;
-		player1Data.Health = player1.Health;
-		player1Data.maxStamina = player1.maxStamina;
-		player1Data.baseMaxStamina = player1.baseMaxStamina;
-		player1Data.Stamina = player1.MaxStamina;
-		player1Data.Lives = player1.Lives;
-		player1Data.SkillPoints = player1.SkillPoints;
-		player1Data.spellStaminaDrain = player1.spellStaminaDrain;
-
-		player1Data.skillCType = player1.skillCType;
-		player1Data.skillVType = player1.skillVType;
-
-		player1Data.firePillarLevel = player1.skills.firePillarLevel;
-		player1Data.iceSpikesLevel = player1.skills.iceSpikesLevel;
-		player1Data.chainLightningLevel = player1.skills.chainLightningLevel;
-
-		player1Data.maxHealthLevel = player1.skills.maxHealthLevel;
-		player1Data.minDmgLevel = player1.skills.minDmgLevel;
-		player1Data.maxDmgLevel = player1.skills.maxDmgLevel;
-		player1Data.weaponBuffLevel = player1.skills.weaponBuffLevel;
-		player1Data.spellBuffLevel = player1.skills.spellBuffLevel;
-
-		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
-			if (player1Data.saveId == SaveLoad.savedCharacters [i].saveId) {
-				SaveLoad.savedCharacters.RemoveAt (i);
-			}
-		}
-
-		SaveLoad.NewCharacter (player1Data);
-
-	}
-
-	public void UpdatePlayer1() {
-		player1.name = player1Data.name;
-		player1.saveId = player1Data.saveId;
-		player1.Level = player1Data.Level;
-		player1.Exp = player1Data.Exp;
-		player1.MaxHealth = player1Data.MaxHealth;
-		player1.baseMaxHealth = player1Data.baseMaxHealth;
-		player1.Health = player1Data.Health;
-		player1.maxStamina = player1Data.maxStamina;
-		player1.baseMaxStamina = player1Data.baseMaxStamina;
-		player1.Stamina = player1.MaxStamina;
-		player1.Lives = player1Data.Lives;
-		player1.SkillPoints = player1Data.SkillPoints;
-		player1.spellStaminaDrain = player1Data.spellStaminaDrain;
-		player1.recoverStamina = true;
-
-		player1.skillCType = player1Data.skillCType;
-		player1.skillVType = player1Data.skillVType;
-
-		player1.skills.firePillarLevel = player1Data.firePillarLevel;
-		player1.skills.iceSpikesLevel = player1Data.iceSpikesLevel;
-		player1.skills.chainLightningLevel = player1Data.chainLightningLevel;
-
-		player1.skills.maxHealthLevel = player1Data.maxHealthLevel;
-		player1.skills.minDmgLevel = player1Data.minDmgLevel;
-		player1.skills.maxDmgLevel = player1Data.maxDmgLevel;
-		player1.skills.weaponBuffLevel = player1Data.weaponBuffLevel;
-		player1.skills.spellBuffLevel = player1Data.spellBuffLevel;
-
-		player1.playerNo = 1;
-	}
-
-	public void UpdatePlayer2Data() {
-
-		player2Data.name = player2.name;
-		player2Data.saveId = player2.saveId;
-		player2Data.Level = player2.Level;
-		player2Data.Exp = player2.Exp;
-		player2Data.MaxHealth = player2.MaxHealth;
-		player2Data.baseMaxHealth = player2.baseMaxHealth;
-		player2Data.Health = player2.Health;
-		player2Data.maxStamina = player2.maxStamina;
-		player2Data.baseMaxStamina = player2.baseMaxStamina;
-		player2Data.Stamina = player2.MaxStamina;
-		player2Data.Lives = player2.Lives;
-		player2Data.SkillPoints = player2.SkillPoints;
-		player2Data.spellStaminaDrain = player2.spellStaminaDrain;
-
-		player2Data.skillCType = player2.skillCType;
-		player2Data.skillVType = player2.skillVType;
-
-		player2Data.maxHealthLevel = player2.skills.maxHealthLevel;
-		player2Data.minDmgLevel = player2.skills.minDmgLevel;
-		player2Data.maxDmgLevel = player2.skills.maxDmgLevel;
-		player2Data.weaponBuffLevel = player2.skills.weaponBuffLevel;
-		player2Data.spellBuffLevel = player2.skills.spellBuffLevel;
-
-		for (int i = 0; i < SaveLoad.savedCharacters.Count; i++) {
-			if (player2Data.saveId == SaveLoad.savedCharacters [i].saveId) {
-				SaveLoad.savedCharacters.RemoveAt (i);
-			}
-		}
-
-		SaveLoad.NewCharacter (player2Data);
-	}
-
-	public void UpdatePlayer2() {
-		player2.name = player2Data.name;
-		player2.saveId = player2Data.saveId;
-		player2.Level = player2Data.Level;
-		player2.Exp = player2Data.Exp;
-		player2.MaxHealth = player2Data.MaxHealth;
-		player2.baseMaxHealth = player2Data.baseMaxHealth;
-		player2.Health = player2Data.Health;
-		player2.maxStamina = player2Data.maxStamina;
-		player2.baseMaxStamina = player2Data.baseMaxStamina;
-		player2.Stamina = player2.MaxStamina;
-		player2.Lives = player2Data.Lives;
-		player2.SkillPoints = player2Data.SkillPoints;
-		player2.spellStaminaDrain = player2Data.spellStaminaDrain;
-		player2.recoverStamina = true;
-
-		player2.skillCType = player2Data.skillCType;
-		player2.skillVType = player2Data.skillVType;
-
-		player2.skills.maxHealthLevel = player2Data.maxHealthLevel;
-		player2.skills.minDmgLevel = player2Data.minDmgLevel;
-		player2.skills.maxDmgLevel = player2Data.maxDmgLevel;
-		player2.skills.weaponBuffLevel = player2Data.weaponBuffLevel;
-		player2.skills.spellBuffLevel = player2Data.spellBuffLevel;
-
-		player2.playerNo = 2;
-	}
-
 	public void Reset() {
 
 		player1Data = null;
@@ -375,6 +246,5 @@ public class GameManager : MonoBehaviour {
 		player2 = null;
 
 		twoPlayers = false;
-
 	}
 }

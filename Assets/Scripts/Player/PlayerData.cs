@@ -18,6 +18,7 @@ public class PlayerData {
 	public float spellStaminaDrain = 5f;
 	public int livesRemaining = 5;
 	public int skillPoints = 0;
+    public int points = 0;
 	public bool recoverStamina = true; //Can stamina be recovered
 	public bool isPermaDead = false;
 
@@ -152,6 +153,12 @@ public class PlayerData {
 		}
 
 	}
+
+    public int Points
+    {
+        get { return points; }
+        set { points = value; }
+    }
 
 	public int Lives {
 

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 	public float spellStaminaDrain = 20f;
 	public int livesRemaining = 5;
 	public int skillPoints = 0;
+    public int points = 0;
 	public bool isDead = false;
 	public bool isPermaDead = false;
 	public bool canBeHit = true;
@@ -430,6 +431,11 @@ public class Player : MonoBehaviour {
 
 	}
 
+    public void ReceivePoints(int i)
+    {
+        Points += i;
+    }
+
 	//Player recovers health
 	public void RecoverHealth(float f) {
 
@@ -762,6 +768,12 @@ public class Player : MonoBehaviour {
 		}
 
 	}
+
+    public int Points
+    {
+        get { return points; }
+        set { points = value; }
+    }
 
 	public int Lives {
 
