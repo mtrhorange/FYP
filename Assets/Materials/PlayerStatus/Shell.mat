@@ -129,5 +129,8 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
+        name: _NotVisibleColor
+      second: {r: 0, g: 1, b: 0, a: 1}
+    - first:
         name: _TintColor
       second: {r: 0.33088237, g: 0.33088237, b: 0.33088237, a: 1}

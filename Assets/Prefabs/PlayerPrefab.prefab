@@ -1610,8 +1610,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824984246}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.09, y: 0, z: -15.85}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -28.7, y: 0, z: 12.52}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1810,7 +1810,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013701620258}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.214, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
@@ -1906,7 +1906,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011055998054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.431, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1999,10 +1999,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013421731628}
-  m_LocalRotation: {x: -0.005616641, y: -0.70708454, z: 0.70708454, w: -0.005616641}
+  m_LocalRotation: {x: 0.7069895, y: 0, z: 0, w: 0.707224}
   m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_LocalEulerAnglesHint: {x: 89.981, y: 0, z: 180.883}
+  m_LocalEulerAnglesHint: {x: 89.981, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011286678334}
   m_RootOrder: 3
@@ -2622,22 +2622,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   saveId: 0
-  playerNo: 0
-  baseMaxHealth: 0
-  maxHealth: 0
-  health: 0
-  baseMaxStamina: 0
-  maxStamina: 0
-  stamina: 0
-  recoverStamina: 0
+  playerNo: 1
+  baseMaxHealth: 100
+  maxHealth: 100
+  health: 50
+  baseMaxStamina: 100
+  maxStamina: 100
+  stamina: 100
+  recoverStamina: 1
   spellStaminaDrain: 0
   livesRemaining: 0
   skillPoints: 0
+  points: 0
   isDead: 0
   isPermaDead: 0
   canBeHit: 0
   isMelee: 0
-  level: 0
+  level: 1
   exp: 0
   skillCType: 0
   skillVType: 0
@@ -4655,11 +4656,11 @@ ParticleSystem:
   speed: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1087108930
+  randomSeed: 154076369
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4825,7 +4826,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
     startSize:
-      scalar: 0.7
+      scalar: 0.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5119,19 +5120,29 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.80225986
-          inSlope: 0.3863193
-          outSlope: 0.3863193
+          value: 0.9622599
+          inSlope: -1.3236912
+          outSlope: -1.3236912
+          tangentMode: 10
+        - time: 0.2421804
+          value: 0.6416878
+          inSlope: 0.021776497
+          outSlope: 0.021776497
           tangentMode: 10
         - time: 0.50125325
           value: 0.9959037
-          inSlope: 0.014315039
-          outSlope: 0.014315039
+          inSlope: 0.02442509
+          outSlope: 0.02442509
           tangentMode: 10
-        - time: 1
-          value: 0.8175073
-          inSlope: -0.35768923
-          outSlope: -0.35768923
+        - time: 0.7547572
+          value: 0.6616855
+          inSlope: 0.058955073
+          outSlope: 0.058955073
+          tangentMode: 10
+        - time: 0.98578197
+          value: 0.9935073
+          inSlope: 1.4363042
+          outSlope: 1.4363042
           tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -6414,16 +6425,16 @@ ParticleSystem:
   speed: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1630083653
+  randomSeed: -1824210825
   InitialModule:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6458,7 +6469,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 0.1
+      scalar: 0.14
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6581,7 +6592,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.5921569}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
       minMaxState: 0
     startSize:
       scalar: 0.3
@@ -6775,7 +6786,7 @@ ParticleSystem:
       minMaxState: 3
     randomizeRotationDirection: 0
     gravityModifier: 0
-    maxNumParticles: 10
+    maxNumParticles: 50
     size3D: 0
     rotation3D: 0
   ShapeModule:
@@ -6803,7 +6814,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 2
+      scalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -11583,7 +11594,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 6e9b925e6fce41240ae4c377da9b4377, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

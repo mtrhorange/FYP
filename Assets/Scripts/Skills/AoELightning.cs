@@ -29,7 +29,7 @@ public class AoELightning : Spell {
 			GetComponent<CapsuleCollider> ().enabled = false;
 
 		if (Strikes > 0 && betweenStrikes <= 0) {
-			Instantiate(Lightning, Cloud.transform.position , Cloud.transform.rotation);
+			Instantiate(Lightning, Cloud.transform.position , Quaternion.Euler(90f, 0, 0));
 			Strikes -= 1;
 			betweenStrikes = btwnStrikes;
 
