@@ -372,23 +372,23 @@ public class KeyAssignPanel : MenuButton {
 		}
 
 		if (player == 2) {
-			if (Input.GetButtonDown ("YButtonCtrl1")) {
+			if (Input.GetButtonDown ("AButtonCtrl1")) {
 				GameManager.instance.player2.SwapSkillC (assignSkill);
 				ChangeKeyImage ("C", assignSkill);
 				Cancel ();
-			} else if (Input.GetButtonDown ("LButtonCtrl1")) {
+			} else if (Input.GetButtonDown ("BButtonCtrl1")) {
 				GameManager.instance.player2.SwapSkillV (assignSkill);
 				ChangeKeyImage ("V", assignSkill);
 				Cancel ();
-			} else if (Input.GetButtonDown ("RButtonCtrl1")) {
+			} else if (Input.GetButtonDown ("XButtonCtrl1")) {
 				GameManager.instance.player2.SwapSkillA (assignSkill);
 				ChangeKeyImage ("A", assignSkill);
 				Cancel ();
-			} else if (LTAxis()) {
+			} else if (Input.GetButtonDown ("YButtonCtrl1")) {
 				GameManager.instance.player2.SwapSkillS (assignSkill);
 				ChangeKeyImage ("S", assignSkill);
 				Cancel ();
-			} else if (RTAxis()) {
+			} else if (Input.GetButtonDown ("RButtonCtrl1")) {
 				GameManager.instance.player2.SwapSkillD (assignSkill);
 				ChangeKeyImage ("D", assignSkill);
 				Cancel ();
@@ -531,74 +531,74 @@ public class KeyAssignPanel : MenuButton {
 				noOfSkills++;
 				skill1.SetActive (true);
 				skill1.GetComponent<Image> ().sprite = transform.Find ("C").GetChild (0).GetComponent<Image> ().sprite;
-				skill1.transform.Find ("Text").GetComponent<Text> ().text = "C";
+				skill1.transform.Find ("Text").GetComponent<Text> ().text = "A";
 			} if (GameManager.instance.player2.skillVType != Skills.None) {
 				noOfSkills++;
 				if (noOfSkills == 1) {
 					skill1.SetActive (true);
 					skill1.GetComponent<Image> ().sprite = transform.Find ("V").GetChild (0).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "V";
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "B";
 				} else if (noOfSkills == 2) {
 					skill2.SetActive (true);
 					skill2.GetComponent<Image> ().sprite = transform.Find ("V").GetChild (0).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "V";
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "B";
 				}
 			} if (GameManager.instance.player2.skillAType != Skills.None) {
 				noOfSkills++;
 				if (noOfSkills == 1) {
 					skill1.SetActive (true);
 					skill1.GetComponent<Image> ().sprite = transform.Find ("A").GetChild (0).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "A";
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "X";
 				} else if (noOfSkills == 2) {
 					skill2.SetActive (true);
 					skill2.GetComponent<Image> ().sprite = transform.Find ("A").GetChild (0).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "A";
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "X";
 				} else if (noOfSkills == 3) {
 					skill3.SetActive (true);
 					skill3.GetComponent<Image> ().sprite = transform.Find ("A").GetChild (0).GetComponent<Image> ().sprite;
-					skill3.transform.Find ("Text").GetComponent<Text> ().text = "A";
+					skill3.transform.Find ("Text").GetComponent<Text> ().text = "X";
 				}
 			} if (GameManager.instance.player2.skillSType != Skills.None) {
 				noOfSkills++;
 				if (noOfSkills == 1) {
 					skill1.SetActive (true);
 					skill1.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "S";
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "Y";
 				} else if (noOfSkills == 2) {
 					skill2.SetActive (true);
 					skill2.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "S";
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "Y";
 				} else if (noOfSkills == 3) {
 					skill3.SetActive (true);
 					skill3.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
-					skill3.transform.Find ("Text").GetComponent<Text> ().text = "S";
+					skill3.transform.Find ("Text").GetComponent<Text> ().text = "Y";
 				} else if (noOfSkills == 4) {
 					skill4.SetActive (true);
 					skill4.GetComponent<Image> ().sprite = transform.Find ("S").GetChild (0).GetComponent<Image> ().sprite;
-					skill4.transform.Find ("Text").GetComponent<Text> ().text = "S";
+					skill4.transform.Find ("Text").GetComponent<Text> ().text = "Y";
 				}
 			} if (GameManager.instance.player2.skillDType != Skills.None) {
 				noOfSkills++;
 				if (noOfSkills == 1) {
 					skill1.SetActive (true);
 					skill1.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "D";
+					skill1.transform.Find ("Text").GetComponent<Text> ().text = "RB";
 				} else if (noOfSkills == 2) {
 					skill2.SetActive (true);
 					skill2.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "D";
+					skill2.transform.Find ("Text").GetComponent<Text> ().text = "RB";
 				} else if (noOfSkills == 3) {
 					skill3.SetActive (true);
 					skill3.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
-					skill3.transform.Find ("Text").GetComponent<Text> ().text = "D";
+					skill3.transform.Find ("Text").GetComponent<Text> ().text = "RB";
 				} else if (noOfSkills == 4) {
 					skill4.SetActive (true);
 					skill4.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
-					skill4.transform.Find ("Text").GetComponent<Text> ().text = "D";
+					skill4.transform.Find ("Text").GetComponent<Text> ().text = "RB";
 				} else if (noOfSkills == 5) {
 					skill5.SetActive (true);
 					skill5.GetComponent<Image> ().sprite = transform.Find ("D").GetChild (0).GetComponent<Image> ().sprite;
-					skill5.transform.Find ("Text").GetComponent<Text> ().text = "D";
+					skill5.transform.Find ("Text").GetComponent<Text> ().text = "RB";
 				}
 			}
 		}

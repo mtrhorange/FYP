@@ -1367,97 +1367,97 @@ public class Player : MonoBehaviour {
 		skill4.SetActive (false);
 		skill5.SetActive (false);
 
-		if (playerNo == 1) {
-			if (skillCType != Skills.None) {
-				noOfSkills++;
+
+		if (skillCType != Skills.None) {
+			noOfSkills++;
+			skill1.SetActive (true);
+			string[] name = skillCType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+			skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+			skill1.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "C" : "A";
+		} if (skillVType != Skills.None) {
+			noOfSkills++;
+			if (noOfSkills == 1) {
 				skill1.SetActive (true);
-				string[] name = skillCType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				string[] name = skillVType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
 				skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-				skill1.transform.Find ("Text").GetComponent<Text> ().text = "C";
-			} if (skillVType != Skills.None) {
-				noOfSkills++;
-				if (noOfSkills == 1) {
-					skill1.SetActive (true);
-					string[] name = skillVType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "V";
-				} else if (noOfSkills == 2) {
-					skill2.SetActive (true);
-					string[] name = skillVType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "V";
-				}
-			} if (skillAType != Skills.None) {
-				noOfSkills++;
-				if (noOfSkills == 1) {
-					skill1.SetActive (true);
-					string[] name = skillAType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "A";
-				} else if (noOfSkills == 2) {
-					skill2.SetActive (true);
-					string[] name = skillAType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "A";
-				} else if (noOfSkills == 3) {
-					skill3.SetActive (true);
-					string[] name = skillAType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill3.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill3.transform.Find ("Text").GetComponent<Text> ().text = "A";
-				}
-			} if (skillSType != Skills.None) {
-				noOfSkills++;
-				if (noOfSkills == 1) {
-					skill1.SetActive (true);
-					string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "S";
-				} else if (noOfSkills == 2) {
-					skill2.SetActive (true);
-					string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "S";
-				} else if (noOfSkills == 3) {
-					skill3.SetActive (true);
-					string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill3.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill3.transform.Find ("Text").GetComponent<Text> ().text = "S";
-				} else if (noOfSkills == 4) {
-					skill4.SetActive (true);
-					string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill4.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill4.transform.Find ("Text").GetComponent<Text> ().text = "S";
-				}
-			} if (skillDType != Skills.None) {
-				noOfSkills++;
-				if (noOfSkills == 1) {
-					skill1.SetActive (true);
-					string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill1.transform.Find ("Text").GetComponent<Text> ().text = "D";
-				} else if (noOfSkills == 2) {
-					skill2.SetActive (true);
-					string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill2.transform.Find ("Text").GetComponent<Text> ().text = "D";
-				} else if (noOfSkills == 3) {
-					skill3.SetActive (true);
-					string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill3.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill3.transform.Find ("Text").GetComponent<Text> ().text = "D";
-				} else if (noOfSkills == 4) {
-					skill4.SetActive (true);
-					string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill4.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill4.transform.Find ("Text").GetComponent<Text> ().text = "D";
-				} else if (noOfSkills == 5) {
-					skill5.SetActive (true);
-					string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
-					skill5.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
-					skill5.transform.Find ("Text").GetComponent<Text> ().text = "D";
-				}
+				skill1.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "V" : "B";
+			} else if (noOfSkills == 2) {
+				skill2.SetActive (true);
+				string[] name = skillVType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill2.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "V" : "B";
+			}
+		} if (skillAType != Skills.None) {
+			noOfSkills++;
+			if (noOfSkills == 1) {
+				skill1.SetActive (true);
+				string[] name = skillAType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill1.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "A" : "X";
+			} else if (noOfSkills == 2) {
+				skill2.SetActive (true);
+				string[] name = skillAType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill2.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "A" : "X";
+			} else if (noOfSkills == 3) {
+				skill3.SetActive (true);
+				string[] name = skillAType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill3.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill3.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "A" : "X";
+			}
+		} if (skillSType != Skills.None) {
+			noOfSkills++;
+			if (noOfSkills == 1) {
+				skill1.SetActive (true);
+				string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill1.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "S" : "Y";
+			} else if (noOfSkills == 2) {
+				skill2.SetActive (true);
+				string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill2.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "S" : "Y";
+			} else if (noOfSkills == 3) {
+				skill3.SetActive (true);
+				string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill3.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill3.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "S" : "Y";
+			} else if (noOfSkills == 4) {
+				skill4.SetActive (true);
+				string[] name = skillSType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill4.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill4.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "S" : "Y";
+			}
+		} if (skillDType != Skills.None) {
+			noOfSkills++;
+			if (noOfSkills == 1) {
+				skill1.SetActive (true);
+				string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill1.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill1.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "D" : "RB";
+			} else if (noOfSkills == 2) {
+				skill2.SetActive (true);
+				string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill2.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill2.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "D" : "RB";
+			} else if (noOfSkills == 3) {
+				skill3.SetActive (true);
+				string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill3.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill3.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "D" : "RB";
+			} else if (noOfSkills == 4) {
+				skill4.SetActive (true);
+				string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill4.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill4.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "D" : "RB";
+			} else if (noOfSkills == 5) {
+				skill5.SetActive (true);
+				string[] name = skillDType.ToString ().Split (new char[] {'.'}, System.StringSplitOptions.None);
+				skill5.GetComponent<Image> ().sprite = FindObjectOfType<Canvas> ().transform.Find ("SpellImages").Find (name [0]).GetComponent<Image> ().sprite;
+				skill5.transform.Find ("Text").GetComponent<Text> ().text = (playerNo == 1) ? "D" : "RB";
 			}
 		}
+		
 	}
 
 	#endregion
