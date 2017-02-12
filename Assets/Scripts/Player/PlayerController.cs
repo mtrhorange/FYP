@@ -332,7 +332,7 @@ public class PlayerController : MonoBehaviour
             //        StartCoroutine(_Revive());
             //    }
             //}
-			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (Input.GetButtonDown("AButtonCtrl1") && player.playerNo == 2)) 
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (RTAxis && player.playerNo == 2)) 
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
 
 				}
 			}
-			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (Input.GetButtonDown("BButtonCtrl1") && player.playerNo == 2))
+			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (LTAxis && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				
@@ -376,7 +376,7 @@ public class PlayerController : MonoBehaviour
             //    AttackKick(2);
             //}
 
-			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("YButtonCtrl1") && player.playerNo == 2))
+			if (((Input.GetButtonDown ("SkillC") && player.playerNo == 1) || (Input.GetButtonDown ("AButtonCtrl1") && player.playerNo == 2))
 			    && canAction && isGrounded && !isBlocking && !isDead && !isCasting) {
 				if (player.skillCType != Skills.None) {
 					if (CheckStamina (player.spellStaminaDrain * player.skillCTime () + player.skillCCost())) {
@@ -408,7 +408,7 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
+			} else if (((Input.GetButtonUp ("SkillC") && player.playerNo == 1) || (Input.GetButtonUp ("AButtonCtrl1") && player.playerNo == 2)) && isCastingC) {
 				if (canCast) {
 					if (player.skillCType != Skills.VerticalStrike)
 						CastAttack (1);
@@ -424,7 +424,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 
-			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("LButtonCtrl1") && player.playerNo == 2))
+			if (((Input.GetButtonDown("SkillV") && player.playerNo == 1) || (Input.GetButtonDown("BButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
 				if (player.skillVType != Skills.None) {
@@ -456,7 +456,7 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("LButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
+			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("BButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
 
 				if (canCast) {
 					CastAttack (1);
@@ -468,7 +468,7 @@ public class PlayerController : MonoBehaviour
 
 			}
 
-			if (((Input.GetButtonDown("SkillA") && player.playerNo == 1) || (Input.GetButtonDown("RButtonCtrl1") && player.playerNo == 2))
+			if (((Input.GetButtonDown("SkillA") && player.playerNo == 1) || (Input.GetButtonDown("XButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
 				if (player.skillAType != Skills.None) {
@@ -500,7 +500,7 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillA") && player.playerNo == 1) || (Input.GetButtonUp ("RButtonCtrl1") && player.playerNo == 2)) && isCastingA) {
+			} else if (((Input.GetButtonUp ("SkillA") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingA) {
 
 				if (canCast) {
 					CastAttack (1);
@@ -511,7 +511,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 
-			if (((Input.GetButtonDown("SkillS") && player.playerNo == 1) || (LTAxis() && player.playerNo == 2))
+			if (((Input.GetButtonDown("SkillS") && player.playerNo == 1) || (Input.GetButtonDown ("YButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
 				if (player.skillSType != Skills.None) {
@@ -543,13 +543,10 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillS") && player.playerNo == 1) || (!LTAxis() && player.playerNo == 2)) && isCastingS) {
+			} else if (((Input.GetButtonUp ("SkillS") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingS) {
 
 				if (canCast) {
-					canCast = false;
-					isCastingS = false;
 					CastAttack (1);
-
 					player.skillS ();
 					player.RecoverStamina(-player.skillSCost ());
 				} else {
@@ -558,7 +555,7 @@ public class PlayerController : MonoBehaviour
 
 			}
 
-			if (((Input.GetButtonDown("SkillD") && player.playerNo == 1) || (RTAxis() && player.playerNo == 2))
+			if (((Input.GetButtonDown("SkillD") && player.playerNo == 1) || (Input.GetButtonDown ("RButtonCtrl1") && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead && !isCasting) 
 			{
 				if (player.skillDType != Skills.None) {
@@ -590,11 +587,9 @@ public class PlayerController : MonoBehaviour
 
 					}
 				}
-			} else if (((Input.GetButtonUp ("SkillD") && player.playerNo == 1) || (!RTAxis() && player.playerNo == 2)) && isCastingD) {
+			} else if (((Input.GetButtonUp ("SkillD") && player.playerNo == 1) || (Input.GetButtonUp ("RButtonCtrl1") && player.playerNo == 2)) && isCastingD) {
 
 				if (canCast) {
-					canCast = false;
-					isCastingD = false;
 					CastAttack (1);
 					player.skillD ();
 					player.RecoverStamina(-player.skillDCost ());
@@ -608,7 +603,7 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine (_BlockBreak ());
 			}
             if (((Input.GetButtonDown("SwapWep") && player.playerNo == 1) ||
-				(Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
+				(Input.GetButtonUp ("LButtonCtrl1") && player.playerNo == 2)) && canAction && isGrounded && !isBlocking && !isDead)
             {
 
 				//player.SwapWeapon ();
