@@ -641,7 +641,7 @@ public class Player : MonoBehaviour {
 			if (slowTime <= 0) {
 				isSlowed = false;
 				controller.runSpeed = 6;
-				slowEffect.SetActive (true);
+				slowEffect.SetActive (false);
 			}
 		}
 
@@ -664,6 +664,8 @@ public class Player : MonoBehaviour {
 
 		if (!isStrongPoisoned && !isPoisoned && poisonEffect.activeSelf)
 			poisonEffect.SetActive (false);
+
+
 
 	}
 

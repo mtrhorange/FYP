@@ -459,7 +459,13 @@ public class PlayerController : MonoBehaviour
 			} else if (((Input.GetButtonUp ("SkillV") && player.playerNo == 1) || (Input.GetButtonUp ("BButtonCtrl1") && player.playerNo == 2)) && isCastingV) {
 
 				if (canCast) {
-					CastAttack (1);
+					if (player.skillVType != Skills.VerticalStrike)
+						CastAttack (1);
+					else {
+						canAction = true;
+						Attack (4);
+						StartCoroutine (_LockCasting (0, 0.8f));
+					}
 					player.skillV ();
 					player.RecoverStamina(-player.skillVCost ());
 				} else {
@@ -503,7 +509,13 @@ public class PlayerController : MonoBehaviour
 			} else if (((Input.GetButtonUp ("SkillA") && player.playerNo == 1) || (Input.GetButtonUp ("XButtonCtrl1") && player.playerNo == 2)) && isCastingA) {
 
 				if (canCast) {
-					CastAttack (1);
+					if (player.skillAType != Skills.VerticalStrike)
+						CastAttack (1);
+					else {
+						canAction = true;
+						Attack (4);
+						StartCoroutine (_LockCasting (0, 0.8f));
+					}
 					player.skillA ();
 					player.RecoverStamina(-player.skillACost ());
 				} else {
@@ -546,7 +558,13 @@ public class PlayerController : MonoBehaviour
 			} else if (((Input.GetButtonUp ("SkillS") && player.playerNo == 1) || (Input.GetButtonUp ("YButtonCtrl1") && player.playerNo == 2)) && isCastingS) {
 
 				if (canCast) {
-					CastAttack (1);
+					if (player.skillSType != Skills.VerticalStrike)
+						CastAttack (1);
+					else {
+						canAction = true;
+						Attack (4);
+						StartCoroutine (_LockCasting (0, 0.8f));
+					}
 					player.skillS ();
 					player.RecoverStamina(-player.skillSCost ());
 				} else {
@@ -590,7 +608,13 @@ public class PlayerController : MonoBehaviour
 			} else if (((Input.GetButtonUp ("SkillD") && player.playerNo == 1) || (Input.GetButtonUp ("RButtonCtrl1") && player.playerNo == 2)) && isCastingD) {
 
 				if (canCast) {
-					CastAttack (1);
+					if (player.skillDType != Skills.VerticalStrike)
+						CastAttack (1);
+					else {
+						canAction = true;
+						Attack (4);
+						StartCoroutine (_LockCasting (0, 0.8f));
+					}
 					player.skillD ();
 					player.RecoverStamina(-player.skillDCost ());
 
