@@ -64,4 +64,13 @@ public class BGMManager : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
+    public void checkNormal()
+    {
+        if (GetComponent<AudioSource>().clip != normal)
+        {
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().clip = normal;
+            GetComponent<AudioSource>().Play();
+        }
+    }
 }

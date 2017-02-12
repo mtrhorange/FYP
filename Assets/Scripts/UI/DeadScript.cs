@@ -89,8 +89,9 @@ public class DeadScript : MonoBehaviour {
 			GameManager.instance.player1.PlayerRevive ();
 		if (GameManager.instance.twoPlayers && GameManager.instance.player2.isDead)
 			GameManager.instance.player2.PlayerRevive ();
-			LevelManager.instance.LoadGame ();
-
+        //check if bgm is normal, if not change to normal
+        BGMManager.instance.checkNormal();
+		LevelManager.instance.LoadGame ();
     }
 
     public void ReturnToMainMerneor()
@@ -108,6 +109,8 @@ public class DeadScript : MonoBehaviour {
 			GameManager.instance.player1.PlayerRevive ();
 		if (GameManager.instance.twoPlayers && GameManager.instance.player2.isDead)
 			GameManager.instance.player2.PlayerRevive ();
+        //check if bgm is normal, if not change to normal
+        BGMManager.instance.checkNormal();
         LevelManager.instance.LoadMainMenu();
     }
 }
