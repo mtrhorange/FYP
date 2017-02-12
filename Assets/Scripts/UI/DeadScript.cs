@@ -7,8 +7,8 @@ public class DeadScript : MonoBehaviour {
     public Image black;
     public Image cover;
     public GameObject de;
-    private bool fadedIn;
-    private bool ded;
+    public bool fadedIn;
+    public bool ded;
 
 	// Use this for initialization
 	void Start () {
@@ -23,22 +23,6 @@ public class DeadScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-        if (GameManager.instance.twoPlayers)
-        {
-			if(GameManager.instance.player1.isDead && GameManager.instance.player2.isDead)
-            {
-                ded = true;
-            }
-        }
-        else
-        {
-			if (GameManager.instance.player1.isDead)
-            {
-                ded = true;
-            }
-        }
-
 
         if (ded)
         {
@@ -70,6 +54,26 @@ public class DeadScript : MonoBehaviour {
             }
         }
 
+    }
+
+    public void ReportDeath()
+    {
+        Debug.Log("hi");
+
+        if (GameManager.instance.twoPlayers)
+        {
+            if (GameManager.instance.player1.isDead && GameManager.instance.player2.isDead)
+            {
+                ded = true;
+            }
+        }
+        else
+        {
+            if (GameManager.instance.player1.isDead)
+            {
+                ded = true;
+            }
+        }
     }
 
     public void ReturnToTown()

@@ -501,6 +501,8 @@ public class Player : MonoBehaviour {
 			Lives--;
 			if (Lives == 0)
 				isPermaDead = true;
+            //tell dead script i am dead
+            FindObjectOfType<DeadScript>().ReportDeath();
 		}
 	}
 
