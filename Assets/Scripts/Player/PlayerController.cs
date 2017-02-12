@@ -546,12 +546,12 @@ public class PlayerController : MonoBehaviour
 			} else if (((Input.GetButtonUp ("SkillS") && player.playerNo == 1) || (!LTAxis() && player.playerNo == 2)) && isCastingS) {
 
 				if (canCast) {
-					CastAttack (1);
-					player.skillS ();
-					player.RecoverStamina(-player.skillSCost ());
 					canCast = false;
 					isCastingS = false;
+					CastAttack (1);
 
+					player.skillS ();
+					player.RecoverStamina(-player.skillSCost ());
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}
@@ -593,15 +593,15 @@ public class PlayerController : MonoBehaviour
 			} else if (((Input.GetButtonUp ("SkillD") && player.playerNo == 1) || (!RTAxis() && player.playerNo == 2)) && isCastingD) {
 
 				if (canCast) {
+					canCast = false;
+					isCastingD = false;
 					CastAttack (1);
 					player.skillD ();
 					player.RecoverStamina(-player.skillDCost ());
-					canCast = false;
-					isCastingD = false;
+
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}
-
 			}
 
 			if (inputCastL && canAction && isGrounded && isBlocking) {
