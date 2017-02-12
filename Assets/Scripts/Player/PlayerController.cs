@@ -861,7 +861,7 @@ public class PlayerController : MonoBehaviour
 			{
 				motion.Normalize();
 			}
-			if(canMove && !isBlocking)
+			if(canMove && !isBlocking && !isDead)
 			{
 				//set speed by walking / running
 				if(isStrafing && !isAiming)
@@ -1423,6 +1423,8 @@ public class PlayerController : MonoBehaviour
 		animator.SetTrigger("Death1Trigger");
 		StartCoroutine(_LockMovementAndAttack(.1f, 1.5f));
 		isDead = true;
+		canMove = false;
+		canAction = false;
 		animator.SetBool("Moving", false);
 		inputVec = new Vector3(0, 0, 0);
 		yield return null;
@@ -1438,6 +1440,8 @@ public class PlayerController : MonoBehaviour
 	{
 		animator.SetTrigger("Revive1Trigger");
 		isDead = false;
+		canMove = true;
+		canAction = true;
 		yield return null;
 	}
 

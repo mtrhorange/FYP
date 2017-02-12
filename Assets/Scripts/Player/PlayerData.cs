@@ -21,6 +21,7 @@ public class PlayerData {
     public int points = 0;
 	public bool recoverStamina = true; //Can stamina be recovered
 	public bool isPermaDead = false;
+	public bool isDead = false;
 
 	public int level = 1;
 	public float exp = 0;

@@ -154,6 +154,9 @@ public class GameManager : MonoBehaviour {
 		pd.SkillPoints = p.SkillPoints;
         pd.Points = p.Points;
 		pd.spellStaminaDrain = p.spellStaminaDrain;
+		pd.isDead = p.isDead;
+		pd.isPermaDead = p.isPermaDead;
+
 
 		pd.skillCType = p.skillCType;
 		pd.skillVType = p.skillVType;
@@ -197,7 +200,7 @@ public class GameManager : MonoBehaviour {
 		p.MaxHealth = pd.MaxHealth;
 		p.baseMaxHealth = pd.baseMaxHealth;
 		p.Health = pd.Health;
-        if (p.Health <= 0) { p.Health = p.MaxHealth * 0.5f; }
+		if (p.Health <= 0) { p.PlayerRevive (); }
 		p.maxStamina = pd.maxStamina;
 		p.baseMaxStamina = pd.baseMaxStamina;
 		p.Stamina = p.MaxStamina;
@@ -208,6 +211,9 @@ public class GameManager : MonoBehaviour {
 		p.recoverStamina = true;
         p.controller.rollSpeed = 10;
         p.controller.rollduration = 0.6f;
+
+		p.isPermaDead = pd.isPermaDead;
+
 
 		p.skillCType = pd.skillCType;
 		p.skillVType = pd.skillVType;

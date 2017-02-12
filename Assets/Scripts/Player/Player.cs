@@ -506,6 +506,7 @@ public class Player : MonoBehaviour {
 			controller.PlayerDeath ();
 			Lives--;
 			transform.gameObject.tag = "Untagged";
+			transform.gameObject.layer = 0;
 			if (Lives == 0)
 				isPermaDead = true;
             //tell dead script i am dead
@@ -520,6 +521,7 @@ public class Player : MonoBehaviour {
 		canBeHit = true;
 		controller.PlayerRevive ();
 		transform.gameObject.tag = "Player";
+		transform.gameObject.layer = 11;
 	}
 
 	#endregion
