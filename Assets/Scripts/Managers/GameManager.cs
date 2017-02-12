@@ -246,8 +246,8 @@ public class GameManager : MonoBehaviour {
 
 	public void Reset() {
 
-		player1Data = null;
-		player2Data = null;
+		player1Data = new PlayerData ("", 0);
+		player2Data = new PlayerData ("", 0);
 		player1 = null;
 		player2 = null;
 

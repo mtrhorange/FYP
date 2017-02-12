@@ -10,7 +10,7 @@ public class SettingsBtn : MenuButton {
 
 	public GameObject border;
 
-	float updateTimer = 2.0f;
+	public float updateTimer = 2.0f;
 	public override void Awake () {
 		btnType = ButtonTypes.Settings;
 		base.Awake ();

@@ -33,7 +33,8 @@ public class StatsPanel : MonoBehaviour {
         if (playerNo == 1) { p = manager.player1; }
         else if (playerNo == 2) { p = manager.player2; }
 
-		LevelTxt = transform.Find ("LevelTxt").GetChild (0).GetComponent<Text> ();
+		//LevelTxt = transform.Find ("LevelTxt").GetChild (0).GetComponent<Text> ();
+		//LevelTxt.text = "";
 
         //Health
 		HealthTxt = transform.Find ("HealthTxt").Find ("Health").GetComponent<Text>();
@@ -57,7 +58,8 @@ public class StatsPanel : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (this.gameObject.activeInHierarchy) {
-			LevelTxt.text = p.Level.ToString();
+			//LevelTxt.text = p.Level.ToString();
+
 
             //Health
 			HealthTxt.text = p.Health.ToString("F0") + "/" + p.MaxHealth.ToString();

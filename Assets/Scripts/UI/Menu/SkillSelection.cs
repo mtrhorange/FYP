@@ -14,11 +14,14 @@ public class SkillSelection : MenuButton {
 	public Skills skill;
 	public Passives passive;
 
+	bool canAssign = false;
+
 	public override void Awake () {
 		btnType = ButtonTypes.SkillSelection;
 		if (name == "AddPoint") {
 			selectionType = SelectionType.AddPoint;
-			DownBtn = transform.parent.Find ("SkillInfo").GetComponent<MenuButton> ();
+			if (activeType == ActiveType.Active)
+				DownBtn = transform.parent.Find ("SkillInfo").GetComponent<MenuButton> ();
 		} else if (name == "SkillInfo") {
 			selectionType = SelectionType.SkillInfo;
 			if (activeType == ActiveType.Active)
@@ -42,6 +45,10 @@ public class SkillSelection : MenuButton {
 		skill = transform.parent.parent.GetComponent<SkillsBtn> ().skill;
 		passive = transform.parent.parent.GetComponent<SkillsBtn> ().passive;
 
+		if (name == "KeyAssign" && transform.parent.parent.GetComponent<SkillsBtn> ().skillLvl == 0) {
+			GetComponent<Text> ().color = Color.gray;
+			canAssign = false;
+		}
 
 		base.Start ();
 	}
@@ -49,6 +56,11 @@ public class SkillSelection : MenuButton {
 	// Update is called once per frame
 	public override void Update () {
 		base.Update ();
+
+		if (name == "KeyAssign" && !canAssign && transform.parent.parent.GetComponent<SkillsBtn> ().skillLvl > 0) {
+			canAssign = true;
+			GetComponent<Text> ().color = Color.white;
+		}
 	}
 
 	public override void Select(){
@@ -70,7 +82,7 @@ public class SkillSelection : MenuButton {
 	}
 
 	public override void Submit() {
-		if (SubmitBtn != null && selectionType == SelectionType.KeyAssign) {
+		if (SubmitBtn != null && selectionType == SelectionType.KeyAssign && canAssign) {
 			SubmitBtn.Select ();
 			SubmitBtn.CancelBtn = this;
 			selected = false;
@@ -108,120 +120,128 @@ public class SkillSelection : MenuButton {
 	}
 
 	public void AddSkillPoint() {
-
-		if (activeType == ActiveType.Active) {
-			switch (skill) {
-			case Skills.FirePillar:
-				if (player == 1)
-					GameManager.instance.player1.skills.firePillarLevel++;
-				else
-					GameManager.instance.player2.skills.firePillarLevel++;
-				break;
-			case Skills.IceSpike:
-				if (player == 1)
-					GameManager.instance.player1.skills.iceSpikesLevel++;
-				else
-					GameManager.instance.player2.skills.iceSpikesLevel++;
-				break;
-			case Skills.ChainLightning:
-				if (player == 1)
-					GameManager.instance.player1.skills.chainLightningLevel++;
-				else
-					GameManager.instance.player2.skills.chainLightningLevel++;
-				break;
-			case Skills.DrainHeal:
-				if (player == 1)
-					GameManager.instance.player1.skills.drainHealLevel++;
-				else
-					GameManager.instance.player2.skills.drainHealLevel++;
-				break;
-			case Skills.AoeLightning:
-				if (player == 1)
-					GameManager.instance.player1.skills.aoeLightningLevel++;
-				else
-					GameManager.instance.player2.skills.aoeLightningLevel++;
-				break;
-			case Skills.GroundSmash:
-				if (player == 1)
-					GameManager.instance.player1.skills.groundSmashLevel++;
-				else
-					GameManager.instance.player2.skills.groundSmashLevel++;
-				break;
-			case Skills.VerticalStrike:
-				if (player == 1)
-					GameManager.instance.player1.skills.verticalStrikeLevel++;
-				else
-					GameManager.instance.player2.skills.verticalStrikeLevel++;
-				break;
-			case Skills.SpearBreaker:
-				if (player == 1)
-					GameManager.instance.player1.skills.spearBreakerLevel++;
-				else
-					GameManager.instance.player2.skills.spearBreakerLevel++;
-				break;
-			}
-		} else {
-
-			switch (passive) {
-
-			case Passives.MaxHealth:
-				if (player == 1)
-					GameManager.instance.player1.skills.maxHealthLevel++;
-				else
-					GameManager.instance.player2.skills.maxHealthLevel++;
-				break;
-			case Passives.MinDmg:
-				if (player == 1)
-					GameManager.instance.player1.skills.minDmgLevel++;
-				else
-					GameManager.instance.player2.skills.minDmgLevel++;
-				break;
-			case Passives.MaxDmg:
-				if (player == 1)
-					GameManager.instance.player1.skills.maxDmgLevel++;
-				else
-					GameManager.instance.player2.skills.maxDmgLevel++;
-				break;
-			case Passives.WeaponBuff:
-				if (player == 1)
-					GameManager.instance.player1.skills.weaponBuffLevel++;
-				else
-					GameManager.instance.player2.skills.weaponBuffLevel++;
-				break;
-			case Passives.SpellBuff:
-				if (player == 1)
-					GameManager.instance.player1.skills.spellBuffLevel++;
-				else
-					GameManager.instance.player2.skills.spellBuffLevel++;
-				break;
-			case Passives.DefenseBuff:
-				if (player == 1)
-					GameManager.instance.player1.skills.defenseBuffLevel++;
-				else
-					GameManager.instance.player2.skills.defenseBuffLevel++;
-				break;
-			case Passives.FrontSlash:
-				if (player == 1)
-					GameManager.instance.player1.skills.frontSlashLevel++;
-				else
-					GameManager.instance.player2.skills.frontSlashLevel++;
-				break;
-			case Passives.IceBoltSpike:
-				if (player == 1)
-					GameManager.instance.player1.skills.iceBoltSpikeLevel++;
-				else
-					GameManager.instance.player2.skills.iceBoltSpikeLevel++;
-				break;
-			}
-
+		bool hasPoint = false;
+		if (player == 1 && GameManager.instance.player1.SkillPoints > 0) {
+			GameManager.instance.player1.SkillPoints--;
+			hasPoint = true;
+		} else if (player == 2 && GameManager.instance.player2.SkillPoints > 0) {
+			GameManager.instance.player2.SkillPoints--;
+			hasPoint = true;
 		}
 
-		transform.parent.parent.GetComponent<SkillsBtn> ().UpdateSkillLvl ();
+		if (hasPoint) {
+			if (activeType == ActiveType.Active) {
+				switch (skill) {
+				case Skills.FirePillar:
+					if (player == 1)
+						GameManager.instance.player1.skills.firePillarLevel++;
+					else
+						GameManager.instance.player2.skills.firePillarLevel++;
+					break;
+				case Skills.IceSpike:
+					if (player == 1)
+						GameManager.instance.player1.skills.iceSpikesLevel++;
+					else
+						GameManager.instance.player2.skills.iceSpikesLevel++;
+					break;
+				case Skills.ChainLightning:
+					if (player == 1)
+						GameManager.instance.player1.skills.chainLightningLevel++;
+					else
+						GameManager.instance.player2.skills.chainLightningLevel++;
+					break;
+				case Skills.DrainHeal:
+					if (player == 1)
+						GameManager.instance.player1.skills.drainHealLevel++;
+					else
+						GameManager.instance.player2.skills.drainHealLevel++;
+					break;
+				case Skills.AoeLightning:
+					if (player == 1)
+						GameManager.instance.player1.skills.aoeLightningLevel++;
+					else
+						GameManager.instance.player2.skills.aoeLightningLevel++;
+					break;
+				case Skills.GroundSmash:
+					if (player == 1)
+						GameManager.instance.player1.skills.groundSmashLevel++;
+					else
+						GameManager.instance.player2.skills.groundSmashLevel++;
+					break;
+				case Skills.VerticalStrike:
+					if (player == 1)
+						GameManager.instance.player1.skills.verticalStrikeLevel++;
+					else
+						GameManager.instance.player2.skills.verticalStrikeLevel++;
+					break;
+				case Skills.SpearBreaker:
+					if (player == 1)
+						GameManager.instance.player1.skills.spearBreakerLevel++;
+					else
+						GameManager.instance.player2.skills.spearBreakerLevel++;
+					break;
+				}
+			} else {
 
-		if (player == 1)
-			GameManager.instance.player1.SkillPoints--;
-		else
-			GameManager.instance.player2.SkillPoints--;
+				switch (passive) {
+
+				case Passives.MaxHealth:
+					if (player == 1)
+						GameManager.instance.player1.skills.maxHealthLevel++;
+					else
+						GameManager.instance.player2.skills.maxHealthLevel++;
+					break;
+				case Passives.MinDmg:
+					if (player == 1)
+						GameManager.instance.player1.skills.minDmgLevel++;
+					else
+						GameManager.instance.player2.skills.minDmgLevel++;
+					break;
+				case Passives.MaxDmg:
+					if (player == 1)
+						GameManager.instance.player1.skills.maxDmgLevel++;
+					else
+						GameManager.instance.player2.skills.maxDmgLevel++;
+					break;
+				case Passives.WeaponBuff:
+					if (player == 1)
+						GameManager.instance.player1.skills.weaponBuffLevel++;
+					else
+						GameManager.instance.player2.skills.weaponBuffLevel++;
+					break;
+				case Passives.SpellBuff:
+					if (player == 1)
+						GameManager.instance.player1.skills.spellBuffLevel++;
+					else
+						GameManager.instance.player2.skills.spellBuffLevel++;
+					break;
+				case Passives.DefenseBuff:
+					if (player == 1)
+						GameManager.instance.player1.skills.defenseBuffLevel++;
+					else
+						GameManager.instance.player2.skills.defenseBuffLevel++;
+					break;
+				case Passives.FrontSlash:
+					if (player == 1)
+						GameManager.instance.player1.skills.frontSlashLevel++;
+					else
+						GameManager.instance.player2.skills.frontSlashLevel++;
+					break;
+				case Passives.IceBoltSpike:
+					if (player == 1)
+						GameManager.instance.player1.skills.iceBoltSpikeLevel++;
+					else
+						GameManager.instance.player2.skills.iceBoltSpikeLevel++;
+					break;
+				}
+
+			}
+			transform.parent.parent.GetComponent<SkillsBtn> ().UpdateSkillLvl ();
+		}
+
+
+
+
 
 	}
 }

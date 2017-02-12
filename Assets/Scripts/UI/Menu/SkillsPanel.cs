@@ -16,6 +16,6 @@ public class SkillsPanel : MonoBehaviour {
 		if (player == 1)
 			lvlTxt.text = GameManager.instance.player1.SkillPoints.ToString();
 		else 
-			lvlTxt.text = GameManager.instance.player1.SkillPoints.ToString();
+			lvlTxt.text = GameManager.instance.player2.SkillPoints.ToString();
 	}
 }

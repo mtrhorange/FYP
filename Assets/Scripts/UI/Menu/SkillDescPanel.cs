@@ -16,7 +16,7 @@ public class SkillDescPanel : MenuButton {
 
 	Player p;
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		text =	transform.Find ("Text").GetComponent<Text>();
 
 		if (player == 1)
@@ -26,11 +26,34 @@ public class SkillDescPanel : MenuButton {
 
 		UpdateSkill ();
 		UpdateDescription ();
+
+		base.Start ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	public override void Update () {
+		UpdateSkill ();
+		UpdateDescription ();
+
+		base.Update ();
+	}
+
+	public override void Select(){
+		gameObject.SetActive (true);
+		base.Select ();
+
+
+	}
+
+	public override void Cancel() {
+
+		if (CancelBtn != null) {
+			CancelBtn.Select ();
+			Deselect ();
+			gameObject.SetActive (false);
+			CancelBtn.SubmitBtn = this;
+		}
+
 	}
 
 	void UpdateDescription() {

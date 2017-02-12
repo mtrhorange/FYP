@@ -26,6 +26,8 @@ public class GameMenuManager : MonoBehaviour {
 	bool p2CanDown = true;
 	bool p2CanMove = true;
 
+	bool p2CanSubmit = true;
+	bool p2CanCancel = true;
 
 	void Awake() {
 
@@ -80,9 +82,9 @@ public class GameMenuManager : MonoBehaviour {
 			selectedBtnP2.MoveUp ();
 		if (p2CanMove && DPadDown ())
 			selectedBtnP2.MoveDown ();
-		if (Input.GetButtonDown ("AButtonCtrl1"))
+		if (p2CanSubmit && RTAxis())
 			selectedBtnP2.Submit ();
-		if (Input.GetButtonDown ("BButtonCtrl1"))
+		if (p2CanCancel && LTAxis())
 			selectedBtnP2.Cancel ();
 		
 
@@ -96,7 +98,13 @@ public class GameMenuManager : MonoBehaviour {
 		if (DPadUp () && p2CanMove)
 			p2CanMove = false;
 
+		p2CanSubmit = true;
+		p2CanCancel = true;
 
+		if (RTAxis ())
+			p2CanSubmit = false;
+		if (LTAxis ())
+			p2CanCancel = false;
 
 
 
@@ -191,5 +199,24 @@ public class GameMenuManager : MonoBehaviour {
 		{
 			return false;
 		}
+	}
+
+	bool LTAxis() 
+	{
+		float ltAxis = Input.GetAxis ("LTAxisCtrl1");
+
+		if (ltAxis >= 0.5f)
+			return true;
+		else
+			return false;
+	}
+
+	bool RTAxis()
+	{
+		float rtAxis = Input.GetAxis ("RTAxisCtrl1");
+		if (rtAxis >= 0.5f)
+			return true;
+		else
+			return false;
 	}
 }

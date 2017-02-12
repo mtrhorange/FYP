@@ -317,6 +317,10 @@ public class Player : MonoBehaviour {
 
 		if (recoverStamina && Stamina < MaxStamina && !controller.isCasting) {
 			RecoverStamina (Time.deltaTime * 10f);
+		}
+
+		if (Health < (0.5f * MaxHealth) && !isDead) {
+			RecoverHealth (MaxHealth * 0.01f * Time.deltaTime);
 
 		}
 
