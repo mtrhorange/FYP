@@ -549,6 +549,9 @@ public class PlayerController : MonoBehaviour
 					CastAttack (1);
 					player.skillS ();
 					player.RecoverStamina(-player.skillSCost ());
+					canCast = false;
+					isCastingS = false;
+
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}
@@ -593,6 +596,8 @@ public class PlayerController : MonoBehaviour
 					CastAttack (1);
 					player.skillD ();
 					player.RecoverStamina(-player.skillDCost ());
+					canCast = false;
+					isCastingD = false;
 				} else {
 					StartCoroutine(_LockCasting(0, 0f));
 				}
@@ -1536,9 +1541,10 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(delayTime);
 		canCast = false;
 		canAction = false;
+		isCasting = false;
 		yield return new WaitForSeconds(lockTime);
 
-		isCasting = false;
+
 		isStrafing = false;
 		isAiming = false;
 		animator.SetBool ("Strafing", false);

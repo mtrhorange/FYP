@@ -499,6 +499,7 @@ public class Player : MonoBehaviour {
 			canBeHit = false;
 			controller.PlayerDeath ();
 			Lives--;
+			transform.gameObject.tag = "Untagged";
 			if (Lives == 0)
 				isPermaDead = true;
             //tell dead script i am dead
@@ -512,7 +513,7 @@ public class Player : MonoBehaviour {
 		isDead = false;
 		canBeHit = true;
 		controller.PlayerRevive ();
-
+		transform.gameObject.tag = "Player";
 	}
 
 	#endregion
@@ -559,13 +560,13 @@ public class Player : MonoBehaviour {
 			Invoke ("StrongPoisonDamage", 1f);
 
 		isStrongPoisoned = true;
-		poisonTime = t;
+		strongPoisonTime = t;
 		poisonEffect.SetActive (true);
 	}
 
 	void BurnDamage() {
 		int rand = Random.Range (2, 6);
-		StatusDamage (MaxHealth * 0.001f * rand);
+		StatusDamage (MaxHealth * 0.001f * (float)rand);
 		if (isStrongBurning && strongBurnTime > 1f)
 			Invoke ("StrongBurnDamage", 1.0f);
 		else if (isBurning && burnTime > 1f)
@@ -574,7 +575,7 @@ public class Player : MonoBehaviour {
 
 	void StrongBurnDamage() {
 		int rand = Random.Range (8, 17);
-		StatusDamage (MaxHealth * 0.001f * rand);
+		StatusDamage (MaxHealth * 0.001f * (float)rand);
 		if (isStrongBurning && strongBurnTime > 1f)
 			Invoke ("StrongBurnDamage", 1.0f);
 		else if (isBurning && burnTime > 1f)
@@ -583,7 +584,7 @@ public class Player : MonoBehaviour {
 
 	void PoisonDamage() {
 		int rand = Random.Range (2, 6);
-		StatusDamage (MaxHealth * 0.001f * rand);
+		StatusDamage (MaxHealth * 0.001f * (float)rand);
 		if (isStrongPoisoned && strongPoisonTime > 1f)
 			Invoke ("StrongPoisonDamage", 1.0f);
 		else if (isPoisoned && poisonTime > 1f)
@@ -592,7 +593,7 @@ public class Player : MonoBehaviour {
 
 	void StrongPoisonDamage() {
 		int rand = Random.Range (8, 16);
-		StatusDamage (MaxHealth * 0.001f * rand);
+		StatusDamage (MaxHealth * 0.001f * (float)rand);
 		if (isStrongPoisoned && strongPoisonTime > 1f)
 			Invoke ("StrongPoisonDamage", 1.0f);
 		else if (isPoisoned && poisonTime > 1f)
@@ -600,6 +601,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void StatusDamage(float dmg) {
+		dmg = Mathf.Ceil (dmg);
+			
 		Health -= dmg;
 
 		Camera camera = FindObjectOfType<Camera>();
@@ -861,6 +864,9 @@ public class Player : MonoBehaviour {
             lightning.GetComponent<ChainLightning> ().StartPosition = transform.position + transform.up * 3f;
 			lightning.GetComponent<ChainLightning> ().EndObject = closest;
 			lightning.GetComponent<ChainLightning> ().player = this;
+			int lvl = skills.chainLightningLevel;
+			lightning.GetComponent<ChainLightning>().maxBounces = (lvl < 15) ? Mathf.CeilToInt(1f + (float)lvl / 3f): 6;
+
 		}
 			
 	}
@@ -873,8 +879,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public float GetChainLightningCost() {
-
-		float cost = 5f;
+		int lvl = skills.chainLightningLevel;
+		float cost = (lvl < 15) ? 20f - (float)lvl / 3f : 1;
 		return cost;
 	}
 	#endregion
@@ -1092,14 +1098,14 @@ public class Player : MonoBehaviour {
 
 	public float GetSpearBreakerTime() {
 
-		float time = 0.5f;
+		float time = 0.8f;
 		return time;
 
 	}
 
 	public float GetSpearBreakerCost() {
 
-		float cost = 15f;
+		float cost = 30f;
 		return cost;
 	}
 

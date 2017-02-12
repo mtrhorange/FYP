@@ -19,7 +19,7 @@ public class CameraBound : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) {
 
-		if (other.transform.GetComponent<Player> ()) {
+		if (other.transform.tag == "Player" && other.transform.GetComponent<Player> ()) {
 			switch (side) {
 
 			case Sides.Down:

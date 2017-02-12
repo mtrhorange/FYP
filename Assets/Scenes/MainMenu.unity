@@ -1112,6 +1112,21 @@ Prefab:
       propertyPath: m_Name
       value: PlayerPrefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013171733978, guid: f1ed895ce4700644a9e1879953099baa,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013534165386, guid: f1ed895ce4700644a9e1879953099baa,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014260104298, guid: f1ed895ce4700644a9e1879953099baa,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1ed895ce4700644a9e1879953099baa, type: 2}
   m_IsPrefabParent: 0
@@ -5283,6 +5298,8 @@ MonoBehaviour:
   spellStaminaDrain: 0
   livesRemaining: 0
   skillPoints: 0
+  isDead: 0
+  isPermaDead: 0
   canBeHit: 0
   isMelee: 0
   level: 0

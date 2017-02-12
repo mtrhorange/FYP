@@ -25,7 +25,7 @@ public class PlayerCamera : MonoBehaviour
 	{
 		if (cameraTarget2 == null)
 			thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, cameraTarget1.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), cameraTarget1.transform.position.z + offsetZ);
-		else {
+		else if (!cameraTarget1.GetComponent<Player> ().isDead && !cameraTarget2.GetComponent<Player> ().isDead) {
 			//thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, Vector3.Lerp (cameraTarget1.transform.position, cameraTarget2.transform.position, 0.5f).x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), (Vector3.Lerp (cameraTarget1.transform.position, cameraTarget2.transform.position, 0.5f).z + offsetZ));
 		
 			targetPos = Vector3.Lerp (cameraTarget1.transform.position, cameraTarget2.transform.position, 0.5f);
@@ -40,6 +40,11 @@ public class PlayerCamera : MonoBehaviour
 			else if (transform.position.z > targetPos.z && canDown)
 				transform.position = new Vector3 (transform.position.x, Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), targetPos.z + offsetZ);
 
+		} else if (cameraTarget1.GetComponent<Player> ().isDead) {
+			thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, cameraTarget2.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget2.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), cameraTarget2.transform.position.z + offsetZ);
+
+		} else if (cameraTarget2.GetComponent<Player> ().isDead) {
+			thisTransform.position = new Vector3 (Mathf.SmoothDamp (thisTransform.position.x, cameraTarget1.transform.position.x, ref velocity.x, smoothTime), Mathf.SmoothDamp (thisTransform.position.y, cameraTarget1.transform.position.y - offsetY, ref velocity.y, smoothTime * 2), cameraTarget1.transform.position.z + offsetZ);
 		}
 		
 	}

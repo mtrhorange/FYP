@@ -9,8 +9,8 @@ public class fire_pillar : Spell {
     void Start()
     {
 		int lvl = player.skills.firePillarLevel;
-		int rad = lvl < 15 ? Mathf.CeilToInt ((lvl / 3)) : 5;
-		int rate = lvl < 15 ? 100 * Mathf.CeilToInt ((lvl / 3)) : 500;
+		int rad = lvl < 15 ? Mathf.CeilToInt (((float)lvl / 5f)) : 3;
+		int rate = lvl < 15 ? 100 * Mathf.CeilToInt ((float)(lvl / 5f)) : 500;
 		ParticleSystem.ShapeModule shapeMod = transform.Find ("Fire").GetComponent<ParticleSystem> ().shape;
 		ParticleSystem.EmissionModule emiMod = transform.Find ("Fire").GetComponent<ParticleSystem> ().emission;
 		shapeMod.radius = rad;
@@ -45,6 +45,5 @@ public class fire_pillar : Spell {
 			damage *= 0.8f + lvl * 0.05f;
 			other.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 		}
-
 	}
 }

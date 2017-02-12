@@ -30,9 +30,12 @@ public class ChainLightning : Spell
 
 	public int maxBounces = 100;
 	public int bounces = 0;
-	public Enemy prevHit = null;
+	public List<Enemy> prevHit;
 	void Start ()
 	{
+		if (prevHit == null)
+			prevHit = new List<Enemy> ();
+
         if (StartObject) {
 			StartPosition = StartObject.transform.position + StartObject.transform.up * 2f;
 		}
@@ -186,11 +189,17 @@ public class ChainLightning : Spell
 		Enemy[]	enemies = FindObjectsOfType<Enemy> ();
 
 		Transform closest = null;
-
+		bool hit = true;
 		foreach (Enemy e in enemies) {
-			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
-				Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position)) 
-				&& e != EndObject.GetComponent<Enemy>() && e != prevHit && e.myState != Enemy.States.Dead)
+			foreach (Enemy ph in prevHit) {
+				if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
+				    Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position))
+				    && e != EndObject.GetComponent<Enemy> () && e.myState != Enemy.States.Dead) {
+					if (e == ph)
+						hit = false;
+				}
+			}
+			if (hit)
 				closest = e.transform;
 		}
 
@@ -201,8 +210,11 @@ public class ChainLightning : Spell
             lightningz.GetComponent<ChainLightning> ().StartObject = EndObject;
 			lightningz.GetComponent<ChainLightning> ().EndObject = closest;
 			lightningz.GetComponent<ChainLightning> ().bounces = bounces + 1;
+			lightningz.GetComponent<ChainLightning> ().maxBounces = maxBounces;
 
-			lightningz.GetComponent<ChainLightning> ().prevHit = EndObject.GetComponent<Enemy> ();
+			prevHit.Add (EndObject.GetComponent<Enemy> ());
+
+			lightningz.GetComponent<ChainLightning> ().prevHit = prevHit;
 			lightningz.GetComponent<ChainLightning> ().player = player;
 		}
 
