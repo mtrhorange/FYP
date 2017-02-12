@@ -14440,27 +14440,6 @@ Prefab:
       propertyPath: m_Name
       value: tent (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012102379878, guid: 40b68105760bc1d48b8d96875adc930c, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 32.334
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012102379878, guid: 40b68105760bc1d48b8d96875adc930c, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.981
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012102379878, guid: 40b68105760bc1d48b8d96875adc930c, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012102379878, guid: 40b68105760bc1d48b8d96875adc930c, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000012757844022, guid: 40b68105760bc1d48b8d96875adc930c,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c4e8161d58ab69f49bdbd5606a6adcfd, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40b68105760bc1d48b8d96875adc930c, type: 2}
   m_IsPrefabParent: 0
