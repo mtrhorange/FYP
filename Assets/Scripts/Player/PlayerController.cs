@@ -1536,10 +1536,10 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(delayTime);
 		canCast = false;
 		canAction = false;
-		isCasting = false;
+
 		yield return new WaitForSeconds(lockTime);
 
-
+		isCasting = false;
 		isStrafing = false;
 		isAiming = false;
 		animator.SetBool ("Strafing", false);

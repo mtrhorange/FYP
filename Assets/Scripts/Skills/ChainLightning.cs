@@ -192,14 +192,15 @@ public class ChainLightning : Spell
 		bool hit = true;
 		foreach (Enemy e in enemies) {
 			
-				if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
-				    Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position))
-				    && e != EndObject.GetComponent<Enemy> () && e.myState != Enemy.States.Dead) {
-					foreach (Enemy ph in prevHit) {
-						if (e == ph)
-							hit = false;
-					}
+			if (Vector3.Distance (transform.position, e.transform.position) < 8 && (closest == null ||
+			    Vector3.Distance (transform.position, e.transform.position) < Vector3.Distance (transform.position, closest.position))
+			    && e != EndObject.GetComponent<Enemy> () && e.myState != Enemy.States.Dead) {
+				foreach (Enemy ph in prevHit) {
+					if (e == ph)
+						hit = false;
 				}
+			} else
+				hit = false;
 			
 			if (hit)
 				closest = e.transform;
