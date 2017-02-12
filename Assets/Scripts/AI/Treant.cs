@@ -10,7 +10,7 @@ public class Treant : Enemy {
     //timers
     private float pathUpdateTimer = 3f;
     public float attackInterval = 3f;
-    private float summonInterval = 35f, summonTimer;
+    private float summonInterval = 25f, summonTimer;
 
     public float attackTimer;
     public GameObject shockwave, summonEffect, HPBarPrefab;

@@ -241,7 +241,6 @@ public class TentacleBoss : Enemy {
 
         GameObject boo = (GameObject)Instantiate(projectile, mouth.transform.position, Quaternion.identity);
         boo.GetComponent<Rigidbody>().velocity = shootHere * 10f;
-        boo.GetComponent<EnemyProjectiles>().target = here;
         boo.GetComponent<EnemyProjectiles>().damage = damage;
     }
 

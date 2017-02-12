@@ -121,9 +121,9 @@ public class SkeletonRange : Enemy
         else
         {
             RaycastHit hit;
-            Vector3 sight = (player.transform.position - transform.position);
+            Vector3 sight = ((player.transform.position + player.transform.up) - transform.position);
             sight.y = transform.position.y;
-            if (Physics.Raycast(transform.position, sight.normalized * 5f, out hit))
+            if (Physics.Raycast(transform.position + transform.up, sight.normalized, out hit, 30))
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
