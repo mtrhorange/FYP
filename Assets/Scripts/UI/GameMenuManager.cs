@@ -17,7 +17,7 @@ public class GameMenuManager : MonoBehaviour {
     public Slider BGM;
     public Slider SFX;
 
-    bool menuOpen = false;
+    public bool menuOpen = false;
 	public bool canEscape = true;
 
 	bool p2CanLeft = true;

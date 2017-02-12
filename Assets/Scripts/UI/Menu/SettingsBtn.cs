@@ -7,6 +7,10 @@ public class SettingsBtn : MenuButton {
 	public enum SettingsType {Slider, Button}
 	public SettingsType type;
 
+
+	public GameObject border;
+
+	float updateTimer = 2.0f;
 	public override void Awake () {
 		btnType = ButtonTypes.Settings;
 		base.Awake ();
@@ -21,17 +25,38 @@ public class SettingsBtn : MenuButton {
 	// Update is called once per frame
 	public override void Update () {
 		base.Update ();
+
+
+		if (type == SettingsType.Slider) {
+			updateTimer -= Time.deltaTime * 10000;
+			if (updateTimer < 0) {
+				if (gameObject.name == "BGM Slide" && PlayerPrefs.HasKey ("BGM")) {
+					GetComponent<Slider> ().value = PlayerPrefs.GetFloat ("BGM");
+				} else if (gameObject.name == "SFX Slide" && PlayerPrefs.HasKey ("SFX")) {
+					GetComponent<Slider> ().value = PlayerPrefs.GetFloat ("SFX");
+				}
+				updateTimer = 2.0f;
+			}
+		}
 	}
 
 	public override void Select(){
 		base.Select ();
-		Active ();
+		if (type == SettingsType.Slider)
+			border.SetActive (true);
+		else
+			GetComponent<Image> ().color = Color.red;
+		//Active ();
 
 	}
 
 	public override void Deselect() {
 		base.Deselect ();
-		Inactive ();
+		if (type == SettingsType.Slider)
+			border.SetActive (false);
+		else
+			GetComponent<Image> ().color = Color.white;
+		//Inactive ();
 
 	}
 
@@ -40,6 +65,15 @@ public class SettingsBtn : MenuButton {
 			SubmitBtn.Select ();
 			selected = false;
 			Inactive ();
+		}
+
+		if (type == SettingsType.Button) {
+			if (name == "quit") {
+				GameMenuManager.instance.closeMenu ();
+				LevelManager.instance.LoadMainMenu ();
+			} else {
+				GameMenuManager.instance.closeMenu ();
+			}
 
 		}
 	}
@@ -54,14 +88,30 @@ public class SettingsBtn : MenuButton {
 	}
 
 	public override bool MoveLeft() {
+		if (type == SettingsType.Slider) {
+			GetComponent<Slider> ().value -= 0.05f;
+			if (name == "BGM Slide")
+				setBGM ();
+			else
+				setSFX ();
+		} else {
+			base.MoveLeft ();
+		}
+		
 
-		GetComponent<Slider> ().value -= 5f;
 		return false;
 	}
 
 	public override bool MoveRight() {
-
-		GetComponent<Slider> ().value += 5f;
+		if (type == SettingsType.Slider) {
+			GetComponent<Slider> ().value += 0.05f;
+			if (name == "BGM Slide")
+				setBGM ();
+			else
+				setSFX ();
+		} else {
+			base.MoveRight ();
+		}
 		return false;
 
 	}

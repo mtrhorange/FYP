@@ -13,14 +13,14 @@ public class PlayerMenu : MonoBehaviour {
 			btn.player = player;
 		}
 
-		if (gameObject.activeSelf)
-			gameObject.SetActive (false);
+
 
 	}
 
 	// Use this for initialization
 	void Start () {
-		
+		if (!GameMenuManager.instance.menuOpen && gameObject.activeSelf)
+			gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
