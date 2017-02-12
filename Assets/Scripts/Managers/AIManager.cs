@@ -42,6 +42,7 @@ public class AIManager : MonoBehaviour
     private List<int> mobPrefStrengths, spawnTheseStrengths;
     private bool spawning = false, isBossRoom = false;
     public float doorCheckTimer = 3f;
+    public int bugCount = 0;
 
     //temporary var for demonstration purposes
     private int enemPts;
@@ -312,7 +313,21 @@ public class AIManager : MonoBehaviour
             switch (str)
             {
                 case WEAK:
-                    enemyList.Add((GameObject)Instantiate(weakGuys[UnityEngine.Random.Range(0, weakGuys.Count)], loc, Quaternion.identity));
+                    GameObject d;
+                    if (bugCount >= 2)
+                    {
+                        do
+                        {
+                            d = weakGuys[UnityEngine.Random.Range(0, weakGuys.Count)];
+                        }
+                        while (d.GetComponent<Enemy>().myType == mobType.Bug);
+                    }
+                    else
+                    {
+                        d = weakGuys[UnityEngine.Random.Range(0, weakGuys.Count)];
+                    }
+
+                    enemyList.Add((GameObject)Instantiate(d, loc, Quaternion.identity));
                     break;
                 case MEDIUM:
                     enemyList.Add((GameObject)Instantiate(medGuys[UnityEngine.Random.Range(0, medGuys.Count)], loc, Quaternion.identity));
