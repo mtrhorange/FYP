@@ -52,9 +52,9 @@ public class Ice_Spike : Spell {
 //		}
 
 		if (other.GetComponent<Enemy> () && other.GetType () == typeof(CapsuleCollider)) {
-
+			int lvl = player.skills.iceSpikesLevel;
 			float dmg = GetDamage ();
-			dmg *= 0.6f;
+			dmg *= 0.4f + lvl * 0.05f;
 
 			other.GetComponent<Enemy> ().ReceiveDamage (dmg, player);
 		}

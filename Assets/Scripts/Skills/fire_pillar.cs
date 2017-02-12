@@ -8,7 +8,14 @@ public class fire_pillar : Spell {
 	public float triggerDelay;
     void Start()
     {
-		damage = 20;
+		int lvl = player.skills.firePillarLevel;
+		int rad = lvl < 15 ? Mathf.CeilToInt ((lvl / 3)) : 5;
+		int rate = lvl < 15 ? 100 * Mathf.CeilToInt ((lvl / 3)) : 500;
+		ParticleSystem.ShapeModule shapeMod = transform.Find ("Fire").GetComponent<ParticleSystem> ().shape;
+		ParticleSystem.EmissionModule emiMod = transform.Find ("Fire").GetComponent<ParticleSystem> ().emission;
+		shapeMod.radius = rad;
+		emiMod.rate = rate;
+		GetComponent<CapsuleCollider> ().radius = rad;
 
     }
 
