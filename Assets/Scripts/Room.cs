@@ -106,5 +106,12 @@ public class Room : MonoBehaviour
         {
             Destroy(HO[i].gameObject);
         }
+
+        //remove any aoe lightnings still in the area
+        AoELightning[] AL = FindObjectsOfType<AoELightning>();
+        for (int i = AL.Length - 1; i >= 0; i--)
+        {
+            Destroy(AL[i].gameObject);
+        }
     }
 }

@@ -131,9 +131,12 @@ public class Enemy : MonoBehaviour
     {
         myState = States.Dead;
         GetComponent<CapsuleCollider>().enabled = false;
-        //reward exp
+        //reward exp Reward points to player
         if (murderer != null)
+        {
             RewardEXP();
+            RewardPoints();
+        }
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         AIManager.instance.RemoveMe(this.gameObject);
@@ -365,6 +368,43 @@ public class Enemy : MonoBehaviour
                 Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * 1.8f;
                 Instantiate(Resources.Load("HealthOrb"), transform.position + transform.up + pos, Quaternion.identity);
             }
+        }
+    }
+
+    //Reward Points
+    protected void RewardPoints()
+    {
+        int pts = 0;
+        switch (myStrength)
+        {
+            case Strength.Weak: pts = 10; ;
+                break;
+            case Strength.Medium: pts = 20;
+                break;
+            case Strength.Strong: pts = 40;
+                break;
+            case Strength.Boss: pts = 120;
+                break;
+        }
+
+
+        //if 2 player, split 60% to player who killed and 40% to the other
+        if (GameManager.instance.twoPlayers)
+        {
+            murderer.ReceivePoints((int)(pts * 0.6f));
+            if (GameManager.instance.player1 == murderer)
+            {
+                GameManager.instance.player2.ReceivePoints((int)(pts * 0.4f));
+            }
+            else if (GameManager.instance.player2 == murderer)
+            {
+                GameManager.instance.player1.ReceivePoints((int)(pts * 0.4f));
+            }
+        }
+        //else, award to the single player
+        else
+        {
+            murderer.ReceivePoints(pts);
         }
     }
 

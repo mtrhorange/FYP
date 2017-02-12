@@ -881,6 +881,7 @@ MonoBehaviour:
     spellStaminaDrain: 0
     livesRemaining: 0
     skillPoints: 0
+    points: 0
     recoverStamina: 0
     isPermaDead: 0
     level: 0
@@ -917,6 +918,7 @@ MonoBehaviour:
     spellStaminaDrain: 0
     livesRemaining: 0
     skillPoints: 0
+    points: 0
     recoverStamina: 0
     isPermaDead: 0
     level: 0
