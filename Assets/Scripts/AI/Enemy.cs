@@ -151,14 +151,30 @@ public class Enemy : MonoBehaviour
         //if 2 player, split 60% to player who killed and 40% to the other
         if (GameManager.instance.twoPlayers)
         {
-            murderer.ReceiveExp(expValue * 0.6f);
+            //check if other player alive
             if (GameManager.instance.player1 == murderer)
             {
-                GameManager.instance.player2.ReceiveExp(expValue * 0.4f);
+                if (!GameManager.instance.player2.isDead)
+                {
+                    GameManager.instance.player2.ReceiveExp(expValue * 0.4f);
+                    murderer.ReceiveExp(expValue * 0.6f);
+                }
+                else
+                {
+                    murderer.ReceiveExp(expValue);
+                }
             }
             else if (GameManager.instance.player2 == murderer)
             {
-                GameManager.instance.player1.ReceiveExp(expValue * 0.4f);
+                if (!GameManager.instance.player1.isDead)
+                {
+                    GameManager.instance.player1.ReceiveExp(expValue * 0.4f);
+                    murderer.ReceiveExp(expValue * 0.6f);
+                }
+                else
+                {
+                    murderer.ReceiveExp(expValue);
+                }
             }
         }
         //else, award to the single player
