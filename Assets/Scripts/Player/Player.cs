@@ -503,7 +503,7 @@ public class Player : MonoBehaviour {
 
 	public void PlayerRevive() {
 
-		Health = MaxHealth;
+		Health = MaxHealth * 0.5f;
 		isDead = false;
 		canBeHit = true;
 		controller.PlayerRevive ();

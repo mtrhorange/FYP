@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour {
 		p.MaxHealth = pd.MaxHealth;
 		p.baseMaxHealth = pd.baseMaxHealth;
 		p.Health = pd.Health;
+        if (p.Health <= 0) { p.Health = p.MaxHealth * 0.5f; }
 		p.maxStamina = pd.maxStamina;
 		p.baseMaxStamina = pd.baseMaxStamina;
 		p.Stamina = p.MaxStamina;
