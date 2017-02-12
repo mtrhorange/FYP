@@ -536,6 +536,7 @@ public class Player : MonoBehaviour {
 		isSlowed = true;
 		slowTime = t;
 		controller.runSpeed = 3;
+		slowEffect.SetActive (true);
 	}
 
 	public void ApplyPoison(float t) {
@@ -612,8 +613,8 @@ public class Player : MonoBehaviour {
 			if (strongBurnTime <= 0) {
 				isStrongBurning = false;
 			}
-
 		}
+
 		if (isBurning) {
 			burnTime -= Time.deltaTime;
 			if (burnTime <= 0) {
@@ -626,6 +627,7 @@ public class Player : MonoBehaviour {
 			if (slowTime <= 0) {
 				isSlowed = false;
 				controller.runSpeed = 6;
+				slowEffect.SetActive (true);
 			}
 		}
 
@@ -634,8 +636,8 @@ public class Player : MonoBehaviour {
 			if (strongPoisonTime <= 0) {
 				isStrongPoisoned = false;
 			}
-
 		}
+
 		if (isPoisoned) {
 			poisonTime -= Time.deltaTime;
 			if (poisonTime <= 0) {
@@ -894,14 +896,14 @@ public class Player : MonoBehaviour {
 	}
 
 	public float GetIceSpikeTime() {
-		int lvl = transform.GetComponent<PlayerSkills> ().firePillarLevel;
-		float time = 1.3f;
+		int lvl = transform.GetComponent<PlayerSkills> ().iceSpikesLevel;
+		float time = (lvl < 15) ? 1.35f - lvl * 0.05f : 1.35f - 15 * 0.05f;
 		return time;
 	}
 
 	public float GetIceSpikeCost() {
-
-		float cost = 5f;
+		int lvl = transform.GetComponent<PlayerSkills> ().iceSpikesLevel;
+		float cost = (lvl < 15) ? 4.5f + lvl * 0.5f : 4.5f + 15 * 0.5f;
 		return cost;
 	}
 
@@ -962,14 +964,14 @@ public class Player : MonoBehaviour {
 
 	public float GetAoeLightningTime() {
 
-		float time = 0.3f;
+		float time = 1.5f;
 		return time;
 
 	}
 
 	public float GetAoeLightningCost() {
 
-		float cost = 10f;
+		float cost = 15f;
 		return cost;
 	}
 	#endregion

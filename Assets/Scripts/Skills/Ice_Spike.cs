@@ -29,8 +29,7 @@ public class Ice_Spike : Spell {
 		colliderLife -= Time.deltaTime;
 		if (GetComponent<CapsuleCollider> ().enabled && colliderLife < 0)
 			GetComponent<CapsuleCollider> ().enabled = false;
-
-
+		
     }
 
 	void OnTriggerEnter(Collider other) {

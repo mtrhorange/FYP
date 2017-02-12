@@ -191,7 +191,6 @@ GameObject:
   - 54: {fileID: 54000013206424154}
   - 136: {fileID: 136000013012235982}
   - 114: {fileID: 114000014260104298}
-  - 114: {fileID: 114000012796404558}
   - 114: {fileID: 114000013534165386}
   m_Layer: 11
   m_Name: PlayerPrefab
@@ -1611,7 +1610,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824984246}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.2285585, y: 1.3988938, z: -9.412865}
+  m_LocalPosition: {x: 3.09, y: 0, z: -15.85}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1906,7 +1905,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011055998054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2557,65 +2556,13 @@ MonoBehaviour:
   isMelee: 0
   player: {fileID: 0}
   staffType: 0
---- !u!114 &114000012796404558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010824984246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2242ce6c102b2b8448e4c31dae5f3915, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  sceneCamera: {fileID: 0}
-  waistRotationOffset: {x: 0, y: 0, z: 0}
-  gravity: -9.8
-  jumpSpeed: 12
-  doublejumpSpeed: 12
-  inAirSpeed: 8
-  rollSpeed: 10
-  rollduration: 0.5
-  canMove: 1
-  walkSpeed: 1.35
-  runSpeed: 6
-  isCasting: 0
-  canCast: 0
-  isCharging: 0
-  canAction: 1
-  knockbackMultiplier: 1
-  isSwimming: 0
-  inWaterSpeed: 8
-  twohandaxe: {fileID: 0}
-  twohandsword: {fileID: 0}
-  twohandspear: {fileID: 0}
-  twohandbow: {fileID: 0}
-  twohandcrossbow: {fileID: 0}
-  staff: {fileID: 0}
-  swordL: {fileID: 0}
-  swordR: {fileID: 0}
-  maceL: {fileID: 0}
-  maceR: {fileID: 0}
-  daggerL: {fileID: 0}
-  daggerR: {fileID: 0}
-  itemL: {fileID: 0}
-  itemR: {fileID: 0}
-  shield: {fileID: 1000011739844444}
-  pistolL: {fileID: 0}
-  pistolR: {fileID: 0}
-  rifle: {fileID: 0}
-  firstWep: {fileID: 1000012631187368}
-  secondWep: {fileID: 1000012548631710}
-  spellFirePillar: {fileID: 0}
-  spellTransmutationFire: {fileID: 0}
 --- !u!114 &114000013534165386
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824984246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44ae4b3513904df4f99dbb856aa23a2b, type: 3}
   m_Name: 
@@ -2653,7 +2600,7 @@ MonoBehaviour:
   playerUI: {fileID: 0}
   fireEffect: {fileID: 1000011120770076}
   poisonEffect: {fileID: 1000013274397158}
-  slowEffect: {fileID: 0}
+  slowEffect: {fileID: 1000014160644282}
 --- !u!114 &114000014223036334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2677,7 +2624,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824984246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9ff7a7e806ec364ea2ae81db6f95a77, type: 3}
   m_Name: 
@@ -2689,6 +2636,7 @@ MonoBehaviour:
   aoeLightningLevel: 0
   groundSmashLevel: 0
   verticalStrikeLevel: 0
+  spearBreakerLevel: 0
   maxHealthLevel: 0
   minDmgLevel: 0
   maxDmgLevel: 0
@@ -11624,7 +11572,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 6e9b925e6fce41240ae4c377da9b4377, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

@@ -14,7 +14,7 @@ public class AoELightning : Spell {
 
 	void Start () {
 		int lvl = player.skills.aoeLightningLevel;
-		Strikes = (lvl < 15) ? (lvl + 15) : 30;
+		Strikes = (lvl < 15) ? (lvl + 10) : 25;
 		betweenStrikes = (lvl < 15) ? (2.0f - lvl * 0.05f) : (2.0f - 15 * 0.05f);
 
 		btwnStrikes = betweenStrikes;

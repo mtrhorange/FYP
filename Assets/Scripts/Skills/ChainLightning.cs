@@ -123,6 +123,8 @@ public class ChainLightning : Spell
 			CastChainLightning ();
 
 		GetDamage ();
+		int lvl = player.skills.chainLightningLevel;
+		damage *= 0.45f + lvl * 0.05f;
 		EndObject.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 	}
 
