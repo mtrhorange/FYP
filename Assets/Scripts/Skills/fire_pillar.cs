@@ -35,7 +35,7 @@ public class fire_pillar : Spell {
         {
 			GetDamage ();
 			int lvl = player.skills.firePillarLevel;
-			damage *=
+			damage *= 0.8f + lvl * 0.05f;
 			other.GetComponent<Enemy> ().ReceiveDamage (damage, player);
 		}
 
