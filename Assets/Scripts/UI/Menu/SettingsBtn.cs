@@ -66,14 +66,16 @@ public class SettingsBtn : MenuButton {
 
 	}
 
-	public void setBGM(float val)
+	public void setBGM()
 	{
+		float val = GetComponent<Slider> ().value;
 		BGMManager.instance.setBGM(val);
 		PlayerPrefs.SetFloat("BGM", val);
 	}
 
-	public void setSFX(float val)
+	public void setSFX()
 	{
+		float val = GetComponent<Slider> ().value;
 		SFXManager.instance.setSFX(val);
 		PlayerPrefs.SetFloat("SFX", val);
 	}
