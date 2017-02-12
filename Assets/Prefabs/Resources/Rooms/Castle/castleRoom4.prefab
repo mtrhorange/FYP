@@ -1376,7 +1376,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010835269140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.68, z: -0}
+  m_LocalPosition: {x: 0, y: 1.68, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1482,7 +1482,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010187096660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.2, y: -20.56, z: -0}
+  m_LocalPosition: {x: -21.2, y: -20.56, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1707,7 +1707,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010803937804}
   m_LocalRotation: {x: 0, y: 0.7069895, z: 0.707224, w: 0}
-  m_LocalPosition: {x: -8.01572, y: 93.282486, z: -69.7825}
+  m_LocalPosition: {x: -19.927969, y: 61.591663, z: -68.97383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -89.981, y: 0, z: 180}
   m_Children:
@@ -1731,7 +1731,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011030573700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.24, y: 21.94, z: 0}
+  m_LocalPosition: {x: -14.24, y: 21.94, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2374,7 +2374,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010312555494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.69, y: 0.48, z: 0}
+  m_LocalPosition: {x: 36.69, y: 0.48, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -3679,6 +3679,7 @@ MonoBehaviour:
   - {fileID: 1000011975278748, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
   - {fileID: 1000013926436104, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
   trailActive: 0
+  spawnedObjects: []
 --- !u!114 &114000013499730892
 MonoBehaviour:
   m_ObjectHideFlags: 1

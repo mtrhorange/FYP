@@ -12,9 +12,15 @@ public class DeadScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        
 	}
 	
+    void Awake()
+    {
+        ded = false;
+        fadedIn = false;
+    }
+
 	// Update is called once per frame
 	void Update () {
 
@@ -68,6 +74,31 @@ public class DeadScript : MonoBehaviour {
 
     public void ReturnToTown()
     {
+        //if (GameManager.instance.twoPlayers)
+        //{
+        //    GameManager.instance.player1.ReceiveHeal(10f);
+        //    GameManager.instance.player2.ReceiveHeal(10f);
+        //}
+        //else
+        //{
+        //    GameManager.instance.player1.ReceiveHeal(10f);
+        //}
+
         LevelManager.instance.LoadGame();
+    }
+
+    public void ReturnToMainMerneor()
+    {
+        //if (GameManager.instance.twoPlayers)
+        //{
+        //    GameManager.instance.player1.ReceiveHeal(10f);
+        //    GameManager.instance.player2.ReceiveHeal(10f);
+        //}
+        //else
+        //{
+        //    GameManager.instance.player1.ReceiveHeal(10f);
+        //}
+
+        LevelManager.instance.LoadMainMenu();
     }
 }

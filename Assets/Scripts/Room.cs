@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
             {
                 //Spawn the object
                 int spIndex = Random.Range(0, spons.Count);
-                GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spons[spIndex].transform.position + transform.up + transform.up, Quaternion.Euler(-90f, 0, 0));
+                GameObject obj = (GameObject)Instantiate(Objects[Random.Range(0, Objects.Length)], spons[spIndex].transform.position, Quaternion.Euler(-90f, 0, 0));
                 obj.transform.SetParent(this.gameObject.transform);
                 spons.RemoveAt(spIndex);
                 spawnedObjects.Add(obj);

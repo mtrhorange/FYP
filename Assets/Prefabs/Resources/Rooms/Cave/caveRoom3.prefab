@@ -1081,7 +1081,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012629711018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.36, y: -17.76, z: 0}
+  m_LocalPosition: {x: -9.36, y: -17.76, z: 0.5}
   m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1136,7 +1136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013896026356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.44, y: 17.11, z: -0}
+  m_LocalPosition: {x: 8.44, y: 17.11, z: 0.5}
   m_LocalScale: {x: 1, y: 1.0000014, z: 1.0000014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1257,7 +1257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010254290560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.88, y: 16.85, z: -0}
+  m_LocalPosition: {x: -8.88, y: 16.85, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1729,7 +1729,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013056522576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.87, y: -20.03, z: -0}
+  m_LocalPosition: {x: 7.87, y: -20.03, z: 0.5}
   m_LocalScale: {x: 1, y: 1.000001, z: 1.000001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1798,7 +1798,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012966385172}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -55.104553, y: 135.95503, z: -154.25616}
+  m_LocalPosition: {x: -134.56612, y: 39.08763, z: 45.123817}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3107,6 +3107,7 @@ MonoBehaviour:
   - {fileID: 1000011975278748, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
   - {fileID: 1000013926436104, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
   trailActive: 0
+  spawnedObjects: []
 --- !u!198 &198000010252086370
 ParticleSystem:
   m_ObjectHideFlags: 1
