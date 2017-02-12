@@ -1592,7 +1592,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014245530652}
-  m_LocalRotation: {x: 0.77975833, y: 0.31765968, z: -0.16100968, w: 0.5149226}
+  m_LocalRotation: {x: 0.7797582, y: 0.31765965, z: -0.16100967, w: 0.51492256}
   m_LocalPosition: {x: -4.82, y: 2.34, z: 8.28}
   m_LocalScale: {x: 2.757481, y: 2.6005106, z: 2.7768555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1866,7 +1866,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013229369288}
   m_LocalRotation: {x: -0.4999171, y: -0.4999171, z: -0.5000829, w: 0.5000829}
-  m_LocalPosition: {x: -68.470665, y: 135.64034, z: -127.100555}
+  m_LocalPosition: {x: 222.18575, y: 37.6139, z: 448.97113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -89.981, y: 0, z: -90}
   m_Children:
@@ -4061,6 +4061,7 @@ MonoBehaviour:
   - {fileID: 1000011975278748, guid: 340945b59dd80fa42958134d1cca1be4, type: 2}
   - {fileID: 1000013926436104, guid: 6047a781b8d8d4d43b50f34c3288bcc3, type: 2}
   trailActive: 0
+  spawnedObjects: []
 --- !u!114 &114000013258890492
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000012102379878}
   - 33: {fileID: 33000013914677056}
   - 23: {fileID: 23000012757844022}
-  - 64: {fileID: 64000012822513230}
   - 65: {fileID: 65000012390500696}
   m_Layer: 0
   m_Name: tent
@@ -36,10 +35,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010951126568}
-  m_LocalRotation: {x: -0.6996282, y: 0.10256955, z: 0.10256957, w: 0.6996282}
-  m_LocalPosition: {x: -18.027008, y: -15.625366, z: 29.976624}
+  m_LocalRotation: {x: -0.6793297, y: 0.19624278, z: 0.19624278, w: 0.6793297}
+  m_LocalPosition: {x: 11.912994, y: -15.625366, z: 19.166626}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: -89.981, y: 0, z: 16.371}
+  m_LocalEulerAnglesHint: {x: -89.981, y: 0, z: 32.334}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,18 +80,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010951126568}
-  m_Mesh: {fileID: 4300000, guid: 5dd8c966bb457604ca46a36844e1008c, type: 3}
---- !u!64 &64000012822513230
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010951126568}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 5dd8c966bb457604ca46a36844e1008c, type: 3}
 --- !u!65 &65000012390500696
 BoxCollider:
