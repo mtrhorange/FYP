@@ -892,7 +892,7 @@ public class Player : MonoBehaviour {
 
 	public float GetChainLightningCost() {
 		int lvl = skills.chainLightningLevel;
-		float cost = (lvl < 15) ? 20f - (float)lvl / 3f : 1;
+		float cost = (lvl < 15) ? 20f - Mathf.Ceil((float)lvl / 3f) : 1;
 		return cost;
 	}
 	#endregion
