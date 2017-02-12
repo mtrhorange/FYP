@@ -282,9 +282,10 @@ public class Floor : MonoBehaviour {
     }
 
 	public void MovePlayers() {
-
+        if (GameManager.instance.player1.isDead) { GameManager.instance.player1.PlayerRevive(); }
 		GameManager.instance.player1.transform.position = currentRoom.GetComponent<Room>().spawnPoint1.position;
 		if (GameManager.instance.twoPlayers) {
+            if (GameManager.instance.player2.isDead) { GameManager.instance.player2.PlayerRevive(); }
 			GameManager.instance.player2.transform.position = currentRoom.GetComponent<Room>().spawnPoint2.position;
 		}
 	}
