@@ -251,52 +251,75 @@ public class SkillsBtn : MenuButton {
 		switch (gameObject.name) {
 
 		case "ActiveSkill1":
-			description = "Fire Pillar\nCharge Time: " + GameManager.instance.player1.GetFirePillarTime().ToString();
+			description = "Fire Pillar\nCharge Time: " + GameManager.instance.player1.GetFirePillarTime().ToString() 
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetFirePillarCost().ToString();
 			break;
 
 		case "ActiveSkill2":
-			description = "Chain Lightning\nCharge Time: " + GameManager.instance.player1.GetChainLightningTime().ToString();
-			break;
+			description = "Chain Lightning\nCharge Time: " + GameManager.instance.player1.GetChainLightningTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetChainLightningCost().ToString();
+                break;
 
 		case "ActiveSkill3":
-			description = "Ice Spikes\nCharge Time: " + GameManager.instance.player1.GetIceSpikeTime().ToString();
-			break;
+			description = "Ice Spikes\nCharge Time: " + GameManager.instance.player1.GetIceSpikeTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetIceSpikeCost().ToString();
+                break;
 
 		case "ActiveSkill4":
-			description = "Drain Heal\nCharge Time: " + GameManager.instance.player1.GetDrainHealTime().ToString();
-			break;
+			description = "Drain Heal\nCharge Time: " + GameManager.instance.player1.GetDrainHealTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetDrainHealCost().ToString();
+                break;
 
 		case "ActiveSkill5":
-			description = "This is Active Skill 1";
-			break;
+			description = "AOE Lightning\nCharge Time: " + GameManager.instance.player1.GetAoeLightningTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetAoeLightningCost().ToString();
+                break;
 
 		case "ActiveSkill6":
-			description = "This is Active Skill 2";
-			break;
+			description = "Ground Smash\nCharge Time: " + GameManager.instance.player1.GetGroundSmashTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetFrontSlashCost().ToString();
+                break;
 
 		case "ActiveSkill7":
-			description = "This is Active Skill 3";
-			break;
+			description = "Spear Breaker\nCharge Time: " + GameManager.instance.player1.GetSpearBreakerTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetSpearBreakerCost().ToString();
+                break;
 
 		case "ActiveSkill8":
-			description = "This is Active Skill 4";
-			break;
+			description = "Vertical Strike\nCharge Time: " + GameManager.instance.player1.GetVerticalStrikeTime().ToString()
+                    + "/nCharge Cost: " + GameManager.instance.player1.GetVerticalStrikeCost().ToString();
+                break;
 
-		case "PassiveSkill1":
-			description = "This is Passive Skill 1";
-			break;
+            case "PassiveSkill1":
+                description = "Max Health\nBuff player's Max health";
+                break;
 
-		case "PassiveSkill2":
-			description = "This is Passive Skill 2";
-			break;
+            case "PassiveSkill2":
+                description = "Minimum Damage\nIncrease the player's Minimum Damage";
+                break;
 
-		case "PassiveSkill3":
-			description = "This is Passive Skill 3";
-			break;
+            case "PassiveSkill3":
+                description = "Maximum Damage\nIncrease the player's Maximum Damage";
+                break;
 
-		case "PassiveSkill4":
-			description = "This is Passive Skill 4";
-			break;
-		}
+            case "PassiveSkill4":
+                description = "Weapon Buff\nBuff the melee and sword skills.";
+                break;
+            case "PassiveSkill5":
+                description = "Spell Buff\nBuff player's spells and ice bolt attack.";
+                break;
+
+            case "PassiveSkill6":
+                description = "Defense Buff\nIncrease the player's Defenses";
+                break;
+
+            case "PassiveSkill7":
+                description = "Front Slash\nIncrease the chance of casting a second attack when the player attacks using Sword";
+                break;
+
+            case "PassiveSkill8":
+                description = "Ice Bolt Spike\nIncrease the chance of casting a second attack when the player attacks using Ice Bolt";
+                break;
+        }
 	}
 }
