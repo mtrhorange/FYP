@@ -332,7 +332,7 @@ public class PlayerController : MonoBehaviour
             //        StartCoroutine(_Revive());
             //    }
             //}
-			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (RTAxis && player.playerNo == 2)) 
+			if(((Input.GetButtonDown("AttackL") && player.playerNo == 1) || (RTAxis() && player.playerNo == 2)) 
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
 
 				}
 			}
-			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (LTAxis && player.playerNo == 2))
+			if(((Input.GetButtonDown("AttackR")&& player.playerNo == 1) || (LTAxis() && player.playerNo == 2))
 				&& canAction && isGrounded && !isBlocking && !isDead)
 			{
 				
